@@ -1,0 +1,8 @@
+@mixin font($font-size, $font-weight, $line-height, $color:$greyBlue50){
+    font-family: 'San Francisco Pro';
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    font-style: normal;
+    color: $color;
+}

@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+  <div>lalala</div>
+    <div @click="handleClick">{{counter}}</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script>
+import { ref } from '@vue/reactivity'
+export default {
+    setup() {
+        let counter = ref(0)
+        const handleClick = () => {
+            counter += 1
+            console.log(counter);
+        }
 
-export default defineComponent({
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
-});
+        return { counter, handleClick }
+    }
+}
 </script>
+
+<style>
+
+</style>
