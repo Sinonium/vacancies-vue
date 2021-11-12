@@ -1,6 +1,7 @@
 <template>
   <div>lalala</div>
     <div @click="handleClick">{{counter}}</div>
+    <div>HEllO</div>
 </template>
 
 <script>
