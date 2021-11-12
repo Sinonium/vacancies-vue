@@ -1,23 +1,32 @@
 <template>
   <div>lalala</div>
-    <div @click="handleClick">{{counter}}</div>
+  <div>
+    <button @click="addLike()">Лайк</button>
+    <button @click="addDislike()">Дизлайк</button>
+    <div><strong>Кол-во лайков:</strong>{{ likes }}</div>
+    <div><strong>Кол-во дизлайков:</strong>{{ dislikes }}</div>
+  </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
 export default {
-    setup() {
-        let counter = ref(0)
-        const handleClick = () => {
-            counter += 1
-            console.log(counter);
-        }
-
-        return { counter, handleClick }
+  setup() {
+    let likes = ref(0)
+    let dislikes = ref(0)
+    const addLike = () => {
+      likes.value += 1
+      console.log(counter)
     }
+
+    const addDislike = () => {
+      dislikes.value += 1
+      console.log(counter)
+    }
+
+    return { likes, dislikes, addLike, addDislike }
+  },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
