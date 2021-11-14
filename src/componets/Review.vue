@@ -9,28 +9,33 @@
         <div class="review__content-logo">
           <img src="../assets/img/logoReview.png" alt="logo" />
           <div class="logo__text">
-            <div>
+            <div class="featured">
               <h3>Featured Review</h3>
               <p>(44 Courses, 4 Reviews)</p>
             </div>
-            <div>
-             <img src="../assets/img/raiting.svg" alt="reiting">
-             <p>6 months ago</p>
+            <div class="raiting">
+              <img src="../assets/img/raiting.svg" alt="reiting" />
+              <p>6 months ago</p>
             </div>
           </div>
         </div>
         <div class="review__content-text">
-          <p>This is really a great course to get a kickstart to your carrier. Exercises are really helpful, I myself had a great experience doing them. Instructor the other hand is great, very creative and great learning techniques are implied in the course to keep you excited and to learn everything with easy and in a comfortable way. </p>
+          <p>
+            This is really a great course to get a kickstart to your carrier.
+            Exercises are really helpful, I myself had a great experience doing
+            them. Instructor the other hand is great, very creative and great
+            learning techniques are implied in the course to keep you excited
+            and to learn everything with easy and in a comfortable way.
+          </p>
         </div>
+        
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style lang="scss">
@@ -61,25 +66,33 @@ export default {
     }
     display: flex;
     .logo__text {
-      div {
+      .featured {
         display: flex;
         h3 {
           @include font(vw(13), 700, vh(25), $greyBlue50);
           margin-left: vw(30);
         }
-        img{
-          margin-left: vw(30);
-          padding: 0;
-        }
         p {
           @include font(vw(12), 700, vh(25), $greyBlue80);
-          margin-left: vw(15);
+          margin-left: vw(10);
         }
       }
     }
+    .raiting {
+      display: flex;
+      img {
+        margin-left: vw(30);
+        width: vw(70);
+        height: vw(20);
+      }
+      p{
+        @include font(vw(12), 700, vh(1), $greyBlue80);
+        margin-left: vw(15);
+      }
+    }
   }
-  &__content-text{
-    p{
+  &__content-text {
+    p {
       @include font(vw(13), 600, vh(25), $greyBlue60);
       max-width: vw(600);
     }
