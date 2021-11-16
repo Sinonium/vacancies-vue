@@ -1,9 +1,11 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link>
+    <Home/>
   </div>
   <router-view/>
 </template>
+
+
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
