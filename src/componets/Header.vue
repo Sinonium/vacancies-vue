@@ -116,11 +116,12 @@ export default {
             box-sizing: border-box;
             width: vw(270);
             height: vw(50);
-            border: 2px solid #F7F8FA;
+            border: 2px solid $greyBlue98;
             border-radius: vw(30);
         }
         input {
             border: none;
+            outline: none;
             padding-left: vw(17);
             &::placeholder {
                 @include font(vw(12), 700, vh(20), $greyBlue70);

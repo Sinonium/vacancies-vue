@@ -10,14 +10,16 @@
           <router-link to="/description">Details</router-link>
         </div>
         <router-view/>
+        <Footer/>
     </div>
   </div>
 </template>
 
 <script>
 import Header from "@/componets/Header";
+import Footer from "@/componets/Footer";
 export default {
-	components: { Header },
+	components: { Header, Footer },
 };
 </script>
 
