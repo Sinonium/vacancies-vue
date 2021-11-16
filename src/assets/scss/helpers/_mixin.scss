@@ -6,3 +6,8 @@
     font-style: normal;
     color: $color;
 }
+@mixin flex($js-content: center) {
+    justify-content: $js-content;
+    display: flex;
+    align-items: center;
+}

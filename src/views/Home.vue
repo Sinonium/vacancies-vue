@@ -1,20 +1,22 @@
 <template>
-  <div>lalala</div>
+    <DetailsAboutTeach />
+  <!-- <div>lalala</div>
     <div @click="handleClick">{{counter}}</div>
     <div>
         sadasd
         sasa
-    </div>
+    </div> -->
 </template>
 
 <script>
+import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import { ref } from '@vue/reactivity'
 export default {
+    components: { DetailsAboutTeach },
     setup() {
         let counter = ref(0)
         const handleClick = () => {
-            counter += 1
-            console.log(counter);
+            counter.value += 1
         }
 
         return { counter, handleClick }
@@ -23,5 +25,5 @@ export default {
 </script>
 
 <style>
-
+    
 </style>
