@@ -8,7 +8,6 @@
 					  <img src="./../assets/img/clock.svg" alt='time' />
 					  <span>{{course.time}} hours</span>
 				    </div>
-                    
 				    <div class="course-item__like">
                       <img src="./../assets/img/like.svg" alt="like">
 				    </div>
