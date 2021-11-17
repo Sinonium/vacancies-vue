@@ -29,13 +29,13 @@
 import CourseItem from '../components/CourseItem.vue'
 export default {
   components: { CourseItem },
-  
+}
 </script>
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
    .courses-info{
-       margin: vw(120) 0 0 vw(360);
+       margin: vw(120) vw(30);
        position: relative;
        &__image{
            width: vw(1210);
@@ -52,6 +52,7 @@ export default {
             .name{
                @include font(vw(30),700,vh(50));
                color: $white;
+               margin-top: vw(50);
            }
        }
        &__block-2{

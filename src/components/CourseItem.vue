@@ -65,14 +65,15 @@ export default {
 @import '@/assets/scss/index.scss';
 .row{
     display: flex;
-    margin: vw(125) vw(80) 0 vw(410);
+    margin: vw(125) vw(80);
+    
     .col-3{
         display: flex;
         flex-wrap: wrap;
-        min-width: vw(1120);
+        max-width: vw(1110);
         .course-item{
-            margin: vw(15) vw(15);
-            width: vw(250);
+            margin: vw(15) vw(10);
+            width: vw(255);
             background: #FFFFFF;
             box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
             border-radius: 10px;
@@ -88,7 +89,7 @@ export default {
                 position: absolute;
                 left: 0;
                 top: 0;
-                width: vw(250);
+                width: vw(255);
                 height: vw(190);
                 z-index: -1;
             }
