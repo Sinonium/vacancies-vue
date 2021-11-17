@@ -29,7 +29,7 @@
 import CourseItem from '../components/CourseItem.vue'
 export default {
   components: { CourseItem },
-  
+}
 </script>
 
 <style lang="scss">
