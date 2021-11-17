@@ -1,10 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link>
-  </div>
-  <router-view/>
+  <Tutorials />
 </template>
 
+<script>
+import Tutorials from './components/Tutorials';
+
+export default {
+  components:  {
+   Tutorials
+  }
+}
+</script>
 <style lang="scss">
 @import '@/assets/scss/index.scss';
+
 </style>

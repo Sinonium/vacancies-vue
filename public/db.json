@@ -1,0 +1,420 @@
+{
+    "about" : [
+        {
+            "themes":[
+               "Get friendly support in the course Q&A",
+               "Downloadable lectures for all projects",
+               "Inheritance + Prototpe Chain" ,
+               "Practice your skills with coding challenges",
+               "Scope and Execution Context",
+               "Object Orinted Programming",
+               "Latest features: ES6, ES7, ES8, ES9",
+               "Closures",
+               "JavaScript Modules",
+               "Error Yanding",
+               "React library",
+               "Get friendly support in the course Q&A",
+               "Downloadable lectures for all projects"
+            ],
+            "Course Content":[
+                
+                {
+                    "title":"How To Succedd In This Course",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "isPreview":"Preview"
+                },
+                {
+                    "title":"Join Our Online Classroom",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                },
+                {
+                    "title":"Exercise: Meet The Comminity!",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                }
+            ],
+            "JavaScriptFoundation":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "isPreview":"Preview"
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "isPreview":"Preview"
+                }
+            ],
+            "PuttingItAllTogether:TheBudgetAppProject":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "Preview":"Preview"
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                    
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                }
+                
+            ],
+            "NextGenerationJavaScript:IntrotoES6":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "Preview":"Preview"
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                    
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                }
+                
+            ],
+            "Modern JavaScript: Using ES6":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "Preview":"Preview"
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                    
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                }
+                
+            ],
+            "React library":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "Preview":"Preview"
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                    
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                }
+                
+            ],
+            
+            "Loops in Javascript":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "Preview":"Preview"
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                    
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                }
+                
+            ],
+            "Data types":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "Preview":"Preview"
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                    
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                }
+                
+            ],
+            "Interaction: alert, prompt, confirm":[
+               
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm",
+                    "Preview":"Preview"
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                    
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                  
+                },
+                {
+                    "title":"Section Overview",
+                    "time": "5:34",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                },
+                {
+                    "title":"Exercise: Javascript Engine",
+                    "time": "01:08",
+                    "video-link":"https://wedfrtyuikjhgfcvbnm"
+                   
+                }
+                
+            ]
+        }
+    ]
+}
