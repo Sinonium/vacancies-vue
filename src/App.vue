@@ -1,7 +1,6 @@
 <template>
   <div class="main-container">
     <div class="sidebar">
-
     </div>
     <div>
         <Header/>
