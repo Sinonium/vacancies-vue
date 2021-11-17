@@ -1,13 +1,13 @@
 <template>
   <DescriptionText />
-  <Review />
+  <Reviews />
 </template>
 
 <script>
 import DescriptionText from '@/components/DescriptionText.vue'
-import Review from '@/components/Review.vue'
+import Reviews from '@/components/Reviews.vue'
 export default {
-  components: { DescriptionText, Review },
+  components: { DescriptionText, Reviews },
 }
 </script>
 
