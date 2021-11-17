@@ -1,0 +1,113 @@
+{
+    "courses": [
+        {
+            "id": 0,
+            "name": "Full course on Java Script from scratch to pros",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 1,
+            "name": "The Modern Java Script Bootcamp (2024)",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 2,
+            "name": "Creating HTML 5 games on JavaScript and Canvas",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 3,
+            "name": "Creating HTML 5 games on JavaScript and Canvas",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 4,
+            "name": "Full course on Java Script from scratch to pros",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 5,
+            "name": "The Modern Java Script Bootcamp (2024)",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 6,
+            "name": "Full course on Java Script from scratch to pros",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 7,
+            "name": "The Modern Java Script Bootcamp (2024)",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 8,
+            "name": "Creating HTML 5 games on JavaScript and Canvas",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 9,
+            "name": "Creating HTML 5 games on JavaScript and Canvas",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 10,
+            "name": "Full course on Java Script from scratch to pros",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        },
+        {
+            "id": 11,
+            "name": "The Modern Java Script Bootcamp (2024)",
+            "time": 12,
+            "grade": 4.8,
+            "students": 1565,
+            "teacher": "Willie Chandler",
+            "price": 20
+        }
+        
+    ]
+}
