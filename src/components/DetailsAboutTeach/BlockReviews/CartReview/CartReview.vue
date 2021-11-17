@@ -159,4 +159,86 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1296px) {
+  .cart-review {
+    &__header {
+      &_profile {
+        .image {
+          margin-top: vw(10);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1256px) {
+  .cart-review {
+    &__header {
+      &_profile {
+        .image {
+          margin-top: vw(25);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1263px) {
+  .cart-review {
+    &__header {
+      &_profile {
+        .image {
+          margin-top: vw(35);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1125px) {
+  .cart-review {
+    &__header {
+      margin-top: vw(20);
+    }
+  }
+  .cart-review {
+    &__header {
+      &_profile {
+        .image {
+          margin-top: vw(40);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1077px) {
+  .cart-review {
+    height: 18vw;
+  }
+}
+@media screen and (max-width: 961px) {
+  .cart-review {
+    &__header {
+      &_profile {
+        .data {
+          margin-left: vw(25);
+          h4 {
+            @include font(vw(20), bold, 25px, $greyBlue50);
+          }
+          span {
+            @include font(vw(15), bold, 20px, $greyBlue70);
+          }
+        }
+      }
+      &_data {
+        span {
+          @include font(vw(14), bold, 20px, $greyBlue70);
+        }
+      }
+    }
+    height: 23vw;
+    &__text {
+      p {
+        @include font(vw(15), 600, 25px, $greyBlue60);
+      }
+    }
+  }
+}
 </style>

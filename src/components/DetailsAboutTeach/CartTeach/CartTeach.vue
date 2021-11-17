@@ -2,10 +2,7 @@
   <div class="cart-teach">
     <div class="cart-teach__about_teach col-4">
       <h4>About the Instructor</h4>
-      <img
-        src="@/assets/img/DetailsAboutTeach/imageTeach.png"
-        alt="Image teacher"
-      />
+      <img :src="teachImage" alt="Image teacher" />
       <ul class="cart-teach__about_teach_list">
         <li class="cart-teach__about_teach_list-item">
           <svg
@@ -22,8 +19,8 @@
               fill="#C3CAD9"
             />
           </svg>
-          <span> 4.6 </span>
-          <span> Instructor Rating </span>
+          <span class="first__span"> 4.6 </span>
+          <span class="last__span"> Instructor Rating </span>
         </li>
         <li class="cart-teach__about_teach_list-item">
           <svg
@@ -40,8 +37,8 @@
               fill="#C3CAD9"
             />
           </svg>
-          <span> 72,205 </span>
-          <span> Reviews </span>
+          <span class="first__span"> 72,205 </span>
+          <span class="last__span"> Reviews </span>
         </li>
         <li class="cart-teach__about_teach_list-item">
           <svg
@@ -58,8 +55,8 @@
               fill="#C3CAD9"
             />
           </svg>
-          <span> 224,567 </span>
-          <span> Students </span>
+          <span class="first__span"> 224,567 </span>
+          <span class="last__span"> Students </span>
         </li>
         <li class="cart-teach__about_teach_list-item">
           <svg
@@ -76,8 +73,8 @@
               fill="#C3CAD9"
             />
           </svg>
-          <span> 7 </span>
-          <span> Courses </span>
+          <span class="first__span"> 7 </span>
+          <span class="last__span"> Courses </span>
         </li>
       </ul>
     </div>
@@ -115,22 +112,28 @@
 </template>
 
 <script>
-import teachImage from '../../../assets/img/DetailsAboutTeach/imageTeach.png'
 import { ref } from '@vue/reactivity'
 export default {
   setup(props) {
-    return {}
+    return {
+      teachImage: require('@/assets/img/DetailsAboutTeach/imageTeach.png'),
+    }
   },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
+.cart-teach__kebab {
+  position: absolute;
+  top: 2%;
+  right: 5%;
+}
 .col-4 {
   width: 35%;
 }
 .col-5 {
-    width: 70%;
+  width: 70%;
 }
 .cart-teach {
   height: vw(445);
@@ -164,25 +167,101 @@ export default {
         }
         span {
           margin-left: vw(11);
-          &:first-child {
-            @include font(vw(13), bold, 25px, $greyBlue50);
-          }
-          &:last-child {
-            @include font(vw(12), bold, 20px, $greyBlue60);
-          }
+        }
+        .first__span {
+          @include font(vw(13), bold, 25px, $greyBlue50);
+        }
+        .last__span {
+          @include font(vw(12), bold, 20px, $greyBlue60);
         }
       }
     }
   }
   &__features_teach {
-      margin-left: vw(81);
+    margin-left: vw(81);
     h2 {
       @include font(vw(14), bold, 30px, $greyBlue50);
     }
-    p,span {
+    p,
+    span {
       @include font(vw(13), bold, 25px, $greyBlue70);
       max-width: vw(360);
     }
+  }
+}
+@media screen and (max-width: 1257px) {
+  .cart-teach {
+    padding: 2.1875vw ​1.5vw 2.625vw 3.3125vw;
+  }
+}
+@media screen and (max-width: 1256px) {
+  .cart-teach {
+    padding: 2.1875vw ​1.5vw 2.625vw 3.3125vw;
+  }
+}
+@media screen and (max-width: 1221px) {
+  .cart-teach__about_teach_list-item {
+    margin-top: 1.2vw;
+  }
+}
+@media screen and (max-width: 1178px) {
+  .cart-teach {
+    padding: 2.1875vw 0.5vw 3.625vw 3.3125vw;
+  }
+}
+@media screen and (max-width: 1105px) {
+  .cart-teach {
+    padding: 1.1875vw 0.5vw 1.625vw 3.3125vw;
+  }
+}
+@media screen and (max-width: 1077px) {
+  .cart-teach {
+    height: 30vw;
+  }
+}
+@media screen and (max-width: 1016px) {
+  .cart-teach {
+    padding: 1.1875vw 0.5vw 1.625vw 2.3125vw;
+  }
+}
+@media screen and (max-width: 961px) {
+  .cart-teach {
+    &__about_teach {
+      h4 {
+        @include font(vw(17.5), bold, 25px, $greyBlue50);
+      }
+      &_list {
+        &-item {
+          .first__span {
+            @include font(vw(15), bold, 25px, $greyBlue50);
+          }
+          .last__span {
+            @include font(vw(14), bold, 20px, $greyBlue60);
+          }
+        }
+      }
+    }
+    &__features_teach {
+      h2 {
+        @include font(vw(16), bold, 30px, $greyBlue50);
+      }
+      p,
+      span {
+        @include font(vw(15), bold, 25px, $greyBlue70);
+        max-width: vw(360);
+      }
+    }
+    height: 35vw;
+    padding: 1.1875vw 0.5vw 1.625vw 2.3125vw;
+  }
+  .cart-teach__about_teach_list {
+    margin-left: -5.8125vw;
+    list-style-type: none;
+  }
+}
+@media screen and (max-width: 906px) {
+  .cart-teach {
+    padding: 0.1875vw ​0.5vw 1.625vw 2.3125vw;
   }
 }
 </style>

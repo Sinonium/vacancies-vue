@@ -505,4 +505,14 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1281px) {
+  .stars {
+    margin-left: 1.1875vw !important;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .stars {
+    margin-left: 0.1875vw !important;
+  }
+}
 </style>
