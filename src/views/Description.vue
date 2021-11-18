@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import DescriptionText from '@/componets/DescriptionText.vue'
-import Review from '@/componets/Review.vue'
+import DescriptionText from '@/components/DescriptionText.vue'
+import Review from '@/components/Review.vue'
 export default {
   components: { DescriptionText, Review },
 }

@@ -2,7 +2,7 @@
   <div class="main-container">
     <div class="sidebar">
     </div>
-    <div>
+    <div class="hero">
         <Header/>
         <div id="nav">
           <router-link to="/">Home</router-link> | 
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Header from "@/componets/Header";
-import Footer from "@/componets/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 export default {
 	components: { Header, Footer },
 };
@@ -24,8 +24,12 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
+.hero{
+  width: 100;
+}
 body{
     background-color: $bg-main;
+    overflow-x: hidden;
 }
 
 body, h3, ul, div, span {
@@ -43,5 +47,11 @@ body, h3, ul, div, span {
 #nav{
   display: flex;
   justify-content: center;
+}
+.row{
+  display: flex;
+}
+.col-3{
+  width: 25%;
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
+<div class="course-items">
   <div class="row">
-        <div class="col-3">
-                <div class='course-item' v-for="course in courses" :key="course.id" :course="course">
+      
+        <div class="col-3" v-for="course in courses" :key="course.id" :course="course">
+                <div class='course-item'>
 			        <div class='course-item__header'>
-				      <img class='course-item__image' src="./../assets/img/course-1.jpg" alt='course' />
+				      <img class='course-item__image' :src="course.imageURL" alt='course' />
 				    <div class='course-item__time'>
 					  <img src="./../assets/img/clock.svg" alt='time' />
 					  <span>{{course.time}} hours</span>
@@ -32,8 +34,11 @@
                     </div>
             </div>
 		</div>
+        
+
+
  </div>
- 
+ </div>
     
 </template>
 
@@ -63,11 +68,12 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-.row{
-    display: flex;
-    margin: vw(125) vw(80);
-    
-    .col-3{
+.course-items{
+    width: vw(1270);
+    .row{
+        flex-wrap: wrap;
+        margin: vw(125) vw(80);
+        .col-3{
         display: flex;
         flex-wrap: wrap;
         max-width: vw(1110);
@@ -161,5 +167,111 @@ export default {
             
         }
     }
+
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .course-items{
+    width: vmin(320);
+    .row{
+    display: block;
+    margin: vmin(62) 0;
+    padding: 0 vmin(70);
+    .col-3{
+        display: block;
+        max-width: 100%;
+        .course-item{
+            margin: vmin(15) vmin(10);
+            width: vmin(150);
+            background: #FFFFFF;
+            box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
+            border-radius: 10px;
+            &__header{
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                padding: vmin(10);
+                height: vmin(90);
+                z-index: 1;
+            }
+            &__image{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: vmin(150);
+                height: vmin(90);
+                z-index: -1;
+            }
+            &__time{
+                display: flex;
+                align-items: center;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: vmin(15);
+                padding: 0 vmin(10);
+                max-height: vmin(30);
+                span {
+                    @include font(vmin(6), 700, vmin(10));
+                    margin-left: vmin(10);
+                    color: $white;
+                }
+                img {
+                    width: vmin(8);
+                    height: vmin(8);
+                }
+            }
+            &__like{
+                width: vmin(25);
+                height: vmin(25);
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 1;
+                img {
+                    padding: vmin(9);
+                    width: vmin(8);
+                    height: vmin(8);
+                }
+            }
+            &__info{
+                padding: 0 vmin(10);
+            } 
+            &__name{
+                @include font(vmin(7),700,vmin(13));
+                color: #6B7A99;
+                margin-bottom: vmin(5);
+            }
+            &__rating {
+                margin: vmin(9) 0;
+
+                img {
+                width: vmin(6);
+                height: vmin(6);
+                }
+                span {
+                @include font(vmin(6), 700,vmin(10));
+                margin-left: vmin(7);
+                color: #4D5E80;
+                }
+            }
+            &__details {
+                display: flex;
+                justify-content: space-between;
+                p{
+                    @include font(vmin(6),700, vmin(10));
+                    color: #7D8FB3;
+                }
+                span{
+                    margin-top: vmin(4);
+                    @include font(vmin(7),700,vmin(15));
+                    color: #6B7A99;
+
+                }
+            }
+            
+        }
+    }
+}    
+}
 }
 </style>
