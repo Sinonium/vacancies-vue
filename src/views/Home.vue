@@ -12,7 +12,7 @@
           <h5>Development 
              It & Software
              Web Development</h5>
-      </div>
+      </div> 
       <div class="courses-info__students">
           <img src="./../assets/img/students.svg" alt="">
           <span class="students">4,454,356</span>
