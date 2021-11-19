@@ -1,13 +1,18 @@
-@mixin font($font-size, $font-weight, $line-height, $color:$greyBlue50){
-    font-family: 'San Francisco Pro';
-    font-size: $font-size;
-    font-weight: $font-weight;
-    line-height: $line-height;
-    font-style: normal;
-    color: $color;
+@mixin font($font-size, $font-weight, $line-height, $color: $greyBlue50) {
+  font-family: 'San Francisco Pro';
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  font-style: normal;
+  color: $color;
 }
-@mixin flex($js-content: center) {
-    justify-content: $js-content;
-    display: flex;
-    align-items: center;
+@mixin mobile() {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin flex($justify: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
 }
