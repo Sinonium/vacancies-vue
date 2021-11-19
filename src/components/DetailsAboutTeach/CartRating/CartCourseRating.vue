@@ -573,8 +573,11 @@ export default {
 @media screen and (max-width: 717px){
   .cart-rating_course {
     display: flex;
-    justify-content: space-between;
+    &_first {
+      margin-left: 2.25vw;
+    }
     &_second {
+      margin-left: 10.375vw;
       ul {
         li {
           .lineStar {
@@ -584,6 +587,43 @@ export default {
       }
     }
   }
+}
+@media screen and (max-width: 685px){
+  .cart-rating_course {
+    height: 24vw;
+  }
+}
+@media screen and (max-width: 658px){
+  .cart-rating_course {
+    &_second {
+      ul {
+        li {
+          span {
+            @include font(vw(23), bold, 25px, $greyBlue70);
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 629px){
+    .cart-rating_course{
+      &_first {
+        margin-left: 1.25vw;
+      }
+    }
+}
+@media screen and (max-width: 604px){
+    .cart-rating_course {
+      &_first {
+        margin-left: 0.25vw;
+      }
+    }
+}
+@media screen and (max-width: 596px){
+    .cart-rating_course {
+      width: 49.625vw;
+    }
 }
 @media screen and (max-width: 551px) {
   .cart-rating_course {

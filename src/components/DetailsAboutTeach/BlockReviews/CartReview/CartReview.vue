@@ -104,7 +104,7 @@
 
 <script>
 export default {
-  props: ["courses"],
+  props: ['courses'],
   setup() {
     return {}
   },
@@ -267,6 +267,53 @@ export default {
       }
     }
   }
+}
+@media screen and (max-width: 697px) {
+  .cart-review {
+    height: 29vw;
+  }
+}
+@media screen and (max-width: 658px) {
+  .cart-review {
+    &__text {
+      p {
+        @include font(vw(21), 600, 15px, $greyBlue60);
+      }
+    }
+  }
+}
+@media screen and (max-width: 645px) {
+  .cart-review {
+    width: 46.625vw;
+  }
+}
+@media screen and (max-width: 613px){
+  .cart-review {
+    width: 46.7vw;
+  }
+}
+@media screen and (max-width: 610px){
+    .cart-review {
+      &__header {
+        &_data {
+          div {
+            display: none;
+          }
+        }
+      }
+    }
+}
+@media screen and (max-width: 596px){
+    .cart-review {
+      width: 49.625vw;
+    }
+}
+@media screen and (max-width: 576px){
+    .cart-review {
+      &__header {
+          margin-top: 1.5vw;
+      }
+    }
 }
 @media screen and (max-width: 551px) {
   .cart-review {
