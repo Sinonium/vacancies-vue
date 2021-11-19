@@ -114,6 +114,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
+  props: ['courses'],
   setup(props) {
     return {
       teachImage: require('@/assets/img/DetailsAboutTeach/imageTeach.png'),
@@ -126,8 +127,7 @@ export default {
 @import '@/assets/scss/index.scss';
 .cart-teach__kebab {
   position: absolute;
-  top: 2%;
-  right: 5%;
+  right: 29%;
 }
 .col-4 {
   width: 35%;
@@ -255,13 +255,201 @@ export default {
     padding: 1.1875vw 0.5vw 1.625vw 2.3125vw;
   }
   .cart-teach__about_teach_list {
-    margin-left: -5.8125vw;
+    margin-left: -0.8125vw;
     list-style-type: none;
   }
 }
-@media screen and (max-width: 906px) {
+@media screen and (max-width: 907px) {
   .cart-teach {
-    padding: 0.1875vw ​0.5vw 1.625vw 2.3125vw;
+    padding: 0.1875vw 0.5vw 4.625vw 2.3125vw;
+  }
+}
+@media screen and (max-width: 890px) {
+  .cart-teach {
+    height: 37vw;
+  }
+}
+@media screen and (max-width: 835px) {
+  .cart-teach {
+    &__features_teach {
+      p {
+        @include font(vw(17), bold, 22px, $greyBlue70);
+        max-width: vw(360);
+      }
+    }
+  }
+}
+@media screen and (max-width: 770px) {
+  .cart-teach {
+    height: 39vw;
+    &__about_teach {
+      &_list {
+        &-item {
+          .first__span {
+            @include font(vw(15), bold, 25px, $greyBlue50);
+          }
+          .last__span {
+            @include font(vw(14), bold, 20px, $greyBlue60);
+          }
+        }
+      }
+    }
+    &__features_teach {
+      p {
+        @include font(vw(18), bold, 18px, $greyBlue70);
+        max-width: vw(360);
+      }
+    }
+  }
+}
+@media screen and (max-width: 551px) {
+  .cart-teach {
+    height: 170vmin;
+    width: 100%;
+    display: block;
+    padding: 1.33333vmin 0.66667vmin 1.73333vmin 15.86667vmin;
+    background: $white;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+    &__about_teach {
+      margin-left: 19.3vmin;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      h4 {
+        @include font(vmin(13), bold, 25px, $greyBlue50);
+      }
+      img {
+        margin-left: vmin(-45);
+      }
+      &_list {
+        margin-left: vmin(-45);
+        list-style-type: none;
+        &-item {
+          margin-top: vmin(25);
+          align-items: center;
+          display: flex;
+          svg {
+            margin-left: vmin(16);
+          }
+          span {
+            margin-left: vmin(11);
+          }
+          .first__span {
+            @include font(vmin(13), bold, 25px, $greyBlue50);
+          }
+          .last__span {
+            @include font(vmin(12), bold, 20px, $greyBlue60);
+          }
+        }
+      }
+    }
+    &__features_teach {
+      margin-left: vmin(20);
+      h2 {
+        @include font(vmin(14), bold, 30px, $greyBlue50);
+      }
+      p,
+      span {
+        @include font(vmin(13), bold, 25px, $greyBlue70);
+        max-width: vmin(360);
+      }
+    }
+  }
+  .cart-teach__kebab {
+    position: absolute;
+    right: 4%;
+    top: 23vmin;
+  }
+}
+@media screen and (max-width: 533px) {
+  .cart-teach {
+    height: 176vmin;
+  }
+}
+@media screen and (max-width: 507px) {
+  .cart-teach {
+    height: 190vmin;
+  }
+}
+@media screen and (max-width: 458px) {
+  .cart-teach {
+    height: 194vmin;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 447px) {
+  .cart-teach__kebab {
+    position: absolute;
+    right: -4%;
+    top: 23vmin;
+  }
+}
+@media screen and (max-width: 390px) {
+  .cart-teach__kebab {
+    position: absolute;
+    right: -14%;
+    top: 23vmin;
+  }
+}
+@media screen and (max-width: 351px) {
+  .cart-teach__kebab {
+    position: absolute;
+    right: -23%;
+    top: 23vmin;
+  }
+}
+@media screen and (max-width: 362px) {
+  .cart-teach__kebab {
+    position: absolute;
+    top: 23vmin;
+    right: -23%;
+  }
+}
+@media screen and (max-width: 344px) {
+  .cart-teach {
+    height: 198vmin;
+  }
+}
+@media screen and (max-width: 326px) {
+  .cart-teach__kebab {
+    position: absolute;
+    top: 23vmin;
+    right: -33%;
+  }
+}
+@media screen and (max-width: 319px) {
+  .cart-teach {
+    height: 240vmin;
+    .cart-teach {
+      &__about_teach {
+        h4 {
+          @include font(vmin(19), bold, 25px, $greyBlue50);
+        }
+        &_list {
+          &-item {
+            .first__span {
+              @include font(vmin(18), bold, 25px, $greyBlue50);
+            }
+            .last__span {
+              @include font(vmin(17), bold, 20px, $greyBlue60);
+            }
+          }
+        }
+      }
+      &__features_teach {
+        h2 {
+          @include font(vmin(18), bold, 30px, $greyBlue50);
+        }
+        p,
+        span {
+          @include font(vmin(17), bold, 25px, $greyBlue70);
+          max-width: vmin(360);
+        }
+      }
+    }
   }
 }
 </style>

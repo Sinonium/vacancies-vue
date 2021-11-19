@@ -1,7 +1,12 @@
-<template></template>
+<template>
+  <DetailsAboutTeach />
+</template>
 
 <script>
-export default {}
+import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
+export default {
+  components: { DetailsAboutTeach },
+}
 </script>
 
 <style lang="scss" scoped>

@@ -104,6 +104,7 @@
 
 <script>
 export default {
+  props: ["courses"],
   setup() {
     return {}
   },
@@ -237,6 +238,111 @@ export default {
     &__text {
       p {
         @include font(vw(15), 600, 25px, $greyBlue60);
+      }
+    }
+  }
+}
+@media screen and (max-width: 815px) {
+  .cart-review {
+    height: 26vw;
+    &__header {
+      margin-top: -0.5vw;
+      &_profile {
+        .data {
+          span {
+            @include font(vw(16), bold, 20px, $greyBlue70);
+          }
+        }
+      }
+      &_data {
+        span {
+          @include font(vw(16), bold, 20px, $greyBlue70);
+          margin-left: vw(15);
+        }
+      }
+    }
+    &__text {
+      p {
+        @include font(vw(17), 600, 21px, $greyBlue60);
+      }
+    }
+  }
+}
+@media screen and (max-width: 551px) {
+  .cart-review {
+    height: 72vmin;
+    width: 100%;
+    display: block;
+    padding: 1vmin 9vmin;
+    background: $white;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+    margin-top: vmin(30);
+    &__header {
+      @include flex(space-between);
+      &_profile {
+        @include flex();
+        .data {
+          margin-left: vmin(25);
+          h4 {
+            @include font(vmin(13), bold, 25px, $greyBlue50);
+          }
+          span {
+            @include font(vmin(12), bold, 20px, $greyBlue70);
+          }
+        }
+      }
+      &_data {
+        @include flex();
+        div {
+          display: none;
+          svg {
+            margin-left: vmin(5);
+          }
+        }
+        span {
+          @include font(vmin(12), bold, 20px, $greyBlue70);
+          margin-left: vmin(15);
+        }
+      }
+    }
+    &__text {
+      p {
+        @include font(vmin(13), 600, 25px, $greyBlue60);
+      }
+    }
+  }
+}
+@media screen and (max-width: 326px) {
+  .cart-review {
+    height: 78vmin;
+  }
+}
+@media screen and (max-width: 298px) {
+  .cart-review {
+    height: 82vmin;
+    &__header {
+      &_profile {
+        .data {
+          h4 {
+            @include font(vmin(15), bold, 25px, $greyBlue50);
+          }
+          span {
+            @include font(vmin(14), bold, 20px, $greyBlue70);
+          }
+        }
+      }
+      &_data {
+        span {
+          @include font(vmin(15), bold, 20px, $greyBlue70);
+          margin-left: vmin(15);
+        }
+      }
+    }
+    &__text {
+      p {
+        @include font(vmin(15), 600, 25px, $greyBlue60);
       }
     }
   }

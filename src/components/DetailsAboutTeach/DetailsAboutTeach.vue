@@ -1,8 +1,8 @@
 <template>
   <div class="Details-about__teach">
-    <CartTeach />
-    <CartCourseRating />
-    <BlockReviews />
+    <CartTeach :courses="courses" />
+    <CartCourseRating :courses="courses" />
+    <BlockReviews :courses="courses" />
   </div>
 </template>
 
@@ -15,19 +15,20 @@ import { onMounted } from '@vue/runtime-core'
 export default {
   components: { CartTeach, CartCourseRating, BlockReviews },
   setup(props) {
-    // const cousrses = ref([])
+    const courses = ref([])
 
     // onMounted(() => {
     //   const getCollection = async () => {
-    //     const response = await fetch('http://localhost:3000/courses')
+    //     const response = await fetch('http://localhost:3000/coursess')
     //     const json = await response.json()
 
-    //     return cousrses.value = json
+    //     courses.value = json
     //   }
     //   getCollection()
+    //   console.log(courses)
     // })
 
-    return {}
+    return { courses }
   },
 }
 </script>
@@ -36,8 +37,16 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .Details-about__teach {
-  position: absolute;
-  top: vw(310);
-  left: vw(410);
+  margin-left: vw(190);
+  margin-top: vw(310);
+  // position: absolute;
+  // top: vw(310);
+  // left: vw(410);
+}
+@media screen and (max-width: 551px) {
+  .Details-about__teach {
+    margin-left: vmin(1);
+    margin-top: vmin(30);
+  }
 }
 </style>

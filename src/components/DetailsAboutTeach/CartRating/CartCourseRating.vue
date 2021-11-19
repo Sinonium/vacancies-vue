@@ -398,6 +398,7 @@
 
 <script>
 export default {
+  props: ["courses"],
   setup() {
     const starTest = [
       {
@@ -421,12 +422,6 @@ export default {
         key: 4,
       },
     ]
-
-    // const listStarStatics = [
-    //     {
-
-    //     }
-    // ]
 
     return { starTest }
   },
@@ -471,6 +466,7 @@ export default {
     @include flex();
     flex-direction: column;
     ul {
+      margin-left: vw(10);
       list-style-type: none;
       li {
         margin-top: vw(9);
@@ -513,6 +509,185 @@ export default {
 @media screen and (max-width: 1199px) {
   .stars {
     margin-left: 0.1875vw !important;
+  }
+}
+@media screen and (max-width: 1067px) {
+  .cart-rating_course {
+    &_second {
+      margin-bottom: vw(-21);
+    }
+  }
+}
+@media screen and (max-width: 925px) {
+  .cart-rating_course {
+    height: 19.9375vw;
+    padding: 2.1875vw 1.5vw 4.625vw 2.3125vw;
+  }
+}
+@media screen and (max-width: 871px) {
+  .cart-rating_course {
+    padding: 3.1875vw 0.5vw 4.625vw 2.3125vw;
+  }
+}
+@media screen and (max-width: 835px) {
+  .cart-rating_course {
+    padding: 3.1875vw 0.5vw 3.625vw 1.3125vw;
+    &_first {
+      span {
+        @include font(vw(19), bold, 25px, $greyBlue70);
+      }
+    }
+    &_second {
+      ul {
+        li {
+          span {
+            @include font(vw(17), bold, 25px, $greyBlue70);
+            margin-left: vw(25);
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 801px) {
+  .cart-rating_course {
+    padding: 2.1875vw 0.5vw 3.625vw 0.3125vw;
+  }
+}
+@media screen and (max-width: 761px) {
+  .cart-rating_course {
+    &_second {
+      ul {
+        li {
+          .lineStar {
+            width: vw(260);
+            span {
+              width: vw(200);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 717px){
+  .cart-rating_course {
+    display: flex;
+    justify-content: space-between;
+    &_second {
+      ul {
+        li {
+          .lineStar {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 551px) {
+  .cart-rating_course {
+    height: 100vmin;
+    width: 100%;
+    display: block;
+    padding: 2vmin 2vmin 2vmin 2vmin;
+    background: $white;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+    margin-top: vmin(30);
+    &_first {
+      @include flex();
+      flex-direction: column;
+      margin-bottom: vmin(30);
+      h4 {
+        @include font(vmin(48), 600, 10px, $greyBlue50);
+      }
+      div {
+        span {
+          margin-left: vmin(5);
+        }
+      }
+      span {
+        @include font(vmin(13), bold, 25px, $greyBlue70);
+      }
+    }
+    &_second {
+      @include flex();
+      flex-direction: column;
+      ul {
+        margin-left: vmin(10);
+        list-style-type: none;
+        li {
+          margin-top: vmin(9);
+          display: flex;
+          align-items: center;
+          .lineStar {
+            width: vmin(200);
+            height: vmin(8);
+            background: $greyBlue97;
+            border-radius: 5px;
+            position: relative;
+            span {
+              position: absolute;
+              margin-left: vmin(-0.75);
+              height: 100%;
+              width: vmin(150);
+              border-radius: 5px;
+              background: $greyBlue85;
+            }
+          }
+          .stars {
+            margin-left: vmin(35);
+            svg {
+              margin-left: vmin(5);
+            }
+          }
+          span {
+            @include font(vmin(13), bold, 25px, $greyBlue70);
+            margin-left: vmin(25);
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 426px) {
+  .cart-rating_course {
+    &_first {
+      margin-bottom: 1vmin;
+    }
+  }
+}
+@media screen and (max-width: 362px) {
+  .cart-rating_course {
+    height: 110vmin;
+    &_first {
+      margin-bottom: 0vmin;
+    }
+  }
+}
+@media screen and (max-width: 298px) {
+  .cart-rating_course {
+    height: 117vmin;
+  }
+}
+@media screen and (max-width: 298px) {
+  .cart-rating_course {
+    &_first {
+      span {
+        @include font(vmin(18), bold, 25px, $greyBlue70);
+      }
+    }
+    &_second {
+      ul {
+        li {
+          span {
+            @include font(vmin(17), bold, 25px, $greyBlue70);
+          }
+        }
+      }
+    }
   }
 }
 </style>
