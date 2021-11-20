@@ -17,15 +17,14 @@ export default {
   setup(props) {
     const courses = ref([])
 
-    // onMounted(() => {
-    //   const getCollection = async () => {
-    //     const response = await fetch('http://localhost:3000/coursess')
-    //     const json = await response.json()
+    // const getCollection = async () => {
+    //   const response = await fetch('http://localhost:3000/coursess');
+    //   const json = await response.json();
+    //   courses.value = json
+    // }
 
-    //     courses.value = json
-    //   }
+    // onMounted(() => {
     //   getCollection()
-    //   console.log(courses)
     // })
 
     return { courses }
@@ -38,7 +37,7 @@ export default {
 
 .Details-about__teach {
   margin-left: vw(190);
-  margin-top: vw(310);
+  margin-top: vw(30);
   // position: absolute;
   // top: vw(310);
   // left: vw(410);
