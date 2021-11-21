@@ -204,7 +204,6 @@ export default {
           time_2: "01:08",
         },
       ],
-
       show: false,
       fewer: "Show Fewer Features",
       more: "Show more Features",
