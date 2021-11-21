@@ -1,8 +1,7 @@
 <template>
   <AddToCart />
   <DescriptionText />
-  <Review />
-  
+  <Reviews />
 </template>
 
 <script>
