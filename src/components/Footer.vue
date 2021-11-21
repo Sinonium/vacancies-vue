@@ -167,4 +167,72 @@ export default {
         }
     }
 }
+@include mobile {
+    .footer {
+        &__info {
+            @include flex($justify: space-between);
+            flex-direction: column;
+            padding: vmin(20);
+        }
+        &__nav {
+            width: vmin(335);
+            &-list {
+                @include flex($justify: center);
+            }
+            &-item {
+                width: vmin(110);
+                margin-bottom: vmin(25);
+            }
+            &-link {
+                @include font(vmin(12), 700, vh(20), $greyBlue60);
+                img {
+                    margin-left: vmin(10);
+                }
+            }
+        }
+        &__form {
+            div {
+                padding: 0 vmin(30);
+                width: vmin(128);
+                height: vmin(50);
+                border-radius: vmin(30);
+            }
+            input {
+                padding-left: vmin(17);
+                min-width: vmin(60);
+                &::placeholder {
+                    @include font(vmin(12), 700, vh(20), $greyBlue60);
+                }
+            }
+        }
+        &__companies, &__menu {
+            @include flex($justify: space-between);
+            padding: vmin(20);
+            border-top: 2px solid $greyBlue95;
+            p {
+                @include font(vmin(13), 700, vmin(25), $greyBlue60);
+                width: vmin(150);
+            }
+            ul {
+                width: vmin(150);
+                @include flex();
+                flex-wrap: wrap;
+                list-style-type: none;
+                li {
+                    margin-right: vmin(40);
+                    &:last-child {
+                        margin-right: vmin(40);
+                    }
+                    a {
+                        text-decoration: none;
+                        @include font(vmin(12), 700, vmin(20), $greyBlue60);
+                        img {
+                            width: vmin(150);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 </style>

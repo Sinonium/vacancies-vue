@@ -9,12 +9,12 @@
       </div>
       
       <div class="courses-info__block-2">
-      <div class="courses-info__content">
+        <div class="courses-info__content">
           <p class="categories">Related Categories:</p>
           <h5>Development 
              It & Software
              Web Development</h5>
-      </div>
+      </div> 
       <div class="courses-info__students">
     
           <img src="./../assets/img/students.svg" alt="">
@@ -26,16 +26,16 @@
       </div>
       </div>
       </div>
+    </div>
   </div>
-  <CourseItem/>
+  <CourseItem />
 </template>
 
 <script>
-
+import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseItem from '../components/CourseItem.vue'
 export default {
-  components: { CourseItem },
-  
+  components: { CourseItem, DetailsAboutTeach },
 }
 </script>
 
