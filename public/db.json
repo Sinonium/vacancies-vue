@@ -416,8 +416,7 @@
                 
             ]
         }
-    ]
-},
+    ],
     "courses": [
         {
             "id": 0,
@@ -576,5 +575,198 @@
             "price": 20
         }
         
-    ]    
+    ],
+    "coursess": [
+        {
+          "image": "",
+          "title": "Full course on Java Script from scratch to pros",
+          "rating": [4.8, 3.1, 5, 2.6],
+          "price": "20$",
+          "isLiked": false,
+          "teacher": {
+            "name": "Jacob Garner",
+            "rating": [4.5, 2, 1.8, 5],
+            "students": [
+              {
+                "name": "Frank",
+                "surname": "Frunkovich",
+                "age": 10,
+                "image": ""
+              },
+              {
+                "name": "Frank",
+                "surname": "Frunkovich",
+                "age": 10,
+                "image": ""
+              },
+              {
+                "name": "Frank",
+                "surname": "Frunkovich",
+                "age": 10,
+                "image": ""
+              },
+              {
+                "name": "Frank",
+                "surname": "Frunkovich",
+                "age": 10,
+                "image": ""
+              },
+              {
+                "name": "Frank",
+                "surname": "Frunkovich",
+                "age": 10,
+                "image": ""
+              }
+            ],
+            "courses": [
+              {
+                "image": "",
+                "title": "Full course on Java Script from scratch to pros",
+                "rating": [4.8, 3.1, 5, 2.6],
+                "price": "20$",
+                "isLiked": false
+              },
+              {
+                "image": "",
+                "title": "Full course on Java Script from scratch to pros",
+                "rating": [4.8, 3.1, 5, 2.6],
+                "price": "20$",
+                "isLiked": false
+              },
+              {
+                "image": "",
+                "title": "Full course on Java Script from scratch to pros",
+                "rating": [4.8, 3.1, 5, 2.6],
+                "price": "20$",
+                "isLiked": false
+              },
+              {
+                "image": "",
+                "title": "Full course on Java Script from scratch to pros",
+                "rating": [4.8, 3.1, 5, 2.6],
+                "price": "20$",
+                "isLiked": false
+              },
+              {
+                "image": "",
+                "title": "Full course on Java Script from scratch to pros",
+                "rating": [4.8, 3.1, 5, 2.6],
+                "price": "20$",
+                "isLiked": false
+              }
+            ],
+            "reviews": [
+              {
+                "profilePerson": {
+                  "image": "",
+                  "name": "Adam Newton",
+                  "courses": [
+                    {
+                      "image": "",
+                      "title": "Full course on Java Script from scratch to pros",
+                      "rating": [4.8, 3.1, 5, 2.6],
+                      "price": "20$",
+                      "isLiked": false
+                    },
+                    {
+                      "image": "",
+                      "title": "Full course on Java Script from scratch to pros",
+                      "rating": [4.8, 3.1, 5, 2.6],
+                      "price": "20$",
+                      "isLiked": false
+                    },
+                    {
+                      "image": "",
+                      "title": "Full course on Java Script from scratch to pros",
+                      "rating": [4.8, 3.1, 5, 2.6],
+                      "price": "20$",
+                      "isLiked": false
+                    }
+                  ],
+                  "reviews": [
+                    {
+                      "rating": 5,
+                      "createAt": "6 month ago",
+                      "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+                    },
+                    {
+                      "rating": 5,
+                      "createAt": "6 month ago",
+                      "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+                    },
+                    {
+                      "rating": 5,
+                      "createAt": "6 month ago",
+                      "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+                    }
+                  ]
+                },
+                "rating": 5,
+                "createAt": "6 month ago",
+                "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+              },
+              {
+                "profilePerson": {
+                  "image": "",
+                  "name": "Keith Bowman",
+                  "courses": [
+                    {
+                      "image": "",
+                      "title": "Full course on Java Script from scratch to pros",
+                      "rating": [4.8, 3.1, 5, 2.6],
+                      "price": "20$",
+                      "isLiked": false
+                    },
+                    {
+                      "image": "",
+                      "title": "Full course on Java Script from scratch to pros",
+                      "rating": [4.8, 3.1, 5, 2.6],
+                      "price": "20$",
+                      "isLiked": false
+                    },
+                    {
+                      "image": "",
+                      "title": "Full course on Java Script from scratch to pros",
+                      "rating": [4.8, 3.1, 5, 2.6],
+                      "price": "20$",
+                      "isLiked": false
+                    }
+                  ],
+                  "reviews": [
+                    {
+                      "rating": 5,
+                      "createAt": "6 month ago",
+                      "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+                    },
+                    {
+                      "rating": 5,
+                      "createAt": "6 month ago",
+                      "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+                    },
+                    {
+                      "rating": 5,
+                      "createAt": "6 month ago",
+                      "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+                    }
+                  ]
+                },
+                "rating": 5,
+                "createAt": "6 month ago",
+                "text": "The beauty of astronomy is that anybody can do it. From the tiniest baby to the most advanced astrophysicist, there is something for anyone who wants to enjoy astronomy. In fact, it is a science that is so accessible that virtually anybody can do it virtually anywhere they are. All they have to know how to do is to look up. It really is amazing when you think about it that just by looking up on any given night, you could."
+              }
+            ]
+          }
+        }
+    ],
+    "review":[
+        {
+          "avatar": "//photo",
+          "name": "Adam Newton",
+          "courses": 44,
+          "reviews": 4,
+          "raiting": "//stars",
+          "time": "6 months ago",
+          "text": "This is really a great course to get a kickstart to your carrier. Exercises are really helpful, I myself had a great experience doing them. Instructor the other hand is great, very creative and great learning techniques are implied in the course to keep you excited and to learn everything with easy and in a comfortable way. "
+        }
+      ]
 }
