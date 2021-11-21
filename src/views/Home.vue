@@ -41,7 +41,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
    .courses-info{
-       margin: vw(120) vw(30);
+       margin: vw(30) vw(30);
        position: relative;
        
        &__image{
@@ -89,7 +89,7 @@ export default {
 
 @media screen and (max-width: 1024px) {
        .courses-info{
-       margin: vmin(60) vmin(15);
+       margin: vmin(15) vmin(15);
        
        
        &__image{

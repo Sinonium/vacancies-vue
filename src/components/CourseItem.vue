@@ -147,8 +147,7 @@ export default {
         display: flex;
         list-style-type: none;
         li{
-            @include font(vw(12), 800, vw(20), $greyBlue60);
-            
+            @include font(vw(12), 700, vw(20), $greyBlue60);
             display: flex;
             align-items: center;
             margin-right: vw(50);
@@ -175,7 +174,7 @@ export default {
     width: vw(1270);
     .row{
         flex-wrap: wrap;
-        margin: vw(125) vw(80);
+        margin: vw(50) vw(80);
         .col-3{
         display: flex;
         flex-wrap: wrap;
@@ -185,7 +184,7 @@ export default {
             width: vw(255);
             background: #FFFFFF;
             box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
-            border-radius: 10px;
+            border-radius: vw(10);
             &__pagination{
                 display: flex;
                 flex-wrap: wrap;
@@ -317,7 +316,7 @@ export default {
     width: vmin(320);
     .row{
     display: block;
-    margin: vmin(62) 0;
+    margin: vmin(25) 0;
     padding: 0 vmin(70);
     .col-3{
         display: block;
