@@ -16,3 +16,14 @@
   justify-content: $justify;
   align-items: center;
 }
+@mixin mobile() {
+    @media screen and (max-width: 1024px) {
+        @content
+    }
+}
+
+@mixin flex($justify:center) {
+	display: flex;
+	justify-content: $justify;
+	align-items: center;
+}
