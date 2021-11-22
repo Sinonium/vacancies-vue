@@ -72,6 +72,7 @@ export default {
   margin-left: vw(80);
 }
 .description {
+  margin-top: vh(30);
   &__content {
     background-color: $white;
     border-radius: 10px;

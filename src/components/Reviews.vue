@@ -1,14 +1,14 @@
 <template>
   <div  class="review">
-    <div  class="container">
+    <div class="container">
       <div v-for="review in rewievs" :key="review" class="review__content">
         <div class="review__content-title">
           <h3>Featured Review</h3>
           <img src="../assets/img/kebab.svg" alt="kebab" />
         </div>
-        <SingleReview v-if="no"   :review="review" />
-        <h2 v-else >We are sorry :(</h2>
-        <div  class="review__buttons">
+        <SingleReview v-if="no" :review="review" />
+        <h2 v-else>We are sorry :(</h2>
+        <div class="review__buttons">
           <p>Was this review helpful?</p>
           <button>Yes</button>
           <button @click="togleElement()">No</button>
@@ -43,12 +43,10 @@ export default {
 
     const togleElement = () => {
       no.value = !no.value
-
     }
 
     return { rewievs, fetchRewievs, error, togleElement, no }
   },
-
 }
 </script>
 
@@ -66,7 +64,7 @@ export default {
     border-radius: 10px;
     padding: vw(35) vh(40);
     max-width: vw(600);
-    h2{
+    h2 {
       @include font(vw(30), 700, vh(15), $greyBlue25);
     }
   }
@@ -112,7 +110,7 @@ export default {
     &__content {
       padding: vmin(35) vmin(40);
       max-width: vmin(600);
-      h2{
+      h2 {
         @include font(vmin(15), 700, vmin(15), $greyBlue25);
       }
     }
