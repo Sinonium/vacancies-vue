@@ -112,8 +112,7 @@
         <Tutorials />
       </div>
       <div v-if="currentDetailsPage.title === 'Description'">
-        <DescriptionText />
-        <Reviews />
+        <Description />
       </div>
     </main>
     <div class="details-page__bottom">
@@ -137,11 +136,10 @@
 import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import Tutorials from '@/components/Tutorials.vue'
-import DescriptionText from '@/components/DescriptionText.vue'
-import Reviews from '@/components/Reviews.vue'
+import Description from '@/views/Description.vue'
 import ArrowIcon from '@/assets/icons/DetailsAboutTeach/arrow.svg'
 export default {
-  components: { DescriptionText, Reviews, DetailsAboutTeach, Tutorials },
+  components: { Description, DetailsAboutTeach, Tutorials },
   setup(props) {
     const currentDetailsPage = ref({
       title: 'About',

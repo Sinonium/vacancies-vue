@@ -42,11 +42,11 @@ export default {
       .name {
         display: flex;
         h3 {
-          @include font(vw(13), 700, vh(25), $greyBlue50);
+          @include font(vw(13), 700, vh(30), $greyBlue50);
           margin-left: vw(30);
         }
         p {
-          @include font(vw(12), 700, vh(25), $greyBlue80);
+          @include font(vw(12), 700, vh(1), $greyBlue80);
           margin-left: vw(10);
         }
       }
@@ -56,10 +56,10 @@ export default {
       img {
         margin-left: vw(30);
         width: vw(70);
-        height: vw(20);
+        height: vw(40);
       }
       p {
-        @include font(vw(12), 700, vh(1), $greyBlue80);
+        @include font(vw(12), 700, vh(20), $greyBlue80);
         margin-left: vw(15);
       }
     }
@@ -86,7 +86,7 @@ export default {
             margin-left: vmin(30);
           }
           p {
-            @include font(vmin(9), 700, vmin(15), $greyBlue80);
+            @include font(vmin(9), 700, vmin(0), $greyBlue80);
             margin-left: vmin(10);
           }
         }
@@ -95,10 +95,10 @@ export default {
         img {
           margin-left: vmin(30);
           width: vmin(50);
-          height: vmin(10);
+          height: vmin(25);
         }
         p {
-          @include font(vmin(7), 700, vmin(1), $greyBlue80);
+          @include font(vmin(7), 700, vmin(15), $greyBlue80);
           margin-left: vmin(15);
         }
       }
