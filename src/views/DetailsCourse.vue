@@ -23,7 +23,7 @@
           <span>About</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage === 'Content' }"
+          :class="{ active: currentDetailsPage.title === 'Content' }"
           @click="handleCurrentPage('Content')"
         >
           <svg
@@ -43,7 +43,7 @@
           <span>Content</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage === 'Description' }"
+          :class="{ active: currentDetailsPage.title === 'Description' }"
           @click="handleCurrentPage('Description')"
         >
           <svg
@@ -63,7 +63,7 @@
           <span>Description</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage === 'Instructor' }"
+          :class="{ active: currentDetailsPage.title === 'Instructor' }"
           @click="handleCurrentPage('Instructor')"
         >
           <svg
@@ -83,7 +83,7 @@
           <span>Instructor</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage === 'Feedback' }"
+          :class="{ active: currentDetailsPage.title === 'Feedback' }"
           @click="handleCurrentPage('Feedback')"
         >
           <svg
@@ -204,16 +204,32 @@ body {
         margin-left: vw(52);
         @include flex();
         @include font(vw(12), bold, 20px, $greyBlue60);
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: vw(-35);
+          left: 0;
+          width: 0%;
+          height: 2px;
+          background: $blue;
+          border-radius: 1px;
+          opacity: 0;
+          transition: 0.4s;
+        }
         span {
+          transition: 0.4s;
           margin-left: vw(17);
         }
-        svg {
+      }
+      svg {
+        path {
+          transition: 0.4s;
         }
       }
     }
   }
 }
-.active {
+.details-page__head ul li.active {
   &::before {
     content: '';
     position: absolute;
@@ -223,9 +239,10 @@ body {
     height: 2px;
     background: $blue;
     border-radius: 1px;
+    opacity: 1;
   }
   span {
-    color: $blue;
+    @include font(vw(12), bold, 20px, $blue);
   }
   svg {
     path {

@@ -1,7 +1,7 @@
 {
-  "coursess": [
-    {
+  "course": {
       "image": "",
+      "id": 42342,
       "title": "Full course on Java Script from scratch to pros",
       "rating": [4.8, 3.1, 5, 2.6],
       "price": "20$",
@@ -180,5 +180,4 @@
         ]
       }
     }
-  ]
 }
