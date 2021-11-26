@@ -5,7 +5,9 @@
       <router-link to="/detailsCourse">Details Course</router-link>
    </div>
    <div class="main-container">
-      <div class="sidebar"></div>
+      <div class="sidebar">
+         <SideBar />
+      </div>
       <div class="hero">
          <Header />
          <router-view />
@@ -17,8 +19,9 @@
 <script>
    import Header from "@/components/Header";
    import Footer from "@/components/Footer";
+   import SideBar from "./components/SideBar";
    export default {
-      components: { Header, Footer },
+      components: { Header, Footer, SideBar },
    };
 </script>
 
@@ -45,6 +48,9 @@
       display: flex;
       .sidebar {
          width: vw(330);
+      }
+      .hero{
+         margin-left: vw(330);
       }
    }
 
