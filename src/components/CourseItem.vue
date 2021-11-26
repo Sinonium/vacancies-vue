@@ -28,7 +28,6 @@
             </defs>
             </svg>
             New Teachers</li>
-        
     </ul>
 </div>
 <div class="course-items">
