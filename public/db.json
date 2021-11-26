@@ -98,8 +98,10 @@
         
         }
     ]
-},
-    "courses": [
+}
+
+    
+        "courses": [
         {
             "id": 0,
             "name": "Full course on Java Script from scratch to pros",
@@ -113,6 +115,22 @@
             "id": 1,
             "name": "The Modern Java Script Bootcamp (2024)",
             "time": 12,
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
             "grade": 4.8,
             "students": 1565,
             "teacher": "Willie Chandler",
@@ -211,3 +229,5 @@
         
     ]
 }
+
+

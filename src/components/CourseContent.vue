@@ -11,7 +11,8 @@
                 <li v-for="theme in themes" :key="theme.id" :theme="theme">
                   <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
                 </li>
-                <li v-if="show">
+
+                <!-- <li v-if="show">
                   <img src="@/assets/scss/icons/done.svg" /> JavaScript modules
                 </li>
                 <li v-if="show">
@@ -21,7 +22,7 @@
                 <li v-if="show">
                   <img src="@/assets/scss/icons/done.svg" />learning react /
                   redux
-                </li>
+                </li> -->
               </ul>
             </div>
             <div class="themes-title__item-2">
@@ -30,7 +31,7 @@
                   <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
                 </li>
 
-                <li v-if="show">
+                <!-- <li v-if="show">
                   <img src="@/assets/scss/icons/done.svg" />Error Handing
                 </li>
                 <li v-if="show">
@@ -39,13 +40,14 @@
                 <li v-if="show">
                   <img src="@/assets/scss/icons/done.svg" />Downloadable
                   lecturesfor all projects
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
-          <button @click="show = !show">
-            <p v-if="show">{{ fewer }}</p>
-            <p v-else>{{ more }}</p>
+          <button @click="allThemes()" id="more">
+            {{ this.button }}
+            <!-- <p v-if="show">{{ fewer }}</p>
+            <p v-else>{{ more }}</p> -->
           </button>
         </div>
       </div>
@@ -131,6 +133,11 @@
 export default {
   data() {
     return {
+      button: "Show more Features",
+      allShow: false,
+      allAbout: [],
+      about: [],
+
       videoIcon: require("@/assets/scss/icons/video.svg"),
       items: [
         {
@@ -207,10 +214,8 @@ export default {
           time_2: "01:08",
         },
       ],
-
-      show: false,
-      fewer: "Show Fewer Features",
-      more: "Show more Features",
+      //show: false,
+     
       themes: [
         { name: "Get friendly supportinthe course Q&A" },
         { name: "Downloadable lectures for all projects" },
@@ -225,6 +230,23 @@ export default {
       ],
     };
   },
+  methods: {
+    allThemes() {
+      if (!this.allShow) {
+        this.about = [];
+        this.about = [...this.allAbout];
+        this.button = "Show Fewer Features";
+        this.allShow = true;
+      } else {
+        this.about = [];
+        this.about = [...this.allAbout];
+        this.about.splice(3);
+        this.button = "Show more Features";
+        this.allShow = false;
+      }
+    },
+  },
+   
 };
 </script>
 
@@ -234,8 +256,7 @@ export default {
 
 .container {
   margin: 0 auto;
-  background: #e4e7f0;
-  //width: vw(1600);
+  background: $bg-main;
 }
 
 .themes {
@@ -244,6 +265,7 @@ export default {
   border-radius: vw(10);
   width: vw(730);
   margin-bottom: vw(30);
+  
   &-title {
     @include font(vw(13), bold, vw(25));
     font-family: "San Francisco Pro";
@@ -314,10 +336,6 @@ export default {
     }
     &__open {
       width: 100%;
-
-      // svg{
-      //   transform: rotate(180deg);
-      // }
     }
     &__item {
       width: 100%;
@@ -369,20 +387,21 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .container {
-    background: red;
+    background: $bg-main;
     margin: 0 auto;
   }
 
   .themes {
-    margin: 0;
     border-radius: vmin(5);
     width: vmin(350);
     margin-bottom: vmin(15);
     margin-left: vmin(5);
     &-title {
       @include font(vmin(8), bold, vmin(13));
-
       padding: vmin(15) 0 0 vmin(15);
+      img {
+        width: vmin(10);
+      }
 
       &__item-1 {
         padding-right: vmin(20);
@@ -400,7 +419,7 @@ export default {
       padding-top: vmin(13);
       img {
         margin-right: vmin(10);
-        width: vmin(5)
+        width: vmin(5);
       }
     }
     button {
@@ -455,7 +474,6 @@ export default {
       }
       span {
         @include font(vmin(6), bold, vmin(10));
-        //display: none;
       }
 
       img {
@@ -469,30 +487,23 @@ export default {
 
 @media screen and (max-width: 380px) {
   .container {
-    background: blue;
     margin: 0 auto;
   }
 
   .themes {
-    margin: 0;
     border-radius: vmin(5);
     width: vmin(350);
     margin-bottom: vmin(15);
     margin-left: vmin(5);
     &-title {
       @include font(vmin(14), bold, vmin(15));
-      &__item{
+      &__item {
         flex-direction: column;
       }
-
-     // padding: vmin(15) 0 0 vmin(15);
-
-     
-
       &__item-1,
       &__item-2 {
         @include font(vmin(9), bold, vmin(10));
-        ul{
+        ul {
           margin: 0;
         }
       }
