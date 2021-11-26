@@ -3,43 +3,44 @@
       <SidebarSearch />
       <div class="sidebar__content">
          <ul class="sidebar__main-group">
-            <li>
+            <li @click="list.a = !list.a">
                <span>COURSE CATEGORIES</span>
-               <img :src="arrowExpand" alt="" />
+               <img :class="{clicked : list.a}" :src="arrowExpand" alt="" />
             </li>
-            <CourseCategories />
-            <li>
+            <CourseCategories v-if="list.a"/>
+            <li @click="list.b = !list.b">
                <span>PRICELIST</span>
-               <img :src="arrowExpand" alt="" />
+               <img :class="{clicked : list.b}" :src="arrowExpand" alt="" />
             </li>
-            <PriceList />
-            <li>
+            <PriceList v-if="list.b"/>
+            <li @click="list.c = !list.c">
                <span>STUDENT LEVEL OF TRAINING</span>
-               <img :src="arrowExpand" alt="" />
+               <img :class="{clicked : list.c}" :src="arrowExpand" alt="" />
             </li>
-            <LevelOfTraining />
-            <li>
+            <LevelOfTraining v-if="list.c"/>
+            <li @click="list.d = !list.d">
                <span>COURSE RATING</span>
-               <img :src="arrowExpand" alt="" />
+               <img :class="{clicked : list.d}" :src="arrowExpand" alt="" />
             </li>
-            <CourseRating />
-            <li>
+            <CourseRating v-if="list.d"/>
+            <li @click="list.e = !list.e">
                <span>DURATION COURSES</span>
-               <img :src="arrowExpand" alt="" />
+               <img :class="{clicked : list.e}" :src="arrowExpand" alt="" />
             </li>
-            <Duration />
+            <Duration v-if="list.e"/>
          </ul>
       </div>
    </aside>
 </template>
 
 <script>
-   import CourseCategories from "./sidebar/CourseCategories.vue";
+import { ref } from '@vue/reactivity';
+   import CourseCategories from "./sidebar/categories/CourseCategories.vue";
    import CourseRating from "./sidebar/CourseRating.vue";
    import Duration from "./sidebar/Duration.vue";
    import LevelOfTraining from "./sidebar/LevelOfTraining.vue";
    import PriceList from "./sidebar/PriceList.vue";
-   import SidebarSearch from "./sidebar/SidebarSearch.vue";
+   import SidebarSearch from "./sidebar/Search.vue";
    export default {
       components: {
          SidebarSearch,
@@ -50,7 +51,15 @@
          Duration,
       },
       setup() {
+         const list = ref({
+            a: true,
+            b: true,
+            c: true,
+            d: true,
+            e: true
+         })
          return {
+            list,
             arrowExpand: require("@/assets/img/sidebar/arrow.svg"),
          };
       },
@@ -59,11 +68,15 @@
 
 <style lang="scss" scoped>
    @import "@/assets/scss/index.scss";
-
+   aside{
+         position: fixed;
+   }
    .sidebar__content {
       background-color: $greyBlue25;
-      height: vw(2055);
+      height: 90vh;
+      overflow-y: scroll;
       .sidebar__main-group {
+         padding-bottom: vw(40);
          li {
             display: flex;
             align-items: center;
@@ -76,6 +89,9 @@
                margin: vw(32);
                max-width: vw(12);
                max-height: vw(7);
+            }
+            img.clicked{
+               transform: rotate(90deg);
             }
          }
       }

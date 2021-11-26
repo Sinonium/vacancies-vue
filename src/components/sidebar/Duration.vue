@@ -50,8 +50,9 @@
 <style lang="scss" scoped>
    @import "@/assets/scss/index.scss";
 ul{
-   display: flex;
-   flex-wrap: wrap;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   // padding-bottom: vw(25);
    li {
       position: relative;
       margin-left: vw(34);

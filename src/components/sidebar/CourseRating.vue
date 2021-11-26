@@ -87,6 +87,7 @@
    li {
       display: flex;
       align-items: center;
+      margin-bottom: vw(5);
       input[type="checkbox"] {
          position: absolute;
          left: vw(30);
