@@ -104,10 +104,13 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss"> 
 @import '@/assets/scss/index.scss';
 .cart {
     width: vw(350);
+    position: absolute;
+    right: vw(80);
+    top: vw(130);
     p {
         @include font(vw(12), 700, vw(20), $greyBlue70);
         margin-top: vw(33);

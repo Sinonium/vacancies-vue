@@ -104,44 +104,118 @@
         </li>
       </ul>
     </div>
+    <AddToCart />
     <main class="details-page__content">
       <div v-if="currentDetailsPage.title === 'Instructor'">
         <DetailsAboutTeach />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Feedback')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <div v-html="currentDetailsPage.icon"></div>
+            <span> Feedback </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
       </div>
       <div v-if="currentDetailsPage.title === 'About'">
         <Tutorials />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Content')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <div v-html="currentDetailsPage.icon"></div>
+            <span> Content </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
       </div>
       <div v-if="currentDetailsPage.title === 'Description'">
-        <DescriptionText />
-        <Reviews />
+        <Description />
+        <div
+        class="details-page__bottom">
+        <div class="details-page__bottom-arrow_prev">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
+        <div @click="handleCurrentPage('Instructor')" class="details-page__bottom-btn_push_page">
+          <div v-html="currentDetailsPage.icon"></div>
+          <span>
+            Instructor
+          </span>
+        </div>
+        <div class="details-page__bottom-arrow_next">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
+      </div>
+      </div>
+      <div
+        v-if="currentDetailsPage.title === 'Content'"
+        class="details-page__bottom"
+      >
+        <div class="details-page__bottom-arrow_prev">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
+        <div class="details-page__bottom-btn_push_page">
+          <div v-html="currentDetailsPage.icon"></div>
+          <span>
+            {{ currentDetailsPage.title }}
+          </span>
+        </div>
+        <div class="details-page__bottom-arrow_next">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
+      </div>
+      <div
+        v-if="currentDetailsPage.title === 'Feedback'"
+        class="details-page__bottom"
+      >
+        <div class="details-page__bottom-arrow_prev">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
+        <div class="details-page__bottom-btn_push_page">
+          <div v-html="currentDetailsPage.icon"></div>
+          <span>
+            {{ currentDetailsPage.title }}
+          </span>
+        </div>
+        <div class="details-page__bottom-arrow_next">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
       </div>
     </main>
-    <div class="details-page__bottom">
-      <div>
-        <img :src="ArrowIcon" alt="ArrowIcon" />
-      </div>
-      <div>
-        <div v-html="currentDetailsPage.icon"></div>
-        <span>
-          {{ currentDetailsPage.title }}
-        </span>
-      </div>
-      <div>
-        <img :src="ArrowIcon" alt="ArrowIcon" />
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
+import AddToCart from '@/components/AddToCart.vue'
 import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import Tutorials from '@/components/Tutorials.vue'
 import DescriptionText from '@/components/DescriptionText.vue'
 import Reviews from '@/components/Reviews.vue'
 import ArrowIcon from '@/assets/icons/DetailsAboutTeach/arrow.svg'
+import Description from '../components/Description.vue'
 export default {
-  components: { DescriptionText, Reviews, DetailsAboutTeach, Tutorials },
+  components: {
+    AddToCart,
+    Description,
+    DescriptionText,
+    Reviews,
+    DetailsAboutTeach,
+    Tutorials,
+  },
   setup(props) {
     const currentDetailsPage = ref({
       title: 'About',
@@ -247,6 +321,44 @@ body {
   svg {
     path {
       fill: $blue;
+    }
+  }
+}
+.details-page__bottom {
+  margin-left: vw(-350);
+  margin-top: vw(35);
+  margin-bottom: vw(40);
+  @include flex();
+  &-arrow_prev,
+  &-arrow_next {
+    background: $white;
+    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+    border-radius: vw(30);
+    padding: vw(15);
+    cursor: pointer;
+  }
+  &-arrow_prev {
+    img {
+      transform: rotate(-90deg);
+    }
+  }
+  &-arrow_next {
+    margin-left: vw(235);
+    img {
+      transform: rotate(90deg);
+    }
+  }
+  &-btn_push_page {
+    background: $white;
+    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+    border-radius: vw(30);
+    @include flex();
+    padding: vw(17) vw(38) vw(15) vw(26);
+    margin-left: vw(235);
+    cursor: pointer;
+    span {
+      @include font(vw(12), bold, 20px, $greyBlue60);
+      margin-left: vw(16);
     }
   }
 }
