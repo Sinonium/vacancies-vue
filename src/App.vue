@@ -19,7 +19,7 @@
 <script>
    import Header from "@/components/Header";
    import Footer from "@/components/Footer";
-   import SideBar from "./components/SideBar.vue";
+   import SideBar from "./components/SideBar";
    export default {
       components: { Header, Footer, SideBar },
    };
@@ -48,6 +48,9 @@
       display: flex;
       .sidebar {
          width: vw(330);
+      }
+      .hero{
+         margin-left: vw(330);
       }
    }
 
