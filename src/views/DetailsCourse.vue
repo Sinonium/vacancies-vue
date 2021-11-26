@@ -136,7 +136,7 @@
 import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import Tutorials from '@/components/Tutorials.vue'
-import Description from '@/views/Description.vue'
+import Description from '@/components/Description/Description.vue'
 import ArrowIcon from '@/assets/icons/DetailsAboutTeach/arrow.svg'
 export default {
   components: { Description, DetailsAboutTeach, Tutorials },
