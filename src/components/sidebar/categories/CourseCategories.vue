@@ -1,8 +1,8 @@
 <template>
-   <ul>
+   <ul class="categories">
       <li
          @click="clickedCategories = 'dev'"
-         :class="{ clicked: clickedCategories === 'dev' }"
+         :class="{ clickedCata: clickedCategories === 'dev' }"
       >
          <img :src="devIcon" alt="" />
          <span>Development</span>
@@ -11,7 +11,7 @@
       <SubDevCategories v-if="clickedCategories === 'dev'"/>
       <li
          @click="clickedCategories = 'bus'"
-         :class="{ clicked: clickedCategories === 'bus' }"
+         :class="{ clickedCata: clickedCategories === 'bus' }"
       >
          <img :src="busIcon" alt="" />
          <span>Business</span>
@@ -20,7 +20,7 @@
       <SubBusCategories v-if="clickedCategories === 'bus'"/>
       <li
          @click="clickedCategories = 'fin'"
-         :class="{ clicked: clickedCategories === 'fin' }"
+         :class="{ clickedCata: clickedCategories === 'fin' }"
       >
          <img :src="finIcon" alt="" />
          <span>Finance & Accounting</span>
@@ -28,7 +28,7 @@
       </li>
       <li
          @click="clickedCategories = 'soft'"
-         :class="{ clicked: clickedCategories === 'soft' }"
+         :class="{ clickedCata: clickedCategories === 'soft' }"
       >
          <img :src="itIcon" alt="" />
          <span>IT & Software</span>
@@ -36,7 +36,7 @@
       </li>
       <li
          @click="clickedCategories = 'office'"
-         :class="{ clicked: clickedCategories === 'office' }"
+         :class="{ clickedCata: clickedCategories === 'office' }"
       >
          <img :src="offIcon" alt="" />
          <span>Office Productivity</span>
@@ -44,7 +44,7 @@
       </li>
       <li
          @click="clickedCategories = 'pers'"
-         :class="{ clicked: clickedCategories === 'pers' }"
+         :class="{ clickedCata: clickedCategories === 'pers' }"
       >
          <img :src="persIcon" alt="" />
          <span>Personal Development</span>
@@ -52,7 +52,7 @@
       </li>
       <li
          @click="clickedCategories = 'design'"
-         :class="{ clicked: clickedCategories === 'design' }"
+         :class="{ clickedCata: clickedCategories === 'design' }"
       >
          <img :src="desigIcon" alt="" />
          <span>Design and Art</span>
@@ -60,7 +60,7 @@
       </li>
       <li
          @click="clickedCategories = 'market'"
-         :class="{ clicked: clickedCategories === 'market' }"
+         :class="{ clickedCata: clickedCategories === 'market' }"
       >
          <img :src="markIcon" alt="" />
          <span>Marketing and Sales</span>
@@ -68,7 +68,7 @@
       </li>
       <li
          @click="clickedCategories = 'life'"
-         :class="{ clicked: clickedCategories === 'life' }"
+         :class="{ clickedCata: clickedCategories === 'life' }"
       >
          <img :src="lifeIcon" alt="" />
          <span>Lifestyle and Fashion</span>
@@ -76,7 +76,7 @@
       </li>
       <li
          @click="clickedCategories = 'photo'"
-         :class="{ clicked: clickedCategories === 'photo' }"
+         :class="{ clickedCata: clickedCategories === 'photo' }"
       >
          <img :src="photoIcon" alt="" />
          <span>Photography</span>
@@ -84,7 +84,7 @@
       </li>
       <li
          @click="clickedCategories = 'heal'"
-         :class="{ clicked: clickedCategories === 'heal' }"
+         :class="{ clickedCata: clickedCategories === 'heal' }"
       >
          <img :src="healIcon" alt="" />
          <span>Health & Fitness</span>
@@ -92,7 +92,7 @@
       </li>
       <li
          @click="clickedCategories = 'music'"
-         :class="{ clicked: clickedCategories === 'music' }"
+         :class="{ clickedCata: clickedCategories === 'music' }"
       >
          <img :src="musIcon" alt="" />
          <span>Music and Sound Design</span>
@@ -100,7 +100,7 @@
       </li>
       <li
          @click="clickedCategories = 'teach'"
-         :class="{ clicked: clickedCategories === 'teach' }"
+         :class="{ clickedCata: clickedCategories === 'teach' }"
       >
          <img :src="teachIcon" alt="" />
          <span>Teaching & Academics</span>
@@ -140,39 +140,3 @@
       },
    };
 </script>
-
-<style lang="scss" scoped>
-   @import "@/assets/scss/index.scss";
-   ul {
-      padding: vw(12);
-      margin-top: vw(5);
-      li {
-         display: flex;
-         align-items: center;
-         padding: vw(10) 0;
-         cursor: pointer;
-         span {
-            @include font(vw(13), 700, vw(25), $white);
-            margin-right: auto;
-         }
-         img {
-            margin: 0 vw(24) 0 vw(34);
-            max-height: vw(22);
-            max-width: vw(22);
-         }
-         img:last-child {
-            margin-right: vw(32);
-            max-width: vw(12);
-            max-height: vw(7);
-         }
-      }
-      li.clicked {
-         background: #29cc39;
-         box-shadow: 0px 10px 30px rgba(41, 204, 57, 0.03);
-         border-radius: 5px;
-         img:last-child {
-            transform: rotate(90deg);
-         }
-      }
-   }
-</style>

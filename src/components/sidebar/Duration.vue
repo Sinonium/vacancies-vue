@@ -52,7 +52,6 @@
 ul{
    display: grid;
    grid-template-columns: 1fr 1fr;
-   // padding-bottom: vw(25);
    li {
       position: relative;
       margin-left: vw(34);
@@ -73,7 +72,7 @@ ul{
       }
       span{
          @include font(vw(12), 700, vw(20), $greyBlue50);
-         margin: vw(20);
+         margin: vw(10);
       }
       span.checked{
          color: $white;
