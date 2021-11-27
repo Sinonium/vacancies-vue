@@ -2,97 +2,22 @@
   <div class="cart-teach">
     <div class="cart-teach__about_teach col-4">
       <h4>About the Instructor</h4>
-      <img :src="teachImage" alt="Image teacher" />
+      <img :src="course.teacher.teachImage" alt="Image teacher" />
       <ul class="cart-teach__about_teach_list">
-        <li class="cart-teach__about_teach_list-item">
-          <svg
-            width="18"
-            height="17"
-            viewBox="0 0 18 17"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M8.55696 13.6975L12.707 16.2075C13.467 16.6675 14.397 15.9875 14.197 15.1275L13.097 10.4075L16.767 7.2275C17.437 6.6475 17.077 5.5475 16.197 5.4775L11.367 5.0675L9.47696 0.6075C9.13696 -0.2025 7.97696 -0.2025 7.63696 0.6075L5.74696 5.0575L0.916957 5.4675C0.0369574 5.5375 -0.323043 6.6375 0.346957 7.2175L4.01696 10.3975L2.91696 15.1175C2.71696 15.9775 3.64696 16.6575 4.40696 16.1975L8.55696 13.6975Z"
-              fill="#C3CAD9"
-            />
-          </svg>
-          <span class="first__span"> 4.6 </span>
-          <span class="last__span"> Instructor Rating </span>
-        </li>
-        <li class="cart-teach__about_teach_list-item">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M18 4H17V12C17 12.55 16.55 13 16 13H4V14C4 15.1 4.9 16 6 16H16L20 20V6C20 4.9 19.1 4 18 4ZM15 9V2C15 0.9 14.1 0 13 0H2C0.9 0 0 0.9 0 2V15L4 11H13C14.1 11 15 10.1 15 9Z"
-              fill="#C3CAD9"
-            />
-          </svg>
-          <span class="first__span"> 72,205 </span>
-          <span class="last__span"> Reviews </span>
-        </li>
-        <li class="cart-teach__about_teach_list-item">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V15C0 15.55 0.45 16 1 16H15C15.55 16 16 15.55 16 15V14C16 11.34 10.67 10 8 10Z"
-              fill="#C3CAD9"
-            />
-          </svg>
-          <span class="first__span"> 224,567 </span>
-          <span class="last__span"> Students </span>
-        </li>
-        <li class="cart-teach__about_teach_list-item">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 13.5V6.5C8 6.09 8.47 5.85 8.8 6.1L13.47 9.6C13.74 9.8 13.74 10.2 13.47 10.4L8.8 13.9C8.47 14.15 8 13.91 8 13.5Z"
-              fill="#C3CAD9"
-            />
-          </svg>
-          <span class="first__span"> 7 </span>
-          <span class="last__span"> Courses </span>
+        <li v-for="item in course.teacher.data" :key="item.title" class="cart-teach__about_teach_list-item">
+          <span v-html="item.icon"></span>
+          <span class="first__span"> {{item.number}} </span>
+          <span class="last__span"> {{item.title}} </span>
         </li>
       </ul>
     </div>
     <div class="cart-teach__features_teach col-5">
-      <h2>Jacob Garner</h2>
-      <span> Software Developer, Architect, and UX Designer </span>
-      <p>
-        Newly married in Cleveland Ohio, Tony is primarily focused these days on
-        trying to be a good husband. While inexperienced at that, he's quite
-        experienced in all things web.
-      </p>
-      <p>
-        Tony has been programming since he was 12 years old, and got into web
-        sites and web application development at 16. After graduating with a
-        Computer Science degree from Case Western Reserve University.
-      </p>
+      <h2>{{course.teacher.name}}</h2>
+      <span> {{course.teacher.features}} </span>
+      <p>{{course.teacher.recentNews}}</p>
+      <p>{{course.teacher.biography}}</p>
     </div>
-    <span class="cart-teach__kebab">
+    <span style="cursor:pointer;" class="cart-teach__kebab">
       <svg
         width="16"
         height="4"
@@ -114,10 +39,10 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
-  props: ['courses'],
+  props: ['course'],
   setup(props) {
     return {
-      teachImage: require('@/assets/img/DetailsAboutTeach/imageTeach.png'),
+      // teachImage: require('@/assets/img/DetailsAboutTeach/imageTeach.png'),
     }
   },
 }
@@ -127,7 +52,7 @@ export default {
 @import '@/assets/scss/index.scss';
 .cart-teach__kebab {
   position: absolute;
-  right: 29%;
+  right: 5%;
 }
 .col-4 {
   width: 35%;
@@ -136,6 +61,7 @@ export default {
   width: 70%;
 }
 .cart-teach {
+  position: relative;
   height: vw(445);
   width: vw(730);
   display: flex;
@@ -337,13 +263,13 @@ export default {
 @media screen and (max-width: 638px) {
   .cart-teach__kebab {
     position: absolute;
-    right: 30.5%;
+    right: 5%;
   }
 }
 @media screen and (max-width: 622px) {
   .cart-teach__kebab {
     position: absolute;
-    right: 32%;
+    right: 5%;
   }
 }
 @media screen and (max-width: 608px) {
@@ -354,7 +280,7 @@ export default {
 @media screen and (max-width: 607px) {
   .cart-teach__kebab {
     position: absolute;
-    right: 34%;
+    right: 5%;
   }
 }
 @media screen and (max-width: 596px) {
@@ -363,13 +289,13 @@ export default {
   }
   .cart-teach__kebab {
     position: absolute;
-    right: 32%;
+    right: 5%;
   }
 }
 @media screen and (max-width: 571px) {
   .cart-teach__kebab {
     position: absolute;
-    right: 35%;
+    right: 5%;
   }
 }
 @media screen and (max-width: 551px) {
@@ -431,7 +357,7 @@ export default {
   }
   .cart-teach__kebab {
     position: absolute;
-    right: 4%;
+    right: 5%;
     top: 23vmin;
   }
 }

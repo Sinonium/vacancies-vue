@@ -73,9 +73,8 @@
               fill="#C3CAD9"
             />
           </svg>
-          <h6 @click="item.open = !item.open">{{ item.title }} 
-            </h6>
-   
+          <h6 @click="item.open = !item.open">{{ item.title }}</h6>
+
           <span> {{ item.allTime }}</span>
           <div class="content-courses__open" v-if="item.open">
             <div class="content-courses__item">
@@ -121,112 +120,108 @@
   </div>
 </template>
 
-
-
-
 <script>
 export default {
   data() {
     return {
-      videoIcon: require("@/assets/scss/icons/video.svg"),
+      videoIcon: require('@/assets/scss/icons/video.svg'),
       items: [
         {
-          title: "Course Content",
-          allTime: "8:82",
+          title: 'Course Content',
+          allTime: '8:82',
 
-          name: "How To Succedd In This Course",
-          view: "Preview",
-          time: "05:34",
+          name: 'How To Succedd In This Course',
+          view: 'Preview',
+          time: '05:34',
 
-          name_1: "Join Our Online Classroom",
-          time_1: "01:08",
+          name_1: 'Join Our Online Classroom',
+          time_1: '01:08',
 
-          name_2: "Exercise: Meet The Comminity!",
-          time_2: "01:08",
+          name_2: 'Exercise: Meet The Comminity!',
+          time_2: '01:08',
         },
 
         {
-          title: "JavaScript Foundation",
-          lectures: "26 Lectures",
-          allTime: "7:82",
+          title: 'JavaScript Foundation',
+          lectures: '26 Lectures',
+          allTime: '7:82',
 
-          name: "Section Overview",
-          view: "Preview",
-          time: "05:34",
+          name: 'Section Overview',
+          view: 'Preview',
+          time: '05:34',
 
-          name_1: "Exercise: Javascript Engine",
-          view: "Preview",
-          time_1: "05:08",
+          name_1: 'Exercise: Javascript Engine',
+          view: 'Preview',
+          time_1: '05:08',
 
-          name_2: "Marketing and Sales",
-          time_2: "01:08",
+          name_2: 'Marketing and Sales',
+          time_2: '01:08',
         },
         {
-          title: "Putting It All Together: The Budget App Project",
-           lectures: "3 Lectures",
-          allTime: "13:82",
+          title: 'Putting It All Together: The Budget App Project',
+          lectures: '3 Lectures',
+          allTime: '13:82',
 
-          name: "Local servers",
-          time: "05:34",
+          name: 'Local servers',
+          time: '05:34',
 
-          name_1: "How to work with JSHint",
-          time_1: "01:08",
+          name_1: 'How to work with JSHint',
+          time_1: '01:08',
 
-          name_2: "How to create fadeIn / fadeOut animations",
-          time_2: "01:08",
+          name_2: 'How to create fadeIn / fadeOut animations',
+          time_2: '01:08',
         },
         {
-          title: "Next Generation JavaScript: Intro to ES6",
-           lectures: "4 Lectures",
-          allTime: "10:82",
+          title: 'Next Generation JavaScript: Intro to ES6',
+          lectures: '4 Lectures',
+          allTime: '10:82',
 
-          name: "How to work with a server in JavaScript part 1",
-          time: "02:34",
+          name: 'How to work with a server in JavaScript part 1',
+          time: '02:34',
 
-          name_1: "How to work with a server in JavaScript part 2",
-          time_1: "03:08",
+          name_1: 'How to work with a server in JavaScript part 2',
+          time_1: '03:08',
 
-          name_2: "How to work with a server in JavaScript part 3",
-          time_2: "01:08",
+          name_2: 'How to work with a server in JavaScript part 3',
+          time_2: '01:08',
         },
         {
-          title: "Customizing the code editor",
-           lectures: "7 Lectures",
-          allTime: "11:82",
+          title: 'Customizing the code editor',
+          lectures: '7 Lectures',
+          allTime: '11:82',
 
-          name: "How To Succedd In This Course",
-          time: "05:34",
+          name: 'How To Succedd In This Course',
+          time: '05:34',
 
-          name_1: "Timer operation",
-          time_1: "01:08",
+          name_1: 'Timer operation',
+          time_1: '01:08',
 
-          name_2: "Implementing a module with displaying images",
-          time_2: "01:08",
+          name_2: 'Implementing a module with displaying images',
+          time_2: '01:08',
         },
       ],
       show: false,
-      fewer: "Show Fewer Features",
-      more: "Show more Features",
+      fewer: 'Show Fewer Features',
+      more: 'Show more Features',
       themes: [
-        { name: "Get friendly supportinthe course Q&A" },
-        { name: "Downloadable lectures for all projects" },
-        { name: "Inheritance + Prototpe Chain" },
-        { name: "Closures" },
+        { name: 'Get friendly supportinthe course Q&A' },
+        { name: 'Downloadable lectures for all projects' },
+        { name: 'Inheritance + Prototpe Chain' },
+        { name: 'Closures' },
       ],
       themes_2: [
-        { name: "Practice your skills with coding challenges" },
-        { name: "Object Orinted Programming" },
-        { name: "Scope and Execution Context" },
-        { name: "Latest features: ES6, ES7, ES8, ES9" },
+        { name: 'Practice your skills with coding challenges' },
+        { name: 'Object Orinted Programming' },
+        { name: 'Scope and Execution Context' },
+        { name: 'Latest features: ES6, ES7, ES8, ES9' },
       ],
-    };
+    }
   },
-};
+}
 </script>
 
-
 <style lang="scss">
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .container {
   margin: 0 auto;
@@ -241,7 +236,7 @@ export default {
     margin-bottom: vw(30);
     &-title {
       @include font(vw(13), bold, vw(25));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue50;
       padding: vw(30) 0 0 vw(30);
       &__item {
@@ -257,7 +252,7 @@ export default {
       &__item-1,
       &__item-2 {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue60;
       }
       span {
@@ -273,7 +268,7 @@ export default {
     }
     button {
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue60;
       width: vw(190);
       height: vw(40);
@@ -317,14 +312,14 @@ export default {
 
         p {
           @include font(vw(12), bold, vw(20));
-          font-family: "San Francisco Pro";
+          font-family: 'San Francisco Pro';
           color: $greyBlue60;
           width: 70%;
         }
 
         a {
           @include font(vw(12), bold, vw(20));
-          font-family: "San Francisco Pro";
+          font-family: 'San Francisco Pro';
           color: $greyBlue60;
           width: 10%;
           text-decoration: none;
@@ -338,13 +333,13 @@ export default {
 
         h6 {
           @include font(vw(12), bold, vw(20));
-          font-family: "San Francisco Pro";
+          font-family: 'San Francisco Pro';
           color: $greyBlue50;
           width: 80%;
         }
         span {
           @include font(vw(12), bold, vw(20));
-          font-family: "San Francisco Pro";
+          font-family: 'San Francisco Pro';
           color: $greyBlue50;
           width: 10%;
         }
