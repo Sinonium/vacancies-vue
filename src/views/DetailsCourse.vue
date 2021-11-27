@@ -144,6 +144,7 @@
       </div>
       <div v-if="currentDetailsPage.title === 'Description'">
         <Description />
+<<<<<<< HEAD
         <div
         class="details-page__bottom">
         <div class="details-page__bottom-arrow_prev">
@@ -158,6 +159,8 @@
         <div class="details-page__bottom-arrow_next">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
+=======
+>>>>>>> 1edcc079df8f60fdc181cfae0a502bef34da9d2c
       </div>
       </div>
       <div v-if="currentDetailsPage.title === 'Feedback'">
@@ -205,11 +208,11 @@ import AddToCart from '@/components/AddToCart.vue'
 import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import Tutorials from '@/components/Tutorials.vue'
-import DescriptionText from '@/components/DescriptionText.vue'
-import Reviews from '@/components/Reviews.vue'
+import Description from '@/components/Description/Description.vue'
 import ArrowIcon from '@/assets/icons/DetailsAboutTeach/arrow.svg'
 import Description from '../components/Description.vue'
 export default {
+<<<<<<< HEAD
   components: {
     FeedBack ,
     AddToCart,
@@ -219,6 +222,9 @@ export default {
     DetailsAboutTeach,
     Tutorials,
   },
+=======
+  components: { Description, DetailsAboutTeach, Tutorials },
+>>>>>>> 1edcc079df8f60fdc181cfae0a502bef34da9d2c
   setup(props) {
     const currentDetailsPage = ref({
       title: 'About',

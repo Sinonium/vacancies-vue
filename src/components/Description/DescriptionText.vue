@@ -67,11 +67,12 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-.container {
-  max-width: vw(730);
-  margin-left: vw(80);
-}
+
 .description {
+  .container {
+    max-width: vw(730);
+  }
+  margin-top: vh(30);
   &__content {
     background-color: $white;
     border-radius: 10px;
