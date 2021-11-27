@@ -160,25 +160,26 @@
         </div>
       </div>
       </div>
-      <div
-        v-if="currentDetailsPage.title === 'Content'"
-        class="details-page__bottom"
-      >
+      <div v-if="currentDetailsPage.title === 'Feedback'">
+        <FeedBack />
+        <div
+        class="details-page__bottom">
         <div class="details-page__bottom-arrow_prev">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
-        <div class="details-page__bottom-btn_push_page">
+        <div @click="handleCurrentPage('About')" class="details-page__bottom-btn_push_page">
           <div v-html="currentDetailsPage.icon"></div>
           <span>
-            {{ currentDetailsPage.title }}
+            About
           </span>
         </div>
         <div class="details-page__bottom-arrow_next">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
       </div>
+      </div>
       <div
-        v-if="currentDetailsPage.title === 'Feedback'"
+        v-if="currentDetailsPage.title === 'Content'"
         class="details-page__bottom"
       >
         <div class="details-page__bottom-arrow_prev">
@@ -199,6 +200,7 @@
 </template>
 
 <script>
+import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
 import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
@@ -209,6 +211,7 @@ import ArrowIcon from '@/assets/icons/DetailsAboutTeach/arrow.svg'
 import Description from '../components/Description.vue'
 export default {
   components: {
+    FeedBack ,
     AddToCart,
     Description,
     DescriptionText,
