@@ -44,7 +44,7 @@
               </ul>
             </div>
           </div>
-          <button @click="allThemes()" id="more">
+          <button @click="allThemes()" class="malika" :class="{active: allShow === true}" id="more">
             {{ this.button }}
             <!-- <p v-if="show">{{ fewer }}</p>
             <p v-else>{{ more }}</p> -->
@@ -221,6 +221,8 @@ export default {
         { name: "Downloadable lectures for all projects" },
         { name: "Inheritance + Prototpe Chain" },
         { name: "Closures" },
+       
+        
       ],
       themes_2: [
         { name: "Practice your skills with coding challenges" },
@@ -253,6 +255,13 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/index.scss";
+
+// .malika {
+//   height: vw(700);
+//   &.active {
+//     height: vw(1000);
+//   }
+// }
 
 .container {
   margin: 0 auto;

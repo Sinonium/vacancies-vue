@@ -4,6 +4,7 @@
     </div>
     <div>
         <Header/>
+        <!-- <CourseContent/> -->
         <div id="nav">
           <router-link to="/">Home</router-link> | 
           <router-link to="/description">Details</router-link>
@@ -17,8 +18,9 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+//import CourseContent from '@/components/CourseContent.vue'
 export default {
-	components: { Header, Footer },
+	components: { Header, Footer, },
 };
 </script>
 
