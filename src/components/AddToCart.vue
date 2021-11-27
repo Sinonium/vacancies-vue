@@ -91,19 +91,6 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
-
-<style lang="scss"> 
-@import '@/assets/scss/index.scss';
-.cart {
-    width: vw(350);
-    position: absolute;
-    right: vw(80);
-    top: vw(130);
-    p {
-        @include font(vw(12), 700, vw(20), $greyBlue70);
-        margin-top: vw(33);
-=======
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .cart {
@@ -124,7 +111,6 @@ export default {
       img {
         max-width: 100%;
       }
->>>>>>> 1edcc079df8f60fdc181cfae0a502bef34da9d2c
     }
     &-price {
       margin-top: vw(50);
