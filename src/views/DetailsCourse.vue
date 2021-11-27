@@ -144,39 +144,39 @@
       </div>
       <div v-if="currentDetailsPage.title === 'Description'">
         <Description />
-        <div
-        class="details-page__bottom">
-        <div class="details-page__bottom-arrow_prev">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Instructor')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <div v-html="currentDetailsPage.icon"></div>
+            <span> Instructor </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
         </div>
-        <div @click="handleCurrentPage('Instructor')" class="details-page__bottom-btn_push_page">
-          <div v-html="currentDetailsPage.icon"></div>
-          <span>
-            Instructor
-          </span>
-        </div>
-        <div class="details-page__bottom-arrow_next">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
-        </div>
-      </div>
       </div>
       <div v-if="currentDetailsPage.title === 'Feedback'">
         <FeedBack />
-        <div
-        class="details-page__bottom">
-        <div class="details-page__bottom-arrow_prev">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('About')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <div v-html="currentDetailsPage.icon"></div>
+            <span> About </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
         </div>
-        <div @click="handleCurrentPage('About')" class="details-page__bottom-btn_push_page">
-          <div v-html="currentDetailsPage.icon"></div>
-          <span>
-            About
-          </span>
-        </div>
-        <div class="details-page__bottom-arrow_next">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
-        </div>
-      </div>
       </div>
       <div
         v-if="currentDetailsPage.title === 'Content'"
@@ -199,22 +199,21 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
 import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import Tutorials from '@/components/Tutorials.vue'
 import Description from '@/components/Description/Description.vue'
-import ArrowIcon from '@/assets/icons/DetailsAboutTeach/arrow.svg'
-import Description from '../components/Description.vue'
+// import Description from '../components/Description.vue'
 export default {
   components: {
-    FeedBack ,
+    FeedBack,
     AddToCart,
     Description,
-    DescriptionText,
-    Reviews,
+    // DescriptionText,
+    // Reviews,
     DetailsAboutTeach,
     Tutorials,
   },
@@ -237,12 +236,16 @@ export default {
           </svg>`,
     })
 
-    const handleCurrentPage = (currentWord, currentIcon) => {
+    const handleCurrentPage = (currentWord: string, currentIcon: any) => {
       currentDetailsPage.value.title = currentWord
       // currentDetailsPage.value.icon = `${currentIcon}`
     }
 
-    return { ArrowIcon, currentDetailsPage, handleCurrentPage }
+    return {
+      ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
+      currentDetailsPage,
+      handleCurrentPage,
+    }
   },
 }
 </script>
