@@ -85,6 +85,7 @@
 <style lang="scss" scoped>
    @import "@/assets/scss/index.scss";
    li {
+      position: relative;
       display: flex;
       align-items: center;
       margin-bottom: vw(5);

@@ -32,7 +32,6 @@
       height: vw(35);
    }
    input{
-      // padding: 10px;
       background-color: inherit;
       border: none;
       outline: saddlebrown;
