@@ -1,18 +1,18 @@
 <template>
   <div class="admin-board">
       <div class="container">
-          <h3 class="admin-board__heading">New Project Creation</h3>
+          <h3 class="admin-board__heading">New Course Creation</h3>
           <div class="create-course">
           <div class="create-course__name">
-              <h4 class="create-course__title">Name of the project</h4>
-              <p class="create-course__instruction">Write the name of your project. The name should attract attention and reflect the essence of the project.</p>
+              <h4 class="create-course__title">Name of the course</h4>
+              <p class="create-course__instruction">Write the name of your course. The name should attract attention and reflect the essence of the course.</p>
               <label></label>
-              <input type="text"  placeholder="Name of the project">
+              <input type="text">
               <span class="quantity">3/100 Characters (minimum 5)</span>
               <p class="create-course__title">Some good examples:</p>
               <div class="create-course__examples">
               <span>Technical Design</span>
-              <span>We are looking for a Website Promotion Specialist</span>
+              <span>Web development</span>
               <span>Create 2d Animations</span>
               </div>
           </div>
@@ -20,25 +20,56 @@
 
           <div class="create-course">
               <div class="create-course__description">
-                  <h4 class="create-course__title">Project Description</h4>
+                  <h4 class="create-course__title">Course Description</h4>
 
                   <div class="create-course__questions">
-    
-                  <span></span>
-                  <p class="create-course__instruction">What tasks will the work be used for?</p>
-                  <span></span>
-                  <p class="create-course__instruction">What users is your product targeted to?</p>
-                  <span></span>
-                  <p class="create-course__instruction">What criteria will you evaluate the result of work?</p>
+
+                  <div class="c">
+                  <p>
+                      <span></span>
+                      What tasks will the work be used for?
+                  </p>
+                  </div>
+
+                  <div class="c">
+                  <p>
+                      <span></span>
+                      What users is your product targeted to?
+                  </p>
+                  </div>
+
+                  <div class="c">
+                  <p>
+                      <span></span>
+                      What criteria will you evaluate the result of work?
+                      </p>
+                  </div>
                   </div>
         
-                  <textarea name="comment" cols="40" rows="3" placeholder="Tell us in detail about your project"></textarea>
+                  <textarea name="comment" cols="40" rows="3" placeholder="Tell us in detail about your course"></textarea>
                   <span class="quantity">3/100 Characters (minimum 5)</span>
-                  <p class="create-course__title">Project Files</p>
-                  <p class="create-course__instruction">Write the name of your project. The name should attract attention and reflect the essence of the project.</p>
+                  <p class="create-course__title">Photo of your course</p>
+                  <p class="create-course__instruction">Write the URL:</p>
+                  <input type="text" placeholder="https://drive.google.com/uc?export=view&id=1B5ZusvPN1mH91omnBkzilaJL8PkWC08e">
+
+                  <h4 class="create-course__title">What will the student study?</h4>
+                  <input type="text">
+
+                  <h4 class="create-course__title">Who this course is for:</h4>
+                  <input type="text">
+              </div>
+          </div>
+
+          <div class="create-course">
+              <div class="create-course__price">
+                  <h4 class="create-course__title">Price:</h4>
+                  <input type="text" placeholder="100$">
               </div>
           </div>
           
+          <div class="publish">
+              <button>Publish Course</button>
+          </div>
       </div>
   </div>
 </template>
@@ -56,6 +87,18 @@ export default {
     &__heading{
         @include font(vw(16),700, vh(30));
         color: $greyBlue60;
+    }
+    .publish{
+        margin: vw(60) vw(60);
+        button{
+        @include font(vw(14),600, vh(30));
+        color: white;
+        background-color: $blue;
+        padding: vw(33) vw(250);
+        border: none;
+        border-radius: vw(10);
+        }
+        
     }
     .create-course{
         margin: vw(30) 0;
@@ -109,13 +152,22 @@ export default {
                 }
             }
             &__questions{
-                
-                span{
+                display: block;
+                margin-bottom: vw(20);
+                .c{
                     display: flex;
+                    p{
+                    @include font(vw(13), 700, vh(25));
+                    color: $greyBlue70;
+                    }
+                    span{
+                    display: inline-flex;
+                    margin: vw(3) vw(10);
                     width: 15px;
                     height: 2px;
                     content: ' ';
                     background-color:  $greyBlue90;
+                }
                 }
             }
     }
