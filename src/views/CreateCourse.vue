@@ -66,6 +66,51 @@
                   <input type="text" placeholder="100$">
               </div>
           </div>
+
+          <div class="create-course">
+              <div class="create-course__categories">
+                  <h4 class="create-course__title">Project Categories</h4>
+                  <div class="category-blocks">
+
+                  <div class="category-block">
+                  <p class="title">Web Development</p>
+                  <p class="category">Website Design</p>
+                  <p class="category">Layout</p>
+                  <p class="category">Web programming</p>
+                  <p class="category">Fully Website Dev</p>
+                  <p class="more">More</p>
+                  </div>
+
+                  <div class="category-block">
+                  <p class="title">Web Development</p>
+                  <p class="category">Website Design</p>
+                  <p class="category">Layout</p>
+                  <p class="category">Web programming</p>
+                  <p class="category">Fully Website Dev</p>
+                  <p class="more">More</p>
+                  </div>
+
+                  <div class="category-block">
+                  <p class="title">Web Development</p>
+                  <p class="category">Website Design</p>
+                  <p class="category">Layout</p>
+                  <p class="category">Web programming</p>
+                  <p class="category">Fully Website Dev</p>
+                  <p class="more">More</p>
+                  </div>
+
+                  <div class="category-block">
+                  <p class="title">Web Development</p>
+                  <p class="category">Website Design</p>
+                  <p class="category">Layout</p>
+                  <p class="category">Web programming</p>
+                  <p class="category">Fully Website Dev</p>
+                  <p class="more">More</p>
+                  </div>
+                  </div>
+                 
+              </div>
+          </div>
           
           <div class="publish">
               <button>Publish Course</button>
@@ -167,6 +212,32 @@ export default {
                     height: 2px;
                     content: ' ';
                     background-color:  $greyBlue90;
+                }
+                }
+            }
+            &__categories{
+                .category-blocks{
+                    display: flex;
+                    .category-block{
+                    display: block;
+                    margin: 0 vw(40) 0 0;
+                    .title{
+                        @include font(vw(13),700, vh(25));
+                        color: $greyBlue50;
+                        margin-bottom: vw(20);
+                    }
+                    .category{
+                    @include font(vw(12),700,vh(20));
+                    color: $greyBlue70;
+                    }
+                    .category:hover{
+                        color: $green;
+                    }
+                    .more{
+                    @include font(vw(12),700, vh(20));
+                    color: $blue;
+                    margin-top: vw(20);
+                }
                 }
                 }
             }
