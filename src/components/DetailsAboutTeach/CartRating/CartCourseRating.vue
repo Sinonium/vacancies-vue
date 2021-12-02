@@ -81,8 +81,7 @@
   </div>
 </template>
 
-<script>
-import { onMounted } from '@vue/runtime-core'
+<script lang="ts">
 export default {
   props: [
     'course',
@@ -93,10 +92,10 @@ export default {
     'courseRatingPercentTwo',
     'courseRatingPercentOne',
   ],
-  setup(props) {
+  setup() {
     return {
       starActiveIcon: require('@/assets/icons/DetailsAboutTeach/starActive.svg'),
-      starNotActiveIcon: require('@/assets/icons/DetailsAboutTeach/starNotActive.svg'),
+      starNotActiveIcon: require('@/assets/icons/DetailsAboutTeach/starNotActive.svg'), 
     }
   },
 }
