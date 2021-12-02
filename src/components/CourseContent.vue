@@ -557,19 +557,19 @@ button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.123);
     border-radius: vmin(5);
     padding-bottom: vmin(15);
-      &-courses {
-    width: vmin(670);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
-    border-radius: vmin(10);
-    margin: vmin(40) vmin(30) vmin(0) vmin(30);
-    flex-wrap: wrap;
-    overflow: hidden;
-    height: vmin(220);
-    &.active {
-      @include font(vmin(12), bold, vmin(20));
-      height: 100%;
-      color: $greyBlue60 !important;
-    }
+    &-courses {
+      width: vmin(670);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
+      border-radius: vmin(10);
+      margin: vmin(40) vmin(30) vmin(0) vmin(30);
+      flex-wrap: wrap;
+      overflow: hidden;
+      height: vmin(220);
+      &.active {
+        @include font(vmin(12), bold, vmin(20));
+        height: 100%;
+        color: $greyBlue60 !important;
+      }
       &__theme {
         svg {
           max-width: vmin(10);
@@ -675,18 +675,18 @@ button {
     border-radius: vmin(5);
     padding-bottom: vmin(15);
     &-courses {
-    width: vmin(300);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
-    border-radius: vmin(10);
-    margin: vmin(40) vmin(30) vmin(0) vmin(30);
-    flex-wrap: wrap;
-    overflow: hidden;
-    height: vmin(190);
-    &.active {
-      @include font(vmin(6), bold, vmin(10));
-      height: 100%;
-      color: $greyBlue60 !important;
-    }
+      width: vmin(300);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
+      border-radius: vmin(10);
+      margin: vmin(40) vmin(30) vmin(0) vmin(30);
+      flex-wrap: wrap;
+      overflow: hidden;
+      height: vmin(190);
+      &.active {
+        @include font(vmin(6), bold, vmin(10));
+        height: 100%;
+        color: $greyBlue60 !important;
+      }
       &__theme {
         svg {
           max-width: vmin(7);
