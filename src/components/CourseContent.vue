@@ -1,53 +1,25 @@
 <template>
   <div class="container">
     <div class="container-div">
-      <div class="themes">
+      <div :class="{ active: allShow === true }" class="themes">
         <div class="themes-title">
           <span>What do you learn?</span>
           <img src="@/assets/scss/icons/burger-menu.svg" />
           <div class="themes-title__item">
             <div class="themes-title__item-1">
-              <ul>
+              <ul :class="{ active: allShow === true }">
                 <li v-for="theme in themes" :key="theme.id" :theme="theme">
                   <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
                 </li>
-
-                <!-- <li v-if="show">
-                  <img src="@/assets/scss/icons/done.svg" /> JavaScript modules
-                </li>
-                <li v-if="show">
-                  <img src="@/assets/scss/icons/done.svg" />Get friendly
-                  supportin the course Q&A
-                </li>
-                <li v-if="show">
-                  <img src="@/assets/scss/icons/done.svg" />learning react /
-                  redux
-                </li> -->
-              </ul>
-            </div>
-            <div class="themes-title__item-2">
-              <ul>
-                <li v-for="theme in themes_2" :key="theme.id" :theme="theme">
-                  <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
-                </li>
-
-                <!-- <li v-if="show">
-                  <img src="@/assets/scss/icons/done.svg" />Error Handing
-                </li>
-                <li v-if="show">
-                  <img src="@/assets/scss/icons/done.svg" />React library
-                </li>
-                <li v-if="show">
-                  <img src="@/assets/scss/icons/done.svg" />Downloadable
-                  lecturesfor all projects
-                </li> -->
               </ul>
             </div>
           </div>
-          <button @click="allThemes()" class="malika" :class="{active: allShow === true}" id="more">
-            {{ this.button }}
-            <!-- <p v-if="show">{{ fewer }}</p>
-            <p v-else>{{ more }}</p> -->
+          <button
+            @click="allThemes()"
+            :class="{ active: allShow === true }"
+            id="more"
+          >
+            {{ this.button_themes }}
           </button>
         </div>
       </div>
@@ -57,13 +29,14 @@
           <span>Course Content</span>
           <img src="@/assets/scss/icons/burger-menu.svg" />
         </div>
-        <div class="content-courses">
+        <div :class="{ active: allSections === true }" class="content-courses">
           <div
             v-for="item in items"
             :key="item.id"
             class="content-courses__theme"
           >
             <svg
+              :class="{ open: item.open }"
               width="12"
               height="7"
               viewBox="0 0 12 7"
@@ -121,6 +94,14 @@
             </div>
           </div>
         </div>
+        <button
+          class="sections-btn"
+          @click="allContents()"
+          :class="{ active: allSections === true }"
+          id="more"
+        >
+          {{ this.button_contents }}
+        </button>
       </div>
     </div>
   </div>
@@ -133,10 +114,11 @@
 export default {
   data() {
     return {
-      button: "Show more Features",
+      button_themes: "Show more Features",
+      button_contents: "5 More Sections",
       allShow: false,
-      allAbout: [],
-      about: [],
+      open: false,
+      allSections: false,
 
       videoIcon: require("@/assets/scss/icons/video.svg"),
       items: [
@@ -171,6 +153,81 @@ export default {
           name_2: "Marketing and Sales",
           time_2: "01:08",
         },
+
+        {
+          title: "Putting It All Together: The Budget App Project",
+          lectures: "3 Lectures",
+          allTime: "13:82",
+
+          name: "Local servers",
+          time: "05:34",
+
+          name_1: "How to work with JSHint",
+          time_1: "01:08",
+
+          name_2: "How to create fadeIn / fadeOut animations",
+          time_2: "01:08",
+        },
+        {
+          title: "Next Generation JavaScript: Intro to ES6",
+          lectures: "4 Lectures",
+          allTime: "10:82",
+
+          name: "How to work with a server in JavaScript part 1",
+          time: "02:34",
+
+          name_1: "How to work with a server in JavaScript part 2",
+          time_1: "03:08",
+
+          name_2: "How to work with a server in JavaScript part 3",
+          time_2: "01:08",
+        },
+        {
+          title: "Customizing the code editor",
+          lectures: "7 Lectures",
+          allTime: "11:82",
+
+          name: "How To Succedd In This Course",
+          time: "05:34",
+
+          name_1: "Timer operation",
+          time_1: "01:08",
+
+          name_2: "Implementing a module with displaying images",
+          time_2: "01:08",
+        },
+        {
+          title: "Course Content",
+          allTime: "8:82",
+
+          name: "How To Succedd In This Course",
+          isPreview: "Preview",
+          time: "05:34",
+
+          name_1: "Join Our Online Classroom",
+          time_1: "01:08",
+
+          name_2: "Exercise: Meet The Comminity!",
+          time_2: "01:08",
+        },
+
+        {
+          title: "JavaScript Foundation",
+          lectures: "26 Lectures",
+          allTime: "7:82",
+
+          name: "Section Overview",
+          isPreview: "Preview",
+          time: "05:34",
+
+          name_1: "Exercise: Javascript Engine",
+          isPreview: "Preview",
+          time_1: "05:08",
+
+          name_2: "Marketing and Sales",
+          time_2: "01:08",
+        },
+
         {
           title: "Putting It All Together: The Budget App Project",
           lectures: "3 Lectures",
@@ -214,17 +271,20 @@ export default {
           time_2: "01:08",
         },
       ],
-      //show: false,
-     
+
       themes: [
         { name: "Get friendly supportinthe course Q&A" },
+        { name: "Practice your skills with coding challenges" },
         { name: "Downloadable lectures for all projects" },
+        { name: "Object Orinted Programming" },
         { name: "Inheritance + Prototpe Chain" },
+        { name: "Scope and Execution Context" },
         { name: "Closures" },
-       
-        
-      ],
-      themes_2: [
+        { name: "Latest features: ES6, ES7, ES8, ES9" },
+        { name: "Practice your skills with coding challenges" },
+        { name: "Object Orinted Programming" },
+        { name: "Scope and Execution Context" },
+        { name: "Latest features: ES6, ES7, ES8, ES9" },
         { name: "Practice your skills with coding challenges" },
         { name: "Object Orinted Programming" },
         { name: "Scope and Execution Context" },
@@ -235,20 +295,23 @@ export default {
   methods: {
     allThemes() {
       if (!this.allShow) {
-        this.about = [];
-        this.about = [...this.allAbout];
-        this.button = "Show Fewer Features";
+        this.button_themes = "Show Fewer Features";
         this.allShow = true;
       } else {
-        this.about = [];
-        this.about = [...this.allAbout];
-        this.about.splice(3);
-        this.button = "Show more Features";
+        this.button_themes = "Show more Features";
         this.allShow = false;
       }
     },
+    allContents() {
+      if (!this.allSections) {
+        this.button_contents = "Sections";
+        this.allSections = true;
+      } else {
+        this.button_contents = "5 More Sections";
+        this.allSections = false;
+      }
+    },
   },
-   
 };
 </script>
 
@@ -256,16 +319,10 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/index.scss";
 
-// .malika {
-//   height: vw(700);
-//   &.active {
-//     height: vw(1000);
-//   }
-// }
-
 .container {
   margin: 0 auto;
   background: $bg-main;
+  padding: vw(30) 0 0 vw(140);
 }
 
 .themes {
@@ -274,7 +331,11 @@ export default {
   border-radius: vw(10);
   width: vw(730);
   margin-bottom: vw(30);
-  
+  height: vw(350);
+  &.active {
+    height: 100%;
+  }
+
   &-title {
     @include font(vw(13), bold, vw(25));
     font-family: "San Francisco Pro";
@@ -282,16 +343,13 @@ export default {
     padding: vw(30) 0 0 vw(30);
     &__item {
       display: flex;
+
       ul {
         padding: 0;
       }
     }
-    &__item-1 {
-      padding-right: vw(100);
-    }
 
-    &__item-1,
-    &__item-2 {
+    &__item-1 {
       @include font(vw(12), bold, vw(20));
       font-family: "San Francisco Pro";
       color: $greyBlue60;
@@ -300,28 +358,54 @@ export default {
       padding-right: vw(550);
     }
   }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: vw(200);
+    &.active {
+      @include font(vw(12), bold, vw(20));
+      height: 100%;
+      color: $greyBlue60 !important;
+    }
+  }
   li {
     list-style-type: none;
     padding-top: vw(25);
+    width: 50%;
+
     img {
       margin-right: vw(20);
     }
   }
-  button {
+}
+button {
+  @include font(vw(12), bold, vw(20));
+  font-family: "San Francisco Pro";
+  color: $greyBlue60;
+  width: vw(190);
+  height: vw(40);
+  margin: vw(30) 0 vw(40) vw(250);
+  background: #ffffff;
+  border: 2px solid #f7f8fa;
+  box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
+  border-radius: vw(30);
+  cursor: pointer;
+  &.active {
     @include font(vw(12), bold, vw(20));
-    font-family: "San Francisco Pro";
-    color: $greyBlue60;
-    width: vw(190);
-    height: vw(40);
-    margin: vw(30) 0 vw(40) vw(250);
-    background: #ffffff;
-    border: 2px solid #f7f8fa;
-    box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
-    border-radius: vw(30);
-    cursor: pointer;
+    color: $greyBlue60 !important ;
+  }
+  &:hover {
+    border: 2px solid $greyBlue95;
+    box-shadow: 0 3px 10px 0 $greyBlue85;
   }
 }
-
+.sections-btn {
+  margin: vw(-50) vw(260) vw(20) vw(270);
+  &.active {
+    display: none;
+  }
+}
 .content {
   width: vw(730);
   background: $white;
@@ -333,7 +417,15 @@ export default {
     width: vw(670);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
     border-radius: vw(10);
-    margin: vw(40) vw(30) vw(45) vw(30);
+    margin: vw(40) vw(30) vw(0) vw(30);
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: vw(390);
+    &.active {
+      @include font(vw(12), bold, vw(20));
+      height: 100%;
+      color: $greyBlue60 !important;
+    }
     &__all {
       display: flex;
       align-items: baseline;
@@ -370,6 +462,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
+      border-top: 2px solid $greyBlue98;
 
       h6 {
         @include font(vw(12), bold, vw(20));
@@ -385,7 +478,10 @@ export default {
       }
       svg {
         width: 10%;
-        transform: rotate(180deg);
+        transition: transform 0.1s ease-in-out;
+        &.open {
+          transform: rotateZ(180deg);
+        }
       }
       img {
         padding: 0 vw(20) 0 vw(20);
@@ -405,6 +501,10 @@ export default {
     width: vmin(350);
     margin-bottom: vmin(15);
     margin-left: vmin(5);
+    height: vmin(200);
+    &.active {
+      height: vmin(400);
+    }
     &-title {
       @include font(vmin(8), bold, vmin(13));
       padding: vmin(15) 0 0 vmin(15);
@@ -424,11 +524,20 @@ export default {
         padding-right: vmin(235);
       }
     }
+    ul {
+      height: vmin(100);
+      &.active {
+        @include font(vmin(8), bold, vmin(10));
+        height: vmin(300);
+        color: $greyBlue60 !important;
+      }
+    }
     li {
-      padding-top: vmin(13);
+      list-style-type: none;
+      padding-top: vmin(15);
+      width: 60%;
       img {
-        margin-right: vmin(10);
-        width: vmin(5);
+        margin-right: vmin(20);
       }
     }
     button {
@@ -448,11 +557,19 @@ export default {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.123);
     border-radius: vmin(5);
     padding-bottom: vmin(15);
-    &-courses {
-      width: vmin(320);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
-      border-radius: vmin(5);
-      margin: vmin(20) vmin(15) vmin(22) vmin(15);
+      &-courses {
+    width: vmin(670);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
+    border-radius: vmin(10);
+    margin: vmin(40) vmin(30) vmin(0) vmin(30);
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: vmin(220);
+    &.active {
+      @include font(vmin(12), bold, vmin(20));
+      height: 100%;
+      color: $greyBlue60 !important;
+    }
       &__theme {
         svg {
           max-width: vmin(10);
@@ -504,6 +621,10 @@ export default {
     width: vmin(350);
     margin-bottom: vmin(15);
     margin-left: vmin(5);
+    height: vmin(200);
+    &.active {
+      height: vmin(400);
+    }
     &-title {
       @include font(vmin(14), bold, vmin(15));
       &__item {
@@ -520,10 +641,20 @@ export default {
         padding-right: vmin(190);
       }
     }
+    ul {
+      height: vmin(100);
+      &.active {
+        @include font(vmin(8), bold, vmin(10));
+        height: vmin(300);
+        color: $greyBlue60 !important;
+      }
+    }
     li {
-      padding-top: vmin(13);
+      list-style-type: none;
+      padding-top: vmin(15);
+      width: 100%;
       img {
-        margin-right: vmin(10);
+        margin-right: vmin(20);
       }
     }
     button {
@@ -544,10 +675,18 @@ export default {
     border-radius: vmin(5);
     padding-bottom: vmin(15);
     &-courses {
-      width: vmin(320);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
-      border-radius: vmin(5);
-      margin: vmin(20) vmin(15) vmin(10) vmin(15);
+    width: vmin(300);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
+    border-radius: vmin(10);
+    margin: vmin(40) vmin(30) vmin(0) vmin(30);
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: vmin(190);
+    &.active {
+      @include font(vmin(6), bold, vmin(10));
+      height: 100%;
+      color: $greyBlue60 !important;
+    }
       &__theme {
         svg {
           max-width: vmin(7);
@@ -572,7 +711,7 @@ export default {
       }
 
       h6 {
-        @include font(vmin(12), bold, vmin(10));
+        @include font(vmin(10), bold, vmin(10));
         margin: vw(50);
       }
       span {
