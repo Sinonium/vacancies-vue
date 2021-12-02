@@ -110,7 +110,7 @@ export default {
     button {
       @include font(vw(12), 800, vw(20));
       width: 60%;
-      padding: vw(15) 0;
+      padding: vw(1) 0;
       background: $greyBlue50;
       box-shadow: 10px 10px 5px $greyBlue25;
       border-radius: vw(30);
@@ -120,6 +120,7 @@ export default {
       border: 2px solid $greyBlue60;
       transition: 0.3s;
       margin-top: vw(20);
+        margin-left: vw(5);
       &:hover {
         background-color: $greyBlue25;
         color: $white;

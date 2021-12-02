@@ -3,14 +3,13 @@
     <div class="signup">
       <div class="signup-title">
         <h2>Sign up to <strong>your account!</strong></h2>
-        <form @submit.prevent="signupRequest">
+        <form @submit.prevent="register()">
           <label>Name</label>
           <div>
             <input
               type="name"
               placeholder="Jennie Kim"
               required
-              v-model="signupName"
             />
             <img src="@/assets/img/user.svg" alt="'Type your name" />
           </div>
@@ -20,7 +19,7 @@
               type="email"
               placeholder="jennie@gmail.com"
               required
-              v-model="signupEmail"
+              v-model="email"
             />
             <img src="@/assets/img/email.jpg" alt="'Type your email" />
           </div>
@@ -30,7 +29,7 @@
               type="password"
               placeholder="myPassword1234@#$"
               required
-              v-model="signupPassword"
+              v-model="password"
             />
             <img src="@/assets/img/password.svg" alt="'Type your password" />
           </div>
@@ -49,6 +48,7 @@
 
 
 <script>
+import useSignup from '@/composables/useSignup'
 
 export default {
   data(){
@@ -56,6 +56,11 @@ export default {
       email:'',
       password:'',
       name:'',
+    }
+  },
+  methods: {
+    async register() {
+      await useSignup(this.email, this.password)
     }
   }
 };
@@ -123,7 +128,7 @@ export default {
     button {
       @include font(vw(12), 800, vw(20));
       width: 60%;
-      padding: vw(15) 0;
+      padding: vw(1) 0;
       background: $greyBlue50;
       box-shadow: 10px 10px 5px $greyBlue25;
       border-radius: vw(30);
@@ -133,6 +138,7 @@ export default {
       border: 2px solid $greyBlue60;
       transition: 0.3s;
       margin-top: vw(20);
+      margin-left: vw(5);
       &:hover {
         background-color: $greyBlue25;
         color: $white;
