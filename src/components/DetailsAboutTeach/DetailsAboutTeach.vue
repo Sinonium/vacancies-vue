@@ -1,5 +1,5 @@
 <template>
-  <div class="Details-about__teach">
+  <section class="Details-about__teach">
     <CartTeach :course="course" />
     <CartCourseRating
       :course="course"
@@ -11,10 +11,10 @@
       :courseRatingPercentOne="courseRatingPercentOne"
     />
     <BlockReviews :course="course" />
-  </div>
+  </section>
 </template>
 
-<script>
+<script lang="ts">
 import CartTeach from './CartTeach/CartTeach.vue'
 import CartCourseRating from '../DetailsAboutTeach/CartRating/CartCourseRating.vue'
 import BlockReviews from './BlockReviews/BlockReviews.vue'
@@ -22,17 +22,12 @@ import { ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
 export default {
   components: { CartTeach, CartCourseRating, BlockReviews },
-  setup(props) {
+  setup() {
     const course = ref({
-      title: 'Test',
-      description: 'loremloremloremlorem',
-      rating: [
-        4, 5, 3, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 4, 5, 5, 5, 5, 5, 5, 5, 5,
-        5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
-      ],
+      rating: [4, 5, 3, 4, 2, 2, 2, 2, 2, 2, 2, 2],
       teacher: {
         name: 'Jacob Garner',
-        teachImage: require('@/assets/img/DetailsAboutTeach/imageTeach.png'),
+        teachImage: '@/assets/img/DetailsAboutTeach/imageTeach.png',
         features: 'Software Developer, Architect, and UX Designer,',
         recentNews:
           "Newly married in Cleveland Ohio, Tony is primarily focused these days on trying to be a good husband. While inexperienced at that, he's quite experienced in all things web.",
@@ -114,118 +109,114 @@ export default {
         ],
       },
     })
-    const courseRatingFive = ref([])
-    const courseRatingFour = ref([])
-    const courseRatingThree = ref([])
-    const courseRatingTwo = ref([])
-    const courseRatingOne = ref([])
+    const courseRatingFive: any = ref([])
+    const courseRatingFour: any = ref([])
+    const courseRatingThree: any = ref([])
+    const courseRatingTwo: any = ref([])
+    const courseRatingOne: any = ref([])
 
-    const courseRatingArray = ref([])
+    const courseRatingArray: any = ref([])
 
-    const countRatingStar = ref(0)
+    const countRatingStar: any = ref(0)
 
-    const courseRatingMiddArithmetic = ref(0)
-    const courseRatingPercentFive = ref(0)
-    const courseRatingPercentFour = ref(0)
-    const courseRatingPercentThree = ref(0)
-    const courseRatingPercentTwo = ref(0)
-    const courseRatingPercentOne = ref(0)
-    // const getCollection = async () => {
-    //   const response = await fetch('http://localhost:3000/course')
-    //   const json = await response.json()
-    //   console.log(json)
-    //   course.value = json
-    //   // console.log(course.value)
-    // }
-    const calctPercentOfRating = () => {
-      course.value.rating.map((num, i) => {
-        switch (num) {
-          case 1:
-            return courseRatingOne.value.push(num)
-          case 2:
-            return courseRatingTwo.value.push(num)
-          case 3:
-            return courseRatingThree.value.push(num)
-          case 4:
-            return courseRatingFour.value.push(num)
-          case 5:
-            return courseRatingFive.value.push(num)
-        }
-      })
-      countRatingStar.value =
-        courseRatingOne.value.length +
-        courseRatingTwo.value.length +
-        courseRatingThree.value.length +
-        courseRatingFour.value.length +
-        courseRatingFive.value.length
-      courseRatingArray.value = [
-        {
-          count: courseRatingOne.value.length,
-          nums: 1,
-        },
-        {
-          count: courseRatingTwo.value.length,
-          nums: 2,
-        },
-        {
-          count: courseRatingThree.value.length,
-          nums: 3,
-        },
-        {
-          count: courseRatingFour.value.length,
-          nums: 4,
-        },
-        {
-          count: courseRatingFive.value.length,
-          nums: 5,
-        },
-      ]
-      courseRatingArray.value.map((countRating) => {
-        if (countRating.nums === 5) {
-          courseRatingPercentFive.value =
-            (countRating.count / countRatingStar.value) * 100
-          courseRatingPercentFive.value =
-            courseRatingPercentFive.value.toFixed(2)
-        }
-        if (countRating.nums === 4) {
-          courseRatingPercentFour.value =
-            (countRating.count / countRatingStar.value) * 100
-          courseRatingPercentFour.value =
-            courseRatingPercentFour.value.toFixed(2)
-        }
-        if (countRating.nums === 3) {
-          courseRatingPercentThree.value =
-            (countRating.count / countRatingStar.value) * 100
-          courseRatingPercentThree.value =
-            courseRatingPercentThree.value.toFixed(2)
-        }
-        if (countRating.nums === 2) {
-          courseRatingPercentTwo.value =
-            (countRating.count / countRatingStar.value) * 100
-          courseRatingPercentTwo.value = courseRatingPercentTwo.value.toFixed(2)
-        }
-        if (countRating.nums === 1) {
-          courseRatingPercentOne.value =
-            (countRating.count / countRatingStar.value) * 100
-          courseRatingPercentOne.value = courseRatingPercentOne.value.toFixed(2)
-        }
-      })
-      courseRatingMiddArithmetic.value =
-        (5 * courseRatingFive.value.length +
-          4 * courseRatingFour.value.length +
-          3 * courseRatingThree.value.length +
-          2 * courseRatingTwo.value.length +
-          1 * courseRatingOne.value.length) /
-        countRatingStar.value
-      courseRatingMiddArithmetic.value =
-        courseRatingMiddArithmetic.value.toFixed(1)
-      console.log(courseRatingMiddArithmetic.value)
+    const courseRatingMiddArithmetic: any = ref(0)
+    const courseRatingPercentFive: any = ref(0)
+    const courseRatingPercentFour: any = ref(0)
+    const courseRatingPercentThree: any = ref(0)
+    const courseRatingPercentTwo: any = ref(0)
+    const courseRatingPercentOne: any = ref(0)
+    const getCollection = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
     }
+    // const calctPercentOfRating = (): void => {
+    //   course.value.rating.map((num: number): any => {
+    //     switch (num) {
+    //       case 1:
+    //         return courseRatingOne.value.push(num)
+    //       case 2:
+    //         return courseRatingTwo.value.push(num)
+    //       case 3:
+    //         return courseRatingThree.value.push(num)
+    //       case 4:
+    //         return courseRatingFour.value.push(num)
+    //       case 5:
+    //         return courseRatingFive.value.push(num)
+    //     }
+    //   })
+    //   countRatingStar.value =
+    //     courseRatingOne.value.length +
+    //     courseRatingTwo.value.length +
+    //     courseRatingThree.value.length +
+    //     courseRatingFour.value.length +
+    //     courseRatingFive.value.length
+    //   courseRatingArray.value = [
+    //     {
+    //       count: courseRatingOne.value.length,
+    //       nums: 1,
+    //     },
+    //     {
+    //       count: courseRatingTwo.value.length,
+    //       nums: 2,
+    //     },
+    //     {
+    //       count: courseRatingThree.value.length,
+    //       nums: 3,
+    //     },
+    //     {
+    //       count: courseRatingFour.value.length,
+    //       nums: 4,
+    //     },
+    //     {
+    //       count: courseRatingFive.value.length,
+    //       nums: 5,
+    //     },
+    //   ]
+    //   courseRatingArray.value.map((countRating: number): void => {
+    //     if (countRating.nums === 5) {
+    //       courseRatingPercentFive.value =
+    //         (countRating.count / countRatingStar.value) * 100
+    //       courseRatingPercentFive.value =
+    //         courseRatingPercentFive.value.toFixed(2)
+    //     }
+    //     if (countRating.nums === 4) {
+    //       courseRatingPercentFour.value =
+    //         (countRating.count / countRatingStar.value) * 100
+    //       courseRatingPercentFour.value =
+    //         courseRatingPercentFour.value.toFixed(2)
+    //     }
+    //     if (countRating.nums === 3) {
+    //       courseRatingPercentThree.value =
+    //         (countRating.count / countRatingStar.value) * 100
+    //       courseRatingPercentThree.value =
+    //         courseRatingPercentThree.value.toFixed(2)
+    //     }
+    //     if (countRating.nums === 2) {
+    //       courseRatingPercentTwo.value =
+    //         (countRating.count / countRatingStar.value) * 100
+    //       courseRatingPercentTwo.value = courseRatingPercentTwo.value.toFixed(2)
+    //     }
+    //     if (countRating.nums === 1) {
+    //       courseRatingPercentOne.value =
+    //         (countRating.count / countRatingStar.value) * 100
+    //       courseRatingPercentOne.value = courseRatingPercentOne.value.toFixed(2)
+    //     }
+    //   })
+    //   courseRatingMiddArithmetic.value =
+    //     (5 * courseRatingFive.value.length +
+    //       4 * courseRatingFour.value.length +
+    //       3 * courseRatingThree.value.length +
+    //       2 * courseRatingTwo.value.length +
+    //       1 * courseRatingOne.value.length) /
+    //     countRatingStar.value
+    //   courseRatingMiddArithmetic.value =
+    //     courseRatingMiddArithmetic.value.toFixed(1)
+    // }
 
     onMounted(() => {
-      // getCollection()
-      calctPercentOfRating()
-      console.log(course.value)
+      getCollection()
+      // calctPercentOfRating()
     })
 
     return {
@@ -257,41 +248,6 @@ export default {
   // position: absolute;
   // top: vw(310);
   // left: vw(410);
-}
-.details-page__bottom {
-  margin-left: vw(-350);
-  margin-top: vw(35);
-  margin-bottom: vw(40);
-  @include flex();
-  &-arrow_prev , &-arrow_next {
-    background: $white;
-    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
-    border-radius: vw(30);
-    padding: vw(15);
-  }
-  &-arrow_prev {
-    img {
-      transform: rotate(-90deg);
-    }
-  }
-  &-arrow_next {
-    margin-left: vw(235);
-    img {
-      transform: rotate(90deg);
-    }
-  }
-  &-btn_push_page {
-    background: $white;
-    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
-    border-radius: vw(30);
-    @include flex();
-    padding: vw(17) vw(38) vw(15) vw(26);
-    margin-left: vw(235);
-    span {
-      @include font(vw(12),bold,20px,$greyBlue60);
-      margin-left: vw(16);
-    }
-  }
 }
 @media screen and (max-width: 551px) {
   .Details-about__teach {
