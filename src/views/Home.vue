@@ -33,8 +33,10 @@
 <script>
 import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseItem from '../components/CourseItem.vue'
+import { ref } from '@vue/reactivity'
 export default {
   components: { CourseItem, DetailsAboutTeach },
+  
 }
 </script>
 

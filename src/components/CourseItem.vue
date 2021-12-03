@@ -74,7 +74,7 @@ import { onMounted } from '@vue/runtime-core'
 
 export default {
     data() {
-
+         
     },
     props: ['course'],
     setup() {
