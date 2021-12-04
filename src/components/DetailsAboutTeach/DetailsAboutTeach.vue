@@ -23,7 +23,12 @@ import { onMounted } from '@vue/runtime-core'
 export default {
   components: { CartTeach, CartCourseRating, BlockReviews },
   setup() {
-    const course = ref({
+    interface IItemCourseRatingArr {
+      count?: number;
+      nums?: number;
+    }
+
+    const course = ref(<object>{
       rating: [4, 5, 3, 4, 2, 2, 2, 2, 2, 2, 2, 2],
       teacher: {
         name: 'Jacob Garner',
@@ -109,23 +114,23 @@ export default {
         ],
       },
     })
-    const courseRatingFive: any = ref([])
-    const courseRatingFour: any = ref([])
-    const courseRatingThree: any = ref([])
-    const courseRatingTwo: any = ref([])
-    const courseRatingOne: any = ref([])
+    const courseRatingFive = ref([])
+    const courseRatingFour = ref([])
+    const courseRatingThree = ref([])
+    const courseRatingTwo = ref([])
+    const courseRatingOne = ref([])
 
-    const courseRatingArray: any = ref([])
+    const courseRatingArray = ref(<IItemCourseRatingArr>[]>[])
 
-    const countRatingStar: any = ref(0)
+    const countRatingStar = ref(<number>0)
 
-    const courseRatingMiddArithmetic: any = ref(0)
-    const courseRatingPercentFive: any = ref(0)
-    const courseRatingPercentFour: any = ref(0)
-    const courseRatingPercentThree: any = ref(0)
-    const courseRatingPercentTwo: any = ref(0)
-    const courseRatingPercentOne: any = ref(0)
-    const getCollection = async () => {
+    const courseRatingMiddArithmetic = ref(<number>0)
+    const courseRatingPercentFive = ref(<number>0)
+    const courseRatingPercentFour = ref(<number>0)
+    const courseRatingPercentThree = ref(<number>0)
+    const courseRatingPercentTwo = ref(<number>0)
+    const courseRatingPercentOne = ref(<number>0)
+    const getDoc = async () => {
       const response = await fetch('http://localhost:3000/course')
       const json = await response.json()
       course.value = json
@@ -215,7 +220,7 @@ export default {
     // }
 
     onMounted(() => {
-      getCollection()
+      getDoc()
       // calctPercentOfRating()
     })
 
@@ -243,11 +248,8 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .Details-about__teach {
-  margin-left: vw(140);
+  margin-left: vw(60);
   margin-top: vw(30);
-  // position: absolute;
-  // top: vw(310);
-  // left: vw(410);
 }
 @media screen and (max-width: 551px) {
   .Details-about__teach {
