@@ -51,7 +51,8 @@
           <img :src="starNotActiveIcon" alt="" />
           <img :src="starNotActiveIcon" alt="" />
         </div>
-        <span> {{resultReviewDate}} months ago </span>
+        <span v-if="currentDate !== reviewDate"> {{ resultReviewDate }} months ago </span>
+        <span v-else> Now </span>
       </div>
     </div>
     <div class="cart-review__text">
@@ -63,29 +64,24 @@
 </template>
 
 <script lang="ts">
-import { Ref, ref } from '@vue/reactivity'
+import { ref } from '@vue/reactivity'
 export default {
   props: ['review'],
   setup(props: any) {
     const currentDate: Date = new Date()
     const reviewDate: Date = new Date(parseInt(props.review.data))
-    const resultReviewDate = ref(0)
+    const resultReviewDate = ref(<number>0)
 
     const getSomeNumAgo = (firstDate: Date, secondDate: Date): void => {
-      const firstNumDateRef: number | string = firstDate.getMonth()
-      const secondNumDateRef: number | string = secondDate.getMonth()
+      const firstNumDateRef: number = firstDate.getMonth()
+      const secondNumDateRef: number = secondDate.getMonth()
 
       resultReviewDate.value = firstNumDateRef - secondNumDateRef
-      console.log(resultReviewDate.value)
     }
-
-    console.log(currentDate)
+    
     getSomeNumAgo(currentDate, reviewDate)
-    // for (let index = 0; index; index++) {
-    //   resultReviewDate.setMonth(currentDate.getMonth() - index)
+    console.log(resultReviewDate.value)
 
-    //   console.log(resultReviewDate)
-    // }
     return {
       resultReviewDate,
       currentDate,
@@ -100,12 +96,11 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 .cart-review {
-  height: vw(255);
   width: vw(730);
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: vw(35) vw(40) vw(74) vw(37);
+  padding: vw(25) vw(40) vw(74) vw(37);
   background: $white;
   box-sizing: border-box;
   border-radius: 10px;
@@ -139,6 +134,7 @@ export default {
     }
   }
   &__text {
+    max-width: vw(570);
     p {
       @include font(vw(13), 600, 25px, $greyBlue60);
     }
@@ -193,11 +189,11 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1077px) {
-  .cart-review {
-    height: 18vw;
-  }
-}
+// @media screen and (max-width: 1077px) {
+//   .cart-review {
+//     height: 18vw;
+//   }
+// }
 @media screen and (max-width: 961px) {
   .cart-review {
     &__header {
@@ -218,7 +214,6 @@ export default {
         }
       }
     }
-    height: 23vw;
     &__text {
       p {
         @include font(vw(15), 600, 25px, $greyBlue60);
@@ -228,7 +223,6 @@ export default {
 }
 @media screen and (max-width: 815px) {
   .cart-review {
-    height: 26vw;
     &__header {
       margin-top: -0.5vw;
       &_profile {
@@ -252,11 +246,11 @@ export default {
     }
   }
 }
-@media screen and (max-width: 697px) {
-  .cart-review {
-    height: 29vw;
-  }
-}
+// @media screen and (max-width: 697px) {
+//   .cart-review {
+//     height: 29vw;
+//   }
+// }
 @media screen and (max-width: 658px) {
   .cart-review {
     &__text {
@@ -301,10 +295,9 @@ export default {
 }
 @media screen and (max-width: 551px) {
   .cart-review {
-    height: 72vmin;
     width: 100%;
     display: block;
-    padding: 1vmin 9vmin;
+    padding: 1vmin 9vmin 1vmin 9vmin;
     background: $white;
     box-sizing: border-box;
     border-radius: 10px;
@@ -339,18 +332,19 @@ export default {
       }
     }
     &__text {
+      max-width: vmin(500);
       p {
         @include font(vmin(13), 600, 25px, $greyBlue60);
       }
     }
   }
 }
-@media screen and (max-width: 375px){
+@media screen and (max-width: 375px) {
   .cart-review {
     height: 87vmin;
   }
 }
-@media screen and (max-width: 321px){
+@media screen and (max-width: 321px) {
   .cart-review {
     height: 95vmin;
   }
