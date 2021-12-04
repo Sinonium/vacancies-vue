@@ -124,7 +124,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage.title === 'About'">
-        <Tutorials />
+        <CourseContent />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -206,7 +206,7 @@
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
-import Tutorials from '@/components/Tutorials.vue'
+import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { ref } from '@vue/reactivity'
 export default {
@@ -215,7 +215,7 @@ export default {
     AddToCart,
     Description,
     DetailsAboutTeach,
-    Tutorials,
+    CourseContent,
   },
   props: ['currentDetailsPage'],
   setup(context: any, props: any) {
