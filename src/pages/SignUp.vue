@@ -3,27 +3,42 @@
     <div class="signup">
       <div class="signup-title">
         <h2>Sign up to <strong>your account!</strong></h2>
-        <form>
+        <form @submit.prevent="register()">
           <label>Name</label>
           <div>
-            <input type="email" placeholder="Jennie Kim" required />
-            <img src="@/assets/img/user.svg" alt="'Type your email" />
+            <input
+              type="name"
+              placeholder="Jennie Kim"
+              required
+            />
+            <img src="@/assets/img/user.svg" alt="'Type your name" />
           </div>
           <label>Email</label>
           <div>
-            <input type="email" placeholder="jennie@gmail.com" required />
+            <input
+              type="email"
+              placeholder="jennie@gmail.com"
+              required
+              v-model="email"
+            />
             <img src="@/assets/img/email.jpg" alt="'Type your email" />
           </div>
           <label>Password </label>
           <div>
-            <input type="email" placeholder="myPassword1234@#$" required />
+            <input
+              type="password"
+              placeholder="myPassword1234@#$"
+              required
+              v-model="password"
+            />
             <img src="@/assets/img/password.svg" alt="'Type your password" />
           </div>
 
           <button>Sign Up</button>
 
           <span class="auth__have-account"
-            >Already have an account? Login <a href="" target="blank"> Login</a>
+            >Already have an account?
+            <router-link to="/login">Login </router-link>
           </span>
         </form>
       </div>
@@ -32,19 +47,23 @@
 </template>
 
 
-
-
-
-
-
-
-
-
-
-
-
 <script>
-export default {};
+import useSignup from '@/composables/useSignup'
+
+export default {
+  data(){
+    return{
+      email:'',
+      password:'',
+      name:'',
+    }
+  },
+  methods: {
+    async register() {
+      await useSignup(this.email, this.password)
+    }
+  }
+};
 </script>
 
 <style lang="scss">
@@ -54,18 +73,20 @@ export default {};
   width: vw(700);
   height: vw(550);
   background-color: $greyBlue70;
+  margin-left: vw(200);
 
-  border-radius: 13em 0.5em/41em 0.5em;
+  border-radius: 25em /20em;
 
   &-title {
-    padding-left: vw(170);
+    padding-left: vw(190);
   }
   h2 {
     @include font(vw(30), 400, vw(50));
     font-family: "San Francisco Pro";
     color: $greyBlue20;
-    padding-top: vw(20);
+    padding-top: vw(30);
     margin-left: vw(-10);
+    
     strong {
       color: $greyBlue25;
     }
@@ -107,7 +128,7 @@ export default {};
     button {
       @include font(vw(12), 800, vw(20));
       width: 60%;
-      padding: vw(15) 0;
+      padding: vw(1) 0;
       background: $greyBlue50;
       box-shadow: 10px 10px 5px $greyBlue25;
       border-radius: vw(30);
@@ -117,6 +138,7 @@ export default {};
       border: 2px solid $greyBlue60;
       transition: 0.3s;
       margin-top: vw(20);
+      margin-left: vw(5);
       &:hover {
         background-color: $greyBlue25;
         color: $white;
@@ -132,12 +154,13 @@ export default {};
     .auth {
       &__have-account {
         @include font(vw(12), 700, vw(20));
-        margin-top: vw(5);
+        
         display: block;
         text-align: right;
         color: #adb8cc;
         width: 57%;
         margin-top: vw(10);
+         margin-left: vw(-30);
       }
     }
   }
