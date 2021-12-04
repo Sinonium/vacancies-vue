@@ -133,8 +133,7 @@
           
           <div class="publish">
               <button @click="handleSubmit">Publish Course</button>
-          </div>
-      
+              </div>
   </form>
 </template>
 
@@ -178,22 +177,23 @@ setup() {
 
 .admin-board{
     margin: vw(30) vw(100);
-    width: vw(750);
+    width: vw(760);
     &__heading{
         @include font(vw(16),700, vh(30));
         color: $greyBlue60;
     }
     .publish{
-        margin: vw(60) vw(60);
+        margin: 0 vw(30);
         button{
         @include font(vw(14),600, vh(30));
         color: white;
         background-color: $blue;
-        padding: vw(33) vw(250);
+        width: vw(200);
+        height: vw(60);
         border: none;
         border-radius: vw(10);
-        } 
-    }
+        }               
+        }
     .create-course{
         margin: vw(30) 0;
         padding: vw(60);
@@ -209,6 +209,7 @@ setup() {
             color: $greyBlue70;
             margin: vw(30) 0 vw(20) 0;
             }
+            
             .quantity{
                 @include font(vw(10), 700, vh(20));
                 color: $greyBlue80;
@@ -301,13 +302,14 @@ setup() {
         @include font(vmin(15),700, vmin(15));
     }
     .publish{
-        margin: vmin(10) vmin(5);
+        margin: 0 vmin(15);
         button{
         @include font(vmin(7),600, vmin(15));
-        padding: vmin(10) vmin(110);
-        border-radius: vmin(5);
-        color: $white;
-        } 
+        color: white;
+        width: vmin(100);
+        height: vmin(30);
+        border-radius: vmin(10);
+        }   
     }
     .create-course{
         margin: vmin(15) 0;
