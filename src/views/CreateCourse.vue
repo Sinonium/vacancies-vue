@@ -57,6 +57,10 @@
 
                   <h4 class="create-course__title">Who this course is for:</h4>
                   <input type="text">
+
+                  <h4 class="create-course__title">About Teacher</h4>
+                  <p class="create-course__instruction">Type the name of the teacher</p>
+                  <input type="text" v-model="teacher">
               </div>
           </div>
 
@@ -142,7 +146,8 @@ setup() {
     const price = ref("");
     const videoURL = ref("");
     const imageURL = ref("");
-    const themes = ref("")
+    const themes = ref("");
+    const teacher = ref("");
     const handleSubmit = async () => {
         try{
             const newCourse = {
@@ -150,7 +155,8 @@ setup() {
                 price: price.value,
                 videoURL: videoURL.value,
                 imageURL: imageURL.value,
-                themes: themes.value
+                themes: themes.value,
+                teacher: teacher.value
             }
             await fetch('http://localhost:3000/courses', 
             {method: "POST", 
@@ -162,7 +168,7 @@ setup() {
            console.log(err)
         }
     }
-    return { handleSubmit, name, price, videoURL, imageURL,}
+    return { handleSubmit, name, price, videoURL, imageURL, teacher}
 }
 }
 </script>
