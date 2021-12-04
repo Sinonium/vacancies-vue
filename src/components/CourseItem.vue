@@ -28,7 +28,6 @@
             </defs>
             </svg>
             New Teachers</li>
-        
     </ul>
 </div>
 <div class="course-items">
@@ -75,7 +74,7 @@ import { onMounted } from '@vue/runtime-core'
 
 export default {
     data() {
-
+         
     },
     props: ['course'],
     setup() {
