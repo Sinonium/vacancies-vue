@@ -1,19 +1,19 @@
 <template>
   <div class="block-reviews">
-    <div v-for="review in testNumReview" :key="review">
-      <CartReview />
+    <div v-for="review in course.teacher.reviews" :key="review.id">
+      <CartReview :review="review"/>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import CartReview from './CartReview/CartReview.vue'
 export default {
   components: { CartReview },
+  props: ["course"],
   setup() {
-    const testNumReview = [1, 2]
 
-    return { testNumReview }
+    return { }
   },
 }
 </script>
