@@ -1,28 +1,27 @@
 <template>
-
-  <div class="main-container">
-    <div class="sidebar">
-    </div>
-    <div class="hero">
-        <Header/>
-        <div id="nav">
-          <router-link to="/">Home</router-link> | 
-          <router-link to="/description">Details</router-link>| 
-          <router-link to="/detailsCourse">Details Course</router-link>|
-          <router-link to="/createCourse">Create Course</router-link>|
-        </div>
-        <router-view/>
-        <Footer/>
-    </div>
-  </div>
-
+   <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/DetailsCourse">Details Course</router-link>
+      <router-link to="/createCourse">Create Course</router-link>|
+   </div>
+   <div class="main-container">
+      <div class="sidebar">
+         <SideBar />
+      </div>
+      <div class="hero">
+         <Header />
+         <router-view />
+         <Footer />
+      </div>
+   </div>
 </template>
 
 <script>
    import Header from "@/components/Header";
    import Footer from "@/components/Footer";
+   import SideBar from "./components/SideBar";
    export default {
-      components: { Header, Footer },
+      components: { Header, Footer, SideBar },
    };
 </script>
 
@@ -49,6 +48,9 @@
       display: flex;
       .sidebar {
          width: vw(330);
+      }
+      .hero{
+         margin-left: vw(330);
       }
    }
 
