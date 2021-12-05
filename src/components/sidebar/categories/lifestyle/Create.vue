@@ -16,11 +16,9 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Create a Clothing Collection",
+            "Create a Dress from Scratch",
+            "Creation of a Streetwear Brand",
          ];
          const clickedCategories = ref(null);
 

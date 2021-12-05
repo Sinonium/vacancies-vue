@@ -15,18 +15,12 @@
    import { ref } from "@vue/reactivity";
    export default {
       setup() {
-         const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
-         ];
+         const categories = ["Unreal Engine", "Unity", "CryEngine"];
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
-            categories
+            categories,
          };
       },
    };

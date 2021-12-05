@@ -16,11 +16,10 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Jewelry Design",
+            "Design and Make a Dress",
+            "Design Leather Accessories",
+            "Design of Textile Patterns"
          ];
          const clickedCategories = ref(null);
 

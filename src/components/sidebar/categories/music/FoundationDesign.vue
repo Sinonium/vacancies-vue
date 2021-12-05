@@ -16,11 +16,13 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Learn the Core FX of Sound Design",
+            "Sound Sources",
+            "Filters",
+            "Envelopes",
+            "Modulation",
+            "Pitch & Tuning",
+            "Stretch & Fade"
          ];
          const clickedCategories = ref(null);
 

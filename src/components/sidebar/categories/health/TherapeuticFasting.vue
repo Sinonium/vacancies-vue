@@ -16,11 +16,9 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Complete fasting",
+            "Absolute fasting",
+            "Combined fasting",
          ];
          const clickedCategories = ref(null);
 

@@ -16,17 +16,16 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Analysis",
+            "Monitoring of financial condition",
+            "Development of protocols",
+            "Developing new strategies",
          ];
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
-            categories
+            categories,
          };
       },
    };

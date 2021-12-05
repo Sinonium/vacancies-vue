@@ -16,11 +16,12 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Portrait photography",
+            "Work with light",
+            "Fashion pictures",
+            "Lifestyle photography",
+            "Foreshortening",
+            "Photo for magazines"
          ];
          const clickedCategories = ref(null);
 

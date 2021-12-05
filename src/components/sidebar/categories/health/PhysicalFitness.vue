@@ -16,11 +16,12 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Muscular Endurance",
+            "Muscular Strength",
+            "Flexibility",
+            "Body Composition",
+            "Speed",
+            "Physical Intelligence"
          ];
          const clickedCategories = ref(null);
 

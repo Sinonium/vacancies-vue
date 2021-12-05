@@ -16,17 +16,14 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "«black-box» testing",
+            "«white-box» or «glass-box» testing",
          ];
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
-            categories
+            categories,
          };
       },
    };
