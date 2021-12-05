@@ -15,18 +15,12 @@
    import { ref } from "@vue/reactivity";
    export default {
       setup() {
-         const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
-         ];
+         const categories = ["B2C / B2B / C2C", "M-commerce", "F-commerce"];
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
-            categories
+            categories,
          };
       },
    };

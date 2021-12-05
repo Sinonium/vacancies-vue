@@ -16,17 +16,19 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Physics",
+            "Chemistry",
+            "Mathematics",
+            "Astronomy",
+            "Space Science",
+            "Earth Science",
+            "Materials Science",
          ];
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
-            categories
+            categories,
          };
       },
    };

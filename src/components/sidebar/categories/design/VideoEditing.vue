@@ -11,16 +11,18 @@
    </ul>
 </template>
 
-<script>
+<script >
    import { ref } from "@vue/reactivity";
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "iMovie",
+            "Lightworks",
+            "DaVinci Resolve",
+            "Adobe Premiere Pro CC",
+            "HitFilm Pro",
+            "FilmoraPro"
+
          ];
          const clickedCategories = ref(null);
 

@@ -16,11 +16,15 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Traditional Marketing",
+            "Outbound Marketing",
+            "Inbound Marketing",
+            "Digital Marketing",
+            "Search Engine Marketing",
+            "Content Marketing",
+            "Social Media Marketing",
+            "Video Marketing"
+
          ];
          const clickedCategories = ref(null);
 

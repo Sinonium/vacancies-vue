@@ -16,11 +16,14 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Inside Sales",
+            "Outside Sales",
+            "B2B Sales",
+            "B2C Sales",
+            "Business Development Sales",
+            "eCommerce Sales",
+            "Agency Sales",
+
          ];
          const clickedCategories = ref(null);
 

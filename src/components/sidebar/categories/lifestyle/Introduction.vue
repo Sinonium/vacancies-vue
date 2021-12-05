@@ -16,11 +16,10 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Introduction to Makeup Techniques",
+            "Introduction to Knitting",
+            "Introduction to Jewelry Techniques",
+            "Introduction to Fashion Design"
          ];
          const clickedCategories = ref(null);
 

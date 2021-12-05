@@ -16,11 +16,11 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "3ds max",
+            "Houdini",
+            "ZBrush",
+            "Sculptris",
+            "Blender"
          ];
          const clickedCategories = ref(null);
 

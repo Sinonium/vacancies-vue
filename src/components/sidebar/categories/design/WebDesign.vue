@@ -16,11 +16,12 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Figma",
+            "WordPress",
+            "Photoshop",
+            "Google Web Designer",
+            "Dreamweaver",
+
          ];
          const clickedCategories = ref(null);
 

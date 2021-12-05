@@ -16,17 +16,19 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "English",
+            "German ",
+            "Spanish",
+            "Russian",
+            "Italian",
+            "Japanese",
+            "French",
          ];
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
-            categories
+            categories,
          };
       },
    };
