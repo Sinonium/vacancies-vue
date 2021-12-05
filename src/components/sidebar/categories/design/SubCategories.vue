@@ -4,30 +4,30 @@
          :class="{ clicked: clickedCategories === 1 }"
          @click="clickedCategories = 1"
       >
-         <span>Create</span>
+         <span>Web design</span>
       </li>
       <WebDesign v-if="clickedCategories === 1" />
       <li
          :class="{ clicked: clickedCategories === 2 }"
          @click="clickedCategories = 2"
       >
-         <span>Design</span>
+         <span>3D</span>
       </li>
       <D v-if="clickedCategories === 2" />
       <li
          :class="{ clicked: clickedCategories === 3 }"
          @click="clickedCategories = 3"
       >
-         <span>Introduction</span>
+         <span>Video Editing</span>
       </li>
       <VideoEditing v-if="clickedCategories === 3" />
       <li
-         :class="{ clicked: clickedCategories === 3 }"
-         @click="clickedCategories = 3"
+         :class="{ clicked: clickedCategories === 4 }"
+         @click="clickedCategories = 4"
       >
          <span>Drawing and Illustration</span>
       </li>
-      <DrawingIllustration v-if="clickedCategories === 3" />
+      <DrawingIllustration v-if="clickedCategories === 4" />
    </ul>
 </template>
 
