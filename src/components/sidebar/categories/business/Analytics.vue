@@ -16,17 +16,16 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Mathematical basis",
+            "Basic probability theory",
+            "Critical thinking",
+            "Business thinking",
          ];
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
-            categories
+            categories,
          };
       },
    };

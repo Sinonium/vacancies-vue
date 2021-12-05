@@ -217,7 +217,7 @@ export default {
     DetailsAboutTeach,
     Tutorials,
   },
-  setup(props) {
+  setup(props: any) {
     const currentDetailsPage = ref({
       title: 'About',
       icon: `<svg

@@ -16,11 +16,10 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Photoshop CC",
+            "Procreate",
+            "Corel Painter",
+            "Paint Tool SAI",
          ];
          const clickedCategories = ref(null);
 

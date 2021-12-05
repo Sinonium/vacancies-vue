@@ -16,11 +16,10 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Fashion-photography",
+            "Advertising photography",
+            "Wedding photography",
+            "Food-photography"
          ];
          const clickedCategories = ref(null);
 

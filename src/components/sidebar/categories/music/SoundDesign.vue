@@ -16,11 +16,13 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Ambient Pads",
+            "Deep Sub Bass",
+            "Pluck Sounds",
+            "Huge Sub Drops",
+            "Dark Pulses",
+            "Ominous Drones",
+            "Epic Risers"
          ];
          const clickedCategories = ref(null);
 

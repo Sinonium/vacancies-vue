@@ -16,11 +16,11 @@
    export default {
       setup() {
          const categories = [
-            "Java Script",
-            "React",
-            "Vue",
-            "Angular",
-            "HTML / CSS"
+            "Ashtanga vinyasa yoga",
+            "Hatha yoga",
+            "Iyengar Yoga",
+            "Bikram Yoga",
+            "Yin Yoga"
          ];
          const clickedCategories = ref(null);
 
