@@ -222,6 +222,7 @@ setup() {
                 padding: vw(16) vw(10) vw(16) vw(15);
                 width: vw(600);
                 margin: 0 0 vw(15) 0;
+                @include font(vw(13), 600, vh(30));
             }
             &__examples{
                 span{
