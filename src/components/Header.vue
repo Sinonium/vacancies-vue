@@ -62,6 +62,7 @@ export default {
     @include flex($justify: space-between);
     background-color: $white;
     padding: vw(20) vw(30) vw(20) vw(45);
+    box-sizing: border-box;
     width: vw(1270);
     &__logo {
         @include flex();
