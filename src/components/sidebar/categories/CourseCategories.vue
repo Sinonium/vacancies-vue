@@ -8,7 +8,10 @@
          <span>Development</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubDevCategories v-if="clickedCategories === 'dev'" />
+      <SubDevCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'dev'"
+      />
       <li
          @click="handleClick('bus')"
          :class="{ clickedCata: clickedCategories === 'bus' }"
@@ -17,7 +20,10 @@
          <span>Business</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubBusCategories v-if="clickedCategories === 'bus'" />
+      <SubBusCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'bus'"
+      />
       <li
          @click="handleClick('fin')"
          :class="{ clickedCata: clickedCategories === 'fin' }"
@@ -26,7 +32,10 @@
          <span>Finance & Accounting</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubFinanceCategories v-if="clickedCategories === 'fin'"/>
+      <SubFinanceCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'fin'"
+      />
       <li
          @click="handleClick('soft')"
          :class="{ clickedCata: clickedCategories === 'soft' }"
@@ -35,6 +44,10 @@
          <span>IT & Software</span>
          <img :src="arrowExpand" alt="" />
       </li>
+      <SubItSoftCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'soft'"
+      />
       <li
          @click="handleClick('office')"
          :class="{ clickedCata: clickedCategories === 'office' }"
@@ -43,6 +56,10 @@
          <span>Office Productivity</span>
          <img :src="arrowExpand" alt="" />
       </li>
+      <SubOfficeCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'office'"
+      />
       <li
          @click="handleClick('pers')"
          :class="{ clickedCata: clickedCategories === 'pers' }"
@@ -51,6 +68,10 @@
          <span>Personal Development</span>
          <img :src="arrowExpand" alt="" />
       </li>
+      <SubPersonalCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'pers'"
+      />
       <li
          @click="handleClick('design')"
          :class="{ clickedCata: clickedCategories === 'design' }"
@@ -59,7 +80,10 @@
          <span>Design and Art</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubDesignCategories v-if="clickedCategories === 'design'" />
+      <SubDesignCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'design'"
+      />
       <li
          @click="handleClick('market')"
          :class="{ clickedCata: clickedCategories === 'market' }"
@@ -68,7 +92,10 @@
          <span>Marketing and Sales</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubMarketingCategories v-if="clickedCategories === 'market'" />
+      <SubMarketingCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'market'"
+      />
       <li
          @click="handleClick('life')"
          :class="{ clickedCata: clickedCategories === 'life' }"
@@ -77,7 +104,10 @@
          <span>Lifestyle and Fashion</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubLifeStyleCategories v-if="clickedCategories === 'life'" />
+      <SubLifeStyleCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'life'"
+      />
       <li
          @click="handleClick('photo')"
          :class="{ clickedCata: clickedCategories === 'photo' }"
@@ -86,7 +116,10 @@
          <span>Photography</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubPhotoCategories v-if="clickedCategories === 'photo'" />
+      <SubPhotoCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'photo'"
+      />
       <li
          @click="handleClick('heal')"
          :class="{ clickedCata: clickedCategories === 'heal' }"
@@ -95,7 +128,10 @@
          <span>Health & Fitness</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubHealthCategories v-if="clickedCategories === 'heal'" />
+      <SubHealthCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'heal'"
+      />
       <li
          @click="handleClick('music')"
          :class="{ clickedCata: clickedCategories === 'music' }"
@@ -104,7 +140,10 @@
          <span>Music and Sound Design</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubMusicCategories v-if="clickedCategories === 'music'" />
+      <SubMusicCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'music'"
+      />
       <li
          @click="handleClick('teach')"
          :class="{ clickedCata: clickedCategories === 'teach' }"
@@ -113,7 +152,10 @@
          <span>Teaching & Academics</span>
          <img :src="arrowExpand" alt="" />
       </li>
-      <SubTeachCategories v-if="clickedCategories === 'teach'" />
+      <SubTeachCategories
+         @clickedSubCata="cata"
+         v-if="clickedCategories === 'teach'"
+      />
    </ul>
 </template>
 
@@ -121,19 +163,25 @@
    import { ref } from "@vue/reactivity";
    import SubDevCategories from "./development/SubCategories.vue";
    import SubBusCategories from "./business/SubCategories.vue";
-   import SubFinanceCategories from './finance/SubCategories.vue'
+   import SubFinanceCategories from "./finance/SubCategories.vue";
+   import SubItSoftCategories from "./it&soft/SubCategories.vue";
+   import SubOfficeCategories from "./office/SubCategories.vue";
+   import SubPersonalCategories from "./personal/SubCategories.vue";
    import SubDesignCategories from "./design/SubCategories.vue";
    import SubMarketingCategories from "./marketing/SubCategories.vue";
    import SubLifeStyleCategories from "./lifestyle/SubCategories.vue";
    import SubPhotoCategories from "./photography/SubCategories.vue";
    import SubHealthCategories from "./health/SubCategories.vue";
    import SubMusicCategories from "./music/SubCategories.vue";
-   import SubTeachCategories from './teaching/SubCategories.vue'
+   import SubTeachCategories from "./teaching/SubCategories.vue";
    export default {
       components: {
          SubDevCategories,
          SubBusCategories,
          SubFinanceCategories,
+         SubItSoftCategories,
+         SubOfficeCategories,
+         SubPersonalCategories,
          SubDesignCategories,
          SubMarketingCategories,
          SubLifeStyleCategories,
@@ -143,15 +191,19 @@
          SubTeachCategories,
       },
       setup() {
+         const cata = (cata, subcata = "отсутствует") => {
+            console.log("категория " + cata, "подкатегория " + subcata);
+         };
          const handleClick = (i) => {
             if (clickedCategories.value !== i) {
-              return clickedCategories.value = i
+               return (clickedCategories.value = i);
             } else {
-              return clickedCategories.value = null
+               return (clickedCategories.value = null);
             }
-         }
+         };
          const clickedCategories = ref(null);
          return {
+            cata,
             handleClick,
             clickedCategories,
             arrowExpand: require("@/assets/img/sidebar/arrow.svg"),

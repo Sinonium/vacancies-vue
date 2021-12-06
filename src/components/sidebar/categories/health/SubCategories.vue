@@ -1,26 +1,26 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Physical Fitness' }"
+         @click="handleCategories('Physical Fitness')"
       >
          <span>Physical Fitness</span>
       </li>
-      <PhysicalFitness v-if="clickedCategories === 1" />
+      <PhysicalFitness @clickedCata="setSubCata" v-if="clickedCategories === 'Physical Fitness'" />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Yoga' }"
+         @click="handleCategories('Yoga')"
       >
          <span>Yoga</span>
       </li>
-      <Yoga v-if="clickedCategories === 2" />
+      <Yoga @clickedCata="setSubCata" v-if="clickedCategories === 'Yoga'" />
       <li
-         :class="{ clicked: clickedCategories === 3 }"
-         @click="clickedCategories = 3"
+         :class="{ clicked: clickedCategories === 'Therapeutic Fasting' }"
+         @click="handleCategories('Therapeutic Fasting')"
       >
          <span>Therapeutic Fasting</span>
       </li>
-      <TherapeuticFasting v-if="clickedCategories === 3" />
+      <TherapeuticFasting @clickedCata="setSubCata" v-if="clickedCategories === 'Therapeutic Fasting'" />
    </ul>
 </template>
 
@@ -31,11 +31,28 @@
    import TherapeuticFasting from "./TherapeuticFasting.vue";
    export default {
       components: { PhysicalFitness, Yoga, TherapeuticFasting },
-      setup() {
+      setup(props, context) {
+         const subCategory = ref(undefined);
+         const setSubCata = (params) => {
+            subCategory.value = params;
+         };
+         const handleCategories = (cata) => {
+            if (cata === clickedCategories.value) {
+               clickedCategories.value = cata;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            } else {
+               clickedCategories.value = cata;
+               subCategory.value = undefined;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            }
+         };
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
+            subCategory,
+            handleCategories,
+            setSubCata,
          };
       },
    };

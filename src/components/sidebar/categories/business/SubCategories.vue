@@ -1,47 +1,62 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Crisis management' }"
+         @click="handleCategories('Crisis management')"
       >
          <span>Crisis management</span>
       </li>
-      <CrisisManagement v-if="clickedCategories === 1"/>
+      <CrisisManagement
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Crisis management'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Project activities' }"
+         @click="handleCategories('Project activities')"
       >
          <span>Project activities</span>
       </li>
-      <ProjectActivities v-if="clickedCategories === 2"/>
+      <ProjectActivities
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Project activities'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 3 }"
-         @click="clickedCategories = 3"
+         :class="{ clicked: clickedCategories === 'Service' }"
+         @click="handleCategories('Service') "
       >
          <span>Service. Work with clients</span>
       </li>
-      <ServiceWorkWithClients v-if="clickedCategories === 3"/>
+      <ServiceWorkWithClients
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Service'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 4 }"
-         @click="clickedCategories = 4"
+         :class="{ clicked: clickedCategories === 'Analytics' }"
+         @click="handleCategories('Analytics')"
       >
          <span>Analytics</span>
       </li>
-      <Analytics v-if="clickedCategories === 4"/>
+      <Analytics
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Analytics'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 5 }"
-         @click="clickedCategories = 5"
+         :class="{ clicked: clickedCategories === 'Management' }"
+         @click="handleCategories('Management') "
       >
          <span>Management</span>
       </li>
-      <Management v-if="clickedCategories === 5"/>
+      <Management
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Management'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 6 }"
-         @click="clickedCategories = 6"
+         :class="{ clicked: clickedCategories === 'Sales' }"
+         @click="handleCategories('Sales') "
       >
          <span>Sales</span>
       </li>
-      <Sales v-if="clickedCategories === 6"/>
+      <Sales @clickedCata="setSubCata" v-if="clickedCategories === 'Sales'" />
    </ul>
 </template>
 
@@ -62,11 +77,28 @@
          Management,
          Sales,
       },
-      setup() {
+      setup(props, context) {
+         const subCategory = ref(undefined);
+         const setSubCata = (params) => {
+            subCategory.value = params;
+         };
+         const handleCategories = (cata) => {
+            if (cata === clickedCategories.value) {
+               clickedCategories.value = cata;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            } else {
+               clickedCategories.value = cata;
+               subCategory.value = undefined;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            }
+         };
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
+            subCategory,
+            handleCategories,
+            setSubCata,
          };
       },
    };
