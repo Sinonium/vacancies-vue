@@ -202,7 +202,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
@@ -218,14 +218,11 @@ export default {
     CourseContent,
   },
   props: ['currentDetailsPage'],
-  setup(context: any, props: any) {
-    interface ICurDetPage {
-      title: string
-    }
-    const currentDetailsPage = ref(<ICurDetPage>{
+  setup(context, props) {
+    const currentDetailsPage = ref({
       title: 'About',
     })
-    const handleCurrentPage = (currentWord: string): void => {
+    const handleCurrentPage = (currentWord) => {
       // console.log(context.currentDetailsPage = currentWord)
       // context.currentDetailsPage = currentWord
       // props.emit('changeCurPage', currentWord)
