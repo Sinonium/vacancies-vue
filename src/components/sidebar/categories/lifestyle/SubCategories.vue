@@ -1,26 +1,29 @@
 <template>
-<ul class="sub">
+   <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Create' }"
+         @click="handleCategories('Create')"
       >
          <span>Create</span>
       </li>
-      <Create v-if="clickedCategories === 1" />
+      <Create @clickedCata="setSubCata" v-if="clickedCategories === 'Create'" />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Design' }"
+         @click="handleCategories('Design')"
       >
          <span>Design</span>
       </li>
-      <Design v-if="clickedCategories === 2" />
+      <Design @clickedCata="setSubCata" v-if="clickedCategories === 'Design'" />
       <li
-         :class="{ clicked: clickedCategories === 3 }"
-         @click="clickedCategories = 3"
+         :class="{ clicked: clickedCategories === 'Introduction' }"
+         @click="handleCategories('Introduction')"
       >
          <span>Introduction</span>
       </li>
-      <Introduction v-if="clickedCategories === 3" />
+      <Introduction
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Introduction'"
+      />
    </ul>
 </template>
 
@@ -31,11 +34,28 @@
    import Introduction from "./Introduction.vue";
    export default {
       components: { Create, Design, Introduction },
-      setup() {
+      setup(props, context) {
+         const subCategory = ref(undefined);
+         const setSubCata = (params) => {
+            subCategory.value = params;
+         };
+         const handleCategories = (cata) => {
+            if (cata === clickedCategories.value) {
+               clickedCategories.value = cata;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            } else {
+               clickedCategories.value = cata;
+               subCategory.value = undefined;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            }
+         };
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
+            subCategory,
+            handleCategories,
+            setSubCata,
          };
       },
    };
