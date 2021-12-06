@@ -8,7 +8,7 @@
               <p class="create-course__instruction">Write the name of your course. The name should attract attention and reflect the essence of the course.</p>
               <label></label>
               <input type="text" v-model="name">
-              <span class="quantity">3/100 Characters (minimum 5)</span>
+              
               <p class="create-course__title">Some good examples:</p>
               <div class="create-course__examples">
               <span>Technical Design</span>
@@ -47,7 +47,6 @@
                   </div>
         
                   <textarea name="comment" cols="40" rows="3" placeholder="Tell us in detail about your course"></textarea>
-                  <span class="quantity">3/100 Characters (minimum 5)</span>
                   <p class="create-course__title">Photo of your course</p>
                   <p class="create-course__instruction">Write the URL:</p>
                   <input type="text" placeholder="https://drive.google.com/uc?export=view&id=1B5ZusvPN1mH91omnBkzilaJL8PkWC08e" v-model="imageURL">
@@ -147,6 +146,7 @@ setup() {
     const imageURL = ref("");
     const themes = ref("");
     const teacher = ref("");
+    
     const handleSubmit = async () => {
         try{
             const newCourse = {
@@ -167,7 +167,9 @@ setup() {
            console.log(err)
         }
     }
-    return { handleSubmit, name, price, videoURL, imageURL, teacher}
+    
+    
+    return { handleSubmit, name,price, videoURL, imageURL, teacher, themes}
 }
 }
 </script>
@@ -209,12 +211,6 @@ setup() {
             color: $greyBlue70;
             margin: vw(30) 0 vw(20) 0;
             }
-            
-            .quantity{
-                @include font(vw(10), 700, vh(20));
-                color: $greyBlue80;
-                margin-left: vw(460);
-            }
             input{
                 border: 2px solid #F5F6F7;
                 box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
@@ -222,7 +218,7 @@ setup() {
                 padding: vw(16) vw(10) vw(16) vw(15);
                 width: vw(600);
                 margin: 0 0 vw(15) 0;
-                @include font(vw(13), 600, vh(30));
+                @include font(vw(13), 600, vh(30)); 
             }
             &__examples{
                 span{
@@ -323,10 +319,6 @@ setup() {
             &__instruction{
             @include font(vmin(7), 700, vmin(13));
             margin: vmin(15) 0 vmin(10) 0;
-            }
-            .quantity{
-                @include font(vmin(8), 700, vmin(10));
-                margin-left: vmin(115);
             }
             input{
                 border-radius: vmin(5);
