@@ -1,19 +1,27 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{
+            clicked: clickedCategories === 'The Foundations of Sound Design',
+         }"
+         @click="handleCategories('The Foundations of Sound Design')"
       >
          <span>The Foundations of Sound Design</span>
       </li>
-      <FoundationDesign v-if="clickedCategories === 1" />
+      <FoundationDesign
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'The Foundations of Sound Design'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Sound Design' }"
+         @click="handleCategories('Sound Design')"
       >
          <span>Sound Design</span>
       </li>
-      <SoundDesign v-if="clickedCategories === 2" />
+      <SoundDesign
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Sound Design'"
+      />
    </ul>
 </template>
 
@@ -23,11 +31,28 @@
    import SoundDesign from "./SoundDesign.vue";
    export default {
       components: { FoundationDesign, SoundDesign },
-      setup() {
+      setup(props, context) {
+         const subCategory = ref(undefined);
+         const setSubCata = (params) => {
+            subCategory.value = params;
+         };
+         const handleCategories = (cata) => {
+            if (cata === clickedCategories.value) {
+               clickedCategories.value = cata;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            } else {
+               clickedCategories.value = cata;
+               subCategory.value = undefined;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            }
+         };
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
+            subCategory,
+            handleCategories,
+            setSubCata,
          };
       },
    };

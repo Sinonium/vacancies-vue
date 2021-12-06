@@ -1,49 +1,75 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Web design' }"
+         @click="handleCategories('Web design')"
       >
          <span>Web design</span>
       </li>
-      <WebDesign v-if="clickedCategories === 1" />
+      <WebDesign
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Web design'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === '3D' }"
+         @click="handleCategories('3D')"
       >
          <span>3D</span>
       </li>
-      <D v-if="clickedCategories === 2" />
+      <D @clickedCata="setSubCata" v-if="clickedCategories === '3D'" />
       <li
-         :class="{ clicked: clickedCategories === 3 }"
-         @click="clickedCategories = 3"
+         :class="{ clicked: clickedCategories === 'Video Editing' }"
+         @click="handleCategories('Video Editing')"
       >
          <span>Video Editing</span>
       </li>
-      <VideoEditing v-if="clickedCategories === 3" />
+      <VideoEditing
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Video Editing'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 4 }"
-         @click="clickedCategories = 4"
+         :class="{ clicked: clickedCategories === 'Drawing and Illustration' }"
+         @click="handleCategories('Drawing and Illustration')"
       >
          <span>Drawing and Illustration</span>
       </li>
-      <DrawingIllustration v-if="clickedCategories === 4" />
+      <DrawingIllustration
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Drawing and Illustration'"
+      />
    </ul>
 </template>
 
-<script lang="ts">
+<script>
    import { ref } from "@vue/reactivity";
    import WebDesign from "./WebDesign.vue";
    import D from "./3D.vue";
    import VideoEditing from "./VideoEditing.vue";
-   import DrawingIllustration from './Drawing&Illustration.vue';
+   import DrawingIllustration from "./Drawing&Illustration.vue";
    export default {
       components: { WebDesign, D, VideoEditing, DrawingIllustration },
-      setup() {
+      setup(props, context) {
+         const subCategory = ref(undefined);
+         const setSubCata = (params) => {
+            subCategory.value = params;
+         };
+         const handleCategories = (cata) => {
+            if (cata === clickedCategories.value) {
+               clickedCategories.value = cata;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            } else {
+               clickedCategories.value = cata;
+               subCategory.value = undefined;
+               context.emit("clickedSubCata", cata, subCategory.value);
+            }
+         };
          const clickedCategories = ref(null);
 
          return {
             clickedCategories,
+            subCategory,
+            handleCategories,
+            setSubCata,
          };
       },
    };
