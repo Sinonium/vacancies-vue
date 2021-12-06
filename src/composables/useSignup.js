@@ -1,6 +1,7 @@
 import { auth } from '../firebase/config'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
+
 const useSignup = async (email, password) => {
   let response
   let error
@@ -11,7 +12,7 @@ const useSignup = async (email, password) => {
     error = err.message
   }
 
-  return { response, error }
+  return { response, error}
 }
 
 export default useSignup

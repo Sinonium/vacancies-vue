@@ -1,14 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
-<<<<<<< HEAD
-import Description from '../views/Description.vue'
+import DetailsCourse from '../views/DetailsCourse.vue'
+import CreateCourse from '../views/CreateCourse.vue'
 import Login from '../pages/Login.vue'
 import SignUp from '../pages/SignUp.vue'
-=======
-import Description from '../components/Description/Description.vue'
-import DetailsCourse from '../views/DetailsCourse.vue'
->>>>>>> 4bbf81640c888d709f5fda5732cc0ed7ea268a69
-
+import Test from '../views/Test.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -16,12 +12,16 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/description',
-    name: 'Description',
-    component: Description
+    path: '/DetailsCourse',
+    name: 'DetailsCourse',
+    component: DetailsCourse
   },
   {
-<<<<<<< HEAD
+    path: '/createCourse',
+    name: 'CreateCourse',
+    component: CreateCourse
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
@@ -30,11 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/signup',
     name: 'SignUp',
     component: SignUp
-=======
-    path: '/detailsCourse',
-    name: 'DetailsCourse',
-    component: DetailsCourse
->>>>>>> 4bbf81640c888d709f5fda5732cc0ed7ea268a69
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
   },
 ]
 

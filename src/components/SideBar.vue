@@ -80,6 +80,9 @@
       position: relative;
       height: vw(800);
    }
+   .ps__rail-y{
+      background-color: inherit !important;
+   }
    .sidebar__content {
       background-color: $greyBlue25;
       .sidebar__main-group {

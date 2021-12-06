@@ -6,54 +6,68 @@
       >
          <span>Crisis management</span>
       </li>
+      <CrisisManagement v-if="clickedCategories === 1"/>
       <li
          :class="{ clicked: clickedCategories === 2 }"
          @click="clickedCategories = 2"
       >
          <span>Project activities</span>
       </li>
+      <ProjectActivities v-if="clickedCategories === 2"/>
       <li
          :class="{ clicked: clickedCategories === 3 }"
          @click="clickedCategories = 3"
       >
-         <span>HR management</span>
+         <span>Service. Work with clients</span>
       </li>
+      <ServiceWorkWithClients v-if="clickedCategories === 3"/>
       <li
          :class="{ clicked: clickedCategories === 4 }"
          @click="clickedCategories = 4"
       >
-         <span>Service. Work with clients</span>
+         <span>Analytics</span>
       </li>
+      <Analytics v-if="clickedCategories === 4"/>
       <li
          :class="{ clicked: clickedCategories === 5 }"
          @click="clickedCategories = 5"
       >
-         <span>Analytics</span>
+         <span>Management</span>
       </li>
+      <Management v-if="clickedCategories === 5"/>
       <li
          :class="{ clicked: clickedCategories === 6 }"
          @click="clickedCategories = 6"
       >
-         <span>Management</span>
-      </li>
-      <li
-         :class="{ clicked: clickedCategories === 7 }"
-         @click="clickedCategories = 7"
-      >
          <span>Sales</span>
       </li>
+      <Sales v-if="clickedCategories === 6"/>
    </ul>
 </template>
 
 <script>
    import { ref } from "@vue/reactivity";
+   import CrisisManagement from "./CrisisManagement.vue";
+   import ProjectActivities from "./ProjectActivities.vue";
+   import ServiceWorkWithClients from "./ServiceWorkWithClients.vue";
+   import Analytics from "./Analytics.vue";
+   import Management from "./Management.vue";
+   import Sales from ".//Sales.vue";
    export default {
+      components: {
+         CrisisManagement,
+         ProjectActivities,
+         ServiceWorkWithClients,
+         Analytics,
+         Management,
+         Sales,
+      },
       setup() {
          const clickedCategories = ref(null);
 
          return {
-            clickedCategories
-         }
+            clickedCategories,
+         };
       },
    };
 </script>

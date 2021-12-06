@@ -5,7 +5,7 @@
       <FeaturedReview />
     </div>
     <div>
-      <add-to-cart />
+      <AddToCart />
     </div>
   </div>
 </template>
