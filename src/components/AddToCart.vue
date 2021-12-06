@@ -11,7 +11,7 @@
       <p>This price is available for another 5 hours!</p>
       <div class="cart__profile-button">
         <button>Add To Cart</button>
-        <button>Buy Now</button>
+        <button @click="toggleModal">Buy Now</button>
         <p>30 days money back guarantee</p>
       </div>
       <div class="cart__profile-course">
@@ -72,11 +72,14 @@
       <img src="../assets/img/addToCartImg/video2.png" alt="" />
     </div>
   </div>
+  <BuyModal @close="toggleModal" :modalActive="modalActive" />
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
+import BuyModal from './BuyModal.vue'
 export default {
+  components: { BuyModal },
   setup() {
     const courseList = ref([
       '25 hours of video on demand',
@@ -86,7 +89,11 @@ export default {
       'Certificate of Completion',
     ])
 
-    return { courseList }
+    const modalActive = ref(false)
+    const toggleModal = () => {
+      modalActive.value = !modalActive.value
+    }
+    return { courseList, modalActive, toggleModal }
   },
 }
 </script>
@@ -134,11 +141,12 @@ export default {
         height: vw(50);
         border: none;
         margin-left: vw(20);
-        &:first-child {
-          color: $white;
-          background: $blue;
-          box-shadow: 0px 10px 30px rgba(51, 97, 255, 0.15);
-        }
+        cursor: pointer;
+      }
+      button:active {
+        color: $white;
+        background: $blue;
+        box-shadow: 0px 10px 30px rgba(51, 97, 255, 0.15);
       }
     }
     &-course {

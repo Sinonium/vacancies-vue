@@ -206,18 +206,15 @@ import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import Tutorials from '@/components/Tutorials.vue'
 import Description from '@/components/Description/Description.vue'
-// import Description from '../components/Description.vue'
 export default {
   components: {
     FeedBack,
     AddToCart,
     Description,
-    // DescriptionText,
-    // Reviews,
     DetailsAboutTeach,
     Tutorials,
   },
-  setup(props) {
+  setup() {
     const currentDetailsPage = ref({
       title: 'About',
       icon: `<svg
