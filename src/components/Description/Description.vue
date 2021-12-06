@@ -4,9 +4,9 @@
       <DescriptionText />
       <FeaturedReview />
     </div>
-    <!-- <div>
-      <add-to-cart />
-    </div> -->
+    <div>
+      <AddToCart />
+    </div>
   </div>
 </template>
 
