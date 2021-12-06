@@ -369,4 +369,55 @@ body {
     }
   }
 }
+@media screen and (max-width: 1123px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 5vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 823px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 4vw;
+        li.active {
+          &::before {
+            margin-top: -0.8vw;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 759px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 3vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 719px) {
+  .details-page {
+    &__head {
+      ul {
+        li {
+          span {
+            @include font(vw(17), bold, 20px, $greyBlue60);
+          }
+          svg {
+            height: 13px;
+          }
+        }
+      }
+    }
+  }
+  .details-page__head ul li.active span {
+    @include font(vw(17), bold, 20px, $blue);
+  }
+}
 </style>
