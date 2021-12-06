@@ -4,7 +4,7 @@
       <form @submit.prevent="handleTextAddText">
         <div>
           <img :src="AvatarUserIcon" alt="" />
-          <input type="text" placeholder="Your review" v-model="textInp" />
+          <input type="text" placeholder="Your review" v-model="textInp" required/>
           <!-- <span @click="textInp = ''"</span> -->
         </div>
         <button>Add review</button>
