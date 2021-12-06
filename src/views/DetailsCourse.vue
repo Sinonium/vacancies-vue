@@ -104,7 +104,6 @@
         </li>
       </ul>
     </div>
-    <AddToCart />
     <main class="details-page__content">
       <div v-if="currentDetailsPage.title === 'Instructor'">
         <DetailsAboutTeach />
@@ -116,7 +115,7 @@
             @click="handleCurrentPage('Feedback')"
             class="details-page__bottom-btn_push_page"
           >
-            <div v-html="currentDetailsPage.icon"></div>
+            <img :src="studsIcon" alt="" />
             <span> Feedback </span>
           </div>
           <div class="details-page__bottom-arrow_next">
@@ -125,7 +124,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage.title === 'About'">
-        <Tutorials />
+        <CourseContent />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -134,7 +133,7 @@
             @click="handleCurrentPage('Content')"
             class="details-page__bottom-btn_push_page"
           >
-            <div v-html="currentDetailsPage.icon"></div>
+            <img :src="pencilIcon" alt="" />
             <span> Content </span>
           </div>
           <div class="details-page__bottom-arrow_next">
@@ -152,8 +151,8 @@
             @click="handleCurrentPage('Instructor')"
             class="details-page__bottom-btn_push_page"
           >
-            <div v-html="currentDetailsPage.icon"></div>
-            <span> Instructor </span>
+            <img :src="studIcon" alt="" />
+            <span>Instructor</span>
           </div>
           <div class="details-page__bottom-arrow_next">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -170,7 +169,7 @@
             @click="handleCurrentPage('About')"
             class="details-page__bottom-btn_push_page"
           >
-            <div v-html="currentDetailsPage.icon"></div>
+            <img :src="fireIcon" alt="" />
             <span> About </span>
           </div>
           <div class="details-page__bottom-arrow_next">
@@ -185,63 +184,64 @@
         <div class="details-page__bottom-arrow_prev">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
-        <div class="details-page__bottom-btn_push_page">
-          <div v-html="currentDetailsPage.icon"></div>
-          <span>
-            {{ currentDetailsPage.title }}
-          </span>
+        <div
+          @click="handleCurrentPage('Description')"
+          class="details-page__bottom-btn_push_page"
+        >
+          <img :src="kebabIcon" alt="" />
+          <span>Description</span>
         </div>
         <div class="details-page__bottom-arrow_next">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
       </div>
     </main>
+    <div class="details-page__modal">
+      <AddToCart />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
-import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
-import Tutorials from '@/components/Tutorials.vue'
+import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
+import { ref } from '@vue/reactivity'
 export default {
   components: {
     FeedBack,
     AddToCart,
     Description,
     DetailsAboutTeach,
-    Tutorials,
+    CourseContent,
   },
-  setup() {
-    const currentDetailsPage = ref({
+  props: ['currentDetailsPage'],
+  setup(context: any, props: any) {
+    interface ICurDetPage {
+      title: string
+    }
+    const currentDetailsPage = ref(<ICurDetPage>{
       title: 'About',
-      icon: `<svg
-            width="15"
-            height="16"
-            viewBox="0 0 15 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M4.95286 15.7333C4.95286 15.7333 0 15.1963 0 10.9971C0 6.79791 2.53581 5.06667 4.64504 4.0128C6.75427 2.95893 7.08326 0 7.08326 0C7.08326 0 10.3801 1.85876 10.8542 4.18686C11.3283 6.51497 9.89102 8.44444 9.89102 8.44444C9.89102 8.44444 11.4796 8.32292 12.1577 7.16771C12.8358 6.0125 12.9889 5.06667 12.9889 5.06667C12.9889 5.06667 16.068 9.80043 14.4328 12.2156C12.7976 14.6307 10.3751 16 10.3751 16C10.3751 16 7.43432 14.6768 6.70687 13.1947C5.97941 11.7126 6.50234 9.6 6.50234 9.6C6.50234 9.6 4.09996 10.3661 3.72077 12.2156C3.34158 14.065 4.95286 15.7333 4.95286 15.7333Z"
-              fill="#C3CAD9"
-            />
-          </svg>`,
     })
-
-    const handleCurrentPage = (currentWord: string, currentIcon: any) => {
+    const handleCurrentPage = (currentWord: string): void => {
+      // console.log(context.currentDetailsPage = currentWord)
+      // context.currentDetailsPage = currentWord
+      // props.emit('changeCurPage', currentWord)
+      // context.emit(changeCurPage , currentWord)
       currentDetailsPage.value.title = currentWord
-      // currentDetailsPage.value.icon = `${currentIcon}`
     }
 
     return {
+      fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
+      studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
+      studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
+      pencilIcon: require('@/assets/icons/DetailsAboutTeach/pencil.svg'),
+      kebabIcon: require('@/assets/icons/DetailsAboutTeach/kebab.svg'),
       ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
-      currentDetailsPage,
       handleCurrentPage,
+      currentDetailsPage,
     }
   },
 }
@@ -304,6 +304,11 @@ body {
       }
     }
   }
+  &__modal {
+    position: absolute;
+    top: vw(130);
+    left: vw(1150);
+  }
 }
 .details-page__head ul li.active {
   &::before {
@@ -357,7 +362,7 @@ body {
     @include flex();
     padding: vw(17) vw(38) vw(15) vw(26);
     margin-left: vw(235);
-    cursor: pointer;
+    cursor: pointer !important;
     span {
       @include font(vw(12), bold, 20px, $greyBlue60);
       margin-left: vw(16);

@@ -2,22 +2,26 @@
   <div class="cart-teach">
     <div class="cart-teach__about_teach col-4">
       <h4>About the Instructor</h4>
-      <img :src="course.teacher.teachImage" alt="Image teacher" />
+      <img :src="course.teacher.imgaeUrl" alt="Image teacher" />
       <ul class="cart-teach__about_teach_list">
-        <li v-for="item in course.teacher.data" :key="item.title" class="cart-teach__about_teach_list-item">
+        <li
+          v-for="item in course.teacher.data"
+          :key="item.title"
+          class="cart-teach__about_teach_list-item"
+        >
           <span v-html="item.icon"></span>
-          <span class="first__span"> {{item.number}} </span>
-          <span class="last__span"> {{item.title}} </span>
+          <!-- <span class="first__span"> {{ item.num }} </span> -->
+          <span class="last__span"> {{ item.title }} </span>
         </li>
       </ul>
     </div>
     <div class="cart-teach__features_teach col-5">
-      <h2>{{course.teacher.name}}</h2>
-      <span> {{course.teacher.features}} </span>
-      <p>{{course.teacher.recentNews}}</p>
-      <p>{{course.teacher.biography}}</p>
+      <h2>{{ course.teacher.name }}</h2>
+      <span> {{ course.teacher.features }} </span>
+      <p>{{ course.teacher.recentNews }}</p>
+      <p>{{ course.teacher.biography }}</p>
     </div>
-    <span style="cursor:pointer;" class="cart-teach__kebab">
+    <span style="cursor: pointer" class="cart-teach__kebab">
       <svg
         width="16"
         height="4"
@@ -36,14 +40,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from '@vue/reactivity'
 export default {
   props: ['course'],
-  setup(props) {
-    return {
-      // teachImage: require('@/assets/img/DetailsAboutTeach/imageTeach.png'),
-    }
+  setup() {
+    return {}
   },
 }
 </script>
@@ -391,11 +393,9 @@ export default {
     top: 23vmin;
   }
 }
-@media screen and (max-width: 351px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: -23%;
-    top: 23vmin;
+@media screen and (max-width: 375px){
+  .cart-teach {
+    height: 224vmin;
   }
 }
 @media screen and (max-width: 362px) {
@@ -405,9 +405,11 @@ export default {
     right: -23%;
   }
 }
-@media screen and (max-width: 344px) {
-  .cart-teach {
-    height: 198vmin;
+@media screen and (max-width: 351px) {
+  .cart-teach__kebab {
+    position: absolute;
+    right: -23%;
+    top: 23vmin;
   }
 }
 @media screen and (max-width: 326px) {
@@ -417,9 +419,13 @@ export default {
     right: -33%;
   }
 }
-@media screen and (max-width: 319px) {
+@media screen and (max-width: 321px){
   .cart-teach {
     height: 240vmin;
+  }
+}
+@media screen and (max-width: 319px) {
+  .cart-teach {
     .cart-teach {
       &__about_teach {
         h4 {
