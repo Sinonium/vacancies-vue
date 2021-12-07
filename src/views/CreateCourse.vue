@@ -147,7 +147,7 @@
           </div>
 
           <div class="publish">
-              <button @click="handleSubmit()" >Publish Course</button>
+              <button>Publish Course</button>
               </div>
   </form>
 </template>
