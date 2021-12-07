@@ -545,6 +545,9 @@
     "teacher": {
       "name": "Jacob Garner",
       "imageUrl": "@/assets/img/DetailsAboutTeach/imageTeach.png",
+      "features": "Software Developer, Architect, and UX Designer",
+      "recentNews": "Newly married in Cleveland Ohio, Tony is primarily focused these days on trying to be a good husband. While inexperienced at that, he's quite experienced in all things web.",
+      "biography": "Tony has been programming since he was 12 years old, and got into web sites and web application development at 16. After graduating with a Computer Science degree from Case Western Reserve University.",
       "data": [
         {
           "num": [1, 3, 2, 3, 5, 1],
@@ -576,6 +579,28 @@
           "grade": 3,
           "text": "It seems from the moment you begin to take your love of astronomy seriously, the thing that is on your mind is what kind of telescope will you get. And there is no question, investing in a good telescope can really enhance your enjoyment of your new passion in astronomy. But don’t be too hasty to keep up with the big wigs in the astronomy clubs that have advanced telescopes. There is another alternative that can give you most of the advantages",
           "data": "Mon Nov 01 2010 15:40:31 GMT+0600 (Киргизия)"
+        }
+      ],
+      "reviews": [
+        {
+          "id": 0,
+          "imageUrl": "@/assets/img/DetailsAboutTeach/imageReview1.png",
+          "studentName": "Featured Review",
+          "courses": 44,
+          "reviews": 5,
+          "grade": 5,
+          "text": "This is really a great course to get a kickstart to your carrier. Exercises are really helpful, I myself had a great experience doing them. Instructor the other hand is great, very creative and great learning techniques are implied in the course to keep you excited and to learn everything with easy and in a comfortable way. ",
+          "data": "05.10.21"
+        },
+        {
+          "id": 1,
+          "imageUrl": "@/assets/img/DetailsAboutTeach/imageReview2.png",
+          "studentName": "Keith Bowman",
+          "courses": 64,
+          "reviews": 10,
+          "grade": 3,
+          "text": "It seems from the moment you begin to take your love of astronomy seriously, the thing that is on your mind is what kind of telescope will you get. And there is no question, investing in a good telescope can really enhance your enjoyment of your new passion in astronomy. But don’t be too hasty to keep up with the big wigs in the astronomy clubs that have advanced telescopes. There is another alternative that can give you most of the advantages",
+          "data": "02.12.21"
         }
       ]
     }

@@ -2,7 +2,7 @@
   <div class="cart-teach">
     <div class="cart-teach__about_teach col-4">
       <h4>About the Instructor</h4>
-      <img :src="course.teacher.imgaeUrl" alt="Image teacher" />
+      <img :src="course.teacher.imageUrl" alt="Image teacher" />
       <ul class="cart-teach__about_teach_list">
         <li
           v-for="item in course.teacher.data"
@@ -40,8 +40,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ref } from '@vue/reactivity'
+<script>
 export default {
   props: ['course'],
   setup() {
@@ -393,7 +392,7 @@ export default {
     top: 23vmin;
   }
 }
-@media screen and (max-width: 375px){
+@media screen and (max-width: 375px) {
   .cart-teach {
     height: 224vmin;
   }
@@ -419,7 +418,7 @@ export default {
     right: -33%;
   }
 }
-@media screen and (max-width: 321px){
+@media screen and (max-width: 321px) {
   .cart-teach {
     height: 240vmin;
   }

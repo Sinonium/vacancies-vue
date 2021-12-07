@@ -106,7 +106,7 @@
     </div>
     <main class="details-page__content">
       <div v-if="currentDetailsPage.title === 'Instructor'">
-        <DetailsAboutTeach />
+        <DetailsAboutTeach :course="course"/>
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -202,13 +202,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
     FeedBack,
@@ -219,18 +220,27 @@ export default {
   },
   props: ['currentDetailsPage'],
   setup(context, props) {
-    const currentDetailsPage = ref({
+    interface ICurDetPage {
+      title: string
+    }
+    const course = ref(<object>{})
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
+    }
+    const currentDetailsPage = ref(<ICurDetPage>{
       title: 'About',
     })
-    const handleCurrentPage = (currentWord) => {
-      // console.log(context.currentDetailsPage = currentWord)
-      // context.currentDetailsPage = currentWord
-      // props.emit('changeCurPage', currentWord)
-      // context.emit(changeCurPage , currentWord)
+    const handleCurrentPage = (currentWord: string): void => {
       currentDetailsPage.value.title = currentWord
     }
 
+    onMounted(() => {
+      getDoc()
+    })
     return {
+      course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
       studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
