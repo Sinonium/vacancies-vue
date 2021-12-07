@@ -104,7 +104,6 @@
         </li>
       </ul>
     </div>
-    <AddToCart />
     <main class="details-page__content">
       <div v-if="currentDetailsPage.title === 'Instructor'">
         <DetailsAboutTeach />
@@ -125,7 +124,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage.title === 'About'">
-        <Tutorials />
+        <CourseContent />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -134,7 +133,7 @@
             @click="handleCurrentPage('Content')"
             class="details-page__bottom-btn_push_page"
           >
-            <img :src="pencilIcon" alt="">
+            <img :src="pencilIcon" alt="" />
             <span> Content </span>
           </div>
           <div class="details-page__bottom-arrow_next">
@@ -150,8 +149,9 @@
           </div>
           <div
             @click="handleCurrentPage('Instructor')"
-            class="details-page__bottom-btn_push_page">
-            <img :src="studIcon" alt="">
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="studIcon" alt="" />
             <span>Instructor</span>
           </div>
           <div class="details-page__bottom-arrow_next">
@@ -169,7 +169,7 @@
             @click="handleCurrentPage('About')"
             class="details-page__bottom-btn_push_page"
           >
-            <img :src="fireIcon" alt="">
+            <img :src="fireIcon" alt="" />
             <span> About </span>
           </div>
           <div class="details-page__bottom-arrow_next">
@@ -184,8 +184,11 @@
         <div class="details-page__bottom-arrow_prev">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
-        <div @click="handleCurrentPage('Description')" class="details-page__bottom-btn_push_page">
-          <img :src="kebabIcon" alt="">
+        <div
+          @click="handleCurrentPage('Description')"
+          class="details-page__bottom-btn_push_page"
+        >
+          <img :src="kebabIcon" alt="" />
           <span>Description</span>
         </div>
         <div class="details-page__bottom-arrow_next">
@@ -193,30 +196,37 @@
         </div>
       </div>
     </main>
+    <div class="details-page__modal">
+      <AddToCart />
+    </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
-import { ref } from '@vue/reactivity'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
-import Tutorials from '@/components/Tutorials.vue'
+import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
+import { ref } from '@vue/reactivity'
 export default {
   components: {
     FeedBack,
     AddToCart,
     Description,
     DetailsAboutTeach,
-    Tutorials,
+    CourseContent,
   },
-  setup() {
+  props: ['currentDetailsPage'],
+  setup(context, props) {
     const currentDetailsPage = ref({
       title: 'About',
     })
-
-    const handleCurrentPage = (currentWord: string): void => {
+    const handleCurrentPage = (currentWord) => {
+      // console.log(context.currentDetailsPage = currentWord)
+      // context.currentDetailsPage = currentWord
+      // props.emit('changeCurPage', currentWord)
+      // context.emit(changeCurPage , currentWord)
       currentDetailsPage.value.title = currentWord
     }
 
@@ -227,8 +237,8 @@ export default {
       pencilIcon: require('@/assets/icons/DetailsAboutTeach/pencil.svg'),
       kebabIcon: require('@/assets/icons/DetailsAboutTeach/kebab.svg'),
       ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
-      currentDetailsPage,
       handleCurrentPage,
+      currentDetailsPage,
     }
   },
 }
@@ -291,6 +301,11 @@ body {
       }
     }
   }
+  &__modal {
+    position: absolute;
+    top: vw(130);
+    left: vw(1150);
+  }
 }
 .details-page__head ul li.active {
   &::before {
@@ -349,6 +364,57 @@ body {
       @include font(vw(12), bold, 20px, $greyBlue60);
       margin-left: vw(16);
     }
+  }
+}
+@media screen and (max-width: 1123px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 5vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 823px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 4vw;
+        li.active {
+          &::before {
+            margin-top: -0.8vw;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 759px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 3vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 719px) {
+  .details-page {
+    &__head {
+      ul {
+        li {
+          span {
+            @include font(vw(17), bold, 20px, $greyBlue60);
+          }
+          svg {
+            height: 13px;
+          }
+        }
+      }
+    }
+  }
+  .details-page__head ul li.active span {
+    @include font(vw(17), bold, 20px, $blue);
   }
 }
 </style>
