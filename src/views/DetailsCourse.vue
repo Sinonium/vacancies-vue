@@ -106,7 +106,7 @@
     </div>
     <main class="details-page__content">
       <div v-if="currentDetailsPage.title === 'Instructor'">
-        <DetailsAboutTeach />
+        <DetailsAboutTeach :course="course"/>
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -209,6 +209,7 @@ import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
     FeedBack,
@@ -227,10 +228,27 @@ export default {
       // context.currentDetailsPage = currentWord
       // props.emit('changeCurPage', currentWord)
       // context.emit(changeCurPage , currentWord)
+    interface ICurDetPage {
+      title: string
+    }
+    const course = ref(<object>{})
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
+    }
+    const currentDetailsPage = ref(<ICurDetPage>{
+      title: 'About',
+    })
+    const handleCurrentPage = (currentWord: string): void => {
       currentDetailsPage.value.title = currentWord
     }
 
+    onMounted(() => {
+      getDoc()
+    })
     return {
+      course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
       studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
@@ -267,7 +285,7 @@ body {
       border-radius: 1px;
     }
     ul {
-      margin-left: vw(128);
+      margin-left: vw(100);
       display: flex;
       align-items: center;
       list-style-type: none;

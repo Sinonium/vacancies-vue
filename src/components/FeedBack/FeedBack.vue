@@ -4,35 +4,88 @@
       <form @submit.prevent="handleTextAddText">
         <div>
           <img :src="AvatarUserIcon" alt="" />
-          <input type="text" placeholder="Your review" v-model="textInp" />
+          <input type="text" placeholder="Your review" v-model="textInp"/>
         </div>
         <button>Add review</button>
       </form>
+      <span>{{ errorNullTextInp }}</span>
     </div>
     <div class="feedback__content">
       <h2>Reviews course</h2>
-      <div v-for="rev in reviews" :key="rev">
-        <img :src="AvatarReviewIcon" alt="Avatar" />
-        <p>{{ rev }}</p>
+      <div v-for="review in reviews" :key="review">
+        <CartRev :review="review" />
       </div>
     </div>
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import { ref } from '@vue/reactivity'
+import CartRev from '../DetailsAboutTeach/BlockReviews/CartReview/CartReview.vue'
+import { onMounted } from '@vue/runtime-core'
 export default {
+  components: { CartRev },
   setup() {
-    const reviews = ref(['loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem'])
+    const course = ref()
+    const currentDate = ref()
+    const reviews = ref([])
+    const reviewUser = ref({})
     const textInp = ref('')
-
-    const handleTextAddText = (): void => {
-      reviews.value.push(textInp.value)
-      textInp.value = ''
+    const errorNullTextInp = ref('')
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
+      reviews.value = course.value.reviews
     }
+
+    const handleTextAddText = async () => {
+      if (textInp.value.length) {
+        errorNullTextInp.value = ''
+        currentDate.value = new Date()
+        let test = ref([])
+        test.value = [currentDate.value.getDay(),currentDate.value.getMonth(),currentDate.value.getFullYear()]
+        reviewUser.value = {
+          imageUrl: '',
+          studentName: 'Person',
+          courses: 22,
+          reviews: 12,
+          grade: 0,
+          text: textInp.value,
+          date: test.value,
+        }
+        await fetch('http://localhost:3000/course', {
+          method: 'PATCH',
+          body: JSON.stringify({
+            reviews: [reviewUser.value],
+          }),
+          headers: { 'Content-type': 'application/json' },
+        })
+        textInp.value = ''
+        currentDate.value = new Date()
+        reviewUser.value = {}
+        errorNullTextInp.value = ''
+        await getDoc()
+      }
+      if(!textInp.value.length) {
+        errorNullTextInp.value = 'Feedback is empty'
+        setTimeout(() => {
+          errorNullTextInp.value = ''
+        },700)
+      }
+    }
+
+    onMounted(() => {
+      getDoc()
+    })
     return {
+      errorNullTextInp,
+      reviewUser,
+      currentDate,
+      course,
       AvatarReviewIcon: require('../../assets/img/DetailsAboutTeach/imageReview1.png'),
       AvatarUserIcon: require('@/assets/img/sidebar/avatarIcon.png'),
+      cross: require('@/assets/icons/FeedBack/cross.svg'),
       handleTextAddText,
       textInp,
       reviews,
@@ -48,13 +101,15 @@ export default {
   margin-left: vw(155);
   &__create-rev {
     margin-top: vw(30);
-    height: vw(105);
+    height: vw(160);
     width: vw(700);
     padding: vw(35) vw(40) vw(74) vw(37);
     background: $white;
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+    display: flex;
+    flex-direction: column;
     form {
       display: flex;
       align-items: center;
@@ -79,6 +134,23 @@ export default {
           @include flex();
           margin-left: vw(20);
         }
+        span {
+          clip-path: polygon(
+            0 13%,
+            11% 0,
+            44% 42%,
+            72% 2%,
+            85% 9%,
+            57% 50%,
+            90% 84%,
+            79% 94%,
+            44% 60%,
+            10% 93%,
+            0 82%,
+            33% 50%
+          );
+          background: $greyBlue70;
+        }
       }
       button {
         color: $white;
@@ -101,24 +173,14 @@ export default {
         }
       }
     }
+    span {
+      margin-top: vw(10);
+      @include font(vw(14), bold, 20px, red);
+    }
   }
   &__content {
     h2 {
       @include font(vw(20), bold, 20px, $blue);
-    }
-    div {
-      margin-top: vw(30);
-      background: $white;
-      border-radius: 10px;
-      padding: vw(30) vw(40) vw(74) vw(37);
-      height: vw(105);
-      width: vw(625);
-      // img {
-      // }
-      p {
-        max-width: 400px;
-        @include font(vw(14), bold, 20px, $greyBlue70);
-      }
     }
   }
 }
