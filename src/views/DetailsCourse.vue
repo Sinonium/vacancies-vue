@@ -267,7 +267,7 @@ body {
       border-radius: 1px;
     }
     ul {
-      margin-left: vw(128);
+      margin-left: vw(100);
       display: flex;
       align-items: center;
       list-style-type: none;
