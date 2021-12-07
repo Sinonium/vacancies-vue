@@ -1,6 +1,6 @@
 import { ref } from 'vue'
-import { firestore } from '../firebase/config'
-import { getDocs, collection, query, limit } from '@firebase/firestore'
+import { firestore } from '@/firebase/config'
+import { getDocs, collection, query, limit } from '@/firebase/firestore'
 
 const getCollection = async (collectionName, a) => {
   const documents = ref(null)
