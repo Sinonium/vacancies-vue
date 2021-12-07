@@ -202,7 +202,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
@@ -220,6 +220,14 @@ export default {
   },
   props: ['currentDetailsPage'],
   setup(context, props) {
+    const currentDetailsPage = ref({
+      title: 'About',
+    })
+    const handleCurrentPage = (currentWord) => {
+      // console.log(context.currentDetailsPage = currentWord)
+      // context.currentDetailsPage = currentWord
+      // props.emit('changeCurPage', currentWord)
+      // context.emit(changeCurPage , currentWord)
     interface ICurDetPage {
       title: string
     }

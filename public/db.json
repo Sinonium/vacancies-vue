@@ -1,356 +1,221 @@
 {
-  "about": [
+  "learn": [
+  "Get friendly support in the course Q&A",
+  "Inheritance + Prototpe Chain",
+  "Practice your skills with coding challenges",
+  "Inheritance + Prototpe Chain",
+  "Practice your skills with coding challenges",
+  "Scope and Execution Context",
+  "JavaScript Modules",
+  "Error Yanding",
+  "React library",
+  "Get friendly support in the course Q&A",
+  "Downloadable lectures for all projects",
+  "Object Orinted Programming",
+  "Scope and Execution Context",
+  "Latest features: ES6, ES7, ES8, ES9"
+],
+
+"articles":[
+{
+"title": "Course Content",
+"allTime":  "8:82",
+"content":[
+{
+"type": "video",
+"name": "How To Succedd In This Course",
+"time": "05:34"
+},
+{
+"type": "text",
+"name": "Exercise: Meet The Comminity!",
+"time": "01:08"
+},
+{
+  "type": "video",
+  "name": "Exercise: Meet The Comminity!",
+  "time": "01:08"
+}
+]
+},
+{
+"title": "JavaScript Foundation",
+"lectures": "3 Lectures",
+"allTime": "7:82",
+"content":[
+{
+"type": "video",
+"name": "Section Overview",
+"time": "05:34"
+},
+{
+"type": "video",
+"name": "Exercise: Javascript Engine",
+"time": "05:08"
+},
+{
+  "type": "video",
+  "name": "Marketing and Sales",
+  "time": "01:08"
+  }
+]
+},
+{
+"title": "Putting It All Together: The Budget App Project",
+"lectures": "3 Lectures",
+"allTime": "13:82",
+"content":[
+{
+"type": "video",
+"name": "Local servers",
+"time": "05:34"
+},
+{
+"type": "text",
+"name": "How to work with JSHint",
+"time":  "01:08"
+},
+{
+  "type": "video",
+  "name": "How to create fadeIn / fadeOut animations",
+  "time":  "01:08"
+  }
+]
+},
+{
+  "title": "Next Generation JavaScript: Intro to ES6",
+  "lectures": "3 Lectures",
+  "allTime": "10:82",
+  "content":[
+  {
+  "type": "video",
+  "name": "How to work with a server in JavaScript part 1",
+  "time": "02:34"
+  },
+  {
+  "type": "video",
+  "name": "How to work with a server in JavaScript part 2",
+  "time":  "03:08"
+  },
+  {
+    "type": "video",
+    "name": "How to work with a server in JavaScript part 3",
+    "time":  "01:08"
+    }
+  ]
+  },
+  {
+    "title": "Customizing the code editor",
+    "lectures": "3 Lectures",
+    "allTime": "11:82",
+    "content":[
     {
-      "themes": [
-        "Get friendly support in the course Q&A",
-        "Downloadable lectures for all projects",
-        "Inheritance + Prototpe Chain",
-        "Practice your skills with coding challenges",
-        "Scope and Execution Context",
-        "Object Orinted Programming",
-        "Latest features: ES6, ES7, ES8, ES9",
-        "Closures",
-        "JavaScript Modules",
-        "Error Yanding",
-        "React library",
-        "Get friendly support in the course Q&A",
-        "Downloadable lectures for all projects"
-      ],
-      "Course Content": [
-        {
-          "title": "How To Succedd In This Course",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "isPreview": "Preview"
-        },
-        {
-          "title": "Join Our Online Classroom",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Meet The Comminity!",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        }
-      ],
-      "JavaScriptFoundation": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "isPreview": "Preview"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "isPreview": "Preview"
-        }
-      ],
-      "PuttingItAllTogether:TheBudgetAppProject": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "Preview": "Preview"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        }
-      ],
-      "NextGenerationJavaScript:IntrotoES6": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "Preview": "Preview"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        }
-      ],
-      "Modern JavaScript: Using ES6": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "Preview": "Preview"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        }
-      ],
-      "React library": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "Preview": "Preview"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        }
-      ],
-      "Loops in Javascript": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "Preview": "Preview"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        }
-      ],
-      "Data types": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "Preview": "Preview"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        }
-      ],
-      "Interaction: alert, prompt, confirm": [
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm",
-          "Preview": "Preview"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Section Overview",
-          "time": "5:34",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
-        },
-        {
-          "title": "Exercise: Javascript Engine",
-          "time": "01:08",
-          "video-link": "https://wedfrtyuikjhgfcvbnm"
+    "type": "video",
+    "name": "How To Succedd In This Course",
+    "time": "05:34"
+    },
+    {
+    "type": "video",
+    "name": "Implementing a module with displaying images",
+    "time":  "03:08"
+    },
+    {
+      "type": "video",
+      "name": "Timer operation",
+      "time":  "01:08"
+      }
+    ]
+    },
+    {
+      "title": "Course Content",
+      "lectures": "3 Lectures",
+      "allTime": "11:82",
+      "content":[
+      {
+      "type": "video",
+      "name": "How To Succedd In This Course",
+      "time": "05:34"
+      },
+      {
+      "type": "video",
+      "name": "Join Our Online Classroom",
+      "time":  "03:08"
+      },
+      {
+        "type": "video",
+        "name": "Exercise: Meet The Comminity!",
+        "time":  "01:08"
         }
       ]
-    }
-  ],
+      },
+      {
+        "title": "Putting It All Together: The Budget App Project",
+        "lectures": "3 Lectures",
+        "allTime": "13:82",
+        "content":[
+        {
+        "type": "video",
+        "name": "How To Succedd In This Course",
+        "time": "05:34"
+        },
+        {
+        "type": "video",
+        "name": "Local servers",
+        "time":  "07:08"
+        },
+        {
+          "type": "video",
+          "name": "Exercise: Meet The Comminity!",
+          "time":  "01:08"
+          }
+        ]
+        },
+        {
+          "title": "JavaScript Foundation",
+          "lectures": "3 Lectures",
+          "allTime": "7:82",
+          "content":[
+          {
+          "type": "video",
+          "name": "Section Overview",
+          "time": "05:34"
+          },
+          {
+          "type": "video",
+          "name": "Exercise: Javascript Engine",
+          "time":  "03:08"
+          },
+          {
+            "type": "video",
+            "name": "Marketing and Sales",
+            "time":  "01:08"
+            }
+          ]
+          },
+          {
+            "title": "Customizing the code editor",
+            "lectures": "3 Lectures",
+            "allTime": "7:82",
+            "content":[
+            {
+            "type": "video",
+            "name": "Timer operation",
+            "time": "05:34"
+            },
+            {
+            "type": "video",
+            "name": "Exercise: Javascript Engine",
+            "time":  "03:08"
+            },
+            {
+              "type": "video",
+              "name": "Implementing a module with displaying images",
+              "time":  "01:08"
+              }
+            ]
+
+}
+],
   "courses": [
     {
       "id": 0,
