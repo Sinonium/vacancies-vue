@@ -31,6 +31,7 @@
             <router-link to="/" class="header__record-logIn">
                 Log In
             </router-link>
+            <!-- <span v-else>{{polzovatel}}</span> -->
             <router-link to="/" class="header__record-signUp">
                 Sing Up
             </router-link>
@@ -39,7 +40,7 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
+import { computed, ref } from '@vue/reactivity';
 export default {
     setup() {
         const headerNav = ref([
@@ -50,7 +51,7 @@ export default {
 			"Support",
 		]);
 
-
+        const polzovatel = computed(()=> dasdasdasd)
         return {headerNav}
     }
 }

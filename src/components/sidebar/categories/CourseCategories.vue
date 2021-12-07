@@ -1,7 +1,7 @@
 <template>
    <ul class="categories">
       <li
-         @click="handleClick('dev')"
+         @click="handleClick('dev'), test('Development')"
          :class="{ clickedCata: clickedCategories === 'dev' }"
       >
          <img :src="devIcon" alt="" />
@@ -190,10 +190,16 @@
          SubMusicCategories,
          SubTeachCategories,
       },
-      setup() {
+      setup(props, context) {
          const cata = (cata, subcata = "отсутствует") => {
             console.log("категория " + cata, "подкатегория " + subcata);
+            
+            return cata, subcata
          };
+         const test = (i) => {
+            context.emit("clickedCata", i,  cata);
+            console.log(i, cata);
+         }
          const handleClick = (i) => {
             if (clickedCategories.value !== i) {
                return (clickedCategories.value = i);
@@ -203,6 +209,7 @@
          };
          const clickedCategories = ref(null);
          return {
+            test,
             cata,
             handleClick,
             clickedCategories,

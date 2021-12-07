@@ -14,7 +14,7 @@
          :class="{ clicked: clickedCategories === 'SystemSoftware' }"
          @click="handleCategories('SystemSoftware')"
       >
-         <span>SystemSoftware</span>
+         <span>System Software</span>
       </li>
       <SystemSoftware
          @clickedCata="setSubCata"

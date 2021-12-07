@@ -1,72 +1,60 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 'Software' }"
-         @click="handleCategories('Software')"
+         :class="{ clicked: clickedCategories === 'Coding' }"
+         @click="handleCategories('Coding')"
       >
-         <span>Software</span>
+         <span>Coding</span>
       </li>
-      <Software
+      <Coding
          @clickedCata="setSubCata"
-         v-if="clickedCategories === 'Software'"
+         v-if="clickedCategories === 'Coding'"
       />
       <li
-         :class="{ clicked: clickedCategories === 'SystemSoftware' }"
-         @click="handleCategories('SystemSoftware')"
+         :class="{ clicked: clickedCategories === 'Algorithms' }"
+         @click="handleCategories('Algorithms')"
       >
-         <span>SystemSoftware</span>
+         <span>Algorithms</span>
       </li>
-      <SystemSoftware
+      <Algorithms
          @clickedCata="setSubCata"
-         v-if="clickedCategories === 'SystemSoftware'"
+         v-if="clickedCategories === 'Algorithms'"
       />
       <li
-         :class="{ clicked: clickedCategories === 'ApplicationSoftware' }"
-         @click="handleCategories('ApplicationSoftware')"
+         :class="{ clicked: clickedCategories === 'CRM' }"
+         @click="handleCategories('CRM')"
       >
-         <span>Application Software</span>
+         <span>CRM</span>
       </li>
-      <ApplicationSoftware
+      <CRM
          @clickedCata="setSubCata"
-         v-if="clickedCategories === 'ApplicationSoftware'"
+         v-if="clickedCategories === 'CRM'"
       />
       <li
-         :class="{ clicked: clickedCategories === 'OperatingSystem' }"
-         @click="handleCategories('OperatingSystem')"
+         :class="{ clicked: clickedCategories === 'Architecture' }"
+         @click="handleCategories('Architecture')"
       >
-         <span>Operating System</span>
+         <span>Architecture</span>
       </li>
-      <OperatingSystem
+      <Architecture
          @clickedCata="setSubCata"
-         v-if="clickedCategories === 'OperatingSystem'"
-      />
-      <li
-         :class="{ clicked: clickedCategories === 'OSTypes' }"
-         @click="handleCategories('OSTypes')"
-      >
-         <span>OS Types</span>
-      </li>
-      <OSTypes
-         @clickedCata="setSubCata"
-         v-if="clickedCategories === 'OSTypes'"
+         v-if="clickedCategories === 'Architecture'"
       />
    </ul>
 </template>
 
 <script>
    import { ref } from "@vue/reactivity";
-   import Software from "./Software.vue";
-   import SystemSoftware from "./SystemSoftware.vue";
-   import ApplicationSoftware from "./ApplicationSoftware.vue";
-   import OperatingSystem from "./OperatingSystem.vue";
-   import OSTypes from "./OSTypes.vue";
+   import Coding from "./Coding.vue";
+   import Algorithms from "./Algorithms.vue";
+   import CRM from "./CRM.vue";
+   import Architecture from "./Architecture.vue";
    export default {
       components: {
-         Software,
-         SystemSoftware,
-         ApplicationSoftware,
-         OperatingSystem,
-         OSTypes,
+         Coding,
+         Algorithms,
+         CRM,
+         Architecture,
       },
       setup(props, context) {
          const subCategory = ref(undefined);
