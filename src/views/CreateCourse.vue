@@ -8,7 +8,7 @@
               <p class="create-course__instruction">Write the name of your course. The name should attract attention and reflect the essence of the course.</p>
               <label></label>
               <input type="text" v-model="name">
-              <span class="quantity">3/100 Characters (minimum 5)</span>
+              
               <p class="create-course__title">Some good examples:</p>
               <div class="create-course__examples">
               <span>Technical Design</span>
@@ -47,7 +47,6 @@
                   </div>
         
                   <textarea name="comment" cols="40" rows="3" placeholder="Tell us in detail about your course"></textarea>
-                  <span class="quantity">3/100 Characters (minimum 5)</span>
                   <p class="create-course__title">Photo of your course</p>
                   <p class="create-course__instruction">Write the URL:</p>
                   <input type="text" placeholder="https://drive.google.com/uc?export=view&id=1B5ZusvPN1mH91omnBkzilaJL8PkWC08e" v-model="imageURL">
@@ -133,8 +132,7 @@
           
           <div class="publish">
               <button @click="handleSubmit">Publish Course</button>
-          </div>
-      
+              </div>
   </form>
 </template>
 
@@ -148,6 +146,7 @@ setup() {
     const imageURL = ref("");
     const themes = ref("");
     const teacher = ref("");
+    
     const handleSubmit = async () => {
         try{
             const newCourse = {
@@ -168,7 +167,9 @@ setup() {
            console.log(err)
         }
     }
-    return { handleSubmit, name, price, videoURL, imageURL, teacher}
+    
+    
+    return { handleSubmit, name,price, videoURL, imageURL, teacher, themes}
 }
 }
 </script>
@@ -178,22 +179,23 @@ setup() {
 
 .admin-board{
     margin: vw(30) vw(100);
-    width: vw(750);
+    width: vw(760);
     &__heading{
         @include font(vw(16),700, vh(30));
         color: $greyBlue60;
     }
     .publish{
-        margin: vw(60) vw(60);
+        margin: 0 vw(30);
         button{
         @include font(vw(14),600, vh(30));
         color: white;
         background-color: $blue;
-        padding: vw(33) vw(250);
+        width: vw(200);
+        height: vw(60);
         border: none;
         border-radius: vw(10);
-        } 
-    }
+        }               
+        }
     .create-course{
         margin: vw(30) 0;
         padding: vw(60);
@@ -209,11 +211,6 @@ setup() {
             color: $greyBlue70;
             margin: vw(30) 0 vw(20) 0;
             }
-            .quantity{
-                @include font(vw(10), 700, vh(20));
-                color: $greyBlue80;
-                margin-left: vw(460);
-            }
             input{
                 border: 2px solid #F5F6F7;
                 box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
@@ -221,6 +218,7 @@ setup() {
                 padding: vw(16) vw(10) vw(16) vw(15);
                 width: vw(600);
                 margin: 0 0 vw(15) 0;
+                @include font(vw(13), 600, vh(30)); 
             }
             &__examples{
                 span{
@@ -301,13 +299,14 @@ setup() {
         @include font(vmin(15),700, vmin(15));
     }
     .publish{
-        margin: vmin(10) vmin(5);
+        margin: 0 vmin(15);
         button{
         @include font(vmin(7),600, vmin(15));
-        padding: vmin(10) vmin(110);
-        border-radius: vmin(5);
-        color: $white;
-        } 
+        color: white;
+        width: vmin(100);
+        height: vmin(30);
+        border-radius: vmin(10);
+        }   
     }
     .create-course{
         margin: vmin(15) 0;
@@ -320,10 +319,6 @@ setup() {
             &__instruction{
             @include font(vmin(7), 700, vmin(13));
             margin: vmin(15) 0 vmin(10) 0;
-            }
-            .quantity{
-                @include font(vmin(8), 700, vmin(10));
-                margin-left: vmin(115);
             }
             input{
                 border-radius: vmin(5);

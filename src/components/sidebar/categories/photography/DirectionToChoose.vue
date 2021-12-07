@@ -4,7 +4,7 @@
          v-for="(cata, index) in categories"
          :key="cata"
          :class="{ clicked: clickedCategories === index }"
-         @click="clickedCategories = index"
+         @click="clickedCategories = index , $emit('clickedCata', cata)"
       >
          <span>{{ cata }}</span>
       </li>

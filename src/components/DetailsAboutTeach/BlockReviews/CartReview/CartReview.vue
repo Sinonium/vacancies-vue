@@ -69,7 +69,7 @@ export default {
   props: ['review'],
   setup(props: any) {
     const currentDate: Date = new Date()
-    const reviewDate: Date = new Date(parseInt(props.review.data))
+    const reviewDate: Date = new Date(props.review.data)
     const resultReviewDate = ref(<number>0)
 
     const getSomeNumAgo = (firstDate: Date, secondDate: Date): void => {
@@ -81,6 +81,7 @@ export default {
     
     getSomeNumAgo(currentDate, reviewDate)
     console.log(resultReviewDate.value)
+    console.log(reviewDate)
 
     return {
       resultReviewDate,
