@@ -3,7 +3,7 @@
     <div class="details-page__head">
       <ul>
         <li
-          :class="{ active: currentDetailsPage.title === 'About' }"
+          :class="{ active: currentDetailsPage === 'About' }"
           @click="handleCurrentPage('About')"
         >
           <svg
@@ -23,7 +23,7 @@
           <span>About</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Content' }"
+          :class="{ active: currentDetailsPage === 'Content' }"
           @click="handleCurrentPage('Content')"
         >
           <svg
@@ -43,7 +43,7 @@
           <span>Content</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Description' }"
+          :class="{ active: currentDetailsPage === 'Description' }"
           @click="handleCurrentPage('Description')"
         >
           <svg
@@ -63,7 +63,7 @@
           <span>Description</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Instructor' }"
+          :class="{ active: currentDetailsPage === 'Instructor' }"
           @click="handleCurrentPage('Instructor')"
         >
           <svg
@@ -83,7 +83,7 @@
           <span>Instructor</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Feedback' }"
+          :class="{ active: currentDetailsPage === 'Feedback' }"
           @click="handleCurrentPage('Feedback')"
         >
           <svg
@@ -105,8 +105,8 @@
       </ul>
     </div>
     <main class="details-page__content">
-      <div v-if="currentDetailsPage.title === 'Instructor'">
-        <DetailsAboutTeach />
+      <div v-if="currentDetailsPage === 'Instructor'">
+        <DetailsAboutTeach :course="course" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -123,7 +123,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'About'">
+      <div v-if="currentDetailsPage === 'About'">
         <CourseContent />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
@@ -141,7 +141,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'Description'">
+      <div v-if="currentDetailsPage === 'Description'">
         <Description />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
@@ -159,7 +159,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'Feedback'">
+      <div v-if="currentDetailsPage === 'Feedback'">
         <FeedBack />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
@@ -177,10 +177,7 @@
           </div>
         </div>
       </div>
-      <div
-        v-if="currentDetailsPage.title === 'Content'"
-        class="details-page__bottom"
-      >
+      <div v-if="currentDetailsPage === 'Content'" class="details-page__bottom">
         <div class="details-page__bottom-arrow_prev">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
@@ -202,7 +199,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
@@ -217,20 +214,10 @@ export default {
     DetailsAboutTeach,
     CourseContent,
   },
-  props: ['currentDetailsPage'],
-  setup(context: any, props: any) {
-    interface ICurDetPage {
-      title: string
-    }
-    const currentDetailsPage = ref(<ICurDetPage>{
-      title: 'About',
-    })
-    const handleCurrentPage = (currentWord: string): void => {
-      // console.log(context.currentDetailsPage = currentWord)
-      // context.currentDetailsPage = currentWord
-      // props.emit('changeCurPage', currentWord)
-      // context.emit(changeCurPage , currentWord)
-      currentDetailsPage.value.title = currentWord
+  setup() {
+    const currentDetailsPage = ref('About')
+    const handleCurrentPage = (currentWord) => {
+      currentDetailsPage.value = currentWord
     }
 
     return {
@@ -270,7 +257,7 @@ body {
       border-radius: 1px;
     }
     ul {
-      margin-left: vw(128);
+      margin-left: vw(100);
       display: flex;
       align-items: center;
       list-style-type: none;
@@ -367,6 +354,57 @@ body {
       @include font(vw(12), bold, 20px, $greyBlue60);
       margin-left: vw(16);
     }
+  }
+}
+@media screen and (max-width: 1123px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 5vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 823px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 4vw;
+        li.active {
+          &::before {
+            margin-top: -0.8vw;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 759px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 3vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 719px) {
+  .details-page {
+    &__head {
+      ul {
+        li {
+          span {
+            @include font(vw(17), bold, 20px, $greyBlue60);
+          }
+          svg {
+            height: 13px;
+          }
+        }
+      }
+    }
+  }
+  .details-page__head ul li.active span {
+    @include font(vw(17), bold, 20px, $blue);
   }
 }
 </style>

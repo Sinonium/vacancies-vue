@@ -1,5 +1,5 @@
 <template>
-  <form class="admin-board">
+  <form class="admin-board" @submit.prevent="handleSubmit()">
      
           <h3 class="admin-board__heading">New Course Creation</h3>
           <div class="create-course">
@@ -7,8 +7,8 @@
               <h4 class="create-course__title">Name of the course</h4>
               <p class="create-course__instruction">Write the name of your course. The name should attract attention and reflect the essence of the course.</p>
               <label></label>
-              <input type="text" v-model="name">
-              <span class="quantity">3/100 Characters (minimum 5)</span>
+              <input onkeyup="this.value=this.value.replace(/^\s/,'')" type="text" v-model="name">
+              
               <p class="create-course__title">Some good examples:</p>
               <div class="create-course__examples">
               <span>Technical Design</span>
@@ -45,74 +45,81 @@
                       </p>
                   </div>
                   </div>
-        
-                  <textarea name="comment" cols="40" rows="3" placeholder="Tell us in detail about your course"></textarea>
-                  <span class="quantity">3/100 Characters (minimum 5)</span>
+
+                  <p class="create-course__instruction">Type the heading</p>
+                  <textarea onkeyup="this.value=this.value.replace(/^\s/,'')" name="comment" cols="40" rows="3" placeholder="Type the heading" v-model="heading"></textarea>
+
+                  <p class="create-course__instruction">Tell us about course</p>
+                  <textarea onkeyup="this.value=this.value.replace(/^\s/,'')" name="comment" cols="40" rows="3" placeholder="Tell us about course" v-model="mainInfo"></textarea>
+
+                  <p class="create-course__instruction">Tell us in detail about your course  (it is not very important)</p>
+                  <textarea onkeyup="this.value=this.value.replace(/^\s/,'')" name="comment" cols="40" rows="3" placeholder="Tell us in detail about your course" v-model="moreInfo"></textarea>
+
                   <p class="create-course__title">Photo of your course</p>
                   <p class="create-course__instruction">Write the URL:</p>
-                  <input type="text" placeholder="https://drive.google.com/uc?export=view&id=1B5ZusvPN1mH91omnBkzilaJL8PkWC08e" v-model="imageURL">
+                  <input class="url-input" type="text" placeholder="https://drive.google.com/uc?export=view&id=1B5ZusvPN1mH91omnBkzilaJL8PkWC08e" v-model="imageURL">
 
                   <h4 class="create-course__title">What will the student study?</h4>
-                  <input type="text" v-model="themes">
+                  <input onkeyup="this.value=this.value.replace(/^\s/,'')" type="text" v-model="study">
 
                   <h4 class="create-course__title">Who this course is for:</h4>
-                  <input type="text">
+                  <input onkeyup="this.value=this.value.replace(/^\s/,'')" type="text" v-model="whoIsfor">
 
                   <h4 class="create-course__title">About Teacher</h4>
                   <p class="create-course__instruction">Type the name of the teacher</p>
-                  <input type="text" v-model="teacher">
+                  <input onkeyup="this.value=this.value.replace(/^\s/,'')" type="text" v-model="teacher">
               </div>
           </div>
 
           <div class="create-course">
               <div class="create-course__price">
                   <h4 class="create-course__title">Price:</h4>
-                  <input type="text" placeholder="100$" v-model="price">
+                  <input type="number" placeholder="100$" v-model="price">
               </div>
           </div>
 
           <div class="create-course">
               <div class="create-course__categories">
                   <h4 class="create-course__title">Project Categories</h4>
-                  <div class="category-blocks">
+        
 
-                  <div class="category-block">
-                  <p class="title">Web Development</p>
-                  <p class="category">Website Design</p>
-                  <p class="category">Layout</p>
-                  <p class="category">Web programming</p>
-                  <p class="category">Fully Website Dev</p>
-                  <p class="more">More</p>
-                  </div>
 
-                  <div class="category-block">
-                  <p class="title">Web Development</p>
-                  <p class="category">Website Design</p>
-                  <p class="category">Layout</p>
-                  <p class="category">Web programming</p>
-                  <p class="category">Fully Website Dev</p>
-                  <p class="more">More</p>
-                  </div>
 
-                  <div class="category-block">
-                  <p class="title">Web Development</p>
-                  <p class="category">Website Design</p>
-                  <p class="category">Layout</p>
-                  <p class="category">Web programming</p>
-                  <p class="category">Fully Website Dev</p>
-                  <p class="more">More</p>
-                  </div>
 
-                  <div class="category-block">
-                  <p class="title">Web Development</p>
-                  <p class="category">Website Design</p>
-                  <p class="category">Layout</p>
-                  <p class="category">Web programming</p>
-                  <p class="category">Fully Website Dev</p>
-                  <p class="more">More</p>
-                  </div>
-                  </div>
-                 
+                  <div>
+                    <h4 class="create-course__title">Course levels</h4>
+                    <p class="create-course__instruction">Choose the level of your course</p>
+                    <select name="" id="" v-model="level">
+                        <option value="all">all levels</option>
+                        <option value="initial">initial</option>
+                        <option value="medium">medium</option>
+                        <option value="expert">expert</option>
+                    </select>
+                    <label for=""></label>
+                    {{all}}
+                </div>
+                <div>
+                    <h4 class="create-course__title">Pricelist</h4>
+                    <p class="create-course__instruction">Choose one of this options</p>
+                    <select name="" id="" v-model="pricelist">
+                        <option value="paid">Paid courses and videos</option>
+                        <option value="free">Free courses and videos</option>
+                    </select>
+                    <label for=""></label>
+                    
+                </div>
+                <div>
+                    <h4 class="create-course__title">Duration courses</h4>
+                    <p class="create-course__instruction">Choose one of this options</p>
+                    <select name="" id="" v-model="duration">
+                        <option value="0-2">0-2 Hours</option>
+                        <option value="3-6">3-6 Hours</option>
+                        <option value="7-16">7-16 Hours</option>
+                        <option value="17+">17+  Hours</option>
+                    </select>
+                    <label for=""></label>
+                    
+                </div>
               </div>
           </div>
 
@@ -121,54 +128,92 @@
                   <h4 class="create-course__title">Course Content</h4>
                   
                   <p class="create-course__instruction">Type the name of the lecture:</p>
-                  <input type="text" placeholder="JavaScript Foundation">
+                  <input onkeyup="this.value=this.value.replace(/^\s/,'')" type="text" placeholder="JavaScript Foundation">
 
                   <p class="create-course__instruction">Type the name of the lesson:</p>
-                  <input type="text" placeholder="How To Succedd In This Course">
+                  <input onkeyup="this.value=this.value.replace(/^\s/,'')" type="text" placeholder="How To Succedd In This Course">
 
                   <p class="create-course__instruction">URL of the video:</p>
-                  <input type="text" placeholder="https://www.youtube.com/watch?v=aLb2xdSgpF4" v-model="videoURL">
+                  <input class="url-input" type="text" placeholder="https://www.youtube.com/watch?v=aLb2xdSgpF4" >
               </div>
           </div>
           
-          <div class="publish">
-              <button @click="handleSubmit">Publish Course</button>
+          <div class="create-course">
+           <select name="" id="" v-model="selected">
+               <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
+           </select>
+           <span>{{selected}}</span>
+           <SubACategories v-if="selected === 'Development'"/>
           </div>
-      
+
+          <div class="publish">
+              <button>Publish Course</button>
+              </div>
   </form>
 </template>
 
 <script>
+import addCollection from '@/composables/addCollection'
 import { ref } from "@vue/reactivity";
+import { v4 as uuid } from 'uuid'
+import SubACategories from '@/components/AdminPanel/SubACategories.vue';
 export default {
+  components: { SubACategories },
 setup() {
+    const categories = [
+         {
+         text: "development",
+         value: "Development",
+         },
+         {
+         text: "busines",
+         value: "Business",
+         }
+        
+    ];
+
+    const myId = uuid();
+
+    const selected = ref("");
+    const heading = ref("");
     const name = ref("");
     const price = ref("");
-    const videoURL = ref("");
     const imageURL = ref("");
-    const themes = ref("");
+    const mainInfo = ref("");
+    const moreInfo = ref("");
     const teacher = ref("");
+    const level = ref('');   
+    const initial = ref(''); 
+    const pricelist = ref('');
+    const duration = ref('');
+
     const handleSubmit = async () => {
-        try{
-            const newCourse = {
-                name: name.value,
-                price: price.value,
-                videoURL: videoURL.value,
-                imageURL: imageURL.value,
-                themes: themes.value,
-                teacher: teacher.value
-            }
-            await fetch('http://localhost:3000/courses', 
-            {method: "POST", 
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(newCourse)
-            })
-        }
-        catch(err){
-           console.log(err)
-        }
+    await addCollection('courses', {
+    name: name.value,
+    price: price.value,
+    imageURL: imageURL.value,
+    teacher: teacher.value,
+    level: level.value,
+    initial: initial.value,
+    pricelist: pricelist.value,
+    duration: duration.value,
+    moreInfoId: myId,
+    }),
+    await addCollection(
+    'more info', 
+    {
+        heading: heading.value,
+        mainInfo: mainInfo.value,
+        moreInfo: moreInfo.value,
+    },
+    false,
+    myId
+    )
     }
-    return { handleSubmit, name, price, videoURL, imageURL, teacher}
+    
+    
+
+    return { handleSubmit, name,price, imageURL, teacher, heading,mainInfo, moreInfo, categories,selected, level, initial, pricelist, duration}
 }
 }
 </script>
@@ -177,23 +222,25 @@ setup() {
 @import '@/assets/scss/index.scss';
 
 .admin-board{
-    margin: vw(30) vw(100);
-    width: vw(750);
+    margin: vw(30) vw(160);
+    width: vw(760);
     &__heading{
         @include font(vw(16),700, vh(30));
         color: $greyBlue60;
     }
+    
     .publish{
-        margin: vw(60) vw(60);
+        margin: 0 vw(30);
         button{
         @include font(vw(14),600, vh(30));
         color: white;
         background-color: $blue;
-        padding: vw(33) vw(250);
+        width: vw(200);
+        height: vw(60);
         border: none;
         border-radius: vw(10);
-        } 
-    }
+        }               
+        }
     .create-course{
         margin: vw(30) 0;
         padding: vw(60);
@@ -209,10 +256,16 @@ setup() {
             color: $greyBlue70;
             margin: vw(30) 0 vw(20) 0;
             }
-            .quantity{
-                @include font(vw(10), 700, vh(20));
-                color: $greyBlue80;
-                margin-left: vw(460);
+            label{
+            @include font(vw(13), 700, vh(25));
+            color: $greyBlue70;
+            }
+            select{
+                border-radius: vw(30);
+                padding: vw(10) vw(30);
+            }
+            .url-input{
+                text-transform: initial;  
             }
             input{
                 border: 2px solid #F5F6F7;
@@ -221,6 +274,8 @@ setup() {
                 padding: vw(16) vw(10) vw(16) vw(15);
                 width: vw(600);
                 margin: 0 0 vw(15) 0;
+                text-transform: capitalize;  
+                @include font(vw(13), 600, vh(30)); 
             }
             &__examples{
                 span{
@@ -301,13 +356,14 @@ setup() {
         @include font(vmin(15),700, vmin(15));
     }
     .publish{
-        margin: vmin(10) vmin(5);
+        margin: 0 vmin(15);
         button{
         @include font(vmin(7),600, vmin(15));
-        padding: vmin(10) vmin(110);
-        border-radius: vmin(5);
-        color: $white;
-        } 
+        color: white;
+        width: vmin(100);
+        height: vmin(30);
+        border-radius: vmin(10);
+        }   
     }
     .create-course{
         margin: vmin(15) 0;
@@ -320,10 +376,6 @@ setup() {
             &__instruction{
             @include font(vmin(7), 700, vmin(13));
             margin: vmin(15) 0 vmin(10) 0;
-            }
-            .quantity{
-                @include font(vmin(8), 700, vmin(10));
-                margin-left: vmin(115);
             }
             input{
                 border-radius: vmin(5);
