@@ -8,7 +8,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import CartTeach from './CartTeach/CartTeach.vue'
 import CartCourseRating from '../DetailsAboutTeach/CartRating/CartCourseRating.vue'
 import BlockReviews from './BlockReviews/BlockReviews.vue'

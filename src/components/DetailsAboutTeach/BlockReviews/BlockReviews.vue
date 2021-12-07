@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import CartReview from './CartReview/CartReview.vue'
 export default {
   components: { CartReview },
