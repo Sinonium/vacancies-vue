@@ -4,8 +4,7 @@
       <form @submit.prevent="handleTextAddText">
         <div>
           <img :src="AvatarUserIcon" alt="" />
-          <input type="text" placeholder="Your review" v-model="textInp" required/>
-          <!-- <span @click="textInp = ''"</span> -->
+          <input type="text" placeholder="Your review" v-model="textInp"/>
         </div>
         <button>Add review</button>
       </form>
@@ -20,29 +19,19 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import { ref } from '@vue/reactivity'
 import CartRev from '../DetailsAboutTeach/BlockReviews/CartReview/CartReview.vue'
 import { onMounted } from '@vue/runtime-core'
 export default {
   components: { CartRev },
   setup() {
-    interface IRev {
-      id?: number | string
-      imageUrl?: string
-      studentName?: string
-      courses?: number
-      reviews?: number
-      grade?: number
-      text?: string
-      data?: string | number
-    }
-    const course: any = ref()
-    const currentDate = ref(<Date | string>new Date())
-    const reviews = ref(<IRev>[] > [])
-    const reviewUser = ref(<IRev>{})
-    const textInp = ref(<string>'')
-    const errorNullTextInp = ref(<string>'')
+    const course = ref()
+    const currentDate = ref()
+    const reviews = ref([])
+    const reviewUser = ref({})
+    const textInp = ref('')
+    const errorNullTextInp = ref('')
     const getDoc = async () => {
       const response = await fetch('http://localhost:3000/course')
       const json = await response.json()
@@ -52,20 +41,23 @@ export default {
 
     const handleTextAddText = async () => {
       if (textInp.value.length) {
+        errorNullTextInp.value = ''
         currentDate.value = new Date()
+        let test = ref([])
+        test.value = [currentDate.value.getDay(),currentDate.value.getMonth(),currentDate.value.getFullYear()]
         reviewUser.value = {
           imageUrl: '',
           studentName: 'Person',
           courses: 22,
           reviews: 12,
-          grade: 2,
+          grade: 0,
           text: textInp.value,
-          data: currentDate.value.toString(),
+          date: test.value,
         }
         await fetch('http://localhost:3000/course', {
           method: 'PATCH',
           body: JSON.stringify({
-            // reviews: [...reviews, reviewUser.value],
+            reviews: [reviewUser.value],
           }),
           headers: { 'Content-type': 'application/json' },
         })
@@ -74,8 +66,12 @@ export default {
         reviewUser.value = {}
         errorNullTextInp.value = ''
         await getDoc()
-      } else {
+      }
+      if(!textInp.value.length) {
         errorNullTextInp.value = 'Feedback is empty'
+        setTimeout(() => {
+          errorNullTextInp.value = ''
+        },700)
       }
     }
 
