@@ -49,27 +49,51 @@
 
 
 <script>
-import useSignup from "@/composables/useSignup";
-import { ref } from "@vue/reactivity";
+import { computed, ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
+import {useStore} from 'vuex'
+import addCollection from '@/composables/addCollection'
+
 
 export default {
   setup() {
-    const email = ref();
-    const password = ref();
-    const name = ref();
-    const { signup } = useSignup();
+    const email = ref("");
+    const password = ref("");
+    const name = ref("");
+    const userBuy = ref([]);
+    const addCourses = ref([]);
     const router = useRouter();
+    const store = useStore()
 
+
+      const currentUser = computed(() => store.state.auth.currentUser)
+  
     const handleSubmit = async () => {
       try {
-        await signup(email.value, password.value, name.value);
-        router.push("/");
-      } catch (err) {
+         await store.dispatch('createUser', {
+          email: email.value,
+          password: password.value,
+          name: name.value
+        });
 
+        const {user} = await currentUser.value
+
+        await addCollection('users', {
+          name: name.value,
+          email:email.value,
+          addCourses: addCourses.value,
+          UserBuy: userBuy.value,
+          isTeacher: false,
+          description: ''
+        }, false, user.uid)
+        await router.push("/");
+      } catch (err) {
+        console.log(err);
       }
     };
     return {
+      addCourses,
+      userBuy,
       name,
       password,
       email,
@@ -79,13 +103,22 @@ export default {
 };
 </script>
 
+
+
+
+
+
+
+
+
+
 <style lang="scss">
 @import "@/assets/scss/index.scss";
 
 .signup {
   width: vw(700);
   height: vw(550);
-  background-color: $greyBlue70;
+  background-color: $greyBlue25;
   margin-left: vw(200);
 
   border-radius: 25em /20em;
@@ -96,12 +129,12 @@ export default {
   h2 {
     @include font(vw(30), 400, vw(50));
     font-family: "San Francisco Pro";
-    color: $greyBlue20;
-    padding-top: vw(30);
+    color: $greyBlue70;
+    padding-top: vw(40);
     margin-left: vw(-10);
 
     strong {
-      color: $greyBlue25;
+      color: $greyBlue80;
     }
   }
   label {
@@ -150,7 +183,7 @@ export default {
       cursor: pointer;
       border: 2px solid $greyBlue60;
       transition: 0.3s;
-      margin-top: vw(20);
+      margin-top: vw(10);
       margin-left: vw(5);
       &:hover {
         background-color: $greyBlue25;
@@ -172,8 +205,8 @@ export default {
         text-align: right;
         color: #adb8cc;
         width: 57%;
-        margin-top: vw(10);
-        margin-left: vw(-30);
+      margin-bottom: vw(-50);
+        margin-left: vw(-50);
       }
     }
   }
@@ -182,18 +215,17 @@ export default {
   .signup {
     width: vmin(250);
     height: vmin(250);
-    background-color: $greyBlue70;
+    background-color: $greyBlue25;
     border-radius: 13em 0.5em/41em 0.5em;
     &-title {
-      padding-left: vmin(60);
+      padding-left: vmin(70);
     }
     h2 {
       @include font(vmin(15), 200, vmin(25));
       font-family: "San Francisco Pro";
-      color: $greyBlue20;
-      margin-left: vmin(7);
+      color: $greyBlue70;
       strong {
-        color: $greyBlue25;
+        color: $greyBlue80;
       }
     }
     label {
@@ -268,7 +300,7 @@ export default {
 @media screen and (max-width: 377px) {
   .signup {
     height: vmin(250);
-    background-color: $greyBlue70;
+    background-color: $greyBlue25;
     border-radius: 13em 0.5em/41em 0.5em;
     &-title {
       padding-left: vmin(50);
@@ -280,9 +312,9 @@ export default {
     h2 {
       @include font(vmin(15), 200, vmin(25));
       font-family: "San Francisco Pro";
-      color: $greyBlue20;
+      color: $greyBlue70;
       strong {
-        color: $greyBlue25;
+        color: $greyBlue80;
       }
     }
     label {
