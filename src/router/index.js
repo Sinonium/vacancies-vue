@@ -5,7 +5,8 @@ import CreateCourse from '../views/CreateCourse.vue'
 import Login from '../pages/Login.vue'
 import SignUp from '../pages/SignUp.vue'
 import Test from '../views/Test.vue'
-const routes: Array<RouteRecordRaw> = [
+
+const routes = [
   {
     path: '/',
     name: 'Home',

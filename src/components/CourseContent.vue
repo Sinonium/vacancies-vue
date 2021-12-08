@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="container-div">
-      <div :class="{ active: allShow === true }" class="themes">
+      <div :class="{ actives: allShow === true }" class="themes">
         <div class="themes-title">
           <span>What do you learn?</span>
           <img src="@/assets/scss/icons/burger-menu.svg" />
           <div class="themes-title__item">
             <div class="themes-title__item-1">
-              <ul :class="{ active: allShow === true }">
+              <ul :class="{ actives: allShow === true }">
                 <li v-for="theme in themes" :key="theme.id" :theme="theme">
                   <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
                 </li>
@@ -16,7 +16,7 @@
           </div>
           <button
             @click="allThemes()"
-            :class="{ active: allShow === true }"
+            :class="{ actives: allShow === true }"
             id="more"
           >
             {{ this.button_themes }}
@@ -29,7 +29,7 @@
           <span>Course Content</span>
           <img src="@/assets/scss/icons/burger-menu.svg" />
         </div>
-        <div :class="{ active: allSections === true }" class="content-courses">
+        <div :class="{ actives: allSections === true }" class="content-courses">
           <div
             v-for="item in items"
             :key="item.id"
@@ -97,7 +97,7 @@
         <button
           class="sections-btn"
           @click="allContents()"
-          :class="{ active: allSections === true }"
+          :class="{ actives: allSections === true }"
           id="more"
         >
           {{ this.button_contents }}
@@ -322,7 +322,7 @@ export default {
 .container {
   margin: 0 auto;
   background: $bg-main;
-  padding: vw(30) 0 0 vw(140);
+  padding: vw(30) 0 0 vw(60);
 }
 
 .themes {
@@ -332,7 +332,7 @@ export default {
   width: vw(730);
   margin-bottom: vw(30);
   height: vw(350);
-  &.active {
+  &.actives{
     height: 100%;
   }
 
@@ -363,7 +363,7 @@ export default {
     flex-wrap: wrap;
     overflow: hidden;
     height: vw(200);
-    &.active {
+    &.actives {
       @include font(vw(12), bold, vw(20));
       height: 100%;
       color: $greyBlue60 !important;
@@ -391,7 +391,7 @@ button {
   box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
   border-radius: vw(30);
   cursor: pointer;
-  &.active {
+  &.actives {
     @include font(vw(12), bold, vw(20));
     color: $greyBlue60 !important ;
   }
@@ -402,7 +402,7 @@ button {
 }
 .sections-btn {
   margin: vw(-50) vw(260) vw(20) vw(270);
-  &.active {
+  &.actives {
     display: none;
   }
 }
@@ -421,7 +421,7 @@ button {
     flex-wrap: wrap;
     overflow: hidden;
     height: vw(390);
-    &.active {
+    &.actives {
       @include font(vw(12), bold, vw(20));
       height: 100%;
       color: $greyBlue60 !important;
@@ -502,7 +502,7 @@ button {
     margin-bottom: vmin(15);
     margin-left: vmin(5);
     height: vmin(200);
-    &.active {
+    &.actives {
       height: vmin(400);
     }
     &-title {
@@ -526,7 +526,7 @@ button {
     }
     ul {
       height: vmin(100);
-      &.active {
+      &.actives {
         @include font(vmin(8), bold, vmin(10));
         height: vmin(300);
         color: $greyBlue60 !important;
@@ -548,7 +548,18 @@ button {
       border: 2px solid #f7f8fa;
       box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
       border-radius: vmin(15);
+     
+      &.actives {
+        @include font(vmin(7), bold, vmin(10));
+        color: $greyBlue60 !important;
+      }
+      &:hover {
+        border: 2px solid $greyBlue95;
+        box-shadow: 0 3px 10px 0 $greyBlue85;
+      }
     }
+   
+  
   }
 
   .content {
@@ -558,14 +569,14 @@ button {
     border-radius: vmin(5);
     padding-bottom: vmin(15);
     &-courses {
-      width: vmin(670);
+      width: vmin(300);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
       border-radius: vmin(10);
       margin: vmin(40) vmin(30) vmin(0) vmin(30);
       flex-wrap: wrap;
       overflow: hidden;
       height: vmin(220);
-      &.active {
+      &.actives {
         @include font(vmin(12), bold, vmin(20));
         height: 100%;
         color: $greyBlue60 !important;
@@ -622,7 +633,7 @@ button {
     margin-bottom: vmin(15);
     margin-left: vmin(5);
     height: vmin(200);
-    &.active {
+    &.actives {
       height: vmin(400);
     }
     &-title {
@@ -643,7 +654,7 @@ button {
     }
     ul {
       height: vmin(100);
-      &.active {
+      &.actives {
         @include font(vmin(8), bold, vmin(10));
         height: vmin(300);
         color: $greyBlue60 !important;
@@ -665,6 +676,12 @@ button {
       border: 2px solid #f7f8fa;
       box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
       border-radius: vmin(15);
+      .sections-btn {
+        margin: vmin(-50) vmin(120) vmin(20) vmin(130);
+        &.actives {
+          display: none;
+        }
+      }
     }
   }
 
@@ -682,7 +699,7 @@ button {
       flex-wrap: wrap;
       overflow: hidden;
       height: vmin(190);
-      &.active {
+      &.actives {
         @include font(vmin(6), bold, vmin(10));
         height: 100%;
         color: $greyBlue60 !important;

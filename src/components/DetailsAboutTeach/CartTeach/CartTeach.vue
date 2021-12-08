@@ -2,7 +2,7 @@
   <div class="cart-teach">
     <div class="cart-teach__about_teach col-4">
       <h4>About the Instructor</h4>
-      <img :src="course.teacher.imgaeUrl" alt="Image teacher" />
+      <img :src="course.teacher.imageUrl" alt="Image teacher" />
       <ul class="cart-teach__about_teach_list">
         <li
           v-for="item in course.teacher.data"
@@ -10,9 +10,9 @@
           class="cart-teach__about_teach_list-item"
         >
           <span v-html="item.icon"></span>
-          <!-- <span class="first__span"> {{ item.num }} </span> -->
+          <!-- <span class="first__span"> {{ item.num.length }} </span> -->
           <span class="last__span"> {{ item.title }} </span>
-        </li>
+        </li>                                                                                                                                                                     
       </ul>
     </div>
     <div class="cart-teach__features_teach col-5">
@@ -40,12 +40,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ref } from '@vue/reactivity'
+<script>
 export default {
   props: ['course'],
-  setup() {
-    return {}
+  setup(props) {
+    const popa = props.course.teacher.data[0].num.length
+    const popa1 = props.course.teacher.data[1].num.length
+    const popa2 = props.course.teacher.data[2].num.length
+    const popa3 = props.course.teacher.data[3].num.length
+    const popas = [
+      popa,popa1,popa2,popa3
+    ]
+    return { popas , popa, popa1, popa2, popa3 }
   },
 }
 </script>
@@ -393,7 +399,7 @@ export default {
     top: 23vmin;
   }
 }
-@media screen and (max-width: 375px){
+@media screen and (max-width: 375px) {
   .cart-teach {
     height: 224vmin;
   }
@@ -419,7 +425,7 @@ export default {
     right: -33%;
   }
 }
-@media screen and (max-width: 321px){
+@media screen and (max-width: 321px) {
   .cart-teach {
     height: 240vmin;
   }
