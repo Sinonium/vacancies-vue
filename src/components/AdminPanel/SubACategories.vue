@@ -8,8 +8,8 @@
          {{ option.text }}
       </option>
    </select>
-   <select v-if="selected == subCata[index]" name="" id="" v-model="subCategories">
-      <option v-for="(sub) in subCata" :key="sub.text" :value="sub.value">
+   <select v-if="selected === subCata[0]" name="" id="" v-model="subCategories">
+      <option v-for="sub in subCata" :key="sub.text" :value="sub.value">
          {{ sub.text }}
       </option>
    </select>
@@ -31,7 +31,7 @@
             },
          ];
          const subCata = [
-           [ "Web Development",
+            "Web Development",
             {
                text: "Java Script",
                value: "Java Script",
@@ -51,7 +51,7 @@
             {
                text: "HTML/CSS",
                value: "HTML/CSS",
-            }]
+            }
          ];
          const selected = ref("");
          const subCategories = ref("");

@@ -174,6 +174,7 @@
    import SubHealthCategories from "./health/SubCategories.vue";
    import SubMusicCategories from "./music/SubCategories.vue";
    import SubTeachCategories from "./teaching/SubCategories.vue";
+import { renderSlot } from '@vue/runtime-core';
    export default {
       components: {
          SubDevCategories,
@@ -191,14 +192,20 @@
          SubTeachCategories,
       },
       setup(props, context) {
+         
          const cata = (cata, subcata = "отсутствует") => {
-            console.log("категория " + cata, "подкатегория " + subcata);
-            
-            return cata, subcata
+            // console.log("категория " + cata, "подкатегория " + subcata);
+            category.value = cata
+            subCategory.value = subcata
          };
+         const category = ref('')
+         const subCategory = ref('')
+
          const test = (i) => {
-            context.emit("clickedCata", i,  cata);
-            console.log(i, cata);
+            context.emit("clickedCata", i);
+            setInterval(() => {
+               console.log(i, category.value, subCategory.value);
+            }, 2000);
          }
          const handleClick = (i) => {
             if (clickedCategories.value !== i) {
@@ -209,6 +216,8 @@
          };
          const clickedCategories = ref(null);
          return {
+            category,
+            subCategory,
             test,
             cata,
             handleClick,
