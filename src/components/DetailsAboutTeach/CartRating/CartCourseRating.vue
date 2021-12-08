@@ -16,13 +16,14 @@
             <span :style="{ width: courseRatingPercentFive + '%' }"> </span>
           </div>
           <div class="stars">
-            <img :src="starActiveIcon" alt="">
-            <img :src="starActiveIcon" alt="">
-            <img :src="starActiveIcon" alt="">
-            <img :src="starActiveIcon" alt="">
-            <img :src="starActiveIcon" alt="">
+            <img :src="starActiveIcon" alt="" />
+            <img :src="starActiveIcon" alt="" />
+            <img :src="starActiveIcon" alt="" />
+            <img :src="starActiveIcon" alt="" />
+            <img :src="starActiveIcon" alt="" />
           </div>
-          <span> {{ courseRatingPercentFive + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentFive.length"> {{ courseRatingPercentFive + ' ' + '%' }} </span>
+          <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
           <div class="lineStar">
@@ -35,7 +36,8 @@
             <img :src="starActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span> {{ courseRatingPercentFour + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentFour.length"> {{ courseRatingPercentFour + ' ' + '%' }} </span>
+          <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
           <div class="lineStar">
@@ -48,7 +50,8 @@
             <img :src="starNotActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span> {{ courseRatingPercentThree + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentThree.length"> {{ courseRatingPercentThree + ' ' + '%' }} </span>
+          <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
           <div class="lineStar">
@@ -61,7 +64,8 @@
             <img :src="starNotActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span> {{ courseRatingPercentTwo + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentTwo.length"> {{ courseRatingPercentTwo + ' ' + '%' }} </span>
+          <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
           <div class="lineStar">
@@ -74,28 +78,134 @@
             <img :src="starNotActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span> {{ courseRatingPercentOne + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentOne.length"> {{ courseRatingPercentOne + ' ' + '%' }} </span>
+          <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
       </ul>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
 export default {
-  props: [
-    'course',
-    'courseRatingMiddArithmetic',
-    'courseRatingPercentFive',
-    'courseRatingPercentFour',
-    'courseRatingPercentThree',
-    'courseRatingPercentTwo',
-    'courseRatingPercentOne',
-  ],
-  setup() {
+  props: ['course'],
+  setup(props) {
+    const courseRatingFive = ref([])
+    const courseRatingFour = ref([])
+    const courseRatingThree = ref([])
+    const courseRatingTwo = ref([])
+    const courseRatingOne = ref([])
+    const courseRatingArray = ref([])
+    const countRatingStar = ref(0)
+    const courseRatingMiddArithmetic = ref(0)
+    const courseRatingPercentFive = ref(0)
+    const courseRatingPercentFour = ref(0)
+    const courseRatingPercentThree = ref(0)
+    const courseRatingPercentTwo = ref(0)
+    const courseRatingPercentOne = ref(0)
+    const calctPercentOfRating = () => {
+      props.course.rating.map((num) => {
+        switch (num) {
+          case 1:
+            return courseRatingOne.value.push(num)
+          case 2:
+            return courseRatingTwo.value.push(num)
+          case 3:
+            return courseRatingThree.value.push(num)
+          case 4:
+            return courseRatingFour.value.push(num)
+          case 5:
+            return courseRatingFive.value.push(num)
+        }
+      })
+      countRatingStar.value =
+        courseRatingOne.value.length +
+        courseRatingTwo.value.length +
+        courseRatingThree.value.length +
+        courseRatingFour.value.length +
+        courseRatingFive.value.length
+      courseRatingArray.value = [
+        {
+          count: courseRatingOne.value.length,
+          nums: 1,
+        },
+        {
+          count: courseRatingTwo.value.length,
+          nums: 2,
+        },
+        {
+          count: courseRatingThree.value.length,
+          nums: 3,
+        },
+        {
+          count: courseRatingFour.value.length,
+          nums: 4,
+        },
+        {
+          count: courseRatingFive.value.length,
+          nums: 5,
+        },
+      ]
+      courseRatingArray.value.map((countRating) => {
+        if (countRating.nums === 5) {
+          courseRatingPercentFive.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentFive.value =
+            courseRatingPercentFive.value.toFixed(2)
+        }
+        if (countRating.nums === 4) {
+          courseRatingPercentFour.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentFour.value =
+            courseRatingPercentFour.value.toFixed(2)
+        }
+        if (countRating.nums === 3) {
+          courseRatingPercentThree.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentThree.value =
+            courseRatingPercentThree.value.toFixed(2)
+        }
+        if (countRating.nums === 2) {
+          courseRatingPercentTwo.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentTwo.value = courseRatingPercentTwo.value.toFixed(2)
+        }
+        if (countRating.nums === 1) {
+          courseRatingPercentOne.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentOne.value = courseRatingPercentOne.value.toFixed(2)
+        }
+      })
+      courseRatingMiddArithmetic.value =
+        (5 * courseRatingFive.value.length +
+          4 * courseRatingFour.value.length +
+          3 * courseRatingThree.value.length +
+          2 * courseRatingTwo.value.length +
+          1 * courseRatingOne.value.length) /
+        countRatingStar.value
+      courseRatingMiddArithmetic.value =
+        courseRatingMiddArithmetic.value.toFixed(1)
+    }
+    
+    calctPercentOfRating()
     return {
+      courseRatingFive,
+      courseRatingFour,
+      courseRatingThree,
+      courseRatingTwo,
+      courseRatingOne,
+      courseRatingArray,
+      countRatingStar,
+      courseRatingMiddArithmetic,
+      courseRatingPercentFive,
+      courseRatingPercentFour,
+      courseRatingPercentThree,
+      courseRatingPercentTwo,
+      courseRatingPercentOne,
       starActiveIcon: require('@/assets/icons/DetailsAboutTeach/starActive.svg'),
-      starNotActiveIcon: require('@/assets/icons/DetailsAboutTeach/starNotActive.svg'), 
+      starNotActiveIcon: require('@/assets/icons/DetailsAboutTeach/starNotActive.svg'),
     }
   },
 }

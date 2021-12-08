@@ -3,13 +3,14 @@
     <div class="signup">
       <div class="signup-title">
         <h2>Sign up to <strong>your account!</strong></h2>
-        <form @submit.prevent="register()">
+        <form @submit.prevent="handleSubmit">
           <label>Name</label>
           <div>
             <input
               type="name"
               placeholder="Jennie Kim"
               required
+              v-model="name"
             />
             <img src="@/assets/img/user.svg" alt="'Type your name" />
           </div>
@@ -48,21 +49,33 @@
 
 
 <script>
-import useSignup from '@/composables/useSignup'
+import useSignup from "@/composables/useSignup";
+import { ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 
 export default {
-  data(){
-    return{
-      email:'',
-      password:'',
-      name:'',
-    }
+  setup() {
+    const email = ref();
+    const password = ref();
+    const name = ref();
+    const { signup } = useSignup();
+    const router = useRouter();
+
+    const handleSubmit = async () => {
+      try {
+        await signup(email.value, password.value, name.value);
+        router.push("/");
+      } catch (err) {
+
+      }
+    };
+    return {
+      name,
+      password,
+      email,
+      handleSubmit,
+    };
   },
-  methods: {
-    async register() {
-      await useSignup(this.email, this.password)
-    }
-  }
 };
 </script>
 
@@ -86,7 +99,7 @@ export default {
     color: $greyBlue20;
     padding-top: vw(30);
     margin-left: vw(-10);
-    
+
     strong {
       color: $greyBlue25;
     }
@@ -154,13 +167,13 @@ export default {
     .auth {
       &__have-account {
         @include font(vw(12), 700, vw(20));
-        
+
         display: block;
         text-align: right;
         color: #adb8cc;
         width: 57%;
         margin-top: vw(10);
-         margin-left: vw(-30);
+        margin-left: vw(-30);
       }
     }
   }
