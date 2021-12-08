@@ -1,4 +1,5 @@
 <template>
+
   <div class="filters">
     <ul>
       <li @click="coursesFilter(0)" :class="{ active: filters[0] }">
