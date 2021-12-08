@@ -8,7 +8,7 @@
                <span class="title">COURSE CATEGORIES</span>
                <img class="arrow" :class="{ clicked: list.a }" :src="arrowExpand" alt="" />
             </li>
-            <CourseCategories v-if="list.a" />
+            <CourseCategories  v-if="list.a" />
             <li @click="list.b = !list.b">
                <span class="title">PRICELIST</span>
                <img class="arrow" :class="{ clicked: list.b }" :src="arrowExpand" alt="" />

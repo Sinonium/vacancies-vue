@@ -129,7 +129,7 @@
             <select name="" id="" v-model="selected">
                <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
             </select>
-            <SubACategories  v-if="selected === 'Development'"/>
+            <SubACategories v-if="selected === 'Development'"/>
             <SubBCategories v-if="selected === 'Business'" />
             <SubCCategories v-if="selected === 'Finance & Accounting'" />
             <SubDCategories v-if="selected === 'IT & Software'" />
@@ -197,15 +197,8 @@
           placeholder="How To Succedd In This Course"
         />
 
-        <p class="create-course__instruction">URL of the video:</p>
-        <input
-          class="url-input"
-          type="text"
-          placeholder="https://www.youtube.com/watch?v=aLb2xdSgpF4"
-        />
       </div>
-    </div>
-
+      </div>
     <div class="publish">
       <button>Publish Course</button>
     </div>
