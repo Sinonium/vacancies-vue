@@ -5,12 +5,22 @@ import CreateCourse from '../views/CreateCourse.vue'
 import Login from '../pages/Login.vue'
 import SignUp from '../pages/SignUp.vue'
 import Test from '../views/Test.vue'
+import {user} from '../composables/getUser' 
+
+// const requireAuth = (to, from, next) => {
+//   if (!user.value) {
+//     return next({name: 'Login'});
+//   }
+//   return next();
+// }
+
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    // beforeEnter: requireAuth
   },
   {
     path: '/DetailsCourse',
