@@ -3,22 +3,33 @@
     <div class="login">
       <div class="login-title">
         <h2>Register and <strong>start learning!</strong></h2>
-        <form>
+        <form @submit.prevent="handleSubmit">
           <label>Email</label>
           <div>
-            <input type="email" placeholder="jennie@gmail.com" required />
+            <input
+              type="email"
+              placeholder="jennie@gmail.com"
+              required
+              v-model="email"
+            />
             <img src="@/assets/img/email.jpg" alt="'Type your email" />
           </div>
           <label>Password </label>
           <div>
-            <input type="password" placeholder="myPassword1234@#$" required />
+            <input
+              type="password"
+              placeholder="myPassword1234@#$"
+              required
+              v-model="password"
+            />
             <img src="@/assets/img/password.svg" alt="'Type your password" />
           </div>
 
           <button>Login</button>
 
           <span class="auth__have-account"
-            >Don’t have an account? <router-link to="/signup"> Sign Up </router-link>
+            >Don’t have an account?
+            <router-link to="/signup"> Sign Up </router-link>
           </span>
         </form>
       </div>
@@ -26,51 +37,60 @@
   </div>
 </template>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import useAuth from '@/composables/useAuth'
 export default {
-  data(){}
-};
+  setup() {
+    const email = ref('')
+    const password = ref('')
+    const router = useRouter()
+
+    const handleSubmit = async () => {
+      const { login } = useAuth()
+
+      try {
+        const user = await login(email.value, password.value)
+
+        console.log(user.value)
+
+        router.push('/')
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    return {
+      email,
+      password,
+      handleSubmit,
+    }
+  },
+}
 </script>
 
-
-
-
-
-
-
 <style lang="scss">
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .login {
   width: vw(700);
   height: vw(450);
-  background-color: $greyBlue70;
+  background-color: $greyBlue25;
   margin-left: vw(200);
- border-radius: 30em /20em;
+  border-radius: 30em /20em;
 
   &-title {
     padding-left: vw(190);
   }
   h2 {
     @include font(vw(30), 400, vw(50));
-    font-family: "San Francisco Pro";
-    color: $greyBlue20;
-    padding-top: vw(30);
+    font-family: 'San Francisco Pro';
+    color: $greyBlue70;
+    padding-top: vw(40);
     margin-left: vw(-10);
     strong {
-      color: $greyBlue25;
+      color: $greyBlue80;
     }
   }
   label {
@@ -120,7 +140,7 @@ export default {
       border: 2px solid $greyBlue60;
       transition: 0.3s;
       margin-top: vw(20);
-        margin-left: vw(5);
+      margin-left: vw(5);
       &:hover {
         background-color: $greyBlue25;
         color: $white;
@@ -136,13 +156,13 @@ export default {
     .auth {
       &__have-account {
         @include font(vw(12), 700, vw(20));
-   
+
         display: block;
         text-align: right;
         color: #adb8cc;
         width: 57%;
-        margin-top: vw(10);
-       margin-left: vw(-40);
+        margin-top: vw(-10);
+        margin-left: vw(-50);
       }
     }
   }
@@ -151,18 +171,18 @@ export default {
   .login {
     width: vmin(250);
     height: vmin(200);
-    background-color: $greyBlue70;
+    background-color: $greyBlue25;
     border-radius: 13em 0.5em/41em 0.5em;
     &-title {
       padding-left: vmin(60);
     }
     h2 {
       @include font(vmin(15), 200, vmin(25));
-      font-family: "San Francisco Pro";
-      color: $greyBlue20;
+      font-family: 'San Francisco Pro';
+      color: $greyBlue70;
       margin-left: vmin(7);
       strong {
-        color: $greyBlue25;
+        color: $greyBlue80;
       }
     }
     label {
@@ -237,7 +257,7 @@ export default {
 @media screen and (max-width: 377px) {
   .login {
     height: vmin(220);
-    background-color: $greyBlue70;
+    background-color: $greyBlue25;
     border-radius: 13em 0.5em/41em 0.5em;
     &-title {
       padding-left: vmin(50);
@@ -248,10 +268,10 @@ export default {
     }
     h2 {
       @include font(vmin(15), 200, vmin(25));
-      font-family: "San Francisco Pro";
-      color: $greyBlue20;
+      font-family: 'San Francisco Pro';
+      color: $greyBlue70;
       strong {
-        color: $greyBlue25;
+        color: $greyBlue80;
       }
     }
     label {
