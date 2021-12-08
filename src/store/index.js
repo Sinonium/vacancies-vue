@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import auth from './Auth/index.js'
+import categories from './categories'
 import getCollection from '@/composables/getCollection'
 import getFilteredCollection from '@/composables/getFilteredCollection'
 
@@ -7,6 +8,7 @@ export default createStore({
   state: {
     courses: [],
     courseMoreInfo: [],
+    categoryItem: []
   },
   mutations: {
     GET_COURSES(state, payload) {
@@ -18,6 +20,9 @@ export default createStore({
     GET_MORE_INFO(state, info) {
       state.courseMoreInfo = info
     },
+    SET_CATEGORY(state, payload) {
+      state.categoryItem = payload
+   }
   },
   actions: {
     async getCourses({ commit }) {
@@ -41,5 +46,6 @@ export default createStore({
   },
   modules: {
     auth,
+    categories
   },
 })

@@ -160,7 +160,8 @@
 </template>
 
 <script>
-   import { ref } from "@vue/reactivity";
+   import { computed, ref } from "@vue/reactivity";
+   import { useStore } from 'vuex'
    import SubDevCategories from "./development/SubCategories.vue";
    import SubBusCategories from "./business/SubCategories.vue";
    import SubFinanceCategories from "./finance/SubCategories.vue";
@@ -174,6 +175,7 @@
    import SubHealthCategories from "./health/SubCategories.vue";
    import SubMusicCategories from "./music/SubCategories.vue";
    import SubTeachCategories from "./teaching/SubCategories.vue";
+import { watch } from '@vue/runtime-core';
    export default {
       components: {
          SubDevCategories,
@@ -191,7 +193,8 @@
          SubTeachCategories,
       },
       setup(props, context) {
-         
+         const store = useStore()
+
          const cata = (cata, subcata = "отсутствует") => {
             // console.log("категория " + cata, "подкатегория " + subcata);
             category.value = cata
@@ -199,9 +202,19 @@
          };
          const category = ref('')
          const subCategory = ref('')
-
+         const categoryActive = computed(() => store.state.categoryItem)
+         watch(categoryActive, ()=>{
+            console.log(categoryActive);
+            console.log('sa');
+         })
          const test = (i) => {
             context.emit("clickedCata", i, category.value, subCategory.value);
+            store.commit('SET_CATEGORY', i, category.value, subCategory.value)
+            setTimeout(() => {
+               console.log(i, category.value, subCategory.value);
+            }, 2000);
+            category.value = ''
+            subCategory.value = ''
          }
          const clickedCategories = ref(null);
          const handleClick = (i) => {
@@ -213,6 +226,7 @@
          };
          
          return {
+            categoryActive,
             category,
             subCategory,
             test,
