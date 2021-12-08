@@ -4,7 +4,7 @@
       <form @submit.prevent="handleTextAddText">
         <div>
           <img :src="AvatarUserIcon" alt="" />
-          <input type="text" placeholder="Your review" v-model="textInp"/>
+          <input type="text" placeholder="Your review" v-model="textInp" />
         </div>
         <button>Add review</button>
       </form>
@@ -41,10 +41,13 @@ export default {
 
     const handleTextAddText = async () => {
       if (textInp.value.length) {
-        errorNullTextInp.value = ''
         currentDate.value = new Date()
-        let test = ref([])
-        test.value = [currentDate.value.getDay(),currentDate.value.getMonth(),currentDate.value.getFullYear()]
+        const testDate = ref([])
+        testDate.value = [
+          currentDate.value.getDay(),
+          currentDate.value.getMonth(),
+          currentDate.value.getFullYear(),
+        ]
         reviewUser.value = {
           imageUrl: '',
           studentName: 'Person',
@@ -52,12 +55,13 @@ export default {
           reviews: 12,
           grade: 0,
           text: textInp.value,
-          date: test.value,
+          date: testDate.value,
         }
+        const oldReviews = ref(...reviews.value)
         await fetch('http://localhost:3000/course', {
           method: 'PATCH',
           body: JSON.stringify({
-            reviews: [reviewUser.value],
+            reviews: [oldReviews.value, reviewUser.value],
           }),
           headers: { 'Content-type': 'application/json' },
         })
@@ -66,12 +70,8 @@ export default {
         reviewUser.value = {}
         errorNullTextInp.value = ''
         await getDoc()
-      }
-      if(!textInp.value.length) {
+      } else {
         errorNullTextInp.value = 'Feedback is empty'
-        setTimeout(() => {
-          errorNullTextInp.value = ''
-        },700)
       }
     }
 
