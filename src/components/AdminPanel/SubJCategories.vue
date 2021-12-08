@@ -48,7 +48,7 @@
     v-model="subCategories"
   >
     <option
-      v-for="option in subCategoriesB"
+      v-for="option in subCategoriesC"
       :key="option.text"
       :value="option.value"
     >
@@ -136,10 +136,6 @@ export default {
       {
         text: 'Absolute fasting',
         value: 'Absolute fasting',
-      },
-      {
-        text: 'Fashion pictures',
-        value: 'Fashion pictures',
       },
       {
         text: 'Combined fasting',

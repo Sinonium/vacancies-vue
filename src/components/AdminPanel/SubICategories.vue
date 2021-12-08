@@ -48,7 +48,7 @@
     v-model="subCategories"
   >
     <option
-      v-for="option in subCategoriesB"
+      v-for="option in subCategoriesC"
       :key="option.text"
       :value="option.value"
     >

@@ -131,7 +131,7 @@ export default {
     const selected = ref('')
     const subCategories = ref('')
 
-    return { categories, selected, subCategories, subCategoriesA, subCategoriesB, subCategoriesC, subCategoriesD}
+    return { categories, selected, subCategories, subCategoriesA, subCategoriesB}
   },
 }
 </script>

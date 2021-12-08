@@ -126,7 +126,22 @@
     <div class="create-course">
       <div class="create-course__categories">
         <h4 class="create-course__title">Project Categories</h4>
-
+            <select name="" id="" v-model="selected">
+               <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
+            </select>
+            <SubACategories  v-if="selected === 'Development'"/>
+            <SubBCategories v-if="selected === 'Business'" />
+            <SubCCategories v-if="selected === 'Finance & Accounting'" />
+            <SubDCategories v-if="selected === 'IT & Software'" />
+            <SubDCategories v-if="selected === 'Office Productivity'" />
+            <SubECategories v-if="selected === 'Personal Development'" />
+            <SubFCategories v-if="selected === 'Design and Art'" /> 
+            <SubGCategories v-if="selected === 'Marketing and Sales'" /> 
+            <SubHCategories v-if="selected === 'Lifestyle and Fashion'" /> 
+            <SubICategories v-if="selected === 'Photography'" /> 
+            <SubJCategories v-if="selected === 'Health & Fitness'" /> 
+            <SubKCategories v-if="selected === 'Music and Sound Design'" /> 
+            <SubLCategories v-if="selected === 'Teaching & Academics'" /> 
         <div>
           <h4 class="create-course__title">Course levels</h4>
           <p class="create-course__instruction">
@@ -191,25 +206,6 @@
       </div>
     </div>
 
-    <div class="create-course">
-      <select name="" id="" v-model="selected">
-               <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
-      </select>
-      <SubACategories  v-if="selected === 'Development'"/>
-      <SubBCategories v-if="selected === 'Business'" />
-      <SubCCategories v-if="selected === 'Finance & Accounting'" />
-      <SubDCategories v-if="selected === 'IT & Software'" />
-      <SubDCategories v-if="selected === 'Office Productivity'" />
-      <SubECategories v-if="selected === 'Personal Development'" />
-      <SubFCategories v-if="selected === 'Design and Art'" /> 
-      <SubGCategories v-if="selected === 'Marketing and Sales'" /> 
-      <SubHCategories v-if="selected === 'Lifestyle and Fashion'" /> 
-      <SubICategories v-if="selected === 'Photography'" /> 
-      <SubJCategories v-if="selected === 'Health & Fitness'" /> 
-      <SubKCategories v-if="selected === 'Music and Sound Design'" /> 
-      <SubLCategories v-if="selected === 'Teaching & Academics'" /> 
-    </div>
-
     <div class="publish">
       <button>Publish Course</button>
     </div>
@@ -223,6 +219,7 @@ import { ref } from '@vue/reactivity'
 import { v4 as uuid } from 'uuid'
 import SubACategories from '@/components/AdminPanel/SubACategories.vue'
 import SubBCategories from '@/components/AdminPanel/SubBCategories.vue'
+import SubCCategories from '@/components/AdminPanel/SubCCategories.vue'
 import SubDCategories from '@/components/AdminPanel/SubDCategories.vue'
 import SubECategories from '@/components/AdminPanel/SubECategories.vue'
 import SubFCategories from '@/components/AdminPanel/SubFCategories.vue'
@@ -230,10 +227,10 @@ import SubGCategories from '@/components/AdminPanel/SubGCategories.vue'
 import SubHCategories from '@/components/AdminPanel/SubHCategories.vue'
 import SubICategories from '@/components/AdminPanel/SubICategories.vue'
 import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
-import SubKCategories from '@/components/AdminPanel/SubJCategories.vue'
-import SubLCategories from '@/components/AdminPanel/SubJCategories.vue'
+import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
+import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
 export default {
-  components: { SubACategories, SubBCategories, SubDCategories,SubECategories, SubFCategories, SubGCategories, SubHCategories, SubICategories, SubJCategories, SubKCategories, SubLCategories},
+  components: { SubACategories, SubBCategories, SubCCategories, SubDCategories,SubECategories, SubFCategories, SubGCategories, SubHCategories, SubICategories, SubJCategories, SubKCategories, SubLCategories},
 
   setup() {
     const categories = [
