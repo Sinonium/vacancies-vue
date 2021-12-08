@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import { computed, ref } from "@vue/reactivity";
+import { ref } from "@vue/reactivity";
 import WebDevelopment from "./WebDevelopment.vue";
 import MobileApps from "./MobileApps.vue";
 import ProgrammingLanguages from "./ProgrammingLanguages.vue";
@@ -117,13 +117,15 @@ export default {
     ECommerce,
   },
   setup(props, context) {
-    const subCategory = ref(undefined);
+    const clickedCategories = ref(null)
+    const subCategory = ref('');
     const category = ref("");
     const setSubCata = (params) => {
       subCategory.value = params;
+      handleCategories(clickedCategories.value)
     };
-    const listener = computed(()=> subCategory.value)
     const handleCategories = (i) => {
+      clickedCategories.value = i
       category.value = i
       context.emit("clickedSubCata", category.value, subCategory.value);
     };
@@ -135,6 +137,6 @@ export default {
       handleCategories,
       setSubCata,
     };
-  },
+  }
 };
 </script>

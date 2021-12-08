@@ -174,7 +174,6 @@
    import SubHealthCategories from "./health/SubCategories.vue";
    import SubMusicCategories from "./music/SubCategories.vue";
    import SubTeachCategories from "./teaching/SubCategories.vue";
-import { renderSlot } from '@vue/runtime-core';
    export default {
       components: {
          SubDevCategories,
@@ -207,14 +206,15 @@ import { renderSlot } from '@vue/runtime-core';
                console.log(i, category.value, subCategory.value);
             }, 2000);
          }
+         const clickedCategories = ref(null);
          const handleClick = (i) => {
             if (clickedCategories.value !== i) {
-               return (clickedCategories.value = i);
+               clickedCategories.value = i;
             } else {
-               return (clickedCategories.value = null);
+               clickedCategories.value = null;
             }
          };
-         const clickedCategories = ref(null);
+         
          return {
             category,
             subCategory,
