@@ -332,7 +332,7 @@ export default {
   width: vw(730);
   margin-bottom: vw(30);
   height: vw(350);
-  &.activess {
+  &.actives{
     height: 100%;
   }
 
@@ -363,7 +363,7 @@ export default {
     flex-wrap: wrap;
     overflow: hidden;
     height: vw(200);
-    &.activess {
+    &.actives {
       @include font(vw(12), bold, vw(20));
       height: 100%;
       color: $greyBlue60 !important;
