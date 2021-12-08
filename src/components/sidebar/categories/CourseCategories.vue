@@ -201,10 +201,7 @@
          const subCategory = ref('')
 
          const test = (i) => {
-            context.emit("clickedCata", i);
-            setInterval(() => {
-               console.log(i, category.value, subCategory.value);
-            }, 2000);
+            context.emit("clickedCata", i, category.value, subCategory.value);
          }
          const clickedCategories = ref(null);
          const handleClick = (i) => {
