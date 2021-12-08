@@ -32,6 +32,7 @@
             <router-link to="/" class="header__record-logIn">
                 Log In
             </router-link>
+            <!-- <span v-else>{{polzovatel}}</span> -->
             <router-link to="/" class="header__record-signUp">
                 Sing Up
             </router-link>
@@ -63,8 +64,6 @@ export default {
 			"Blog",
 			"Support",
 		]);
-
-
         return {headerNav, handleClick}
     }
 }

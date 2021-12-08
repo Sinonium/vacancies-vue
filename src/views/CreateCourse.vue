@@ -143,7 +143,7 @@
                <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
            </select>
            <span>{{selected}}</span>
-           <SubACategories v-if="selected === 'Development'"/>
+           <SubACategories  v-if="selected === 'Development'"/>
           </div>
 
           <div class="publish">
