@@ -31,9 +31,9 @@
             <router-link to="/" class="header__record-logIn">
                 Log In
             </router-link>
-            <router-link to="/" class="header__record-signUp">
-                Sing Up
-            </router-link>
+            <button class="header__record-logOut">
+                Log Out
+            </button>
         </div>
     </header>
 </template>
@@ -141,14 +141,13 @@ export default {
             @include font(vw(12), 700, vh(20), $greyBlue70);
             margin-right: vw(40);
         }
-        &-signUp {
-            display: block;
-            text-decoration: none;
+        &-logOut {
             @include font(vw(12), 700, vh(20), $blue);
             background-color: rgba(51, 97, 255, 0.1);
             border-radius: vw(30);
             width: vw(100);
             height: vw(50);
+            margin: 0;
             @include flex();
         }
     }
