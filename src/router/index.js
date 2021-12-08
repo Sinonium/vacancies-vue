@@ -7,12 +7,18 @@ import SignUp from '../pages/SignUp.vue'
 import Test from '../views/Test.vue'
 import {user} from '../composables/getUser' 
 
-// const requireAuth = (to, from, next) => {
-//   if (!user.value) {
-//     return next({name: 'Login'});
-//   }
-//   return next();
-// }
+const requireAuth = (to, from, next) => {
+  if (!user.value) {
+    return next({name: 'Login'});
+  }
+  return next();
+}
+const requireNoAuth = (to, from, next) => {
+  if (user.value) {
+    return next({name: 'Home'});
+  }
+  return next();
+}
 
 
 const routes = [
@@ -20,32 +26,37 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    // beforeEnter: requireAuth
+    beforeEnter: requireAuth
   },
   {
     path: '/DetailsCourse',
     name: 'DetailsCourse',
-    component: DetailsCourse
+    component: DetailsCourse,
+    beforeEnter: requireAuth
   },
   {
     path: '/createCourse',
     name: 'CreateCourse',
-    component: CreateCourse
+    component: CreateCourse,
+    beforeEnter: requireAuth
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    beforeEnter: requireNoAuth
   },
   {
     path: '/signup',
     name: 'SignUp',
-    component: SignUp
+    component: SignUp,
+    beforeEnter: requireNoAuth
   },
   {
     path: '/test',
     name: 'Test',
-    component: Test
+    component: Test,
+    beforeEnter: requireAuth
   },
 ]
 
