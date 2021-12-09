@@ -7,7 +7,6 @@
             <router-link to="/" class="header__logo-text">
                 Constructor
             </router-link>
-            <button @click.prevent="handleClick()" style="color: red">LOGOUT</button>
         </div>
         <nav class="header__nav">
             <ul class="header__nav-list">
@@ -37,26 +36,29 @@
             <router-link to="/" class="header__record-logIn">
                 Log In
             </router-link>
-            <!-- <span v-else>{{polzovatel}}</span> -->
-            <router-link to="/" class="header__record-signUp">
-                Sing Up
-            </router-link>
+            <button @click.prevent="handleClick()" class="header__record-logOut">
+                Log Out
+            </button>
         </div>
     </header>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity';
+import { useRouter } from "vue-router";
 import useAuth from '@/composables/useAuth'
 
 export default {
     setup() {
+
         const isTeacher = ref(false)
+        const router = useRouter();
         const handleClick = async () => {
             const {logout} = useAuth()
 
             try {
                 await logout()
+                await router.push("/login");
             }
             catch (err) {
                 console.log(err);
@@ -81,6 +83,7 @@ export default {
     @include flex($justify: space-between);
     background-color: $white;
     padding: vw(20) vw(30) vw(20) vw(45);
+    box-sizing: border-box;
     width: vw(1270);
     &__logo {
         @include flex();
@@ -159,14 +162,13 @@ export default {
             @include font(vw(12), 700, vh(20), $greyBlue70);
             margin-right: vw(40);
         }
-        &-signUp {
-            display: block;
-            text-decoration: none;
+        &-logOut {
             @include font(vw(12), 700, vh(20), $blue);
             background-color: rgba(51, 97, 255, 0.1);
             border-radius: vw(30);
             width: vw(100);
             height: vw(50);
+            margin: 0;
             @include flex();
         }
     }
