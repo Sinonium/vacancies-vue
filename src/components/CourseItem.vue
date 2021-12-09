@@ -136,9 +136,9 @@ export default {
     //     return Math.ceil(this.courses.lenth / 10);
     // }) ;
     const getCourseAPI = async () => {
-      const response = await fetch('http://localhost:3000/courses')
-      const jsonCourses = await response.json()
-      courses.value = jsonCourses
+      // const response = await fetch('http://localhost:3000/courses')
+      // const jsonCourses = await response.json()
+      // courses.value = jsonCourses
     }
     const filters = ref([0, 0, 0, 0])
     const coursesFilter = (i) => {
