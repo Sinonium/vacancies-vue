@@ -61,13 +61,13 @@ const routes = [
   {
     path: '/becometeacher',
     name: 'Becometeacher',
-    component: Becometeacher
-  }
+    component: Becometeacher,
+  },
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
 })
 
 export default router
