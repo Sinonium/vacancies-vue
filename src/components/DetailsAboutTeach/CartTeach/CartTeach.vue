@@ -12,7 +12,7 @@
           <span v-html="item.icon"></span>
           <!-- <span class="first__span"> {{ item.num.length }} </span> -->
           <span class="last__span"> {{ item.title }} </span>
-        </li>                                                                                                                                                                     
+        </li>
       </ul>
     </div>
     <div class="cart-teach__features_teach col-5">
@@ -44,14 +44,15 @@
 export default {
   props: ['course'],
   setup(props) {
-    const popa = props.course.teacher.data[0].num.length
-    const popa1 = props.course.teacher.data[1].num.length
-    const popa2 = props.course.teacher.data[2].num.length
-    const popa3 = props.course.teacher.data[3].num.length
-    const popas = [
-      popa,popa1,popa2,popa3
-    ]
-    return { popas , popa, popa1, popa2, popa3 }
+    // const popa = props.course.teacher.data[0].num.length
+    // const popa1 = props.course.teacher.data[1].num.length
+    // const popa2 = props.course.teacher.data[2].num.length
+    // const popa3 = props.course.teacher.data[3].num.length
+    // const popas = [
+    //   popa,popa1,popa2,popa3
+    // ]
+    // return { popas , popa, popa1, popa2, popa3 }
+    return {}
   },
 }
 </script>

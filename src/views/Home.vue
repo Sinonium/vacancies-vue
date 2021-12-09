@@ -29,7 +29,12 @@
       </div>
     </div>
   </div>
-  <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+  <Filters />
+  <div class="courses-items">
+    <div class="row">
+      <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -38,8 +43,9 @@ import CourseItem from '../components/CourseItem.vue'
 import { ref } from '@vue/reactivity'
 import { onMounted, computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
+import Filters from '../components/Filters/Fiters.vue'
 export default {
-  components: { CourseItem, DetailsAboutTeach },
+  components: { Filters, CourseItem, DetailsAboutTeach },
   setup() {
     const store = useStore()
 
@@ -48,6 +54,7 @@ export default {
     onMounted(() => {
       store.dispatch('getCourses')
     })
+
     return {
       courses,
     }
@@ -57,6 +64,19 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
+.courses-items {
+  margin: vw(80) vw(30);
+  width: vw(1270);
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    .col-3 {
+      margin-right: vw(15);
+      margin-bottom: vw(15);
+      width: vw(255);
+    }
+  }
+}
 .courses-info {
   margin: vw(30) vw(30);
   position: relative;
@@ -150,6 +170,17 @@ export default {
 
       img {
         width: vmin(10);
+      }
+    }
+  }
+  .course-items {
+    width: vmin(620);
+    .row {
+      display: block;
+      margin: vmin(10) vmin(10);
+      .col-3 {
+        display: block;
+        width: vmin(400);
       }
     }
   }

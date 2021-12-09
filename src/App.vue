@@ -7,12 +7,12 @@
    </div>
    <div class="main-container">
       <div class="sidebar">
-         <SideBar />
+         <SideBar v-if="user" />
       </div>
       <div class="hero">
-         <Header />
+         <Header v-if="user" />
          <router-view />
-         <Footer />
+         <Footer v-if="user" />
       </div>
    </div>
 </template>
@@ -21,16 +21,19 @@
    import Header from "@/components/Header";
    import Footer from "@/components/Footer";
    import SideBar from "./components/SideBar";
+   import {user} from './composables/getUser'
    export default {
       components: { Header, Footer, SideBar },
+      setup() {
+         
+
+         return {user}
+      }
    };
 </script>
 
 <style lang="scss">
    @import "@/assets/scss/index.scss";
-   .hero {
-      width: 100;
-   }
    body {
       background-color: $bg-main;
       overflow-x: hidden;

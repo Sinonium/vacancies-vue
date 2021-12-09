@@ -152,7 +152,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'About'">
-        <CourseContent />
+        <CourseContent :moreInfo="moreInfo.malika" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -228,12 +228,14 @@
 </template>
 
 <script>
-import FeedBack from "@/components/FeedBack/FeedBack.vue";
-import AddToCart from "@/components/AddToCart.vue";
-import DetailsAboutTeach from "@/components/DetailsAboutTeach/DetailsAboutTeach.vue";
-import CourseContent from "@/components/CourseContent.vue";
-import Description from "@/components/Description/Description.vue";
-import { ref } from "@vue/reactivity";
+import FeedBack from '@/components/FeedBack/FeedBack.vue'
+import AddToCart from '@/components/AddToCart.vue'
+import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
+import CourseContent from '@/components/CourseContent.vue'
+import Description from '@/components/Description/Description.vue'
+import { computed, ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 export default {
   components: {
     FeedBack,
@@ -243,18 +245,33 @@ export default {
     CourseContent,
   },
   setup() {
-    const currentDetailsPage = ref("About");
+    const store = useStore()
+
+    const moreInfo = computed(() => store.state.courseMoreInfo)
+
+    const course = ref()
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
+    }
+    const currentDetailsPage = ref('About')
     const handleCurrentPage = (currentWord) => {
-      currentDetailsPage.value = currentWord;
-    };
+      currentDetailsPage.value = currentWord
+    }
+    onMounted(() => {
+      getDoc()
+    })
 
     return {
-      fireIcon: require("@/assets/icons/DetailsAboutTeach/fire.svg"),
-      studIcon: require("@/assets/icons/DetailsAboutTeach/person.svg"),
-      studsIcon: require("@/assets/icons/DetailsAboutTeach/persons.svg"),
-      pencilIcon: require("@/assets/icons/DetailsAboutTeach/pencil.svg"),
-      kebabIcon: require("@/assets/icons/DetailsAboutTeach/kebab.svg"),
-      ArrowIcon: require("@/assets/icons/DetailsAboutTeach/arrow.svg"),
+      moreInfo,
+      course,
+      fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
+      studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
+      studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
+      pencilIcon: require('@/assets/icons/DetailsAboutTeach/pencil.svg'),
+      kebabIcon: require('@/assets/icons/DetailsAboutTeach/kebab.svg'),
+      ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
       handleCurrentPage,
       currentDetailsPage,
     };
@@ -347,7 +364,7 @@ body {
   }
 }
 .details-page__bottom {
-  margin-left: vw(-500);
+  margin-left: -33.2vw;
   margin-top: vw(35);
   margin-bottom: vw(40);
   @include flex();
