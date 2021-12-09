@@ -1,4 +1,32 @@
 <template>
+  <div class="courses-info">
+    <img
+      class="courses-info__image"
+      src="./../assets/img/courses-info-2.png"
+      alt=""
+    />
+    <div class="courses-info__block">
+      <div class="courses-info__block-theme">
+        <div class="courses-info__content">
+          <p class="categories">Advanced <b>JavaScript</b> Concepts</p>
+          <h5>Development • It & Software • Web Development</h5>
+        </div>
+        <div class="courses-info__students">
+          <img src="./../assets/img/students.svg" alt="" />
+          <span class="students">4,454,356</span>
+
+          <div>
+            <h5 class="about-students">
+              Students are learning JavaScript on Courses
+            </h5>
+          </div>
+        </div>
+      </div>
+
+     
+
+    </div>
+  </div>
   <div class="details-page">
     <div class="details-page__head">
       <ul>
@@ -124,7 +152,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'About'">
-        <CourseContent />
+        <CourseContent :moreInfo="moreInfo.malika" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -205,7 +233,9 @@ import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 export default {
   components: {
     FeedBack,
@@ -215,12 +245,27 @@ export default {
     CourseContent,
   },
   setup() {
+    const store = useStore()
+
+    const moreInfo = computed(() => store.state.courseMoreInfo)
+
+    const course = ref()
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
+    }
     const currentDetailsPage = ref('About')
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
     }
+    onMounted(() => {
+      getDoc()
+    })
 
     return {
+      moreInfo,
+      course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
       studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
@@ -229,13 +274,13 @@ export default {
       ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
       handleCurrentPage,
       currentDetailsPage,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
+@import "@/assets/scss/index.scss";
 body {
   background: #e4e7f0;
 }
@@ -244,10 +289,10 @@ body {
   &__head {
     position: relative;
     display: flex;
-    background: $white;
-    height: vw(100);
+    background: $bg-main;
+    height: vw(80);
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
@@ -257,7 +302,7 @@ body {
       border-radius: 1px;
     }
     ul {
-      margin-left: vw(100);
+      margin-left: vw(50);
       display: flex;
       align-items: center;
       list-style-type: none;
@@ -268,7 +313,7 @@ body {
         @include flex();
         @include font(vw(12), bold, 20px, $greyBlue60);
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           bottom: vw(-35);
           left: 0;
@@ -299,7 +344,7 @@ body {
 }
 .details-page__head ul li.active {
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: vw(-35);
     left: 0;
@@ -319,7 +364,7 @@ body {
   }
 }
 .details-page__bottom {
-  margin-left: vw(-350);
+  margin-left: -33.2vw;
   margin-top: vw(35);
   margin-bottom: vw(40);
   @include flex();
@@ -353,6 +398,44 @@ body {
     span {
       @include font(vw(12), bold, 20px, $greyBlue60);
       margin-left: vw(16);
+    }
+  }
+}
+.courses-info {
+  margin: vw(30) vw(30);
+  position: relative;
+  &__like {
+    display: flex;
+  }
+
+  &__image {
+    width: vw(1210);
+  }
+  &__block {
+    padding: vw(45) vw(70);
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__block-theme {
+    margin: 0 vw(10);
+    p {
+      @include font(vw(24), 600, vh(30));
+      color: $white;
+    }
+    h5 {
+      @include font(vw(13), 600, vh(25));
+      color: $white;
+    }
+  }
+  &__students {
+    display: inline-flex;
+    .students {
+      @include font(vw(13), 700, vh(25));
+      color: $white;
+      margin: vw(23);
     }
   }
 }

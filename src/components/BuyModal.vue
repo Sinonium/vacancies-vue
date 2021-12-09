@@ -3,13 +3,13 @@
     <transition name="modal-animation-inner">
       <div v-show="modalActive" class="modal__inner">
         <div class="modal__inner-text">
-          <h3>Learn Python one of employer's most requested skills </h3>
+          <h3>This Course Includes</h3>
           <p>
-            25 hours of video on demand, 24 Articles, Full lifetime access,
-            Access via mobile devices, Certificate of Completion
+            25 hours of video on demand, 24 Articles, Full lifetime
+            access,Access via mobile devices, Certificate of Completion
           </p>
         </div>
-        <form class="items">
+        <form class="items" @submit.prevent="handleSubmit">
           <div>
             <input
               type="text"
@@ -54,8 +54,8 @@
             />
           </div>
           <div class="buttons">
-            <button @click="close">Close</button>
-            <button @click="handleBuy">Buy course</button>
+            <button @click="close" type="button">Close</button>
+            <button>Buy course</button>
           </div>
         </form>
       </div>
@@ -64,13 +64,26 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
+import update from '@/composables/update'
+import { useStore } from 'vuex'
+import { user } from '@/composables/getUser'
 export default {
   props: ['modalActive', 'course'],
 
   setup(props, { emit }) {
     const close = () => {
       emit('close')
+    }
+
+    const store = useStore()
+
+    const id = computed(() => store.state.courseId)
+
+    const { updateUserBuy } = update()
+
+    const handleSubmit = async () => {
+      await updateUserBuy(user.value.uid, id.value)
     }
 
     const firstName = ref('')
@@ -94,6 +107,8 @@ export default {
       console.log(userData)
     }
     return {
+      id,
+      handleSubmit,
       close,
       firstName,
       lastName,
@@ -124,7 +139,7 @@ export default {
   background: rgba(0, 0, 0, 0.6);
   .modal__inner {
     margin: 0 auto;
-    max-width: vw(600);
+    max-width: vw(550);
     background-color: $white;
     padding: vw(15);
     border-radius: vw(10);
@@ -159,6 +174,7 @@ export default {
         border-radius: vw(30);
         margin-right: vw(10);
         border: none;
+        margin: 0;
       }
       button:active {
         background-color: $blue;

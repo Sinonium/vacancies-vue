@@ -11,7 +11,7 @@
       <p>This price is available for another 5 hours!</p>
       <div class="cart__profile-button">
         <button>Add To Cart</button>
-        <button @click="toggleModal">Buy Now</button>
+        <button @click="toggleModal"  >Buy Now</button>
         <p>30 days money back guarantee</p>
       </div>
       <div class="cart__profile-course">
@@ -102,7 +102,7 @@ export default {
 @import '@/assets/scss/index.scss';
 .cart {
   width: vw(350);
-  margin-top: vh(30);
+  margin-top: vh(270);
   margin-left: vw(30);
   p {
     @include font(vw(12), 700, vw(20), $greyBlue70);
@@ -142,6 +142,7 @@ export default {
         border: none;
         margin-left: vw(20);
         cursor: pointer;
+        margin: 0;
       }
       button:active {
         color: $white;
@@ -209,6 +210,7 @@ export default {
       background-color: rgba(51, 97, 255, 0.05);
       border-radius: vw(30);
       margin-top: vw(35);
+      margin-left: 0;
     }
     &-img {
       width: vw(15);

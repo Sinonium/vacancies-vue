@@ -31,29 +31,27 @@
    import Introduction from "./WorkingWithModel.vue";
    export default {
       components: { Create, Design, Introduction },
-      setup(props, context) {
-         const subCategory = ref(undefined);
-         const setSubCata = (params) => {
-            subCategory.value = params;
-         };
-         const handleCategories = (cata) => {
-            if (cata === clickedCategories.value) {
-               clickedCategories.value = cata;
-               context.emit("clickedSubCata", cata, subCategory.value);
-            } else {
-               clickedCategories.value = cata;
-               subCategory.value = undefined;
-               context.emit("clickedSubCata", cata, subCategory.value);
-            }
-         };
-         const clickedCategories = ref(null);
+       setup(props, context) {
+    const clickedCategories = ref(null)
+    const subCategory = ref('');
+    const category = ref("");
+    const setSubCata = (params) => {
+      subCategory.value = params;
+      handleCategories(clickedCategories.value)
+    };
+    const handleCategories = (i) => {
+      clickedCategories.value = i
+      category.value = i
+      context.emit("clickedSubCata", category.value, subCategory.value);
+    };
 
-         return {
-            clickedCategories,
-            subCategory,
-            handleCategories,
-            setSubCata,
-         };
+    return {
+      category,
+      clickedCategories,
+      subCategory,
+      handleCategories,
+      setSubCata,
+    };
       },
    };
 </script>

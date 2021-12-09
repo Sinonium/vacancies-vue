@@ -47,50 +47,52 @@
   </div>
 </template>
 
-
 <script>
-import { computed, ref } from "@vue/reactivity";
-import { useRouter } from "vue-router";
-import {useStore} from 'vuex'
+import { computed, ref } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import addCollection from '@/composables/addCollection'
-
 
 export default {
   setup() {
-    const email = ref("");
-    const password = ref("");
-    const name = ref("");
-    const userBuy = ref([]);
-    const addCourses = ref([]);
-    const router = useRouter();
+    const email = ref('')
+    const password = ref('')
+    const name = ref('')
+    const userBuy = ref([])
+    const addCourses = ref([])
+    const router = useRouter()
     const store = useStore()
 
+    const currentUser = computed(() => store.state.auth.currentUser)
 
-      const currentUser = computed(() => store.state.auth.currentUser)
-  
     const handleSubmit = async () => {
       try {
-         await store.dispatch('createUser', {
+        await store.dispatch('createUser', {
           email: email.value,
           password: password.value,
-          name: name.value
-        });
-
-        const {user} = await currentUser.value
-
-        await addCollection('users', {
           name: name.value,
-          email:email.value,
-          addCourses: addCourses.value,
-          UserBuy: userBuy.value,
-          isTeacher: false,
-          description: ''
-        }, false, user.uid)
-        await router.push("/");
+        })
+
+        const { user } = await currentUser.value
+
+        await addCollection(
+          'users',
+          {
+            name: name.value,
+            email: email.value,
+            addCourses: addCourses.value,
+            UserBuy: userBuy.value,
+            isTeacher: false,
+            description: [],
+          },
+          false,
+          user.uid
+        )
+        await router.push('/')
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
-    };
+    }
     return {
       addCourses,
       userBuy,
@@ -98,22 +100,13 @@ export default {
       password,
       email,
       handleSubmit,
-    };
+    }
   },
-};
+}
 </script>
 
-
-
-
-
-
-
-
-
-
 <style lang="scss">
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .signup {
   width: vw(700);
@@ -128,7 +121,7 @@ export default {
   }
   h2 {
     @include font(vw(30), 400, vw(50));
-    font-family: "San Francisco Pro";
+    font-family: 'San Francisco Pro';
     color: $greyBlue70;
     padding-top: vw(40);
     margin-left: vw(-10);
@@ -205,7 +198,7 @@ export default {
         text-align: right;
         color: #adb8cc;
         width: 57%;
-      margin-bottom: vw(-50);
+        margin-bottom: vw(-50);
         margin-left: vw(-50);
       }
     }
@@ -222,7 +215,7 @@ export default {
     }
     h2 {
       @include font(vmin(15), 200, vmin(25));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue70;
       strong {
         color: $greyBlue80;
@@ -311,7 +304,7 @@ export default {
     }
     h2 {
       @include font(vmin(15), 200, vmin(25));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue70;
       strong {
         color: $greyBlue80;
