@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-rating_course">
+  <div v-if="courseRating" class="cart-rating_course">
     <div class="cart-rating_course_first">
       <h4>{{ courseRatingMiddArithmetic }}</h4>
       <div>
@@ -92,7 +92,8 @@ import { onMounted } from '@vue/runtime-core'
 export default {
   props: ['course'],
   setup(props) {
-    const courseRatingFive = ref([])
+    const courseRating = props.course.rating.length
+    const courseRatingFive = ref([])  
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
     const courseRatingTwo = ref([])
@@ -191,6 +192,7 @@ export default {
     
     calctPercentOfRating()
     return {
+      courseRating,
       courseRatingFive,
       courseRatingFour,
       courseRatingThree,
