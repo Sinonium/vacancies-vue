@@ -25,23 +25,47 @@
             </div>
         </form>
         <div class="header__record">
-            <router-link to="/" class="header__record-teacher">
+            
+            <router-link v-if="isTeacher" to="/createCourse" class="header__record-teacher">
+                Create Course
+            </router-link>
+            
+            <router-link v-else to="/becometeacher" class="header__record-teacher">
                 Become a Teacher
             </router-link>
-            <router-link to="/" class="header__record-logIn">
-                Log In
-            </router-link>
-            <router-link to="/" class="header__record-signUp">
-                Sing Up
-            </router-link>
+            <div class="header__record-logIn">
+                {{userName}}
+            </div>
+            <button @click.prevent="handleClick()" class="header__record-logOut">
+                Log Out
+            </button>
         </div>
     </header>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity';
+import { useRouter } from "vue-router";
+import useAuth from '@/composables/useAuth'
+import {user} from '../composables/getUser'
 export default {
     setup() {
+        const userName = user.value.email
+        console.log(user.value.email);
+        const isTeacher = ref(false)
+        const router = useRouter();
+        const handleClick = async () => {
+            const {logout} = useAuth()
+
+            try {
+                await logout()
+                await router.push("/login");
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+
         const headerNav = ref([
 			"Main",
 			"Career",
@@ -49,9 +73,7 @@ export default {
 			"Blog",
 			"Support",
 		]);
-
-
-        return {headerNav}
+        return {headerNav, handleClick, isTeacher, userName}
     }
 }
 </script>
@@ -62,6 +84,7 @@ export default {
     @include flex($justify: space-between);
     background-color: $white;
     padding: vw(20) vw(30) vw(20) vw(45);
+    box-sizing: border-box;
     width: vw(1270);
     &__logo {
         @include flex();
@@ -143,11 +166,13 @@ export default {
         &-signUp {
             display: block;
             text-decoration: none;
+        &-logOut {
             @include font(vw(12), 700, vh(20), $blue);
             background-color: rgba(51, 97, 255, 0.1);
             border-radius: vw(30);
             width: vw(100);
             height: vw(50);
+            margin: 0; // ?
             @include flex();
         }
     }

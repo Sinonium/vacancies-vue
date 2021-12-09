@@ -1,9 +1,37 @@
 <template>
+  <div class="courses-info">
+    <img
+      class="courses-info__image"
+      src="./../assets/img/courses-info-2.png"
+      alt=""
+    />
+    <div class="courses-info__block">
+      <div class="courses-info__block-theme">
+        <div class="courses-info__content">
+          <p class="categories">Advanced <b>JavaScript</b> Concepts</p>
+          <h5>Development • It & Software • Web Development</h5>
+        </div>
+        <div class="courses-info__students">
+          <img src="./../assets/img/students.svg" alt="" />
+          <span class="students">4,454,356</span>
+
+          <div>
+            <h5 class="about-students">
+              Students are learning JavaScript on Courses
+            </h5>
+          </div>
+        </div>
+      </div>
+
+     
+
+    </div>
+  </div>
   <div class="details-page">
     <div class="details-page__head">
       <ul>
         <li
-          :class="{ active: currentDetailsPage.title === 'About' }"
+          :class="{ active: currentDetailsPage === 'About' }"
           @click="handleCurrentPage('About')"
         >
           <svg
@@ -105,74 +133,154 @@
       </ul>
     </div>
     <main class="details-page__content">
-      <div v-if="currentDetailsPage.title === 'Instructor'">
-        <DetailsAboutTeach />
+      <div v-if="currentDetailsPage === 'Instructor'">
+        <DetailsAboutTeach :course="course" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Feedback')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="studsIcon" alt="" />
+            <span> Feedback </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'About'">
-        <Tutorials />
+      <div v-if="currentDetailsPage === 'About'">
+        <CourseContent :moreInfo="moreInfo.malika" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Content')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="pencilIcon" alt="" />
+            <span> Content </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'Description'">
-        <DescriptionText />
-        <Reviews />
+      <div v-if="currentDetailsPage === 'Description'">
+        <Description />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Instructor')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="studIcon" alt="" />
+            <span>Instructor</span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Feedback'">
+        <FeedBack />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('About')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="fireIcon" alt="" />
+            <span> About </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Content'" class="details-page__bottom">
+        <div class="details-page__bottom-arrow_prev">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
+        <div
+          @click="handleCurrentPage('Description')"
+          class="details-page__bottom-btn_push_page"
+        >
+          <img :src="kebabIcon" alt="" />
+          <span>Description</span>
+        </div>
+        <div class="details-page__bottom-arrow_next">
+          <img :src="ArrowIcon" alt="ArrowIcon" />
+        </div>
       </div>
     </main>
-    <div class="details-page__bottom">
-      <div>
-        <img :src="ArrowIcon" alt="ArrowIcon" />
-      </div>
-      <div>
-        <div v-html="currentDetailsPage.icon"></div>
-        <span>
-          {{ currentDetailsPage.title }}
-        </span>
-      </div>
-      <div>
-        <img :src="ArrowIcon" alt="ArrowIcon" />
-      </div>
+    <div class="details-page__modal">
+      <AddToCart />
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import FeedBack from '@/components/FeedBack/FeedBack.vue'
+import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
-import Tutorials from '@/components/Tutorials.vue'
-import DescriptionText from '@/components/DescriptionText.vue'
-import Reviews from '@/components/Reviews.vue'
-import ArrowIcon from '@/assets/icons/DetailsAboutTeach/arrow.svg'
+import CourseContent from '@/components/CourseContent.vue'
+import Description from '@/components/Description/Description.vue'
+import { computed, ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 export default {
-  components: { DescriptionText, Reviews, DetailsAboutTeach, Tutorials },
-  setup(props) {
-    const currentDetailsPage = ref({
-      title: 'About',
-      icon: `<svg
-            width="15"
-            height="16"
-            viewBox="0 0 15 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M4.95286 15.7333C4.95286 15.7333 0 15.1963 0 10.9971C0 6.79791 2.53581 5.06667 4.64504 4.0128C6.75427 2.95893 7.08326 0 7.08326 0C7.08326 0 10.3801 1.85876 10.8542 4.18686C11.3283 6.51497 9.89102 8.44444 9.89102 8.44444C9.89102 8.44444 11.4796 8.32292 12.1577 7.16771C12.8358 6.0125 12.9889 5.06667 12.9889 5.06667C12.9889 5.06667 16.068 9.80043 14.4328 12.2156C12.7976 14.6307 10.3751 16 10.3751 16C10.3751 16 7.43432 14.6768 6.70687 13.1947C5.97941 11.7126 6.50234 9.6 6.50234 9.6C6.50234 9.6 4.09996 10.3661 3.72077 12.2156C3.34158 14.065 4.95286 15.7333 4.95286 15.7333Z"
-              fill="#C3CAD9"
-            />
-          </svg>`,
+  components: {
+    FeedBack,
+    AddToCart,
+    Description,
+    DetailsAboutTeach,
+    CourseContent,
+  },
+  setup() {
+    const store = useStore()
+
+    const moreInfo = computed(() => store.state.courseMoreInfo)
+
+    const course = ref()
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
+    }
+    const currentDetailsPage = ref('About')
+    const handleCurrentPage = (currentWord) => {
+      currentDetailsPage.value = currentWord
+    }
+    onMounted(() => {
+      getDoc()
     })
 
-    const handleCurrentPage = (currentWord, currentIcon) => {
-      currentDetailsPage.value.title = currentWord
-      // currentDetailsPage.value.icon = `${currentIcon}`
-    }
-
-    return { ArrowIcon, currentDetailsPage, handleCurrentPage }
+    return {
+      moreInfo,
+      course,
+      fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
+      studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
+      studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
+      pencilIcon: require('@/assets/icons/DetailsAboutTeach/pencil.svg'),
+      kebabIcon: require('@/assets/icons/DetailsAboutTeach/kebab.svg'),
+      ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
+      handleCurrentPage,
+      currentDetailsPage,
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
+@import "@/assets/scss/index.scss";
 body {
   background: #e4e7f0;
 }
@@ -181,10 +289,10 @@ body {
   &__head {
     position: relative;
     display: flex;
-    background: $white;
-    height: vw(100);
+    background: $bg-main;
+    height: vw(80);
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
@@ -194,7 +302,7 @@ body {
       border-radius: 1px;
     }
     ul {
-      margin-left: vw(128);
+      margin-left: vw(50);
       display: flex;
       align-items: center;
       list-style-type: none;
@@ -204,18 +312,39 @@ body {
         margin-left: vw(52);
         @include flex();
         @include font(vw(12), bold, 20px, $greyBlue60);
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: vw(-35);
+          left: 0;
+          width: 0%;
+          height: 2px;
+          background: $blue;
+          border-radius: 1px;
+          opacity: 0;
+          transition: 0.4s;
+        }
         span {
+          transition: 0.4s;
           margin-left: vw(17);
         }
-        svg {
+      }
+      svg {
+        path {
+          transition: 0.4s;
         }
       }
     }
   }
+  &__modal {
+    position: absolute;
+    top: vw(130);
+    left: vw(1150);
+  }
 }
-.active {
+.details-page__head ul li.active {
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: vw(-35);
     left: 0;
@@ -223,14 +352,142 @@ body {
     height: 2px;
     background: $blue;
     border-radius: 1px;
+    opacity: 1;
   }
   span {
-    color: $blue;
+    @include font(vw(12), bold, 20px, $blue);
   }
   svg {
     path {
       fill: $blue;
     }
+  }
+}
+.details-page__bottom {
+  margin-left: -33.2vw;
+  margin-top: vw(35);
+  margin-bottom: vw(40);
+  @include flex();
+  &-arrow_prev,
+  &-arrow_next {
+    background: $white;
+    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+    border-radius: vw(30);
+    padding: vw(15);
+    cursor: pointer;
+  }
+  &-arrow_prev {
+    img {
+      transform: rotate(-90deg);
+    }
+  }
+  &-arrow_next {
+    margin-left: vw(235);
+    img {
+      transform: rotate(90deg);
+    }
+  }
+  &-btn_push_page {
+    background: $white;
+    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+    border-radius: vw(30);
+    @include flex();
+    padding: vw(17) vw(38) vw(15) vw(26);
+    margin-left: vw(235);
+    cursor: pointer !important;
+    span {
+      @include font(vw(12), bold, 20px, $greyBlue60);
+      margin-left: vw(16);
+    }
+  }
+}
+.courses-info {
+  margin: vw(30) vw(30);
+  position: relative;
+  &__like {
+    display: flex;
+  }
+
+  &__image {
+    width: vw(1210);
+  }
+  &__block {
+    padding: vw(45) vw(70);
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__block-theme {
+    margin: 0 vw(10);
+    p {
+      @include font(vw(24), 600, vh(30));
+      color: $white;
+    }
+    h5 {
+      @include font(vw(13), 600, vh(25));
+      color: $white;
+    }
+  }
+  &__students {
+    display: inline-flex;
+    .students {
+      @include font(vw(13), 700, vh(25));
+      color: $white;
+      margin: vw(23);
+    }
+  }
+}
+@media screen and (max-width: 1123px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 5vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 823px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 4vw;
+        li.active {
+          &::before {
+            margin-top: -0.8vw;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 759px) {
+  .details-page {
+    &__head {
+      ul {
+        margin-left: 3vw;
+      }
+    }
+  }
+}
+@media screen and (max-width: 719px) {
+  .details-page {
+    &__head {
+      ul {
+        li {
+          span {
+            @include font(vw(17), bold, 20px, $greyBlue60);
+          }
+          svg {
+            height: 13px;
+          }
+        }
+      }
+    }
+  }
+  .details-page__head ul li.active span {
+    @include font(vw(17), bold, 20px, $blue);
   }
 }
 </style>
