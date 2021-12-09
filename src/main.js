@@ -5,7 +5,6 @@ import {auth} from '@/firebase/config'
 import { onAuthStateChanged } from 'firebase/auth'
 import store from './store'
 
-
 let app = null
 
 
