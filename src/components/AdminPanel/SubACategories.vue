@@ -1,5 +1,5 @@
 <template>
-  <select name="" id="" v-model="selected">
+  <select @change="handleInput" name="" id="" v-model="selected">
     <option
       v-for="option in categories"
       :key="option.text"
@@ -8,10 +8,9 @@
       {{ option.text }}
     </option>
   </select>
-  
-  
 
   <select
+  @change="handleInput"
     v-if="selected === 'Web Development'"
     name=""
     id=""
@@ -71,12 +70,7 @@
     </option>
   </select>
 
-  <select
-    v-if="selected === 'Databases'"
-    name=""
-    id=""
-    v-model="subCategories"
-  >
+  <select v-if="selected === 'Databases'" name="" id="" v-model="subCategories">
     <option
       v-for="option in subCategoriesE"
       :key="option.text"
@@ -145,222 +139,233 @@
       {{ option.text }}
     </option>
   </select>
-
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { ref } from "@vue/reactivity";
 export default {
-  setup() {
+  setup(props, context) {
+    const handleInput = () => {
+      console.log(selected.value);
+      console.log(subCategories.value);
+      context.emit('selectedCates', selected.value, subCategories.value)
+    };
     const categories = [
       {
-        text: 'Web Development',
-        value: 'Web Development',
+        text: "Web Development",
+        value: "Web Development",
       },
       {
-        text: 'Game Development',
-        value: 'Game Development',
+        text: "Game Development",
+        value: "Game Development",
       },
       {
-        text: 'Mobile Apps',
-        value: 'Mobile Apps',
+        text: "Mobile Apps",
+        value: "Mobile Apps",
       },
       {
-        text: 'Programming Languages',
-        value: 'Programming Languages',
+        text: "Programming Languages",
+        value: "Programming Languages",
       },
       {
-        text: 'Databases',
-        value: 'Databases',
+        text: "Databases",
+        value: "Databases",
       },
       {
-        text: 'Software Testing',
-        value: 'Software Testing',
+        text: "Software Testing",
+        value: "Software Testing",
       },
       {
-        text: 'Software Engineering',
-        value: 'Software Engineering',
+        text: "Software Engineering",
+        value: "Software Engineering",
       },
       {
-        text: 'Development Tools',
-        value: 'Development Tools',
+        text: "Development Tools",
+        value: "Development Tools",
       },
       {
-        text: 'E-Commerce',
-        value: 'E-Commerce',
+        text: "E-Commerce",
+        value: "E-Commerce",
       },
-    ]
-    
-
+    ];
 
     const subCategoriesA = [
       {
-        text: 'Javascript',
-        value: 'Javascript',
+        text: "Javascript",
+        value: "Javascript",
       },
       {
-        text: 'React',
-        value: 'React',
+        text: "React",
+        value: "React",
       },
       {
-        text: 'Vue',
-        value: 'Vue',
+        text: "Vue",
+        value: "Vue",
       },
       {
-        text: 'Angular',
-        value: 'Angular',
+        text: "Angular",
+        value: "Angular",
       },
       {
-        text: 'HTML/CSS',
-        value: 'HTML/CSS',
+        text: "HTML/CSS",
+        value: "HTML/CSS",
       },
-    ]
+    ];
 
     const subCategoriesB = [
       {
-        text: 'Unreal Engine',
-        value: 'Unreal Engine',
+        text: "Unreal Engine",
+        value: "Unreal Engine",
       },
       {
-        text: 'Unity',
-        value: 'Unity',
-      },{
-        text: 'CryEngine',
-        value: 'CryEngine',
+        text: "Unity",
+        value: "Unity",
       },
-    ]
+      {
+        text: "CryEngine",
+        value: "CryEngine",
+      },
+    ];
 
     const subCategoriesC = [
       {
-        text: 'Java',
-        value: 'Java',
+        text: "Java",
+        value: "Java",
       },
       {
-        text: 'Kotlin',
-        value: 'Kotlin',
+        text: "Kotlin",
+        value: "Kotlin",
       },
       {
-        text: 'Swift',
-        value: 'Swift',
+        text: "Swift",
+        value: "Swift",
       },
       {
-        text: 'Objective-C',
-        value: 'Objective-C',
+        text: "Objective-C",
+        value: "Objective-C",
       },
-    ]
+    ];
 
     const subCategoriesD = [
       {
-        text: 'Python',
-        value: 'Python',
+        text: "Python",
+        value: "Python",
       },
       {
-        text: 'Java Script',
-        value: 'Java Script',
+        text: "Java Script",
+        value: "Java Script",
       },
       {
-        text: 'C#',
-        value: 'C#',
+        text: "C#",
+        value: "C#",
       },
       {
-        text: 'Go',
-        value: 'Go',
+        text: "Go",
+        value: "Go",
       },
-    ]
+    ];
 
     const subCategoriesE = [
       {
-        text: 'R',
-        value: 'R',
+        text: "R",
+        value: "R",
       },
       {
-        text: 'Python',
-        value: 'Python',
+        text: "Python",
+        value: "Python",
       },
       {
-        text: 'SQL',
-        value: 'SQL',
+        text: "SQL",
+        value: "SQL",
       },
       {
-        text: 'Scala',
-        value: 'Scala',
+        text: "Scala",
+        value: "Scala",
       },
-    ]
+    ];
 
     const subCategoriesF = [
       {
-        text: '«black-box» testing',
-        value: '«black-box» testing',
+        text: "«black-box» testing",
+        value: "«black-box» testing",
       },
       {
-        text: '«white-box» or «glass-box» testing',
-        value: '«white-box» or «glass-box» testing',
-      }
-    ]
+        text: "«white-box» or «glass-box» testing",
+        value: "«white-box» or «glass-box» testing",
+      },
+    ];
 
     const subCategoriesG = [
       {
-        text: 'Object oriented programming',
-        value: 'Object oriented programming',
+        text: "Object oriented programming",
+        value: "Object oriented programming",
       },
       {
-        text: 'Analysis of algorithms',
-        value: 'Analysis of algorithms',
+        text: "Analysis of algorithms",
+        value: "Analysis of algorithms",
       },
       {
-        text: 'Computer graphics',
-        value: 'Computer graphics',
+        text: "Computer graphics",
+        value: "Computer graphics",
       },
       {
-        text: 'Cryptography',
-        value: 'Cryptography',
-      }
-    ]
+        text: "Cryptography",
+        value: "Cryptography",
+      },
+    ];
 
     const subCategoriesH = [
       {
-        text: 'GitHub',
-        value: 'GitHub',
+        text: "GitHub",
+        value: "GitHub",
       },
       {
-        text: 'FileZilla',
-        value: 'FileZilla',
+        text: "FileZilla",
+        value: "FileZilla",
       },
       {
-        text: 'Rescue Time',
-        value: 'Rescue Time',
+        text: "Rescue Time",
+        value: "Rescue Time",
       },
       {
-        text: 'Asana',
-        value: 'Asana',
-      }
-    ]
+        text: "Asana",
+        value: "Asana",
+      },
+    ];
 
     const subCategoriesI = [
       {
-        text: 'B2C / B2B / C2C',
-        value: 'B2C / B2B / C2C',
+        text: "B2C / B2B / C2C",
+        value: "B2C / B2B / C2C",
       },
       {
-        text: 'M-commerce',
-        value: 'M-commerce',
+        text: "M-commerce",
+        value: "M-commerce",
       },
       {
-        text: 'F-commerce',
-        value: 'F-commerce',
-      }
-    ]
-    
-    const selected = ref('')
-    const subCategories = ref('')
+        text: "F-commerce",
+        value: "F-commerce",
+      },
+    ];
 
-    return { categories, selected, subCategories, subCategoriesA, subCategoriesB, subCategoriesC, subCategoriesD, subCategoriesE, subCategoriesF, subCategoriesG, subCategoriesH, subCategoriesI}
+    const selected = ref("");
+    const subCategories = ref("");
+
+    return {
+      handleInput,
+      categories,
+      selected,
+      subCategories,
+      subCategoriesA,
+      subCategoriesB,
+      subCategoriesC,
+      subCategoriesD,
+      subCategoriesE,
+      subCategoriesF,
+      subCategoriesG,
+      subCategoriesH,
+      subCategoriesI,
+    };
   },
-}
+};
 </script>
-
-
-
-
-   
-

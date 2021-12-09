@@ -129,7 +129,7 @@
             <select name="" id="" v-model="selected">
                <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
             </select>
-            <SubACategories v-if="selected === 'Development'"/>
+            <SubACategories @selectedCates="popa" v-if="selected === 'Development'"/>
             <SubBCategories v-if="selected === 'Business'" />
             <SubCCategories v-if="selected === 'Finance & Accounting'" />
             <SubDCategories v-if="selected === 'IT & Software'" />
@@ -281,8 +281,11 @@ export default {
         },
 
     ]
-
+    const popa = (a, b) => {
+      jopa.value = [selected.value, a, b]
+  }
     const selected = ref('')
+    const jopa = ref([])
 
     const myId = uuid()
 
@@ -308,13 +311,12 @@ export default {
         whoIsfor: whoIsfor.value,
         pricelist: pricelist.value,
         duration: duration.value,
-        categories: categories.value,
+        categories: jopa.value,
         moreInfoId: myId,
       }),
         await addCollection(
           'more info',
           {
-             selected: selected.value,
             heading: heading.value,
             mainInfo: mainInfo.value,
             moreInfo: moreInfo.value,
@@ -325,6 +327,7 @@ export default {
     }
 
     return {
+      popa,
       handleSubmit,
       name,
       price,
