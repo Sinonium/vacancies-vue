@@ -6,7 +6,9 @@ const categories = {
 
    },
    mutations: {
-      
+      SET_CATEGORY(state, payload) {
+         state.category = [payload.main, payload.category, payload.sub]
+      }
    },
    actions: {
 

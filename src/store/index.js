@@ -8,7 +8,6 @@ export default createStore({
   state: {
     courses: [],
     courseMoreInfo: [],
-    categoryItem: []
   },
   mutations: {
     GET_COURSES(state, payload) {
@@ -20,9 +19,6 @@ export default createStore({
     GET_MORE_INFO(state, info) {
       state.courseMoreInfo = info
     },
-    SET_CATEGORY(state, payload) {
-      state.categoryItem = payload
-   }
   },
   actions: {
     async getCourses({ commit }) {
