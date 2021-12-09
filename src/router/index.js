@@ -6,7 +6,7 @@ import Login from '../pages/Login.vue'
 import SignUp from '../pages/SignUp.vue'
 import Test from '../views/Test.vue'
 import {user} from '../composables/getUser' 
-
+import Becometeacher from '../views/BecomeTeacher.vue'
 const requireAuth = (to, from, next) => {
   if (!user.value) {
     return next({name: 'Login'});
@@ -58,6 +58,11 @@ const routes = [
     component: Test,
     beforeEnter: requireAuth
   },
+  {
+    path: '/becometeacher',
+    name: 'Becometeacher',
+    component: Becometeacher
+  }
 ]
 
 const router = createRouter({

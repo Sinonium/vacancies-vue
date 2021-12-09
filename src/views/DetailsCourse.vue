@@ -206,6 +206,7 @@ import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
     FeedBack,
@@ -215,12 +216,22 @@ export default {
     CourseContent,
   },
   setup() {
+    const course = ref()
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
+    }
     const currentDetailsPage = ref('About')
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
     }
+    onMounted(() => {
+      getDoc()
+    })
 
     return {
+      course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
       studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
