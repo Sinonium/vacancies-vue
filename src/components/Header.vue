@@ -33,9 +33,9 @@
             <router-link v-else to="/becometeacher" class="header__record-teacher">
                 Become a Teacher
             </router-link>
-            <router-link to="/" class="header__record-logIn">
-                Log In
-            </router-link>
+            <div class="header__record-logIn">
+                {{userName}}
+            </div>
             <button @click.prevent="handleClick()" class="header__record-logOut">
                 Log Out
             </button>
@@ -47,10 +47,11 @@
 import { ref } from '@vue/reactivity';
 import { useRouter } from "vue-router";
 import useAuth from '@/composables/useAuth'
-
+import {user} from '../composables/getUser'
 export default {
     setup() {
-
+        const userName = user.value.email
+        console.log(user.value.email);
         const isTeacher = ref(false)
         const router = useRouter();
         const handleClick = async () => {
@@ -72,7 +73,7 @@ export default {
 			"Blog",
 			"Support",
 		]);
-        return {headerNav, handleClick, isTeacher}
+        return {headerNav, handleClick, isTeacher, userName}
     }
 }
 </script>
