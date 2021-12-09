@@ -175,7 +175,7 @@ import SubPhotoCategories from "./photography/SubCategories.vue";
 import SubHealthCategories from "./health/SubCategories.vue";
 import SubMusicCategories from "./music/SubCategories.vue";
 import SubTeachCategories from "./teaching/SubCategories.vue";
-import { watch } from "@vue/runtime-core";
+import { onMounted } from '@vue/runtime-core';
 export default {
   components: {
     SubDevCategories,
@@ -195,25 +195,41 @@ export default {
   setup(props, context) {
     const store = useStore();
 
-    const cata = (cata, subcata) => {
+    const cata = async (cata, subcata) => {
       category.value = cata;
       subCategory.value = subcata;
-      store.commit("SET_CATEGORY", {
+      // if(cata == category.value) {
+      //    subCategory.value = undefined
+      // }
+      if (subCategory.value) {
+        store.commit("SET_CATEGORY", {
           main: mainCategory.value,
           category: category.value,
           sub: subCategory.value,
         });
+      //   await store.dispatch("getAnyCollection");
+      } else {
+        store.commit("SET_CATEGORY", {
+          main: mainCategory.value,
+          category: category.value,
+        });
+        await store.dispatch("getAnyCollection", [
+          mainCategory.value,
+          category.value,
+        ]);
+      }
     };
     const mainCategory = ref("");
     const category = ref("");
     const subCategory = ref("");
     const categoryActive = computed(() => store.state.categories.category);
-    const test = (i) => {
+    const test = async (i) => {
       mainCategory.value = i;
       context.emit("clickedCata", i, category.value, subCategory.value);
       store.commit("SET_CATEGORY", {
         main: mainCategory.value,
       });
+      await store.dispatch("getAnyCollection", [mainCategory.value]);
     };
 
     const clickedCategories = ref(null);
@@ -224,6 +240,10 @@ export default {
         clickedCategories.value = null;
       }
     };
+
+    onMounted(() => {
+       store.dispatch("getAnyCollection");
+    })
 
     return {
       mainCategory,
