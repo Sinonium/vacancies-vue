@@ -1,5 +1,5 @@
 <template>
-  <form class="admin-board" @submit.prevent="handleSubmit()">
+  <form class="admin-board" @submit.prevent="handleSubmit">
     <h3 class="admin-board__heading">New Course Creation</h3>
     <div class="create-course">
       <div class="create-course__name">
@@ -28,6 +28,19 @@
       <div class="create-course__description">
         <h4 class="create-course__title">Course Description</h4>
 
+        
+
+        <p class="create-course__instruction">Type the heading</p>
+        <input
+          onkeyup="this.value=this.value.replace(/^\s/,'')"
+          name="comment"
+          cols="40"
+          rows="3"
+          placeholder="Type the heading"
+          v-model="heading"
+        />
+        
+        <p class="create-course__instruction">Tell us about course</p>
         <div class="create-course__questions">
           <div class="questions">
             <p>
@@ -51,17 +64,6 @@
           </div>
         </div>
 
-        <p class="create-course__instruction">Type the heading</p>
-        <textarea
-          onkeyup="this.value=this.value.replace(/^\s/,'')"
-          name="comment"
-          cols="40"
-          rows="3"
-          placeholder="Type the heading"
-          v-model="heading"
-        ></textarea>
-
-        <p class="create-course__instruction">Tell us about course</p>
         <textarea
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
@@ -98,6 +100,11 @@
           type="text"
           v-model="study"
         />
+
+        <span class="enter-span">
+            <div class="enter" @click="enterWhat">Enter</div>
+        </span>
+
         
 
         <h4 class="create-course__title">Who this course is for:</h4>
@@ -107,7 +114,10 @@
           type="text"
           v-model="whoIsfor"
         />
-        <div class="enter" @click="enterWho">Enter</div>
+        <span class="enter-span">
+            <div class="enter" @click="enterWho">Enter</div>
+        </span>
+      
 
         <h4 class="create-course__title">About Teacher</h4>
         <p class="create-course__instruction">Type the name of the teacher</p>
@@ -129,22 +139,64 @@
     <div class="create-course">
       <div class="create-course__categories">
         <h4 class="create-course__title">Project Categories</h4>
-            <select name="" id="" v-model="selected">
-               <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
-            </select>
-            <SubACategories @selectedCates="popa" v-if="selected === 'Development'"/>
-            <SubBCategories @selectedCates="popa" v-if="selected === 'Business'" />
-            <SubCCategories @selectedCates="popa" v-if="selected === 'Finance & Accounting'" />
-            <SubDCategories @selectedCates="popa" v-if="selected === 'IT & Software'" />
-            <SubDCategories @selectedCates="popa" v-if="selected === 'Office Productivity'" />
-            <SubECategories @selectedCates="popa" v-if="selected === 'Personal Development'" />
-            <SubFCategories @selectedCates="popa" v-if="selected === 'Design and Art'" /> 
-            <SubGCategories @selectedCates="popa" v-if="selected === 'Marketing and Sales'" /> 
-            <SubHCategories @selectedCates="popa" v-if="selected === 'Lifestyle and Fashion'" /> 
-            <SubICategories @selectedCates="popa" v-if="selected === 'Photography'" /> 
-            <SubJCategories @selectedCates="popa" v-if="selected === 'Health & Fitness'" /> 
-            <SubKCategories @selectedCates="popa" v-if="selected === 'Music and Sound Design'" /> 
-            <SubLCategories @selectedCates="popa" v-if="selected === 'Teaching & Academics'" /> 
+        <select name="" id="" v-model="selected">
+          <option
+            v-for="option in categories"
+            :key="option.text"
+            :value="option.value"
+          >
+            {{ option.text }}
+          </option>
+        </select>
+        <SubACategories
+          @selectedCates="popa"
+          v-if="selected === 'Development'"
+        />
+        <SubBCategories @selectedCates="popa" v-if="selected === 'Business'" />
+        <SubCCategories
+          @selectedCates="popa"
+          v-if="selected === 'Finance & Accounting'"
+        />
+        <SubDCategories
+          @selectedCates="popa"
+          v-if="selected === 'IT & Software'"
+        />
+        <SubDCategories
+          @selectedCates="popa"
+          v-if="selected === 'Office Productivity'"
+        />
+        <SubECategories
+          @selectedCates="popa"
+          v-if="selected === 'Personal Development'"
+        />
+        <SubFCategories
+          @selectedCates="popa"
+          v-if="selected === 'Design and Art'"
+        />
+        <SubGCategories
+          @selectedCates="popa"
+          v-if="selected === 'Marketing and Sales'"
+        />
+        <SubHCategories
+          @selectedCates="popa"
+          v-if="selected === 'Lifestyle and Fashion'"
+        />
+        <SubICategories
+          @selectedCates="popa"
+          v-if="selected === 'Photography'"
+        />
+        <SubJCategories
+          @selectedCates="popa"
+          v-if="selected === 'Health & Fitness'"
+        />
+        <SubKCategories
+          @selectedCates="popa"
+          v-if="selected === 'Music and Sound Design'"
+        />
+        <SubLCategories
+          @selectedCates="popa"
+          v-if="selected === 'Teaching & Academics'"
+        />
         <div>
           <h4 class="create-course__title">Course levels</h4>
           <p class="create-course__instruction">
@@ -170,14 +222,14 @@
         </div>
         <div>
           <h4 class="create-course__title">Duration courses</h4>
-          <p class="create-course__instruction">Choose one of this options</p>
-          <select name="" id="" v-model="duration">
-            <option value="0-2">0-2 Hours</option>
-            <option value="3-6">3-6 Hours</option>
-            <option value="7-16">7-16 Hours</option>
-            <option value="17+ hours">17+ Hours</option>
-          </select>
-          <label for=""></label>
+          <p class="create-course__instruction">Type course time</p>
+          <input
+          onkeyup="this.value=this.value.replace(/^\s/,'')"
+          type="number"
+          v-model="coursetime"
+        />
+
+
         </div>
       </div>
     </div>
@@ -191,17 +243,32 @@
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
           placeholder="JavaScript Foundation"
+          v-model="lectureName"
         />
 
-        <p class="create-course__instruction">Type the name of the lesson:</p>
+        <p class="create-course__instruction">
+          Type the name of the lesson: (there can be many lessons here)
+        </p>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
           placeholder="How To Succedd In This Course"
+          v-model="lesson"
         />
+        <input
+          
+          type="time"
+          v-model="time"
+        />
+        <span class="enter-span">
+            <div class="enter" @click="enterLesson">Enter</div>
+        </span>
+      </div>
+      <div class="">
 
       </div>
-      </div>
+      <div class="enter2" @click="enterLecture">Add lecture</div>
+    </div>
     <div class="publish">
       <button>Publish Course</button>
     </div>
@@ -209,7 +276,6 @@
 </template>
 
 <script>
-
 import addCollection from '@/composables/addCollection'
 import { ref } from '@vue/reactivity'
 import { v4 as uuid } from 'uuid'
@@ -226,63 +292,75 @@ import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
 import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
 import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
 export default {
-  components: { SubACategories, SubBCategories, SubCCategories, SubDCategories,SubECategories, SubFCategories, SubGCategories, SubHCategories, SubICategories, SubJCategories, SubKCategories, SubLCategories},
+  components: {
+    SubACategories,
+    SubBCategories,
+    SubCCategories,
+    SubDCategories,
+    SubECategories,
+    SubFCategories,
+    SubGCategories,
+    SubHCategories,
+    SubICategories,
+    SubJCategories,
+    SubKCategories,
+    SubLCategories,
+  },
 
   setup() {
     const categories = [
-        {
-            text: 'Development',
-            value: 'Development'
-        },
-        {
-            text: 'Business',
-            value: 'Business'
-        },
-        {
-            text: 'Finance & Accounting',
-            value: 'Finance & Accounting'
-        },
-        {
-            text: 'IT & Software',
-            value: 'IT & Software'
-        },
-        {
-            text: 'Office Productivity',
-            value: 'Office Productivity'
-        },
-        {
-            text: 'Personal Development',
-            value: 'Personal Development'
-        },
-        {
-            text: 'Design and Art',
-            value: 'Design and Art'
-        },
-        {
-            text: 'Marketing and Sales',
-            value: 'Marketing and Sales'
-        },
-        {
-            text: 'Lifestyle and Fashion',
-            value: 'Lifestyle and Fashion'
-        },
-        {
-            text: 'Photography',
-            value: 'Photography'
-        },
-        {
-            text: 'Health & Fitness',
-            value: 'Health & Fitness'
-        },
-        {
-            text: 'Music and Sound Design',
-            value: 'Music and Sound Design'
-        },
-        {
-            text: 'Teaching & Academics',
-            value: 'Teaching & Academics'
-        },
-
+      {
+        text: 'Development',
+        value: 'Development',
+      },
+      {
+        text: 'Business',
+        value: 'Business',
+      },
+      {
+        text: 'Finance & Accounting',
+        value: 'Finance & Accounting',
+      },
+      {
+        text: 'IT & Software',
+        value: 'IT & Software',
+      },
+      {
+        text: 'Office Productivity',
+        value: 'Office Productivity',
+      },
+      {
+        text: 'Personal Development',
+        value: 'Personal Development',
+      },
+      {
+        text: 'Design and Art',
+        value: 'Design and Art',
+      },
+      {
+        text: 'Marketing and Sales',
+        value: 'Marketing and Sales',
+      },
+      {
+        text: 'Lifestyle and Fashion',
+        value: 'Lifestyle and Fashion',
+      },
+      {
+        text: 'Photography',
+        value: 'Photography',
+      },
+      {
+        text: 'Health & Fitness',
+        value: 'Health & Fitness',
+      },
+      {
+        text: 'Music and Sound Design',
+        value: 'Music and Sound Design',
+      },
+      {
+        text: 'Teaching & Academics',
+        value: 'Teaching & Academics',
+      },
     ]
     const popa = (a, b) => {
       jopa.value = [selected.value, a, b]
@@ -291,7 +369,7 @@ export default {
     const jopa = ref([])
 
     const myId = uuid()
-    
+
     const heading = ref('')
     const name = ref('')
     const price = ref('')
@@ -301,36 +379,90 @@ export default {
     const teacher = ref('')
     const level = ref('')
     const whoIsfor = ref('')
-    const enterIsWho =ref([])
+    const enterIsWho = ref([])
+    const enterIsWhat = ref([])
     const pricelist = ref('')
     const duration = ref('')
+    const lectureName = ref('')
+    const lesson = ref('')
+    const time = ref('')
+    const study = ref('')
+    const Lessons = ref([])
+    const Lectures= ref([])
+    const coursetime = ref()
 
-  const enterWho =()=>{
-      enterIsWho.value = [...enterIsWho.value, whoIsfor ]
+    const enterWho = () => {
+      enterIsWho.value = [...enterIsWho.value, whoIsfor.value]
       whoIsfor.value = ''
-      console.log(enterIsWho.value,whoIsfor.value )
-      console.log("kjhgf")
-      console.log(whoIsfor.value )
-  }
+    }
+    const enterWhat = () => {
+      enterIsWhat.value = [...enterIsWhat.value, study.value]
+      study.value = ''
+    }
+    const enterLesson = () => {
+      console.log("jopa");
+      Lessons.value = [
+        ...Lessons.value,
+        {
+          time: time.value,
+          lessonName: lesson.value,
+        },
+      ]
+      console.log(Lessons.value);
+      time.value = ''
+      lesson.value = ''
+    }
+    const enterLecture = () => {
+      console.log("eshe bol,shaia jopa")
+      Lectures.value = [
+        ...Lectures.value,
+        {
+          lectureName: lectureName.value,
+          lessons: Lessons.value,
+        },
+      ]
+      console.log(Lectures.value);
+      lectureName.value = ''
+      Lessons.value= []
+    }
+
+
     const handleSubmit = async () => {
+      if(coursetime.value >=0 && coursetime.value <=2)duration.value = "0-2 Hours"
+      if(coursetime.value >=3 && coursetime.value <=6)duration.value = "3-6 Hours"
+      if(coursetime.value >=7 && coursetime.value <=16)duration.value = "7-16 Hours"
+      if(coursetime.value >=17 )duration.value = "17+ Hours"
       await addCollection('courses', {
         name: name.value,
         price: price.value,
         imageURL: imageURL.value,
         teacher: teacher.value,
         level: level.value,
-        whoIsfor: enterIsWho.value,
         pricelist: pricelist.value,
         duration: duration.value,
         categories: jopa.value,
+        students: 0,
+        teacherName: '',
+        grade: 0,
         moreInfoId: myId,
       }),
         await addCollection(
           'more info',
           {
-            heading: heading.value,
-            mainInfo: mainInfo.value,
-            moreInfo: moreInfo.value,
+            malika:{
+              whoIsfor: enterIsWho.value,
+              courseContent: Lectures.value
+            },
+            beknazar:{
+              heading: heading.value,
+              mainInfo: mainInfo.value,
+              moreInfo: moreInfo.value,
+            },
+            adilhan: {
+              grades: [],
+              reviews: [],
+              teacherID: ''
+            }
           },
           false,
           myId
@@ -340,22 +472,33 @@ export default {
     return {
       popa,
       handleSubmit,
+      lectureName,
+      enterLesson,
+      enterLecture,
+      coursetime,
+      Lessons,
+      Lectures,
       name,
       price,
+      lesson,
       imageURL,
       categories,
+      time,
       teacher,
       heading,
       mainInfo,
       moreInfo,
       categories,
       level,
+      study,
       whoIsfor,
       pricelist,
       duration,
       selected,
       enterWho,
-      enterIsWho
+      enterIsWho,
+      enterWhat,
+      enterIsWhat,
     }
   },
 }
@@ -368,11 +511,40 @@ export default {
 .admin-board {
   margin: vw(30) vw(160);
   width: vw(760);
+  .enter2{
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include font(vw(14), 600, vh(30));
+      color: $white;
+      background-color: $greyBlue70;
+      width: vw(100);
+      height: vw(50);
+      border: none;
+      border-radius: vw(5);
+  }
+  .enter{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include font(vw(14), 600, vh(30));
+      color: white;
+      background-color: $greyBlue90;
+      width: vw(70);
+      height: vw(30);
+      border: none;
+      border-radius: vw(5);
+  }
   &__heading {
     @include font(vw(16), 700, vh(30));
     color: $greyBlue60;
   }
-
+  .enter-span{
+    display: flex;
+    justify-content: end;
+    padding-right: vw(10);
+  }
   .publish {
     margin: 0 vw(30);
     button {
@@ -526,7 +698,7 @@ export default {
         padding: vw(10);
         margin: 0 0 vmin(15) 0;
         width: vmin(220);
-        @include font(vmin(7), 600, vmin(15)); 
+        @include font(vmin(7), 600, vmin(15));
       }
       &__examples {
         span {

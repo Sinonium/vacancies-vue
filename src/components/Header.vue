@@ -25,7 +25,12 @@
             </div>
         </form>
         <div class="header__record">
-            <router-link to="/becometeacher" class="header__record-teacher">
+            
+            <router-link v-if="isTeacher" to="/createCourse" class="header__record-teacher">
+                Create Course
+            </router-link>
+            
+            <router-link v-else to="/becometeacher" class="header__record-teacher">
                 Become a Teacher
             </router-link>
             <div class="header__record-logIn">
@@ -45,12 +50,10 @@ import useAuth from '@/composables/useAuth'
 import {user} from '../composables/getUser'
 export default {
     setup() {
-        const router = useRouter();
-
         const userName = user.value.email
         console.log(user.value.email);
-        
-
+        const isTeacher = ref(false)
+        const router = useRouter();
         const handleClick = async () => {
             const {logout} = useAuth()
 
@@ -70,7 +73,7 @@ export default {
 			"Blog",
 			"Support",
 		]);
-        return {headerNav, handleClick, userName}
+        return {headerNav, handleClick, isTeacher, userName}
     }
 }
 </script>

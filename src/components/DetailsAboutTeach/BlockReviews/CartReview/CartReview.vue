@@ -58,9 +58,17 @@
           <span v-if="reviewDate[1] < 12 && resultReviewDateMonth !== 0">
             {{ resultReviewDateMonth }} month ago
           </span>
-          <span v-if="reviewDate[0] > currentDate.getDay() && reviewDate[0] < currentDate.getDay()  && reviewDate[2] !== currentDate.getFullYear() && reviewDate[0] > currentDate.getDay() && reviewDate[2] === currentDate.getFullYear()">
+          <span
+            v-if="
+              reviewDate[0] > currentDate.getDay() &&
+              reviewDate[0] < currentDate.getDay() &&
+              reviewDate[2] !== currentDate.getFullYear() &&
+              reviewDate[0] > currentDate.getDay() &&
+              reviewDate[2] === currentDate.getFullYear()
+            "
+          >
             {{ resultReviewDateDay }} day ago
-          </span> 
+          </span>
         </span>
       </div>
     </div>
