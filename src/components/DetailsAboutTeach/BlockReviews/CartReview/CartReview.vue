@@ -51,8 +51,17 @@
           <img :src="starNotActiveIcon" alt="" />
           <img :src="starNotActiveIcon" alt="" />
         </div>
-        <span v-if="currentDate !== reviewDate"> {{ resultReviewDate }} months ago </span>
-        <span v-else> Now </span>
+        <span>
+          <span v-if="reviewDate[2] < currentDate.getFullYear()">
+            {{ resultReviewDateYear }} years ago
+          </span>
+          <span v-if="reviewDate[1] < 12 && resultReviewDateMonth !== 0">
+            {{ resultReviewDateMonth }} month ago
+          </span>
+          <span v-if="reviewDate[0] > currentDate.getDay() && reviewDate[0] < currentDate.getDay()  && reviewDate[2] !== currentDate.getFullYear() && reviewDate[0] > currentDate.getDay() && reviewDate[2] === currentDate.getFullYear()">
+            {{ resultReviewDateDay }} day ago
+          </span> 
+        </span>
       </div>
     </div>
     <div class="cart-review__text">
@@ -63,28 +72,35 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { ref } from '@vue/reactivity'
 export default {
   props: ['review'],
-  setup(props: any) {
-    const currentDate: Date = new Date()
-    const reviewDate: Date = new Date(props.review.data)
-    const resultReviewDate = ref(<number>0)
+  setup(props) {
+    const currentDate = new Date()
+    const reviewDate = props.review.date
+    const resultReviewDateMonth = ref(0)
+    const resultReviewDateDay = ref(0)
+    const resultReviewDateYear = ref(0)
 
-    const getSomeNumAgo = (firstDate: Date, secondDate: Date): void => {
-      const firstNumDateRef: number = firstDate.getMonth()
-      const secondNumDateRef: number = secondDate.getMonth()
+    const getSomeNumAgo = (firstDate, secondDate) => {
+      const firstNumDateMonthRef = firstDate.getMonth()
+      const secondNumDateMonthRef = secondDate[1]
+      const firstNumDateDayRef = firstDate.getDay()
+      const secondtNumDateDayRef = secondDate[0]
+      const firstNumDateYearRef = firstDate.getFullYear()
+      const secondtNumDateYearRef = secondDate[2]
 
-      resultReviewDate.value = firstNumDateRef - secondNumDateRef
+      resultReviewDateDay.value = firstNumDateDayRef - secondtNumDateDayRef
+      resultReviewDateMonth.value = firstNumDateMonthRef - secondNumDateMonthRef
+      resultReviewDateYear.value = firstNumDateYearRef - secondtNumDateYearRef
     }
-    
-    getSomeNumAgo(currentDate, reviewDate)
-    console.log(resultReviewDate.value)
-    console.log(reviewDate)
 
+    getSomeNumAgo(currentDate, reviewDate)
     return {
-      resultReviewDate,
+      resultReviewDateYear,
+      resultReviewDateDay,
+      resultReviewDateMonth,
       currentDate,
       reviewDate,
       starActiveIcon: require('@/assets/icons/DetailsAboutTeach/starActive.svg'),

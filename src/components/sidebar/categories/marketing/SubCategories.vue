@@ -1,19 +1,22 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Marketing' }"
+         @click="handleCategories('Marketing')"
       >
          <span>Marketing</span>
       </li>
-      <Marketing v-if="clickedCategories === 1" />
+      <Marketing
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Marketing'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Sales' }"
+         @click="handleCategories('Sales')"
       >
          <span>Sales</span>
       </li>
-      <Sales v-if="clickedCategories === 2" />
+      <Sales @clickedCata="setSubCata" v-if="clickedCategories === 'Sales'" />
    </ul>
 </template>
 
@@ -23,12 +26,27 @@
    import Sales from "./Sales.vue";
    export default {
       components: { Marketing, Sales },
-      setup() {
-         const clickedCategories = ref(null);
+       setup(props, context) {
+    const clickedCategories = ref(null)
+    const subCategory = ref('');
+    const category = ref("");
+    const setSubCata = (params) => {
+      subCategory.value = params;
+      handleCategories(clickedCategories.value)
+    };
+    const handleCategories = (i) => {
+      clickedCategories.value = i
+      category.value = i
+      context.emit("clickedSubCata", category.value, subCategory.value);
+    };
 
-         return {
-            clickedCategories,
-         };
+    return {
+      category,
+      clickedCategories,
+      subCategory,
+      handleCategories,
+      setSubCata,
+    };
       },
    };
 </script>

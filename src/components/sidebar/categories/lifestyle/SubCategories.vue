@@ -1,26 +1,29 @@
 <template>
-<ul class="sub">
+   <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Create' }"
+         @click="handleCategories('Create')"
       >
          <span>Create</span>
       </li>
-      <Create v-if="clickedCategories === 1" />
+      <Create @clickedCata="setSubCata" v-if="clickedCategories === 'Create'" />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Design' }"
+         @click="handleCategories('Design')"
       >
          <span>Design</span>
       </li>
-      <Design v-if="clickedCategories === 2" />
+      <Design @clickedCata="setSubCata" v-if="clickedCategories === 'Design'" />
       <li
-         :class="{ clicked: clickedCategories === 3 }"
-         @click="clickedCategories = 3"
+         :class="{ clicked: clickedCategories === 'Introduction' }"
+         @click="handleCategories('Introduction')"
       >
          <span>Introduction</span>
       </li>
-      <Introduction v-if="clickedCategories === 3" />
+      <Introduction
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Introduction'"
+      />
    </ul>
 </template>
 
@@ -31,12 +34,27 @@
    import Introduction from "./Introduction.vue";
    export default {
       components: { Create, Design, Introduction },
-      setup() {
-         const clickedCategories = ref(null);
+       setup(props, context) {
+    const clickedCategories = ref(null)
+    const subCategory = ref('');
+    const category = ref("");
+    const setSubCata = (params) => {
+      subCategory.value = params;
+      handleCategories(clickedCategories.value)
+    };
+    const handleCategories = (i) => {
+      clickedCategories.value = i
+      category.value = i
+      context.emit("clickedSubCata", category.value, subCategory.value);
+    };
 
-         return {
-            clickedCategories,
-         };
+    return {
+      category,
+      clickedCategories,
+      subCategory,
+      handleCategories,
+      setSubCata,
+    };
       },
    };
 </script>

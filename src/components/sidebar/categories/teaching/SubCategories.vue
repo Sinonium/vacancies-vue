@@ -1,19 +1,25 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Languages' }"
+         @click="handleCategories('Languages')"
       >
          <span>Languages</span>
       </li>
-      <Languages v-if="clickedCategories === 1" />
+      <Languages
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Languages'"
+      />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Scientific subjects' }"
+         @click="handleCategories('Scientific subjects')"
       >
          <span>Scientific subjects</span>
       </li>
-      <ScientificSubjects v-if="clickedCategories === 2" />
+      <ScientificSubjects
+         @clickedCata="setSubCata"
+         v-if="clickedCategories === 'Scientific subjects'"
+      />
    </ul>
 </template>
 
@@ -23,12 +29,27 @@
    import ScientificSubjects from "./ScientificSubjects.vue";
    export default {
       components: { Languages, ScientificSubjects },
-      setup() {
-         const clickedCategories = ref(null);
+       setup(props, context) {
+    const clickedCategories = ref(null)
+    const subCategory = ref('');
+    const category = ref("");
+    const setSubCata = (params) => {
+      subCategory.value = params;
+      handleCategories(clickedCategories.value)
+    };
+    const handleCategories = (i) => {
+      clickedCategories.value = i
+      category.value = i
+      context.emit("clickedSubCata", category.value, subCategory.value);
+    };
 
-         return {
-            clickedCategories,
-         };
+    return {
+      category,
+      clickedCategories,
+      subCategory,
+      handleCategories,
+      setSubCata,
+    };
       },
    };
 </script>

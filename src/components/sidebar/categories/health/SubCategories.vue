@@ -1,26 +1,26 @@
 <template>
    <ul class="sub">
       <li
-         :class="{ clicked: clickedCategories === 1 }"
-         @click="clickedCategories = 1"
+         :class="{ clicked: clickedCategories === 'Physical Fitness' }"
+         @click="handleCategories('Physical Fitness')"
       >
          <span>Physical Fitness</span>
       </li>
-      <PhysicalFitness v-if="clickedCategories === 1" />
+      <PhysicalFitness @clickedCata="setSubCata" v-if="clickedCategories === 'Physical Fitness'" />
       <li
-         :class="{ clicked: clickedCategories === 2 }"
-         @click="clickedCategories = 2"
+         :class="{ clicked: clickedCategories === 'Yoga' }"
+         @click="handleCategories('Yoga')"
       >
          <span>Yoga</span>
       </li>
-      <Yoga v-if="clickedCategories === 2" />
+      <Yoga @clickedCata="setSubCata" v-if="clickedCategories === 'Yoga'" />
       <li
-         :class="{ clicked: clickedCategories === 3 }"
-         @click="clickedCategories = 3"
+         :class="{ clicked: clickedCategories === 'Therapeutic Fasting' }"
+         @click="handleCategories('Therapeutic Fasting')"
       >
          <span>Therapeutic Fasting</span>
       </li>
-      <TherapeuticFasting v-if="clickedCategories === 3" />
+      <TherapeuticFasting @clickedCata="setSubCata" v-if="clickedCategories === 'Therapeutic Fasting'" />
    </ul>
 </template>
 
@@ -31,12 +31,27 @@
    import TherapeuticFasting from "./TherapeuticFasting.vue";
    export default {
       components: { PhysicalFitness, Yoga, TherapeuticFasting },
-      setup() {
-         const clickedCategories = ref(null);
+       setup(props, context) {
+    const clickedCategories = ref(null)
+    const subCategory = ref('');
+    const category = ref("");
+    const setSubCata = (params) => {
+      subCategory.value = params;
+      handleCategories(clickedCategories.value)
+    };
+    const handleCategories = (i) => {
+      clickedCategories.value = i
+      category.value = i
+      context.emit("clickedSubCata", category.value, subCategory.value);
+    };
 
-         return {
-            clickedCategories,
-         };
+    return {
+      category,
+      clickedCategories,
+      subCategory,
+      handleCategories,
+      setSubCata,
+    };
       },
    };
 </script>

@@ -3,7 +3,7 @@
     <div class="details-page__head">
       <ul>
         <li
-          :class="{ active: currentDetailsPage.title === 'About' }"
+          :class="{ active: currentDetailsPage === 'About' }"
           @click="handleCurrentPage('About')"
         >
           <svg
@@ -23,7 +23,7 @@
           <span>About</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Content' }"
+          :class="{ active: currentDetailsPage === 'Content' }"
           @click="handleCurrentPage('Content')"
         >
           <svg
@@ -43,7 +43,7 @@
           <span>Content</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Description' }"
+          :class="{ active: currentDetailsPage === 'Description' }"
           @click="handleCurrentPage('Description')"
         >
           <svg
@@ -63,7 +63,7 @@
           <span>Description</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Instructor' }"
+          :class="{ active: currentDetailsPage === 'Instructor' }"
           @click="handleCurrentPage('Instructor')"
         >
           <svg
@@ -83,7 +83,7 @@
           <span>Instructor</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage.title === 'Feedback' }"
+          :class="{ active: currentDetailsPage === 'Feedback' }"
           @click="handleCurrentPage('Feedback')"
         >
           <svg
@@ -105,8 +105,8 @@
       </ul>
     </div>
     <main class="details-page__content">
-      <div v-if="currentDetailsPage.title === 'Instructor'">
-        <DetailsAboutTeach />
+      <div v-if="currentDetailsPage === 'Instructor'">
+        <DetailsAboutTeach :course="course" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -123,7 +123,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'About'">
+      <div v-if="currentDetailsPage === 'About'">
         <CourseContent />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
@@ -141,7 +141,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'Description'">
+      <div v-if="currentDetailsPage === 'Description'">
         <Description />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
@@ -159,7 +159,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage.title === 'Feedback'">
+      <div v-if="currentDetailsPage === 'Feedback'">
         <FeedBack />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
@@ -177,10 +177,7 @@
           </div>
         </div>
       </div>
-      <div
-        v-if="currentDetailsPage.title === 'Content'"
-        class="details-page__bottom"
-      >
+      <div v-if="currentDetailsPage === 'Content'" class="details-page__bottom">
         <div class="details-page__bottom-arrow_prev">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
@@ -209,6 +206,7 @@ import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { ref } from '@vue/reactivity'
+import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
     FeedBack,
@@ -217,20 +215,23 @@ export default {
     DetailsAboutTeach,
     CourseContent,
   },
-  props: ['currentDetailsPage'],
-  setup(context, props) {
-    const currentDetailsPage = ref({
-      title: 'About',
-    })
-    const handleCurrentPage = (currentWord) => {
-      // console.log(context.currentDetailsPage = currentWord)
-      // context.currentDetailsPage = currentWord
-      // props.emit('changeCurPage', currentWord)
-      // context.emit(changeCurPage , currentWord)
-      currentDetailsPage.value.title = currentWord
+  setup() {
+    const course = ref()
+    const getDoc = async () => {
+      const response = await fetch('http://localhost:3000/course')
+      const json = await response.json()
+      course.value = json
     }
+    const currentDetailsPage = ref('About')
+    const handleCurrentPage = (currentWord) => {
+      currentDetailsPage.value = currentWord
+    }
+    onMounted(() => {
+      getDoc()
+    })
 
     return {
+      course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
       studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
@@ -267,7 +268,7 @@ body {
       border-radius: 1px;
     }
     ul {
-      margin-left: vw(128);
+      margin-left: vw(100);
       display: flex;
       align-items: center;
       list-style-type: none;
