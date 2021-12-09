@@ -1,5 +1,4 @@
 <template>
-
   <div class="filters">
     <ul>
       <li @click="coursesFilter(0)" :class="{ active: filters[0] }">
@@ -125,9 +124,10 @@
 import { ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
 import BuyModal from './BuyModal.vue'
+import Sort from './Sort.vue'
 
 export default {
-  components: { BuyModal },
+  components: { BuyModal , Sort},
   data() {},
   props: ['course'],
   setup() {

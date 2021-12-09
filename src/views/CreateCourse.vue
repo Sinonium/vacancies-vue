@@ -294,7 +294,7 @@ export default {
     const moreInfo = ref('')
     const teacher = ref('')
     const level = ref('')
-    const initial = ref('')
+    const whoIsfor = ref('')
     const pricelist = ref('')
     const duration = ref('')
 
@@ -305,7 +305,7 @@ export default {
         imageURL: imageURL.value,
         teacher: teacher.value,
         level: level.value,
-        initial: initial.value,
+        whoIsfor: whoIsfor.value,
         pricelist: pricelist.value,
         duration: duration.value,
         categories: categories.value,
@@ -314,6 +314,7 @@ export default {
         await addCollection(
           'more info',
           {
+             selected: selected.value,
             heading: heading.value,
             mainInfo: mainInfo.value,
             moreInfo: moreInfo.value,
@@ -335,7 +336,7 @@ export default {
       moreInfo,
       categories,
       level,
-      initial,
+      whoIsfor,
       pricelist,
       duration,
       selected
