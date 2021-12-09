@@ -65,13 +65,13 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .courses-items {
-  margin: vw(80) vw(30);
+  padding: vw(80);
   width: vw(1270);
   .row {
     display: flex;
     flex-wrap: wrap;
     .col-3 {
-      margin-right: vw(15);
+      margin-right: vw(30);
       margin-bottom: vw(15);
       width: vw(255);
     }

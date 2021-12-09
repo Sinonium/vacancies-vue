@@ -62,6 +62,7 @@ export default {
 @import '@/assets/scss/index.scss';
 .course-item {
   background: #ffffff;
+  max-height: vw(370);
   box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
   border-radius: vw(10);
   &__pagination {
@@ -126,6 +127,7 @@ export default {
     @include font(vw(13), 700, vh(25));
     color: #6b7a99;
     margin-bottom: vw(10);
+    height: vw(50);
   }
   &__rating {
     margin: vw(19) 0;
