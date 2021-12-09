@@ -1,4 +1,5 @@
 <template>
+
   <div class="container">
     <div class="container-div">
       <div :class="{ actives: allShow === true }" class="themes">
@@ -8,7 +9,7 @@
           <div class="themes-title__item">
             <div class="themes-title__item-1">
               <ul :class="{ actives: allShow === true }">
-                <li v-for="theme in themes" :key="theme.id" :theme="theme">
+                <li v-for="theme in learn" :key="theme.id" :theme="theme">
                   <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
                 </li>
               </ul>
@@ -114,6 +115,7 @@
 export default {
   data() {
     return {
+      
       button_themes: "Show more Features",
       button_contents: "5 More Sections",
       allShow: false,
@@ -272,7 +274,7 @@ export default {
         },
       ],
 
-      themes: [
+      learn: [
         { name: "Get friendly supportinthe course Q&A" },
         { name: "Practice your skills with coding challenges" },
         { name: "Downloadable lectures for all projects" },
@@ -316,7 +318,7 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
 
 .container {

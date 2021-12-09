@@ -102,7 +102,7 @@ export default {
 @import '@/assets/scss/index.scss';
 .cart {
   width: vw(350);
-  margin-top: vh(30);
+  margin-top: vh(270);
   margin-left: vw(30);
   p {
     @include font(vw(12), 700, vw(20), $greyBlue70);
