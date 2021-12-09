@@ -80,12 +80,7 @@
   </div>
   <div class="course-items">
     <div class="row">
-      <div
-        class="col-3"
-        v-for="course in courses"
-        :key="course.id"
-        :course="course"
-      >
+      <div class="col-3">
         <div class="course-item">
           <div class="course-item__header">
             <img
@@ -132,47 +127,57 @@ import BuyModal from './BuyModal.vue'
 
 export default {
   components: { BuyModal },
-    data() {
-         
-    },
-    props: ['course'],
-    setup() {
-        const courses = ref([]);
-        // const coursesPerPage = 10;
-        // const pages = ref(() => {
-        //     return Math.ceil(this.courses.lenth / 10);
-        // }) ;
-        const getCourseAPI = async () => {
-            const response = await fetch('http://localhost:3000/courses');
-            const jsonCourses = await response.json();
-            courses.value = jsonCourses
-        }
-        const filters = ref([0,0,0,0]);
-        const coursesFilter =(i)=>{
-            filters.value = [0,0,0,0];
-            filters.value[i] = 1
-             console.log(filters.value);
-            switch (i)
-            {
-                case 2: 
-                        courses.value.sort((a, b) => ((a.data[2]-2000)*372 +a.data[1]*31 + a.data[0] )<((b.data[2]-2000)*372 +b.data[1]*31 + b.data[0] ) ? 1 : -1);
-                        break;
-                case 0:
-                        courses.value.sort((a, b) => a.students < b.students? 1 : -1)
-                        break;
-                case 1:
-                        courses.value.sort((a, b) => a.grade < b.grade? 1 : -1)
-                        break;
-                case 3: 
-                        courses.value.sort((a, b) => ((a.teacher_data[2]-2000)*372 +a.teacher_data[1]*31 + a.teacher_data[0] )<((b.teacher_data[2]-2000)*372 +b.teacher_data[1]*31 + b.teacher_data[0] ) ? 1 : -1);
-                        break;
-            }
-            console.log(courses.value);
-        }
-        onMounted(() => {
-            getCourseAPI();
-        });
-
+  data() {},
+  props: ['course'],
+  setup() {
+    const courses = ref([])
+    // const coursesPerPage = 10;
+    // const pages = ref(() => {
+    //     return Math.ceil(this.courses.lenth / 10);
+    // }) ;
+    const getCourseAPI = async () => {
+      const response = await fetch('http://localhost:3000/courses')
+      const jsonCourses = await response.json()
+      courses.value = jsonCourses
+    }
+    const filters = ref([0, 0, 0, 0])
+    const coursesFilter = (i) => {
+      filters.value = [0, 0, 0, 0]
+      filters.value[i] = 1
+      console.log(filters.value)
+      switch (i) {
+        case 2:
+          courses.value.sort((a, b) =>
+            (a.data[2] - 2000) * 372 + a.data[1] * 31 + a.data[0] <
+            (b.data[2] - 2000) * 372 + b.data[1] * 31 + b.data[0]
+              ? 1
+              : -1
+          )
+          break
+        case 0:
+          courses.value.sort((a, b) => (a.students < b.students ? 1 : -1))
+          break
+        case 1:
+          courses.value.sort((a, b) => (a.grade < b.grade ? 1 : -1))
+          break
+        case 3:
+          courses.value.sort((a, b) =>
+            (a.teacher_data[2] - 2000) * 372 +
+              a.teacher_data[1] * 31 +
+              a.teacher_data[0] <
+            (b.teacher_data[2] - 2000) * 372 +
+              b.teacher_data[1] * 31 +
+              b.teacher_data[0]
+              ? 1
+              : -1
+          )
+          break
+      }
+      console.log(courses.value)
+    }
+    onMounted(() => {
+      getCourseAPI()
+    })
 
     return { courses, filters, coursesFilter }
   },

@@ -1,7 +1,7 @@
 <template>
    <ul class="categories">
       <li
-         @click="handleClick('dev')"
+         @click="handleClick('dev'), test('Development')"
          :class="{ clickedCata: clickedCategories === 'dev' }"
       >
          <img :src="devIcon" alt="" />
@@ -13,7 +13,7 @@
          v-if="clickedCategories === 'dev'"
       />
       <li
-         @click="handleClick('bus')"
+         @click="handleClick('bus'), test('Business')"
          :class="{ clickedCata: clickedCategories === 'bus' }"
       >
          <img :src="busIcon" alt="" />
@@ -25,7 +25,7 @@
          v-if="clickedCategories === 'bus'"
       />
       <li
-         @click="handleClick('fin')"
+         @click="handleClick('fin'), test('Finance & Accounting')"
          :class="{ clickedCata: clickedCategories === 'fin' }"
       >
          <img :src="finIcon" alt="" />
@@ -37,7 +37,7 @@
          v-if="clickedCategories === 'fin'"
       />
       <li
-         @click="handleClick('soft')"
+         @click="handleClick('soft'), test('IT & Software')"
          :class="{ clickedCata: clickedCategories === 'soft' }"
       >
          <img :src="itIcon" alt="" />
@@ -49,7 +49,7 @@
          v-if="clickedCategories === 'soft'"
       />
       <li
-         @click="handleClick('office')"
+         @click="handleClick('office'), test('Office Productivity')"
          :class="{ clickedCata: clickedCategories === 'office' }"
       >
          <img :src="offIcon" alt="" />
@@ -61,7 +61,7 @@
          v-if="clickedCategories === 'office'"
       />
       <li
-         @click="handleClick('pers')"
+         @click="handleClick('pers'), test('Personal Development')"
          :class="{ clickedCata: clickedCategories === 'pers' }"
       >
          <img :src="persIcon" alt="" />
@@ -73,7 +73,7 @@
          v-if="clickedCategories === 'pers'"
       />
       <li
-         @click="handleClick('design')"
+         @click="handleClick('design'), test('Design and Art')"
          :class="{ clickedCata: clickedCategories === 'design' }"
       >
          <img :src="desigIcon" alt="" />
@@ -85,7 +85,7 @@
          v-if="clickedCategories === 'design'"
       />
       <li
-         @click="handleClick('market')"
+         @click="handleClick('market'), test('Marketing and Sales')"
          :class="{ clickedCata: clickedCategories === 'market' }"
       >
          <img :src="markIcon" alt="" />
@@ -97,7 +97,7 @@
          v-if="clickedCategories === 'market'"
       />
       <li
-         @click="handleClick('life')"
+         @click="handleClick('life'), test('Lifestyle and Fashion')"
          :class="{ clickedCata: clickedCategories === 'life' }"
       >
          <img :src="lifeIcon" alt="" />
@@ -109,7 +109,7 @@
          v-if="clickedCategories === 'life'"
       />
       <li
-         @click="handleClick('photo')"
+         @click="handleClick('photo'), test('Photography')"
          :class="{ clickedCata: clickedCategories === 'photo' }"
       >
          <img :src="photoIcon" alt="" />
@@ -121,7 +121,7 @@
          v-if="clickedCategories === 'photo'"
       />
       <li
-         @click="handleClick('heal')"
+         @click="handleClick('heal'), test('Health & Fitness')"
          :class="{ clickedCata: clickedCategories === 'heal' }"
       >
          <img :src="healIcon" alt="" />
@@ -133,7 +133,7 @@
          v-if="clickedCategories === 'heal'"
       />
       <li
-         @click="handleClick('music')"
+         @click="handleClick('music'), test('Music and Sound Design')"
          :class="{ clickedCata: clickedCategories === 'music' }"
       >
          <img :src="musIcon" alt="" />
@@ -145,7 +145,7 @@
          v-if="clickedCategories === 'music'"
       />
       <li
-         @click="handleClick('teach')"
+         @click="handleClick('teach'), test('Teaching & Academics')"
          :class="{ clickedCata: clickedCategories === 'teach' }"
       >
          <img :src="teachIcon" alt="" />
@@ -190,19 +190,32 @@
          SubMusicCategories,
          SubTeachCategories,
       },
-      setup() {
+      setup(props, context) {
+         
          const cata = (cata, subcata = "отсутствует") => {
-            console.log("категория " + cata, "подкатегория " + subcata);
+            // console.log("категория " + cata, "подкатегория " + subcata);
+            category.value = cata
+            subCategory.value = subcata
          };
+         const category = ref('')
+         const subCategory = ref('')
+
+         const test = (i) => {
+            context.emit("clickedCata", i, category.value, subCategory.value);
+         }
+         const clickedCategories = ref(null);
          const handleClick = (i) => {
             if (clickedCategories.value !== i) {
-               return (clickedCategories.value = i);
+               clickedCategories.value = i;
             } else {
-               return (clickedCategories.value = null);
+               clickedCategories.value = null;
             }
          };
-         const clickedCategories = ref(null);
+         
          return {
+            category,
+            subCategory,
+            test,
             cata,
             handleClick,
             clickedCategories,

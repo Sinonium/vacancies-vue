@@ -65,8 +65,6 @@ export default {
 			"Blog",
 			"Support",
 		]);
-
-
         return {headerNav, handleClick}
     }
 }
