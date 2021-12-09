@@ -124,7 +124,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'About'">
-        <CourseContent />
+        <CourseContent :moreInfo="moreInfo.malika" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -205,8 +205,9 @@ import AddToCart from '@/components/AddToCart.vue'
 import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
+import { useStore } from 'vuex'
 export default {
   components: {
     FeedBack,
@@ -216,6 +217,10 @@ export default {
     CourseContent,
   },
   setup() {
+    const store = useStore()
+
+    const moreInfo = computed(() => store.state.courseMoreInfo)
+
     const course = ref()
     const getDoc = async () => {
       const response = await fetch('http://localhost:3000/course')
@@ -231,6 +236,7 @@ export default {
     })
 
     return {
+      moreInfo,
       course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),

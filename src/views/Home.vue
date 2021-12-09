@@ -30,7 +30,11 @@
     </div>
   </div>
   <Filters />
-  <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+  <div class="courses-items">
+    <div class="row">
+      <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -41,7 +45,7 @@ import { onMounted, computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import Filters from '../components/Filters/Fiters.vue'
 export default {
-  components: { Filters,  CourseItem, DetailsAboutTeach },
+  components: { Filters, CourseItem, DetailsAboutTeach },
   setup() {
     const store = useStore()
 
@@ -50,6 +54,7 @@ export default {
     onMounted(() => {
       store.dispatch('getCourses')
     })
+
     return {
       courses,
     }
@@ -59,14 +64,16 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-.course-items {
+.courses-items {
+  margin: vw(80) vw(30);
   width: vw(1270);
   .row {
     display: flex;
-    margin: vw(50) vw(80);
+    flex-wrap: wrap;
     .col-3 {
-      display: flex;
-      width: vw(1100);
+      margin-right: vw(15);
+      margin-bottom: vw(15);
+      width: vw(255);
     }
   }
 }
@@ -167,16 +174,15 @@ export default {
     }
   }
   .course-items {
-  width: vmin(620);
-  .row {
-    display: block;
-    margin: vmin(10) vmin(10);
-    .col-3 {
+    width: vmin(620);
+    .row {
       display: block;
-      width: vmin(400);
+      margin: vmin(10) vmin(10);
+      .col-3 {
+        display: block;
+        width: vmin(400);
+      }
     }
   }
 }
-}
-
 </style>

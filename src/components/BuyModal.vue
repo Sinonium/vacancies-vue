@@ -9,7 +9,7 @@
             access,Access via mobile devices, Certificate of Completion
           </p>
         </div>
-        <form class="items" @submit.prevent="handleBuy">
+        <form class="items" @submit.prevent="handleSubmit">
           <div>
             <input
               type="text"
@@ -64,13 +64,26 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
+import update from '@/composables/update'
+import { useStore } from 'vuex'
+import { user } from '@/composables/getUser'
 export default {
   props: ['modalActive', 'course'],
 
   setup(props, { emit }) {
     const close = () => {
       emit('close')
+    }
+
+    const store = useStore()
+
+    const id = computed(() => store.state.courseId)
+
+    const { updateUserBuy } = update()
+
+    const handleSubmit = async () => {
+      await updateUserBuy(user.value.uid, id.value)
     }
 
     const firstName = ref('')
@@ -94,6 +107,8 @@ export default {
       console.log(userData)
     }
     return {
+      id,
+      handleSubmit,
       close,
       firstName,
       lastName,

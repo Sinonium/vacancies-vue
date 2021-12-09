@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/DetailsCourse',
@@ -20,33 +20,33 @@ const routes = [
   {
     path: '/createCourse',
     name: 'CreateCourse',
-    component: CreateCourse
+    component: CreateCourse,
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
     path: '/signup',
     name: 'SignUp',
-    component: SignUp
+    component: SignUp,
   },
   {
     path: '/test',
     name: 'Test',
-    component: Test
+    component: Test,
   },
   {
     path: '/becometeacher',
     name: 'Becometeacher',
-    component: Becometeacher
-  }
+    component: Becometeacher,
+  },
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
 })
 
 export default router
