@@ -70,7 +70,7 @@ export default {
     margin: vw(50) vw(80);
     .col-3 {
       display: flex;
-      width: vw(900);
+      width: vw(1100);
     }
   }
 }
@@ -170,5 +170,17 @@ export default {
       }
     }
   }
+  .course-items {
+  width: vmin(620);
+  .row {
+    display: block;
+    margin: vmin(10) vmin(10);
+    .col-3 {
+      display: block;
+      width: vmin(400);
+    }
+  }
 }
+}
+
 </style>
