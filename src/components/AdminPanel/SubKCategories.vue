@@ -1,5 +1,6 @@
 <template>
-  <select name="" id="" v-model="selected">
+  <select @change="handleInput"
+  name="" id="" v-model="selected">
     <option
       v-for="option in categories"
       :key="option.text"
@@ -12,6 +13,7 @@
   
 
   <select
+  @change="handleInput"
     v-if="selected === 'The Foundations of Sound Design'"
     name=""
     id=""
@@ -27,6 +29,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Sound Design'"
     name=""
     id=""
@@ -46,7 +49,12 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
-  setup() {
+  setup(props,context) {
+    const handleInput = () => {
+      console.log(selected.value);
+      console.log(subCategories.value);
+      context.emit('selectedCates', selected.value, subCategories.value)
+    };
     const categories = [
       {
         text: 'The Foundations of Sound Design',
@@ -126,7 +134,7 @@ export default {
     const selected = ref('')
     const subCategories = ref('')
 
-    return { categories, selected, subCategories, subCategoriesA, subCategoriesB}
+    return { handleInput,  categories, selected, subCategories, subCategoriesA, subCategoriesB}
   },
 }
 </script>

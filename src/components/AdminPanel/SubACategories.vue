@@ -26,6 +26,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Game Development'"
     name=""
     id=""
@@ -41,6 +42,7 @@
   </select>
 
   <select
+    @change="handleInput"
     v-if="selected === 'Mobile Apps'"
     name=""
     id=""
@@ -56,6 +58,7 @@
   </select>
 
   <select
+    @change="handleInput"
     v-if="selected === 'Programming Languages'"
     name=""
     id=""
@@ -70,7 +73,10 @@
     </option>
   </select>
 
-  <select v-if="selected === 'Databases'" name="" id="" v-model="subCategories">
+  <select 
+  @change="handleInput"
+  v-if="selected === 'Databases'" 
+  name="" id="" v-model="subCategories">
     <option
       v-for="option in subCategoriesE"
       :key="option.text"
@@ -81,6 +87,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Software Testing'"
     name=""
     id=""
@@ -96,6 +103,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Software Engineering'"
     name=""
     id=""
@@ -111,6 +119,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Development Tools'"
     name=""
     id=""
@@ -126,6 +135,7 @@
   </select>
 
   <select
+    @change="handleInput"
     v-if="selected === 'E-Commerce'"
     name=""
     id=""

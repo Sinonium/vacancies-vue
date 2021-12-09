@@ -1,5 +1,5 @@
 <template>
-  <select name="" id="" v-model="selected">
+  <select @change="handleInput" name="" id="" v-model="selected">
     <option
       v-for="option in categories"
       :key="option.text"
@@ -12,6 +12,7 @@
   
 
   <select
+  @change="handleInput"
     v-if="selected === 'Crisis management'"
     name=""
     id=""
@@ -27,6 +28,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Project activities'"
     name=""
     id=""
@@ -42,6 +44,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Service. Work with clients'"
     name=""
     id=""
@@ -57,6 +60,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Analytics'"
     name=""
     id=""
@@ -72,6 +76,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Management'"
     name=""
     id=""
@@ -87,6 +92,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Sales'"
     name=""
     id=""
@@ -106,7 +112,12 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
-  setup() {
+  setup(props,context) {
+    const handleInput = () => {
+      console.log(selected.value);
+      console.log(subCategories.value);
+      context.emit('selectedCates', selected.value, subCategories.value)
+    };
     const categories = [
       {
         text: 'Crisis management',
@@ -254,7 +265,7 @@ export default {
     const selected = ref('')
     const subCategories = ref('')
 
-    return { categories, selected, subCategories, subCategoriesA, subCategoriesB, subCategoriesC, subCategoriesD, subCategoriesE, subCategoriesF}
+    return { handleInput,categories, selected, subCategories, subCategoriesA, subCategoriesB, subCategoriesC, subCategoriesD, subCategoriesE, subCategoriesF}
   },
 }
 </script>

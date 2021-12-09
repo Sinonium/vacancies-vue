@@ -1,6 +1,6 @@
 
 <template>
-  <select name="" id="" v-model="selected">
+  <select @change="handleInput" name="" id="" v-model="selected">
     <option
       v-for="option in categories"
       :key="option.text"
@@ -13,6 +13,7 @@
   
 
   <select
+  @change="handleInput"
     v-if="selected === 'Communication'"
     name=""
     id=""
@@ -28,6 +29,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Thinking'"
     name=""
     id=""
@@ -43,6 +45,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Languages'"
     name=""
     id=""
@@ -58,6 +61,7 @@
   </select>
 
   <select
+  @change="handleInput"
     v-if="selected === 'Reading Club'"
     name=""
     id=""
@@ -77,7 +81,12 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
-  setup() {
+  setup(props,context) {
+    const handleInput = () => {
+      console.log(selected.value);
+      console.log(subCategories.value);
+      context.emit('selectedCates', selected.value, subCategories.value)
+    };
     const categories = [
       {
         text: 'Communication',
@@ -186,7 +195,7 @@ export default {
     const selected = ref('')
     const subCategories = ref('')
 
-    return { categories, selected, subCategories, subCategoriesA, subCategoriesB, subCategoriesC, subCategoriesD}
+    return { handleInput, categories, selected, subCategories, subCategoriesA, subCategoriesB, subCategoriesC, subCategoriesD}
   },
 }
 </script>

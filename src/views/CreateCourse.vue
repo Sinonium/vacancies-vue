@@ -130,18 +130,18 @@
                <option v-for="option in categories" :key="option.text" :value="option.value">{{option.text}}</option>
             </select>
             <SubACategories @selectedCates="popa" v-if="selected === 'Development'"/>
-            <SubBCategories v-if="selected === 'Business'" />
-            <SubCCategories v-if="selected === 'Finance & Accounting'" />
-            <SubDCategories v-if="selected === 'IT & Software'" />
-            <SubDCategories v-if="selected === 'Office Productivity'" />
-            <SubECategories v-if="selected === 'Personal Development'" />
-            <SubFCategories v-if="selected === 'Design and Art'" /> 
-            <SubGCategories v-if="selected === 'Marketing and Sales'" /> 
-            <SubHCategories v-if="selected === 'Lifestyle and Fashion'" /> 
-            <SubICategories v-if="selected === 'Photography'" /> 
-            <SubJCategories v-if="selected === 'Health & Fitness'" /> 
-            <SubKCategories v-if="selected === 'Music and Sound Design'" /> 
-            <SubLCategories v-if="selected === 'Teaching & Academics'" /> 
+            <SubBCategories @selectedCates="popa" v-if="selected === 'Business'" />
+            <SubCCategories @selectedCates="popa" v-if="selected === 'Finance & Accounting'" />
+            <SubDCategories @selectedCates="popa" v-if="selected === 'IT & Software'" />
+            <SubDCategories @selectedCates="popa" v-if="selected === 'Office Productivity'" />
+            <SubECategories @selectedCates="popa" v-if="selected === 'Personal Development'" />
+            <SubFCategories @selectedCates="popa" v-if="selected === 'Design and Art'" /> 
+            <SubGCategories @selectedCates="popa" v-if="selected === 'Marketing and Sales'" /> 
+            <SubHCategories @selectedCates="popa" v-if="selected === 'Lifestyle and Fashion'" /> 
+            <SubICategories @selectedCates="popa" v-if="selected === 'Photography'" /> 
+            <SubJCategories @selectedCates="popa" v-if="selected === 'Health & Fitness'" /> 
+            <SubKCategories @selectedCates="popa" v-if="selected === 'Music and Sound Design'" /> 
+            <SubLCategories @selectedCates="popa" v-if="selected === 'Teaching & Academics'" /> 
         <div>
           <h4 class="create-course__title">Course levels</h4>
           <p class="create-course__instruction">
@@ -172,7 +172,7 @@
             <option value="0-2">0-2 Hours</option>
             <option value="3-6">3-6 Hours</option>
             <option value="7-16">7-16 Hours</option>
-            <option value="17+">17+ Hours</option>
+            <option value="17+ hours">17+ Hours</option>
           </select>
           <label for=""></label>
         </div>

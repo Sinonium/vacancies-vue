@@ -29,7 +29,13 @@
       </div>
     </div>
   </div>
-  <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+  <div class="course-items">
+    <div class="row">
+      <div class="col-3">
+        <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+      </div>
+    </div>
+  </div>  
 </template>
 
 <script>
@@ -57,6 +63,17 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
+.course-items {
+  width: vw(1270);
+  .row {
+    display: flex;
+    margin: vw(50) vw(80);
+    .col-3 {
+      display: flex;
+      width: vw(900);
+    }
+  }
+}
 .courses-info {
   margin: vw(30) vw(30);
   position: relative;

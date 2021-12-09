@@ -2,11 +2,12 @@ import { createStore } from 'vuex'
 import auth from './Auth/index.js'
 import getCollection from '@/composables/getCollection'
 import getFilteredCollection from '@/composables/getFilteredCollection'
-
+import useDoc from '../composables/useDoc.js'
 export default createStore({
   state: {
     courses: [],
     courseMoreInfo: [],
+    courseId: '',
   },
   mutations: {
     GET_COURSES(state, payload) {
@@ -17,6 +18,9 @@ export default createStore({
     },
     GET_MORE_INFO(state, info) {
       state.courseMoreInfo = info
+    },
+    GET_COURSE_ID(state, id) {
+      state.courseId = id
     },
   },
   actions: {
@@ -35,8 +39,11 @@ export default createStore({
       commit('GET_FILTERED_COURSES', documents)
     },
     async getMoreInfo({ commit }, infoId) {
-      const { documents } = await useDoc('more info', infoId)
+      const { getSingleDoc } = useDoc()
+      const { documents } = await getSingleDoc('more info', infoId.moreInfoId)
+      console.log(documents.value)
       commit('GET_MORE_INFO', documents)
+      commit('GET_COURSE_ID', infoId.courseId)
     },
   },
   modules: {
