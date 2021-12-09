@@ -29,6 +29,7 @@
       </div>
     </div>
   </div>
+  <Filters />
   <CourseItem v-for="course in courses" :key="course.id" :course="course" />
 </template>
 
@@ -38,8 +39,9 @@ import CourseItem from '../components/CourseItem.vue'
 import { ref } from '@vue/reactivity'
 import { onMounted, computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
+import Filters from '../components/Filters/Fiters.vue'
 export default {
-  components: { CourseItem, DetailsAboutTeach },
+  components: { Filters,  CourseItem, DetailsAboutTeach },
   setup() {
     const store = useStore()
 
