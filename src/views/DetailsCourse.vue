@@ -336,7 +336,7 @@ body {
   }
 }
 .details-page__bottom {
-  margin-left: vw(-350);
+  margin-left: -33.2vw;
   margin-top: vw(35);
   margin-bottom: vw(40);
   @include flex();
