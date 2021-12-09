@@ -7,7 +7,6 @@
             <router-link to="/" class="header__logo-text">
                 Constructor
             </router-link>
-            <button @click.prevent="handleClick()" style="color: red">LOGOUT</button>
         </div>
         <nav class="header__nav">
             <ul class="header__nav-list">
@@ -32,7 +31,7 @@
             <router-link to="/" class="header__record-logIn">
                 Log In
             </router-link>
-            <button class="header__record-logOut">
+            <button @click.prevent="handleClick()" class="header__record-logOut">
                 Log Out
             </button>
         </div>
@@ -41,15 +40,18 @@
 
 <script>
 import { ref } from '@vue/reactivity';
+import { useRouter } from "vue-router";
 import useAuth from '@/composables/useAuth'
 export default {
     setup() {
+        const router = useRouter();
 
         const handleClick = async () => {
             const {logout} = useAuth()
 
             try {
                 await logout()
+                await router.push("/login");
             }
             catch (err) {
                 console.log(err);
