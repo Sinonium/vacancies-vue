@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import auth from './Auth/index.js'
+import categories from './categories'
 import getCollection from '@/composables/getCollection'
 import getFilteredCollection from '@/composables/getFilteredCollection'
 import useDoc from '../composables/useDoc.js'
@@ -48,5 +49,6 @@ export default createStore({
   },
   modules: {
     auth,
+    categories
   },
 })
