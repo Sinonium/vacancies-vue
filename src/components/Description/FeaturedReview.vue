@@ -77,10 +77,6 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .review {
-  .container {
-    max-width: vw(730);
-  }
-  margin-top: vh(30);
   &__content {
     background-color: $white;
     border-radius: 10px;
@@ -138,6 +134,7 @@ export default {
   }
   &__buttons {
     display: flex;
+
     p {
       @include font(vw(13), 700, vh(25), $greyBlue60);
       margin-right: vw(30);
@@ -150,6 +147,7 @@ export default {
       border-radius: vw(5);
       margin-right: vw(10);
       border: none;
+      margin: 0;
     }
     button:active {
       background-color: #ccc;
@@ -157,16 +155,13 @@ export default {
     button:last-child {
       margin-left: vw(20);
       background: transparent;
+      box-shadow: none;
     }
   }
 }
 
 .review {
   @include mobile {
-    .container {
-      max-width: vmin(730);
-      margin-left: vmin(80);
-    }
     margin-top: vmin(30);
     &__content {
       padding: vmin(35) vmin(40);

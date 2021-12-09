@@ -59,6 +59,17 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
+.course-items {
+  width: vw(1270);
+  .row {
+    display: flex;
+    margin: vw(50) vw(80);
+    .col-3 {
+      display: flex;
+      width: vw(1100);
+    }
+  }
+}
 .courses-info {
   margin: vw(30) vw(30);
   position: relative;
@@ -155,5 +166,17 @@ export default {
       }
     }
   }
+  .course-items {
+  width: vmin(620);
+  .row {
+    display: block;
+    margin: vmin(10) vmin(10);
+    .col-3 {
+      display: block;
+      width: vmin(400);
+    }
+  }
 }
+}
+
 </style>

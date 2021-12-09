@@ -5,7 +5,7 @@ import CreateCourse from '../views/CreateCourse.vue'
 import Login from '../pages/Login.vue'
 import SignUp from '../pages/SignUp.vue'
 import Test from '../views/Test.vue'
-
+import Becometeacher from '../views/BecomeTeacher.vue'
 const routes = [
   {
     path: '/',
@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/DetailsCourse',
     name: 'DetailsCourse',
-    component: DetailsCourse
+    component: DetailsCourse,
   },
   {
     path: '/createCourse',
@@ -37,6 +37,11 @@ const routes = [
     name: 'Test',
     component: Test
   },
+  {
+    path: '/becometeacher',
+    name: 'Becometeacher',
+    component: Becometeacher
+  }
 ]
 
 const router = createRouter({
