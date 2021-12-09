@@ -69,10 +69,6 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .description {
-  .container {
-    max-width: vw(730);
-  }
-  margin-top: vh(30);
   &__content {
     background-color: $white;
     border-radius: 10px;
@@ -121,10 +117,6 @@ export default {
 
 .description {
   @include mobile {
-    .container {
-      max-width: vmin(730);
-      margin-left: vmin(80);
-    }
     &__content {
       padding: vmin(35) vmin(40);
       max-width: vmin(600);
