@@ -26,7 +26,12 @@
             </div>
         </form>
         <div class="header__record">
-            <router-link to="/becometeacher" class="header__record-teacher">
+            
+            <router-link v-if="isTeacher" to="/createCourse" class="header__record-teacher">
+                Create Course
+            </router-link>
+            
+            <router-link v-else to="/becometeacher" class="header__record-teacher">
                 Become a Teacher
             </router-link>
             <router-link to="/" class="header__record-logIn">
@@ -43,9 +48,10 @@
 <script>
 import { ref } from '@vue/reactivity';
 import useAuth from '@/composables/useAuth'
+
 export default {
     setup() {
-
+        const isTeacher = ref(false)
         const handleClick = async () => {
             const {logout} = useAuth()
 
@@ -64,7 +70,7 @@ export default {
 			"Blog",
 			"Support",
 		]);
-        return {headerNav, handleClick}
+        return {headerNav, handleClick, isTeacher}
     }
 }
 </script>

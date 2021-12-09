@@ -1,5 +1,5 @@
 <template>
-  <form class="become-teacher" @submit.prevent="handleSubmit()">
+  <form class="become-teacher" @submit.prevent="update">
      
           <h3 class="create-teacher__title">Become a Teacher</h3>
           <div class="create-teacher">
@@ -27,7 +27,7 @@
                   
 
                   <h4 class="create-teacher__title">Write a little about yourself (work, hobby ...)</h4>
-                  <textarea onkeyup="this.value=this.value.replace(/^\s/,'')" name="comment" cols="40" rows="3" placeholder="This is an optional field for information about yourself" v-model="description"></textarea>
+                  <textarea onkeyup="this.value=this.value.replace(/^\s/,'')" name="comment" cols="40" rows="3" placeholder="This is an optional field for information about yourself" v-model="about"></textarea>
               </div>
           </div>
 
@@ -38,7 +38,9 @@
 </template>
 
 <script>
-import { ref } from "@vue/reactivity";
+import { ref } from "@vue/reactivity";   
+import { firestore } from '@/firebase/config'
+import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 
 export default {
   components: {  },
@@ -46,15 +48,41 @@ setup() {
 
 
     const skills = ref("");
-    const name = ref("");
+    const name = ref("Aidana");
     const imageURL = ref("");
-    const description = ref("");
+    const education= ref("");
+    const about= ref("");
 
-    
-    
+    const useID = ref('1nM67ed9HaPG0n2uZkRJ2vBcPc42');
 
-    return {name, skills,imageURL, description }
+
+
+const update = () => {
+  const updateTeacher = async () => {
+    const response = doc(
+      firestore,
+      'users',
+      useID.value
+    )
+
+    return await updateDoc(response, {
+        name: name.value,
+      isTeacher: true,
+      description: {
+          img: imageURL.value,
+            skills: skills.value,
+            education: education.value,
+            about: about.value
+      }
+    })
+  }
 }
+    
+    
+
+    return {name, skills,imageURL, education, about, useID , update}
+}
+
 }
 </script>
 
