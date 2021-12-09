@@ -26,7 +26,7 @@
             </div>
         </form>
         <div class="header__record">
-            <router-link to="/" class="header__record-teacher">
+            <router-link to="/becometeacher" class="header__record-teacher">
                 Become a Teacher
             </router-link>
             <router-link to="/" class="header__record-logIn">

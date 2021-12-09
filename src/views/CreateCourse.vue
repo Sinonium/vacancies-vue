@@ -98,13 +98,16 @@
           type="text"
           v-model="study"
         />
+        
 
         <h4 class="create-course__title">Who this course is for:</h4>
+        <p class="create-course__instruction">Type option one by one</p>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
           v-model="whoIsfor"
         />
+        <div class="enter" @click="enterWho">Enter</div>
 
         <h4 class="create-course__title">About Teacher</h4>
         <p class="create-course__instruction">Type the name of the teacher</p>
@@ -283,12 +286,12 @@ export default {
     ]
     const popa = (a, b) => {
       jopa.value = [selected.value, a, b]
-  }
+    }
     const selected = ref('')
     const jopa = ref([])
 
     const myId = uuid()
-
+    
     const heading = ref('')
     const name = ref('')
     const price = ref('')
@@ -298,9 +301,17 @@ export default {
     const teacher = ref('')
     const level = ref('')
     const whoIsfor = ref('')
+    const enterIsWho =ref([])
     const pricelist = ref('')
     const duration = ref('')
 
+  const enterWho =()=>{
+      enterIsWho.value = [...enterIsWho.value, whoIsfor ]
+      whoIsfor.value = ''
+      console.log(enterIsWho.value,whoIsfor.value )
+      console.log("kjhgf")
+      console.log(whoIsfor.value )
+  }
     const handleSubmit = async () => {
       await addCollection('courses', {
         name: name.value,
@@ -308,7 +319,7 @@ export default {
         imageURL: imageURL.value,
         teacher: teacher.value,
         level: level.value,
-        whoIsfor: whoIsfor.value,
+        whoIsfor: enterIsWho.value,
         pricelist: pricelist.value,
         duration: duration.value,
         categories: jopa.value,
@@ -342,7 +353,9 @@ export default {
       whoIsfor,
       pricelist,
       duration,
-      selected
+      selected,
+      enterWho,
+      enterIsWho
     }
   },
 }
@@ -513,6 +526,7 @@ export default {
         padding: vw(10);
         margin: 0 0 vmin(15) 0;
         width: vmin(220);
+        @include font(vmin(7), 600, vmin(15)); 
       }
       &__examples {
         span {
