@@ -166,6 +166,7 @@ export default {
         &-signUp {
             display: block;
             text-decoration: none;
+        }
         &-logOut {
             @include font(vw(12), 700, vh(20), $blue);
             background-color: rgba(51, 97, 255, 0.1);
