@@ -1,5 +1,8 @@
-<template>        
-        <div class="course-item" @click.prevent="handleMoreInfo">
+<template>
+  <div class="course-items">
+    <div class="row">
+      <div class="col-3">
+        <div class="course-item">
           <div class="course-item__header">
             <img
               class="course-item__image"
@@ -33,82 +36,51 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
-import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import { onMounted } from '@vue/runtime-core'
+import BuyModal from './BuyModal.vue'
+
 export default {
+  components: { BuyModal },
+  data() {},
   props: ['course'],
-  setup(props) {
-    const store = useStore()
-    const router = useRouter()
-
-    const handleMoreInfo = async () => {
-      await store.dispatch('getMoreInfo', {
-        moreInfoId: props.course.moreInfoId,
-        courseId: props.course.id,
-      })
-      await router.push('/DetailsCourse')
+  setup() {
+    const courses = ref([])
+    // const coursesPerPage = 10;
+    // const pages = ref(() => {
+    //     return Math.ceil(this.courses.lenth / 10);
+    // }) ;
+    const getCourseAPI = async () => {
+      const response = await fetch('http://localhost:3000/courses')
+      const jsonCourses = await response.json()
+      courses.value = jsonCourses
     }
+    onMounted(() => {
+      getCourseAPI()
+    })
 
-    return {
-      handleMoreInfo,
-    }
+    return { courses }
   },
 }
 </script>
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-.active {
-  @include font(vw(12), 800, vw(20));
-  color: $blue !important;
-  svg path {
-    fill: $blue;
-  }
-  position: relative;
-}
-.active::before {
-  position: absolute;
-  content: '';
-  left: vw(-10);
-  top: vw(50);
-  background-color: $blue;
-  width: 120%;
-  height: 2px;
-}
-.filters {
-  position: relative;
-  ul {
-    margin-left: vw(90);
-    margin-top: vw(45);
-    display: flex;
-    list-style-type: none;
-    li {
-      @include font(vw(12), 700, vw(20), $greyBlue60);
+.course-items {
+  width: vw(1270);
+  .row {
+    flex-wrap: wrap;
+    margin: vw(50) vw(80);
+    .col-3 {
       display: flex;
-      align-items: center;
-      margin-right: vw(50);
-      svg {
-        width: vw(20);
-        height: vw(20);
-        margin-right: vw(15);
-      }
-    }
-  }
-}
-.filters::before {
-  position: absolute;
-  content: '';
-  left: 0;
-  top: vw(50);
-  background-color: $greyBlue95;
-  width: 100%;
-  height: 2px;
-}
-
+      flex-wrap: wrap;
+      max-width: vw(1110);
       .course-item {
         margin: vw(15) vw(10);
         width: vw(255);
@@ -205,37 +177,11 @@ export default {
           }
         }
       }
-  
-
-
-@media screen and (max-width: 1024px) {
-  .active {
-    @include font(vmin(6), 800, vmin(10));
-  }
-  .active::before {
-    left: vmin(-2);
-    top: vmin(20);
-    width: 120%;
-  }
-  .filters {
-    ul {
-      margin-left: vmin(20);
-      margin-top: vmin(25);
-      li {
-        @include font(vmin(6), 800, vmin(10), $greyBlue60);
-        margin-right: vmin(15);
-        svg {
-          width: vmin(8);
-          height: vmin(8);
-          margin-right: vmin(8);
-        }
-      }
     }
   }
-  .filters::before {
-    top: vmin(20);
-  }
+}
 
+@media screen and (max-width: 1024px) {
   .course-items {
     width: vmin(320);
     .row {
