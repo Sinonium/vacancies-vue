@@ -9,6 +9,7 @@ const update = () => {
 
     return await updateDoc(userDoc, {
       isTeacher: true,
+      photo: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg',
       description:
         // ...test.data().description,
         {
@@ -52,7 +53,18 @@ const update = () => {
     })
   }
 
-  return { updateTeacher, updateReviews, updateUserBuy }
+  const updateCourse = async (id) => {
+    const moreInfoDoc = doc(firestore, 'courses', id)
+
+    const test = await getDoc(moreInfoDoc)
+    let ab = test.data().students
+    return await updateDoc(moreInfoDoc, {
+      ...test.data(),
+      students: ab + 1,
+    })
+  }
+
+  return { updateTeacher, updateReviews, updateUserBuy, updateCourse }
 }
 
 export default update

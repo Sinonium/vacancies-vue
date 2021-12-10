@@ -7,38 +7,38 @@
           <img src="@/assets/img/kebab.svg" alt="kebab" />
         </div>
         <div v-if="no" class="if">
-        <div class="review__content-logo">
-          <img src="@/assets/img/logoReview.png" alt="logo" />
-          <div class="logo__text">
-            <div class="name">
-              <h3>Adam Newton</h3>
-              <p>(44 Courses, 4 Reviews)</p>
-            </div>
-            <div class="raiting">
-              <img src="@/assets/img/raiting.svg" alt="reiting" />
-              <p>6 months ago</p>
+          <div class="review__content-logo">
+            <img src="@/assets/img/logoReview.png" alt="logo" />
+            <div class="logo__text">
+              <div class="name">
+                <h3>Adam Newton</h3>
+                <p>(44 Courses, 4 Reviews)</p>
+              </div>
+              <div class="raiting">
+                <img src="@/assets/img/raiting.svg" alt="reiting" />
+                <p>6 months ago</p>
+              </div>
             </div>
           </div>
+          <div class="review__content-text">
+            <p>
+              The beauty of astronomy is that anybody can do it. From the
+              tiniest baby to the most advanced astrophysicist, there is
+              something for anyone who wants to enjoy astronomy. In fact, it is
+              a science that is so accessible that virtually anybody can do it
+              virtually anywhere they are. All they have to know how to do is to
+              look up. It really is amazing when you think about it that just by
+              looking up on any given night, you could.
+            </p>
+          </div>
+          <div class="review__buttons">
+            <p>Was this review helpful?</p>
+            <button>Yes</button>
+            <button @click="togleElement">No</button>
+            <button>Report</button>
+          </div>
         </div>
-        <div class="review__content-text">
-          <p>
-            The beauty of astronomy is that anybody can do it. From the tiniest
-            baby to the most advanced astrophysicist, there is something for
-            anyone who wants to enjoy astronomy. In fact, it is a science that
-            is so accessible that virtually anybody can do it virtually anywhere
-            they are. All they have to know how to do is to look up. It really
-            is amazing when you think about it that just by looking up on any
-            given night, you could.
-          </p>
-        </div>
-        <div class="review__buttons">
-          <p>Was this review helpful?</p>
-          <button>Yes</button>
-          <button @click="togleElement">No</button>
-          <button>Report</button>
-        </div>
-        </div>
-        <h2 v-else>We are sorry  :(</h2>
+        <h2 v-else>We are sorry :(</h2>
       </div>
     </div>
   </div>
@@ -77,9 +77,13 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .review {
-  &__content {
+  margin-top: vw(30);
+  .container {
+    max-width: vw(700);
     background-color: $white;
     border-radius: 10px;
+  }
+  &__content {
     padding: vw(35) vh(40);
     max-width: vw(600);
     h2 {
@@ -147,7 +151,6 @@ export default {
       border-radius: vw(5);
       margin-right: vw(10);
       border: none;
-      margin: 0;
     }
     button:active {
       background-color: #ccc;
@@ -162,10 +165,13 @@ export default {
 
 .review {
   @include mobile {
+    .container{
+      max-width: vmin(360);
+    }
     margin-top: vmin(30);
     &__content {
       padding: vmin(35) vmin(40);
-      max-width: vmin(600);
+      max-width: vmin(330);
       h2 {
         @include font(vmin(15), 700, vmin(15), $greyBlue25);
       }

@@ -40,25 +40,25 @@ export default createStore({
         'categories',
         category
       )
-      console.log(documents.value)
       commit('GET_FILTERED_COURSES', documents)
     },
     async getMoreInfo({ commit }, infoId) {
       const { getSingleDoc } = useDoc()
       const { documents } = await getSingleDoc('more info', infoId.moreInfoId)
-      console.log(documents.value)
       commit('GET_MORE_INFO', documents)
       commit('GET_COURSE_ID', infoId.courseId)
     },
-    async getAnyCollection({ commit }) {
-      const { documents } = await getAnyCollection('courses', 'categories')
+    async getAnyCollection({ commit }, params) {
+      const { documents } = await getAnyCollection(
+        'courses',
+        'categories',
+        params
+      )
       commit('GET_FILTERED_COURSES', documents)
-      console.log(documents.value)
     },
     async getUserInfo({ commit }, userId) {
       const { getSingleDoc } = useDoc()
       const { documents } = await getSingleDoc('users', userId)
-      console.log(documents.value)
       commit('GET_USER_INFO', documents)
     },
   },

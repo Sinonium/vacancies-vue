@@ -4,9 +4,11 @@
       v-if="!currentUserInfo.isTeacher"
       @click="$refs.modalTeacher.openModal()"
     >
-      Become Teacher
+      Become a Teacher
     </button>
-    <span v-else>You Teacher</span>
+    <router-link v-else :to="{ name: 'Becometeacher' }"
+      ><span>Create a Course</span></router-link
+    >
     <modal ref="modalTeacher">
       <template v-slot:modal__content>
         <h1>Do you want to become a teacher?</h1>

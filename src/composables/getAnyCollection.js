@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { firestore } from '@/firebase/config'
 import { getDocs, collection, query, where } from '@firebase/firestore'
 
-const getAnyCollection = async (collectionName, array) => {
+const getAnyCollection = async (collectionName, array, params) => {
   const documents = ref(null)
   const error = ref(null)
 
@@ -10,19 +10,15 @@ const getAnyCollection = async (collectionName, array) => {
     const myCollection = collection(firestore, collectionName)
     const dataColl = query(
       myCollection,
-      where(array, 'array-contains-any', ['Development', 'Development Tools'])
+      where(array, 'array-contains-any', params)
     )
+
     const response = await getDocs(dataColl)
 
-    documents.value = response.docs.map(
-      (doc) => (
-        console.log(doc),
-        {
-          ...doc.data(),
-          id: doc.id,
-        }
-      )
-    )
+    documents.value = response.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }))
   } catch (err) {
     error.value = 'Данные не получины ошибка'
   }
