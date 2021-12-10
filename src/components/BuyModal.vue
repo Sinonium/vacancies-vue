@@ -94,18 +94,7 @@ export default {
     const country = ref('')
     const zipCode = ref('')
 
-    const handleBuy = () => {
-      const userData = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        cardNumber: cardNumber.value,
-        mmyy: mmyy.value,
-        cvc: cvc.value,
-        country: country.value,
-        zipCode: zipCode.value,
-      }
-      console.log(userData)
-    }
+
     return {
       id,
       handleSubmit,
@@ -117,7 +106,6 @@ export default {
       cvc,
       country,
       zipCode,
-      handleBuy,
     }
   },
 }
