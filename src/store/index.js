@@ -8,9 +8,9 @@ import useDoc from '../composables/useDoc.js'
 export default createStore({
   state: {
     courses: [],
-    courseMoreInfo: [],
+    courseMoreInfo: null,
     courseId: '',
-    userInfo: [],
+    userInfo: null,
   },
   mutations: {
     GET_COURSES(state, payload) {
@@ -33,7 +33,6 @@ export default createStore({
     async getCourses({ commit }) {
       const { documents } = await getCollection('courses')
       commit('GET_COURSES', documents)
-      console.log(documents.value)
     },
     async getFilteredCollection({ commit }, category) {
       const { documents } = await getFilteredCollection(

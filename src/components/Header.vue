@@ -22,30 +22,8 @@
         <img src="@/assets/img/greyArrow.svg" alt="" />
       </div>
     </form>
-    <div class="header__record">
-      <router-link
-        v-if="isTeacher"
-        to="/createCourse"
-        class="header__record-teacher"
-      >
-        Create Course
-      </router-link>
-
-      <div class="header__record-teacher">
-        <button @click="$refs.modalTeacher.openModal()">Become Teacher</button>
-        <modal ref="modalTeacher">
-          <template v-slot:modal__content>
-            <h1>Modal</h1>
-            <router-link
-              :to="{ name: 'Becometeacher' }"
-              @click="$refs.modalTeacher.closeModal()"
-            >
-              <button>Yes</button>
-            </router-link>
-            <button @click="$refs.modalTeacher.closeModal()">Cancel</button>
-          </template>
-        </modal>
-      </div>
+    <div v-if="currentUserInfo" class="header__record">
+      <BecomeTeacher :currentUserInfo="currentUserInfo" />
       <div class="header__record-logIn">
         {{ userName }}
       </div>
@@ -61,11 +39,11 @@ import { computed, ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 import useAuth from '@/composables/useAuth'
 import { user } from '../composables/getUser'
-import Modal from './Modal.vue'
 import { onMounted } from '@vue/runtime-core'
 import { useStore } from 'vuex'
+import BecomeTeacher from '@/components/BecomeTeacher.vue'
 export default {
-  components: { Modal },
+  components: { BecomeTeacher },
   setup() {
     const userName = user.value.email
     console.log(user.value.email)
@@ -73,7 +51,7 @@ export default {
     const router = useRouter()
     const store = useStore()
 
-    const userInfo = ref([])
+    const currentUserInfo = computed(() => store.state.userInfo)
 
     const handleClick = async () => {
       const { logout } = useAuth()
@@ -87,10 +65,7 @@ export default {
     }
 
     const getUser = async () => {
-      console.log(user.value.uid)
       await store.dispatch('getUserInfo', user.value.uid)
-      const userInfoData = computed(() => store.state.userInfo)
-      console.log(userInfoData.value)
     }
 
     onMounted(() => {
@@ -103,8 +78,7 @@ export default {
       handleClick,
       isTeacher,
       userName,
-      getUser,
-      userInfo,
+      currentUserInfo,
     }
   },
 }
