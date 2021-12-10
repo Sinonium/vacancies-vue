@@ -10,6 +10,7 @@ export default createStore({
     courses: [],
     courseMoreInfo: [],
     courseId: '',
+    userInfo: [],
   },
   mutations: {
     GET_COURSES(state, payload) {
@@ -23,6 +24,9 @@ export default createStore({
     },
     GET_COURSE_ID(state, id) {
       state.courseId = id
+    },
+    GET_USER_INFO(state, user) {
+      state.userInfo = user
     },
   },
   actions: {
@@ -52,7 +56,12 @@ export default createStore({
       commit('GET_FILTERED_COURSES', documents)
       console.log(documents.value)
     },
-    // async getSingle
+    async getUserInfo({ commit }, userId) {
+      const { getSingleDoc } = useDoc()
+      const { documents } = await getSingleDoc('users', userId)
+      console.log(documents.value)
+      commit('GET_USER_INFO', documents)
+    },
   },
   modules: {
     auth,
