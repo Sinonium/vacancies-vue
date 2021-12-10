@@ -106,9 +106,6 @@
   </div>
 </template>
 
-
-
-
 <script>
 export default {
   data() {
@@ -121,7 +118,6 @@ export default {
       allShow: false,
       open: false,
       allSections: false,
-
       videoIcon: require("@/assets/scss/icons/video.svg"),
     };
   },
@@ -147,29 +143,28 @@ export default {
   methods: {
     allThemes() {
       if (!this.allShow) {
-        this.button_themes = "Show Fewer Features";
-        this.allShow = true;
+        this.button_themes = 'Show Fewer Features'
+        this.allShow = true
       } else {
-        this.button_themes = "Show more Features";
-        this.allShow = false;
+        this.button_themes = 'Show more Features'
+        this.allShow = false
       }
     },
     allContents() {
       if (!this.allSections) {
-        this.button_contents = "Sections";
-        this.allSections = true;
+        this.button_contents = 'Sections'
+        this.allSections = true
       } else {
-        this.button_contents = "5 More Sections";
-        this.allSections = false;
+        this.button_contents = '5 More Sections'
+        this.allSections = false
       }
     },
   },
-};
+}
 </script>
 
-
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .container {
   margin: 0 auto;
@@ -190,7 +185,7 @@ export default {
 
   &-title {
     @include font(vw(13), bold, vw(25));
-    font-family: "San Francisco Pro";
+    font-family: 'San Francisco Pro';
     color: $greyBlue50;
     padding: vw(30) 0 0 vw(30);
     &__item {
@@ -203,7 +198,7 @@ export default {
 
     &__item-1 {
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue60;
     }
     span {
@@ -233,7 +228,7 @@ export default {
 }
 button {
   @include font(vw(12), bold, vw(20));
-  font-family: "San Francisco Pro";
+  font-family: 'San Francisco Pro';
   color: $greyBlue60;
   width: vw(190);
   height: vw(40);
@@ -319,13 +314,13 @@ button {
 
       h6 {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 70%;
       }
       span {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 10%;
       }

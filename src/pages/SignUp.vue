@@ -83,7 +83,7 @@ export default {
             addCourses: addCourses.value,
             UserBuy: userBuy.value,
             isTeacher: false,
-            description: [],
+            description: [{}],
           },
           false,
           user.uid
