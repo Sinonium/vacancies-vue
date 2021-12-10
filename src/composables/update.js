@@ -3,14 +3,18 @@ import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 
 const update = () => {
   const updateTeacher = async () => {
-    const response = doc(
-      firestore,
-      'more info',
-      '1d60f4f6-5d15-4006-b74e-0e32eb1563f3'
-    )
+    const userDoc = doc(firestore, 'users', 'Aqu1DTLSoVTXz5sUoH9HbU1OKSA2')
 
-    return await updateDoc(response, {
+    const test = await getDoc(userDoc)
+
+    return await updateDoc(userDoc, {
       isTeacher: true,
+      description:
+        // ...test.data().description,
+        {
+          teacherName: 'Janybek',
+          text: 'Realy',
+        },
     })
   }
 

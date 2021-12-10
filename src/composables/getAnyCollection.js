@@ -1,19 +1,18 @@
-import { ref } from "vue";
-import { firestore } from "@/firebase/config";
-import { getDocs, collection, query, where } from "@firebase/firestore";
+import { ref } from 'vue'
+import { firestore } from '@/firebase/config'
+import { getDocs, collection, query, where } from '@firebase/firestore'
 
 const getAnyCollection = async (collectionName, array) => {
-  const documents = ref(null);
-  const error = ref(null);
-//   console.log(filters + " Фильтры ");
+  const documents = ref(null)
+  const error = ref(null)
 
   try {
-    const myCollection = collection(firestore, collectionName);
+    const myCollection = collection(firestore, collectionName)
     const dataColl = query(
       myCollection,
-      where(array, "array-array-contains-any", ['Development', 'Development Tools'])
-    );
-    const response = await getDocs(dataColl);
+      where(array, 'array-contains-any', ['Development', 'Development Tools'])
+    )
+    const response = await getDocs(dataColl)
 
     documents.value = response.docs.map(
       (doc) => (
@@ -23,12 +22,12 @@ const getAnyCollection = async (collectionName, array) => {
           id: doc.id,
         }
       )
-    );
+    )
   } catch (err) {
-    error.value = "Данные не получины ошибка";
+    error.value = 'Данные не получины ошибка'
   }
 
-  return { documents, error };
-};
+  return { documents, error }
+}
 
-export default getAnyCollection;
+export default getAnyCollection
