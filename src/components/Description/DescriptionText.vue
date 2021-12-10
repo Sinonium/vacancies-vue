@@ -69,11 +69,15 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .description {
-  &__content {
+  margin-top: vw(30);
+  .container {
     background-color: $white;
+    max-width: vw(700);
     border-radius: 10px;
+  }
+  &__content {
     padding: vw(35) vh(40);
-    max-width: vw(600);
+    width: vw(600);
   }
   &__content-text {
     h3 {
@@ -117,9 +121,12 @@ export default {
 
 .description {
   @include mobile {
+    .container{
+      max-width: vmin(360);
+    }
     &__content {
       padding: vmin(35) vmin(40);
-      max-width: vmin(600);
+      width: vmin(310);
     }
     &__content-text {
       h3 {

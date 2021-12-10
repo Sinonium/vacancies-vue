@@ -10,9 +10,6 @@
         </div>
         <div class="data">
           <h4>{{ review.studentName }}</h4>
-          <span
-            >({{ review.courses }} Courses,{{ review.reviews }} Reviews)</span
-          >
         </div>
       </div>
       <div class="cart-review__header_data">
@@ -58,16 +55,12 @@
           <span v-if="reviewDate[1] < 12 && resultReviewDateMonth !== 0">
             {{ resultReviewDateMonth }} month ago
           </span>
-          <span
-            v-if="
-              reviewDate[0] > currentDate.getDay() &&
-              reviewDate[0] < currentDate.getDay() &&
-              reviewDate[2] !== currentDate.getFullYear() &&
-              reviewDate[0] > currentDate.getDay() &&
-              reviewDate[2] === currentDate.getFullYear()
-            "
-          >
-            {{ resultReviewDateDay }} day ago
+          <span>
+            <span v-if="resultReviewDateDay === 0 && reviewDate[2] === currentDate.getFullYear() && reviewDate[1] === currentDate.getMonth()"> Today </span>
+            <span>
+              <span v-if="resultReviewDateDay === 0"></span>
+              <span v-else> {{ resultReviewDateDay }} day ago </span>
+            </span>
           </span>
         </span>
       </div>
@@ -100,8 +93,15 @@ export default {
       const secondtNumDateYearRef = secondDate[2]
 
       resultReviewDateDay.value = firstNumDateDayRef - secondtNumDateDayRef
+      if (firstNumDateDayRef <= secondtNumDateDayRef) {
+        resultReviewDateDay.value = secondtNumDateDayRef - firstNumDateDayRef
+      }
+      if (firstNumDateDayRef >= secondtNumDateDayRef) {
+        resultReviewDateDay.value = firstNumDateDayRef - secondtNumDateDayRef
+      }
       resultReviewDateMonth.value = firstNumDateMonthRef - secondNumDateMonthRef
       resultReviewDateYear.value = firstNumDateYearRef - secondtNumDateYearRef
+      console.log(resultReviewDateDay.value)
     }
 
     getSomeNumAgo(currentDate, reviewDate)

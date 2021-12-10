@@ -2,7 +2,7 @@
   <div class="courses-info">
     <img
       class="courses-info__image"
-      src="./../assets/img/courses-info-2.png"
+      src="./../assets/img/courses-info.png"
       alt=""
     />
     <div class="courses-info__block">
@@ -23,7 +23,7 @@
         </div>
       </div>
 
-     
+
 
     </div>
   </div>

@@ -54,11 +54,15 @@
         </div>
         <button>Add review and</button>
       </form>
-      <span>{{ errorNullTextInp }}</span>
     </div>
     <div class="feedback__content">
       <h2>Reviews course</h2>
-      <div v-for="review in reviews" :key="review">
+      <div
+        v-for="review in reviews.sort((a, b) => {
+          return a.date - b.date
+        })"
+        :key="review"
+      >
         <CartRev :review="review" />
       </div>
     </div>
@@ -69,9 +73,11 @@
 import { ref } from '@vue/reactivity'
 import CartRev from '../DetailsAboutTeach/BlockReviews/CartReview/CartReview.vue'
 import { onMounted } from '@vue/runtime-core'
+import { user } from '../../composables/getUser' 
 export default {
   components: { CartRev },
   setup() {
+    const User = user.value
     const gradeUser = ref(1)
     const course = ref()
     const currentDate = ref()
@@ -79,7 +85,6 @@ export default {
     const grades = ref([])
     const reviewUser = ref({})
     const textInp = ref('')
-    const errorNullTextInp = ref('')
     const getDoc = async () => {
       const response = await fetch('http://localhost:3000/course')
       const json = await response.json()
@@ -99,8 +104,8 @@ export default {
           currentDate.value.getFullYear(),
         ]
         reviewUser.value = {
-          imageUrl: '',
-          studentName: 'Person',
+          imageUrl: User.photoURL,
+          studentName: User.email,
           grade: Number(gradeUser.value),
           text: textInp.value,
           date: testDate.value,
@@ -125,7 +130,6 @@ export default {
         errorNullTextInp.value = ''
         await getDoc()
       } else {
-        errorNullTextInp.value = 'Feedback is empty'
         await fetch('http://localhost:3000/course', {
           method: 'PATCH',
           body: JSON.stringify({
@@ -141,7 +145,6 @@ export default {
     })
     return {
       gradeUser,
-      errorNullTextInp,
       reviewUser,
       currentDate,
       course,
