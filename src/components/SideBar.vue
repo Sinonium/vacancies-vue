@@ -1,35 +1,63 @@
 <template>
-   <aside class="sidebar">
+   <aside
+      :class="{ active: active }"
+      class="sidebar"
+   >
       <SidebarSearch />
       <div class="sidebar__content">
-         <PerfectScrollbar >
-         <ul class="sidebar__main-group">
-            <li @click="list.a = !list.a">
-               <span class="title">COURSE CATEGORIES</span>
-               <img class="arrow" :class="{ clicked: list.a }" :src="arrowExpand" alt="" />
-            </li>
-            <CourseCategories  v-if="list.a" />
-            <li @click="list.b = !list.b">
-               <span class="title">PRICELIST</span>
-               <img class="arrow" :class="{ clicked: list.b }" :src="arrowExpand" alt="" />
-            </li>
-            <PriceList v-if="list.b" />
-            <li @click="list.c = !list.c">
-               <span class="title">STUDENT LEVEL OF TRAINING</span>
-               <img class="arrow" :class="{ clicked: list.c }" :src="arrowExpand" alt="" />
-            </li>
-            <LevelOfTraining v-if="list.c" />
-            <li @click="list.d = !list.d">
-               <span class="title">COURSE RATING</span>
-               <img class="arrow" :class="{ clicked: list.d }" :src="arrowExpand" alt="" />
-            </li>
-            <CourseRating v-if="list.d" />
-            <li @click="list.e = !list.e">
-               <span class="title">DURATION COURSES</span>
-               <img class="arrow" :class="{ clicked: list.e }" :src="arrowExpand" alt="" />
-            </li>
-            <Duration v-if="list.e" />
-         </ul>
+         <PerfectScrollbar>
+            <ul class="sidebar__main-group">
+               <li @click="list.a = !list.a">
+                  <span class="title">COURSE CATEGORIES</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.a }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <CourseCategories v-if="list.a" />
+               <li @click="list.b = !list.b">
+                  <span class="title">PRICELIST</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.b }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <PriceList v-if="list.b" />
+               <li @click="list.c = !list.c">
+                  <span class="title">STUDENT LEVEL OF TRAINING</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.c }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <LevelOfTraining v-if="list.c" />
+               <li @click="list.d = !list.d">
+                  <span class="title">COURSE RATING</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.d }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <CourseRating v-if="list.d" />
+               <li @click="list.e = !list.e">
+                  <span class="title">DURATION COURSES</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.e }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <Duration v-if="list.e" />
+            </ul>
          </PerfectScrollbar>
       </div>
    </aside>
@@ -37,7 +65,7 @@
 
 <script>
    import { ref } from "@vue/reactivity";
-   import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+   import { PerfectScrollbar } from "vue3-perfect-scrollbar";
    import CourseCategories from "./sidebar/categories/CourseCategories.vue";
    import CourseRating from "./sidebar/CourseRating.vue";
    import Duration from "./sidebar/Duration.vue";
@@ -54,7 +82,9 @@
          CourseRating,
          Duration,
       },
+      props: ["active"],
       setup() {
+         const hide = ref(true);
          const list = ref({
             a: true,
             b: true,
@@ -63,6 +93,7 @@
             e: true,
          });
          return {
+            hide,
             list,
             arrowExpand: require("@/assets/img/sidebar/arrow.svg"),
          };
@@ -75,12 +106,19 @@
    @import "~perfect-scrollbar/css/perfect-scrollbar.css";
    aside {
       position: fixed;
+      transition: 0.9s;
+      transform: translate(-110%);
+      width: vw(330);
    }
-   .ps{
+   aside.active{
+      transition: 0.9s;
+      transform: translate(0);
+   }
+   .ps {
       position: relative;
       height: vw(800);
    }
-   .ps__rail-y{
+   .ps__rail-y {
       background-color: inherit !important;
    }
    .sidebar__content {
@@ -170,13 +208,71 @@
    }
 
    @media screen and (max-width: 1440px) {
-      .ps{
-         height: vw(1000);
+      .ps {
+         height: vw(1300);
       }
    }
    @media screen and (max-width: 1024px) {
-      .ps{
+      .ps {
          height: vw(1400);
+      }
+   }
+   @media screen and (max-width: 769px) {
+      .ps {
+         height: vw(2200);
+      }
+      .sidebar {
+         z-index: 50;
+         width: vw(600);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vw(600);
+            li {
+               span.title {
+                  @include font(vw(23), 700, vw(30), $greyBlue50);
+                  margin: vw(35) auto vw(35) vw(40);
+               }
+               img.arrow {
+                  margin: vw(40);
+                  max-width: vw(18);
+                  max-height: vw(11);
+               }
+            }
+            .categories {
+               padding: 0 vw(15);
+               li {
+                  padding: vw(18) 0;
+                  grid-template-columns: 1.1fr 5.5fr 0.6fr;
+                  span {
+                     @include font(vw(22), 700, vw(30), $white);
+                  }
+                  img:first-child {
+                     margin-left: vw(30);
+                     max-height: vw(32);
+                     max-width: vw(32);
+                  }
+                  img:last-child {
+                     max-width: vw(18);
+                     max-height: vw(11);
+                  }
+               }
+               .sub {
+                  margin-left: vw(90);
+                  li {
+                     span {
+                        @include font(vw(21), 700, vw(30), $greyBlue80);
+                     }
+                     span::before {
+                        left: vw(-43);
+                     }
+                  }
+                  .under {
+                     margin-left: vw(44);
+                  }
+               }
+            }
+         }
       }
    }
 </style>

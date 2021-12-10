@@ -4,25 +4,25 @@
          <img v-if="check1" :src="checkboxCheack" alt="" />
          <img v-else :src="checkbox" alt="" />
          <input @click="check1 = !check1" type="checkbox" />
-         <span :class="{checked: check1}">0-2 Hours</span>
+         <span :class="{ checked: check1 }">0-2 Hours</span>
       </li>
       <li>
          <img v-if="check2" :src="checkboxCheack" alt="" />
          <img v-else :src="checkbox" alt="" />
          <input @click="check2 = !check2" type="checkbox" />
-         <span :class="{checked: check2}">3-6 Hours</span>
+         <span :class="{ checked: check2 }">3-6 Hours</span>
       </li>
       <li>
          <img v-if="check3" :src="checkboxCheack" alt="" />
          <img v-else :src="checkbox" alt="" />
          <input @click="check3 = !check3" type="checkbox" />
-         <span :class="{checked: check3}">7-16 Hours</span>
+         <span :class="{ checked: check3 }">7-16 Hours</span>
       </li>
       <li>
          <img v-if="check4" :src="checkboxCheack" alt="" />
          <img v-else :src="checkbox" alt="" />
          <input @click="check4 = !check4" type="checkbox" />
-         <span :class="{checked: check4}">17+ Hours</span>
+         <span :class="{ checked: check4 }">17+ Hours</span>
       </li>
    </ul>
 </template>
@@ -49,34 +49,54 @@
 
 <style lang="scss" scoped>
    @import "@/assets/scss/index.scss";
-ul{
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   li {
-      position: relative;
-      margin-left: vw(34);
-      display: flex;
-      align-items: center;
-      input[type="checkbox"] {
-         position: absolute;
-         left: vw(-5);
-         z-index: 2;
-         opacity: 0;
-         display: block;
-         width: vw(20);
-         height: vw(20);
-      }
-      img{
-         width: vw(20);
-         height: vw(20);
-      }
-      span{
-         @include font(vw(12), 700, vw(20), $greyBlue50);
-         margin: vw(10);
-      }
-      span.checked{
-         color: $white;
+   ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      li {
+         position: relative;
+         margin-left: vw(34);
+         display: flex;
+         align-items: center;
+         input[type="checkbox"] {
+            position: absolute;
+            left: vw(-5);
+            z-index: 2;
+            opacity: 0;
+            display: block;
+            width: vw(20);
+            height: vw(20);
+         }
+         img {
+            width: vw(20);
+            height: vw(20);
+         }
+         span {
+            @include font(vw(12), 700, vw(20), $greyBlue50);
+            margin: vw(10);
+         }
+         span.checked {
+            color: $white;
+         }
       }
    }
-}
+   @media screen and(max-width:769px) {
+      ul {
+         li {
+            margin-left: vw(40);
+            input[type="checkbox"] {
+               left: vw(-10);
+               width: vw(38);
+               height: vw(38);
+            }
+            img {
+               width: vw(38);
+               height: vw(38);
+            }
+            span {
+               @include font(vw(21), 700, vw(25), $greyBlue50);
+               margin: vw(25);
+            }
+         }
+      }
+   }
 </style>

@@ -1,44 +1,44 @@
 <template>
    <ul>
       <li>
-         <img v-if="check1" :src="checkboxCheack" alt="">
-         <img v-else :src="checkbox" alt="">
+         <img v-if="check1" :src="checkboxCheack" alt="" />
+         <img v-else :src="checkbox" alt="" />
          <input @click="check1 = !check1" type="checkbox" />
-         <span :class="{checked: check1}">All Levels of Courses</span>
-         <span :class="{checked: check1}">12 354</span>
+         <span :class="{ checked: check1 }">All Levels of Courses</span>
+         <span :class="{ checked: check1 }">12 354</span>
       </li>
       <li>
-         <img v-if="check2" :src="checkboxCheack" alt="">
-         <img v-else :src="checkbox" alt="">
+         <img v-if="check2" :src="checkboxCheack" alt="" />
+         <img v-else :src="checkbox" alt="" />
          <input @click="check2 = !check2" type="checkbox" />
-         <span :class="{checked: check2}">Initial Training Level</span>
-         <span :class="{checked: check2}">4560</span>
+         <span :class="{ checked: check2 }">Initial Training Level</span>
+         <span :class="{ checked: check2 }">4560</span>
       </li>
       <li>
-         <img v-if="check3" :src="checkboxCheack" alt="">
-         <img v-else :src="checkbox" alt="">
+         <img v-if="check3" :src="checkboxCheack" alt="" />
+         <img v-else :src="checkbox" alt="" />
          <input @click="check3 = !check3" type="checkbox" />
-         <span :class="{checked: check3}">Medium Level Training</span>
-         <span :class="{checked: check3}">2145</span>
+         <span :class="{ checked: check3 }">Medium Level Training</span>
+         <span :class="{ checked: check3 }">2145</span>
       </li>
       <li>
-         <img v-if="check4" :src="checkboxCheack" alt="">
-         <img v-else :src="checkbox" alt="">
+         <img v-if="check4" :src="checkboxCheack" alt="" />
+         <img v-else :src="checkbox" alt="" />
          <input @click="check4 = !check4" type="checkbox" />
-         <span :class="{checked: check4}">Expert Training Level</span>
-         <span :class="{checked: check4}">456</span>
+         <span :class="{ checked: check4 }">Expert Training Level</span>
+         <span :class="{ checked: check4 }">456</span>
       </li>
    </ul>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
+   import { ref } from "@vue/reactivity";
    export default {
       setup() {
-         const check1 = ref(false)
-         const check2 = ref(false)
-         const check3 = ref(false)
-         const check4 = ref(false)
+         const check1 = ref(false);
+         const check2 = ref(false);
+         const check3 = ref(false);
+         const check4 = ref(false);
          return {
             check1,
             check2,
@@ -67,20 +67,42 @@ import { ref } from '@vue/reactivity';
          width: vw(20);
          height: vw(20);
       }
-      img{
+      img {
          margin: 0 vw(24) 0 vw(34);
          width: vw(20);
-         height: vw(20)
+         height: vw(20);
       }
       span {
          @include font(vw(12), 700, vw(20), $greyBlue60);
       }
-      span.checked{
+      span.checked {
          color: $white;
       }
-      span:last-child{
+      span:last-child {
          margin-left: auto;
          margin-right: vw(30);
+      }
+   }
+
+   @media screen and(max-width:769px) {
+      li {
+         margin-bottom: vw(20);
+         input[type="checkbox"] {
+            left: vw(30);
+            width: vw(38);
+            height: vw(38);
+         }
+         img {
+            margin: 0 vw(32) 0 vw(38);
+            width: vw(38);
+            height: vw(38);
+         }
+         span {
+            @include font(vw(21), 700, vw(25), $greyBlue60);
+         }
+         span:last-child {
+            margin-right: vw(40);
+         }
       }
    }
 </style>

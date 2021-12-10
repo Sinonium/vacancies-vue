@@ -2,7 +2,6 @@
   <div class="courses-info">
     <img
       class="courses-info__image"
-      src="./../assets/img/courses-info-2.png"
       alt=""
     />
     <div class="courses-info__block">

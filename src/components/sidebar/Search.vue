@@ -18,26 +18,41 @@
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
-.search{
-   @include flex(space-evenly);
-   background-color: $greyBlue20;
-   min-height: vw(90);
-   &-icon{
-      width: vw(17);
-      height: vw(17);
+   @import "@/assets/scss/index.scss";
+   .search {
+      @include flex(space-evenly);
+      background-color: $greyBlue20;
+      min-height: vw(90);
+      &-icon {
+         width: vw(17);
+         height: vw(17);
+      }
+      &-image {
+         width: vw(35);
+         height: vw(35);
+      }
+      input {
+         background-color: inherit;
+         border: none;
+         outline: saddlebrown;
+         color: $greyBlue85;
+         font-size: vw(13);
+      }
    }
-   &-image{
-      width: vw(35);
-      height: vw(35);
+   @media screen and (max-width: 769px) {
+      .search {
+         min-height: vw(120);
+         &-icon {
+            width: vw(28);
+            height: vw(28);
+         }
+         &-image {
+            width: vw(60);
+            height: vw(60);
+         }
+         input {
+            font-size: vw(21);
+         }
+      }
    }
-   input{
-      background-color: inherit;
-      border: none;
-      outline: saddlebrown;
-      color: $greyBlue85;
-      font-size: vw(13);
-   }
-}
-
 </style>
