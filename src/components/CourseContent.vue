@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <div class="container-div">
       <div :class="{ actives: allShow === true }" class="themes">
@@ -10,7 +9,7 @@
             <div class="themes-title__item-1">
               <ul :class="{ actives: allShow === true }">
                 <li v-for="theme in learn" :key="theme.id" :theme="theme">
-                  <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
+                  <img src="@/assets/scss/icons/done.svg" />{{ theme }}
                 </li>
               </ul>
             </div>
@@ -32,7 +31,7 @@
         </div>
         <div :class="{ actives: allSections === true }" class="content-courses">
           <div
-            v-for="item in items"
+            v-for="item in articles"
             :key="item.id"
             class="content-courses__theme"
           >
@@ -52,38 +51,37 @@
               />
             </svg>
 
-            <h6 @click="item.open = !item.open">{{ item.title }}</h6>
+            <h6 @click="item.open = !item.open">{{ item.lectureName }}</h6>
+            <span> {{ item.lectures }}</span>
 
             <span> {{ item.allTime }}</span>
             <div class="content-courses__open" v-if="item.open">
-              <div class="content-courses__item">
-                <div class="content-courses__all">
+              <!-- <div class="content-courses__item"> -->
+              <!-- <div class="content-courses__all"> -->
+
+              <div v-for="data in item.content" :key="data.id">
+                <ul class="content-courses__all">
                   <a
                     href="https://www.youtube.com/watch?v=-1DRETk-mns&t=7s"
                     target="blank"
                   >
                     <img :src="videoIcon" alt=""
                   /></a>
-                  <p>{{ item.name }}</p>
-
-                  <a
-                    href="https://www.youtube.com/watch?v=-1DRETk-mns&t=7s"
-                    target="blank"
-                    >{{ item.isPreview }}</a
-                  >
-                  <span>{{ item.time }}</span>
-                </div>
+                  <li>{{ data.name }}</li>
+                  <a>{{ data.isPreview }}</a>
+                  <span>{{ data.time }}</span>
+                </ul>
               </div>
-              <div class="content-courses__item">
+              <!-- </div> -->
+              <!-- </div> -->
+              <!-- <div class="content-courses__item">
                 <div class="content-courses__all">
                   <img :src="videoIcon" alt="" />
 
-                  <p>{{ item.name_1 }}</p>
-                  <a href=""></a>
-                  <span>{{ item.time_1 }}</span>
+                 
                 </div>
-              </div>
-              <div class="content-courses__item">
+              </div> -->
+              <!-- <div class="content-courses__item">
                 <div class="content-courses__all">
                   <img :src="videoIcon" alt="" />
 
@@ -91,7 +89,7 @@
                   <a href=""></a>
                   <span>{{ item.time_2 }}</span>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -115,7 +113,9 @@
 export default {
   data() {
     return {
-      
+      learn: [],
+      articles: [],
+
       button_themes: "Show more Features",
       button_contents: "5 More Sections",
       allShow: false,
@@ -123,177 +123,27 @@ export default {
       allSections: false,
 
       videoIcon: require("@/assets/scss/icons/video.svg"),
-      items: [
-        {
-          title: "Course Content",
-          allTime: "8:82",
-
-          name: "How To Succedd In This Course",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Join Our Online Classroom",
-          time_1: "01:08",
-
-          name_2: "Exercise: Meet The Comminity!",
-          time_2: "01:08",
-        },
-
-        {
-          title: "JavaScript Foundation",
-          lectures: "26 Lectures",
-          allTime: "7:82",
-
-          name: "Section Overview",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Exercise: Javascript Engine",
-          isPreview: "Preview",
-          time_1: "05:08",
-
-          name_2: "Marketing and Sales",
-          time_2: "01:08",
-        },
-
-        {
-          title: "Putting It All Together: The Budget App Project",
-          lectures: "3 Lectures",
-          allTime: "13:82",
-
-          name: "Local servers",
-          time: "05:34",
-
-          name_1: "How to work with JSHint",
-          time_1: "01:08",
-
-          name_2: "How to create fadeIn / fadeOut animations",
-          time_2: "01:08",
-        },
-        {
-          title: "Next Generation JavaScript: Intro to ES6",
-          lectures: "4 Lectures",
-          allTime: "10:82",
-
-          name: "How to work with a server in JavaScript part 1",
-          time: "02:34",
-
-          name_1: "How to work with a server in JavaScript part 2",
-          time_1: "03:08",
-
-          name_2: "How to work with a server in JavaScript part 3",
-          time_2: "01:08",
-        },
-        {
-          title: "Customizing the code editor",
-          lectures: "7 Lectures",
-          allTime: "11:82",
-
-          name: "How To Succedd In This Course",
-          time: "05:34",
-
-          name_1: "Timer operation",
-          time_1: "01:08",
-
-          name_2: "Implementing a module with displaying images",
-          time_2: "01:08",
-        },
-        {
-          title: "Course Content",
-          allTime: "8:82",
-
-          name: "How To Succedd In This Course",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Join Our Online Classroom",
-          time_1: "01:08",
-
-          name_2: "Exercise: Meet The Comminity!",
-          time_2: "01:08",
-        },
-
-        {
-          title: "JavaScript Foundation",
-          lectures: "26 Lectures",
-          allTime: "7:82",
-
-          name: "Section Overview",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Exercise: Javascript Engine",
-          isPreview: "Preview",
-          time_1: "05:08",
-
-          name_2: "Marketing and Sales",
-          time_2: "01:08",
-        },
-
-        {
-          title: "Putting It All Together: The Budget App Project",
-          lectures: "3 Lectures",
-          allTime: "13:82",
-
-          name: "Local servers",
-          time: "05:34",
-
-          name_1: "How to work with JSHint",
-          time_1: "01:08",
-
-          name_2: "How to create fadeIn / fadeOut animations",
-          time_2: "01:08",
-        },
-        {
-          title: "Next Generation JavaScript: Intro to ES6",
-          lectures: "4 Lectures",
-          allTime: "10:82",
-
-          name: "How to work with a server in JavaScript part 1",
-          time: "02:34",
-
-          name_1: "How to work with a server in JavaScript part 2",
-          time_1: "03:08",
-
-          name_2: "How to work with a server in JavaScript part 3",
-          time_2: "01:08",
-        },
-        {
-          title: "Customizing the code editor",
-          lectures: "7 Lectures",
-          allTime: "11:82",
-
-          name: "How To Succedd In This Course",
-          time: "05:34",
-
-          name_1: "Timer operation",
-          time_1: "01:08",
-
-          name_2: "Implementing a module with displaying images",
-          time_2: "01:08",
-        },
-      ],
-
-      learn: [
-        { name: "Get friendly supportinthe course Q&A" },
-        { name: "Practice your skills with coding challenges" },
-        { name: "Downloadable lectures for all projects" },
-        { name: "Object Orinted Programming" },
-        { name: "Inheritance + Prototpe Chain" },
-        { name: "Scope and Execution Context" },
-        { name: "Closures" },
-        { name: "Latest features: ES6, ES7, ES8, ES9" },
-        { name: "Practice your skills with coding challenges" },
-        { name: "Object Orinted Programming" },
-        { name: "Scope and Execution Context" },
-        { name: "Latest features: ES6, ES7, ES8, ES9" },
-        { name: "Practice your skills with coding challenges" },
-        { name: "Object Orinted Programming" },
-        { name: "Scope and Execution Context" },
-        { name: "Latest features: ES6, ES7, ES8, ES9" },
-      ],
     };
   },
+  created() {
+    fetch("http://localhost:3000/learn")
+      .then((response) => {
+        return response.json();
+      })
+
+      .then((data) => {
+        this.learn = data;
+      });
+    fetch("http://localhost:3000/articles")
+      .then((response) => {
+        return response.json();
+      })
+
+      .then((data) => {
+        this.articles = data;
+      });
+  },
+
   methods: {
     allThemes() {
       if (!this.allShow) {
@@ -334,7 +184,7 @@ export default {
   width: vw(730);
   margin-bottom: vw(30);
   height: vw(350);
-  &.actives{
+  &.actives {
     height: 100%;
   }
 
@@ -404,6 +254,7 @@ button {
 }
 .sections-btn {
   margin: vw(-50) vw(260) vw(20) vw(270);
+
   &.actives {
     display: none;
   }
@@ -422,7 +273,7 @@ button {
     margin: vw(40) vw(30) vw(0) vw(30);
     flex-wrap: wrap;
     overflow: hidden;
-    height: vw(390);
+    min-height: vw(240);
     &.actives {
       @include font(vw(12), bold, vw(20));
       height: 100%;
@@ -431,9 +282,24 @@ button {
     &__all {
       display: flex;
       align-items: baseline;
-      margin: vw(10) 0 vw(10) vw(40);
+      margin: vw(10) vw(0) vw(10) vw(40);
+      border-top: 2px solid $greyBlue98;
+      a {
+        @include font(vw(12), bold, vw(20));
+        font-family: "San Francisco Pro";
+        color: $greyBlue60;
+        width: 12%;
+        text-decoration: none;
+      }
     }
-
+    li {
+      list-style-type: none;
+      @include font(vw(12), bold, vw(20));
+      font-family: "San Francisco Pro";
+      color: $greyBlue60;
+      width: 60%;
+      margin: vw(15);
+    }
     h6 {
       cursor: pointer;
     }
@@ -443,21 +309,6 @@ button {
     &__item {
       width: 100%;
       border-top: 2px solid $greyBlue98;
-
-      p {
-        @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
-        color: $greyBlue60;
-        width: 70%;
-      }
-
-      a {
-        @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
-        color: $greyBlue60;
-        width: 10%;
-        text-decoration: none;
-      }
     }
 
     &__theme {
@@ -470,7 +321,7 @@ button {
         @include font(vw(12), bold, vw(20));
         font-family: "San Francisco Pro";
         color: $greyBlue50;
-        width: 80%;
+        width: 70%;
       }
       span {
         @include font(vw(12), bold, vw(20));
@@ -505,13 +356,13 @@ button {
     margin-left: vmin(5);
     height: vmin(200);
     &.actives {
-      height: vmin(400);
+      height: 100%;
     }
     &-title {
       @include font(vmin(8), bold, vmin(13));
       padding: vmin(15) 0 0 vmin(15);
       img {
-        width: vmin(10);
+        width: vmin(7);
       }
 
       &__item-1 {
@@ -522,9 +373,9 @@ button {
       &__item-2 {
         @include font(vmin(6), bold, vmin(10));
       }
-      span {
-        padding-right: vmin(235);
-      }
+      // span {
+      //   padding-right: vmin(235);
+      // }
     }
     ul {
       height: vmin(100);
@@ -550,7 +401,7 @@ button {
       border: 2px solid #f7f8fa;
       box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
       border-radius: vmin(15);
-     
+
       &.actives {
         @include font(vmin(7), bold, vmin(10));
         color: $greyBlue60 !important;
@@ -560,8 +411,6 @@ button {
         box-shadow: 0 3px 10px 0 $greyBlue85;
       }
     }
-   
-  
   }
 
   .content {
@@ -583,42 +432,48 @@ button {
         height: 100%;
         color: $greyBlue60 !important;
       }
-      &__theme {
-        svg {
-          max-width: vmin(10);
-          max-height: vmin(10);
-          margin-right: vmin(10);
-          margin-left: vmin(10);
+      &__all {
+        display: flex;
+        align-items: baseline;
+        margin: vmin(10) vmin(0) vmin(10) vmin(40);
+        border-top: 2px solid $greyBlue98;
+        a {
+          display: none;
         }
       }
-
+      li {
+        list-style-type: none;
+        @include font(vmin(7), bold, vmin(10));
+        font-family: "San Francisco Pro";
+        color: $greyBlue60;
+        width: 60%;
+        margin: vmin(2);
+      }
+      h6 {
+        cursor: pointer;
+      }
+      &__open {
+        width: 100%;
+      }
       &__item {
+        width: 100%;
         border-top: 2px solid $greyBlue98;
-
-        &__all {
-          margin: vmin(5) 0 vmin(5) vmin(20);
-        }
-
-        p {
-          @include font(vmin(6), bold, vmin(10));
-        }
-
-        a {
-          @include font(vmin(6), bold, vmin(10));
-        }
       }
 
       h6 {
         @include font(vmin(7), bold, vmin(10));
+        font-family: "San Francisco Pro";
+        color: $greyBlue50;
+        width: 70%;
       }
       span {
-        @include font(vmin(6), bold, vmin(10));
+        display: none;
       }
 
       img {
-        max-width: vmin(10);
-        max-height: vmin(10);
-        padding: 0 vmin(10) 0 vmin(10);
+        width: vmin(10);
+        height: vmin(10);
+        //padding: 0 vmin(5) 0 vmin(5);
       }
     }
   }
