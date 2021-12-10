@@ -41,8 +41,7 @@
 <script>
 import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseItem from '../components/CourseItem.vue'
-import { ref } from '@vue/reactivity'
-import { onMounted, computed, onBeforeUpdate, onUpdated } from '@vue/runtime-core'
+import { onMounted, computed} from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import Filters from '../components/Filters/Fiters.vue'
 export default {
