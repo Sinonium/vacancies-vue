@@ -1,5 +1,5 @@
 <template>
-  <!-- <div class="courses-info">
+  <div class="courses-info">
       <img
       class="courses-info__image"
       src="./../assets/img/courses-info-2.png"
@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   <div class="details-page">
     <div class="details-page__head">
       <ul>
