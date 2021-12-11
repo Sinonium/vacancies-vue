@@ -65,7 +65,7 @@
           <h3>Find The Right Course for you</h3>
         </div>
         <p>Answer a few questions to get personalized recommendations.</p>
-        <button>Get Started</button>
+        <button><router-link to="/test">Get Started</router-link></button>
       </div>
     </div>
     <div class="cart__banner">
@@ -220,11 +220,83 @@ export default {
         @include font(vw(14), 700, vw(30), $greyBlue50);
       }
     }
+    a {
+      text-decoration: none;
+      color: $greyBlue60;
+    }
   }
   &__banner {
     img {
       max-width: 100%;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cart {
+    width: vmin(100);
+    margin-top: vmin(180);
+    margin-right: vmin(90);
+
+    p {
+      @include font(vmin(5), 700, vmin(6), $greyBlue70);
+      margin-top: vmin(10);
+    }
+
+     &__profile {
+    &-video {
+      img {
+        max-width: 100%;
+      }
+    }
+    &-price {
+      margin-top: vmin(10);
+      span {
+        @include font(vmin(5), 700, vmin(10), $greyBlue50);
+        &:last-child {
+          margin-left: vmin(10);
+        }
+      }
+    }
+    &-button {
+      margin-top: vmin(13);
+      padding-bottom: vmin(10);
+      button {
+        @include font(vmin(4), 700, vmin(6), $greyBlue60);
+
+      }
+    }
+    &-course {
+      .img__list {
+        padding-top: vmin(14);
+        margin-right: vmin(8);
+        ul {
+          li {
+            margin-bottom: vmin(10);
+            div {
+              @include flex();
+              width: vw(20);
+              height: vw(22);
+            }
+          }
+        }
+      }
+      .course__list {
+        padding-top: vw(37);
+        ul {
+          flex-direction: column;
+          list-style-type: none;
+          li {
+            height: vw(22);
+            margin-bottom: vw(25);
+            p {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
   }
 }
 </style>
