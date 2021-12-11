@@ -66,7 +66,7 @@ span {
   display: flex;
   .hero {
     margin-left: vw(330);
-    // width: 100%;
+    width: 100%;
   }
 }
 

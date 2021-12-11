@@ -44,6 +44,7 @@
 import { ref } from '@vue/reactivity';
 import { useRouter } from "vue-router";
 import {user} from '../composables/getUser'
+import useAuth from "@/composables/useAuth";
 export default {
     setup() {
         console.log(user.value);
