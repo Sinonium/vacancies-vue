@@ -107,7 +107,7 @@
     </div>
     <main class="details-page__content">
       <div v-if="currentDetailsPage === 'Instructor'">
-        <DetailsAboutTeach :course="course" />
+        <DetailsAboutTeach :moreInfo="moreInfo" :course="course" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -161,7 +161,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Feedback'">
-        <FeedBack />
+        <FeedBack :moreInfo="moreInfo"/>
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -230,6 +230,7 @@ export default {
       const json = await response.json()
       course.value = json
     }
+
     const currentDetailsPage = ref('About')
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
@@ -376,68 +377,99 @@ body {
     }
   }
 }
-
-@media screen and (max-width: 1123px) {
-  .details-page {
-    &__head {
-      ul {
-        margin-left: 5vw;
+@media screen and (max-width: 1440px) {
+  .details-page__head {
+    ul {
+      li {
+        @include font(vw(19), bold, 20px, $greyBlue60);
       }
     }
   }
+  .details-page__bottom {
+    margin-left: -26.2vw;
+  }
+  .details-page__modal {
+    top: -6.875vw;
+    left: 73.875vw;
+  }
+  .details-page__head ul li.active {
+    span {
+      @include font(vw(19), bold, 20px, $blue);
+    }
+  }
+  .details-page__head ul {
+    margin-left: 1vw;
+  }
 }
-@media screen and (max-width: 823px) {
-  .details-page {
-    &__head {
-      ul {
-        margin-left: 4vw;
-        li.active {
-          &::before {
-            margin-top: -0.8vw;
-          }
-        }
-      }
+@media screen and (max-width: 1024px) {
+  .details-page__modal {
+    top: -34.875vw;
+  }
+  .details-page__head ul {
+    margin-left: -1vw;
+  }
+  .cart-review__header_data span {
+    margin-left: 0.3vw;
+  }
+  .details-page__bottom {
+    margin-left: -24.2vw;
+  }
+  .details-page__bottom-btn_push_page {
+    padding: 1.6vw 2.7vw 1.6vw 2.7vw;
+  }
+  .details-page__bottom {
+    &-arrow_next,
+    &-arrow_prev {
+      padding: 2vw 1.5vw 2vw 1.5vw;
     }
   }
 }
-@media screen and (max-width: 759px) {
-  .details-page {
-    &__head {
-      ul {
-        margin-left: 3vw;
-      }
-    }
+@media screen and (max-width: 769px) {
+  .details-page__head ul {
+    margin-left: 3vw;
   }
-}
-@media screen and (max-width: 719px) {
-  .details-page {
-    &__head {
-      ul {
-        li {
-          span {
-            @include font(vw(17), bold, 20px, $greyBlue60);
-          }
-          svg {
-            height: 13px;
-          }
-        }
-      }
-    }
-  }
-  .details-page__head ul li.active span {
-    @include font(vw(17), bold, 20px, $blue);
-  }
-}
-@media screen and (max-width: 768px) {
   .details-page {
     &__head {
       height: vw(120);
       ul {
         li {
-          @include font(vw(20), bold, 20px, $greyBlue60);
+          @include font(vw(25), bold, 20px, $greyBlue60);
         }
       }
     }
   }
+  .details-page__head ul li.active {
+    span {
+      @include font(vw(25), bold, 20px, $blue);
+    }
+  }
+  .details-page__bottom {
+    margin-left: -23.2vw;
+    &-arrow_prev,
+    &-arrow_next {
+      padding: 2.9vw;
+      img {
+        height: vw(20);
+      }
+    }
+    &-arrow_next {
+      margin-left: vw(260);
+    }
+  }
+  .details-page__bottom-btn_push_page {
+    padding: 2.0625vw 4.375vw 1.9375vw 3.625vw;
+    span {
+      @include font(2vw, bold, 20px, $greyBlue60);
+    }
+  }
+  .details-page__modal {
+    top: -33.875vw;
+  }
+}
+@media screen and(max-width: 579px) {
+}
+@media screen and(max-width: 426px) {
+}
+@media screen and(max-width:376px) {
 }
 </style>
