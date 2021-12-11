@@ -124,7 +124,7 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage === 'About'">
+      <!-- <div v-if="currentDetailsPage === 'About'">
         <CourseContent :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
@@ -141,7 +141,7 @@
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
         </div>
-      </div>
+      </div> -->
       <div v-if="currentDetailsPage === 'Description'">
         <Description />
         <div class="details-page__bottom">
