@@ -80,10 +80,11 @@ export default {
 
     const id = computed(() => store.state.courseId)
 
-    const { updateUserBuy } = update()
+    const { updateUserBuy, updateCourse } = update()
 
     const handleSubmit = async () => {
       await updateUserBuy(user.value.uid, id.value)
+      await updateCourse(id.value)
     }
 
     const firstName = ref('')
@@ -94,18 +95,6 @@ export default {
     const country = ref('')
     const zipCode = ref('')
 
-    const handleBuy = () => {
-      const userData = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        cardNumber: cardNumber.value,
-        mmyy: mmyy.value,
-        cvc: cvc.value,
-        country: country.value,
-        zipCode: zipCode.value,
-      }
-      console.log(userData)
-    }
     return {
       id,
       handleSubmit,
@@ -117,7 +106,6 @@ export default {
       cvc,
       country,
       zipCode,
-      handleBuy,
     }
   },
 }
@@ -202,6 +190,58 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .modal {
+    .modal__inner {
+      max-width: vmin(400);
+      height: vmin(500);
+      padding: vmin(10);
+      margin-top: vmin(10);
+      h1 {
+        @include font(vmin(6), 700, vmin(10));
+      }
+      &-text {
+        width: vmin(300);
+        margin-top: vmin(80);
+        h3 {
+          @include font(vmin(7), 700, vmin(10));
+        }
+        p {
+          @include font(vmin(5), 600, vmin(7));
+        }
+      }
+      .buttons {
+        width: vmin(300);
+        margin-top: vmin(5);
+        button {
+          @include font(vmin(4), 700, vmin(10), $greyBlue60);
+          width: vmin(30);
+          height: vmin(15);
+          margin-right: vmin(10);
+        }
+      }
+
+      .items {
+        width: vmin(300);
+        margin-top: vmin(15);
+        input {
+          @include font(vmin(5), 600, vmin(10), $greyBlue70);
+          height: vmin(15);
+          width: vmin(290);
+          margin-bottom: vmin(7);
+        }
+        div {
+          input {
+            width: vmin(150);
+            margin-right: vmin(5);
+          }
+        }
+      }
+    }
+  }
+}
+
 input[type='number'] {
   -moz-appearance: textfield;
 }

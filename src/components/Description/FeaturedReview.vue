@@ -7,38 +7,37 @@
           <img src="@/assets/img/kebab.svg" alt="kebab" />
         </div>
         <div v-if="no" class="if">
-        <div class="review__content-logo">
-          <img src="@/assets/img/logoReview.png" alt="logo" />
-          <div class="logo__text">
-            <div class="name">
-              <h3>Adam Newton</h3>
-              <p>(44 Courses, 4 Reviews)</p>
-            </div>
-            <div class="raiting">
-              <img src="@/assets/img/raiting.svg" alt="reiting" />
-              <p>6 months ago</p>
+          <div class="review__content-logo">
+            <img src="@/assets/img/logoReview.png" alt="logo" />
+            <div class="logo__text">
+              <div class="name">
+                <h3>Adam Newton</h3>
+              </div>
+              <div class="raiting">
+                <img src="@/assets/img/raiting.svg" alt="reiting" />
+                <p>6 months ago</p>
+              </div>
             </div>
           </div>
+          <div class="review__content-text">
+            <p>
+              The beauty of astronomy is that anybody can do it. From the
+              tiniest baby to the most advanced astrophysicist, there is
+              something for anyone who wants to enjoy astronomy. In fact, it is
+              a science that is so accessible that virtually anybody can do it
+              virtually anywhere they are. All they have to know how to do is to
+              look up. It really is amazing when you think about it that just by
+              looking up on any given night, you could.
+            </p>
+          </div>
+          <div class="review__buttons">
+            <p>Was this review helpful?</p>
+            <button>Yes</button>
+            <button @click="togleElement">No</button>
+            <button>Report</button>
+          </div>
         </div>
-        <div class="review__content-text">
-          <p>
-            The beauty of astronomy is that anybody can do it. From the tiniest
-            baby to the most advanced astrophysicist, there is something for
-            anyone who wants to enjoy astronomy. In fact, it is a science that
-            is so accessible that virtually anybody can do it virtually anywhere
-            they are. All they have to know how to do is to look up. It really
-            is amazing when you think about it that just by looking up on any
-            given night, you could.
-          </p>
-        </div>
-        <div class="review__buttons">
-          <p>Was this review helpful?</p>
-          <button>Yes</button>
-          <button @click="togleElement">No</button>
-          <button>Report</button>
-        </div>
-        </div>
-        <h2 v-else>We are sorry  :(</h2>
+        <h2 v-else>We are sorry :(</h2>
       </div>
     </div>
   </div>
@@ -77,9 +76,13 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .review {
-  &__content {
+  margin-top: vw(30);
+  .container {
+    max-width: vw(700);
     background-color: $white;
     border-radius: 10px;
+  }
+  &__content {
     padding: vw(35) vh(40);
     max-width: vw(600);
     h2 {
@@ -106,10 +109,6 @@ export default {
         h3 {
           @include font(vw(13), 700, vh(30), $greyBlue50);
           margin-left: vw(30);
-        }
-        p {
-          @include font(vw(12), 700, vh(1), $greyBlue80);
-          margin-left: vw(10);
         }
       }
     }
@@ -147,7 +146,6 @@ export default {
       border-radius: vw(5);
       margin-right: vw(10);
       border: none;
-      margin: 0;
     }
     button:active {
       background-color: #ccc;
@@ -159,72 +157,69 @@ export default {
     }
   }
 }
-
-.review {
-  @include mobile {
-    margin-top: vmin(30);
+@media screen and (max-width: 1024px) {
+  .review {
+    .container {
+      max-width: vmin(180);
+    }
     &__content {
-      padding: vmin(35) vmin(40);
-      max-width: vmin(600);
+      padding: vmin(10) vmin(10);
+      width: vmin(170);
       h2 {
-        @include font(vmin(15), 700, vmin(15), $greyBlue25);
+        @include font(vmin(6), 700, vmin(10), $greyBlue50);
       }
     }
     &__content-title {
       h3 {
-        @include font(vmin(13), 700, vmin(25), $greyBlue50);
+        @include font(vmin(6), 700, vmin(10), $greyBlue50);
       }
     }
     &__content-logo {
+      margin-top: vmin(5);
       img {
-        width: vmin(60);
-        height: vmin(60);
+        width: vmin(20);
+        height: vmin(20);
       }
       .logo__text {
         .name {
           h3 {
-            @include font(vmin(9), 700, vmin(15), $greyBlue50);
-            margin-left: vmin(30);
-          }
-          p {
-            @include font(vmin(9), 700, vmin(0), $greyBlue80);
+            @include font(vmin(5), 700, vmin(10), $greyBlue50);
             margin-left: vmin(10);
           }
         }
       }
       .raiting {
         img {
-          margin-left: vmin(30);
-          width: vmin(50);
-          height: vmin(25);
+          margin-left: vmin(10);
+          width: vmin(25);
+          height: vmin(10);
         }
         p {
-          @include font(vmin(7), 700, vmin(15), $greyBlue80);
-          margin-left: vmin(15);
+          @include font(vmin(4), 700, vmin(3), $greyBlue80);
+          margin-left: vmin(7);
         }
       }
     }
     &__content-text {
       p {
-        @include font(vmin(13), 600, vmin(25), $greyBlue60);
-        max-width: vmin(600);
+        @include font(vmin(5), 500, vmin(10), $greyBlue60);
+        max-width: vmin(160);
       }
     }
     &__buttons {
-      display: flex;
       p {
-        @include font(vmin(8), 700, vmin(15), $greyBlue60);
-        margin-right: vmin(30);
-      }
-      button {
-        @include font(vmin(9), 700, vmin(15), $greyBlue60);
-        width: vmin(55);
-        height: vmin(40);
-        border-radius: vmin(5);
+        @include font(vmin(4), 500, vmin(10), $greyBlue60);
         margin-right: vmin(10);
       }
+      button {
+        @include font(vmin(4), 500, vmin(10), $greyBlue60);
+        width: vmin(20);
+        height: vmin(10);
+        margin-right: vmin(5);
+        margin-top: vmin(5);
+      }
       button:last-child {
-        margin-left: vmin(20);
+        margin-left: vmin(10);
       }
     }
   }
