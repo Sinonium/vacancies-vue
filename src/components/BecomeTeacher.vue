@@ -15,7 +15,8 @@
 <script>
 export default {
   props: ['currentUserInfo'],
-  setup() {
+  setup(props) {
+    console.log(props.currentUserInfo)
     return {}
   },
 }
