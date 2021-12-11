@@ -1,10 +1,8 @@
 <template>
   <section class="Details-about__teach">
-    <CartTeach :course="course" />
-    <CartCourseRating
-      :course="course"
-    />
-    <BlockReviews :course="course" />
+    <CartTeach :moreInfo="moreInfo" :course="course" />
+    <CartCourseRating :moreInfo="moreInfo" :course="course" />
+    <BlockReviews :moreInfo="moreInfo" :course="course" />
   </section>
 </template>
 
@@ -14,7 +12,7 @@ import CartCourseRating from '../DetailsAboutTeach/CartRating/CartCourseRating.v
 import BlockReviews from './BlockReviews/BlockReviews.vue'
 export default {
   components: { CartTeach, CartCourseRating, BlockReviews },
-  props: ["course"],
+  props: ['course', 'moreInfo'],
   setup() {
     return {}
   },
@@ -28,9 +26,9 @@ export default {
   margin-left: vw(60);
   margin-top: vw(30);
 }
-@media screen and (max-width: 768px)  {
+@media screen and (max-width: 769px) {
   .Details-about__teach {
-    margin-left: 13.75vw;
+    margin-left: 7.75vw;
   }
 }
 @media screen and (max-width: 551px) {

@@ -50,10 +50,10 @@
         </div>
         <span>
           <span v-if="reviewDate[2] < currentDate.getFullYear()">
-            {{ resultReviewDateYear }} years ago
+            {{ resultReviewDateYear }} years
           </span>
           <span v-if="reviewDate[1] < 12 && resultReviewDateMonth !== 0">
-            {{ resultReviewDateMonth }} month ago
+            {{ resultReviewDateMonth }} month
           </span>
           <span>
             <span
@@ -67,9 +67,10 @@
             </span>
             <span>
               <span v-if="resultReviewDateDay === 0"></span>
-              <span v-else> {{ resultReviewDateDay }} day ago </span>
+              <span v-else> {{ resultReviewDateDay }} day </span>
             </span>
           </span>
+          <span>ago</span>
         </span>
       </div>
     </div>
@@ -89,7 +90,7 @@ export default {
     const reviewText = ref(props.review.text)
     const calculateTextReview = () => {
       if (reviewText.value.length > 30) {
-        (reviewText.value = props.review.text.substring(0,30) + '....')
+        reviewText.value = props.review.text.substring(0, 30) + '....'
       } else {
         reviewText.value = props.review.text
       }
@@ -192,7 +193,7 @@ export default {
           top: vw(29);
           left: vw(180);
           @include font(vw(12), 600, 25px, black);
-          background: rgba(107, 122, 153, 0.5);;
+          background: rgba(107, 122, 153, 0.5);
           padding: vw(10);
           border-radius: 50%;
         }
@@ -200,240 +201,31 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1296px) {
-  .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(10);
-        }
-      }
-    }
+@media screen and (max-width: 1440px) {
+  .cart-review__text p {
+    @include font(vw(20), 600, 25px, $greyBlue60);
+  }
+  .cart-review__header_profile .data h4 {
+    @include font(vw(18), bold, 25px, $greyBlue50);
+  }
+  .cart-review__header_data span {
+    font-size: 0.9vw;
   }
 }
-@media screen and (max-width: 1256px) {
+@media screen and (max-width: 1024px) {
   .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(25);
-        }
-      }
-    }
+    width: 48vw;
   }
 }
-@media screen and (max-width: 1263px) {
+@media screen and (max-width: 769px) {
   .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(35);
-        }
-      }
-    }
+    width: 60vw;
   }
 }
-@media screen and (max-width: 1125px) {
-  .cart-review {
-    &__header {
-      margin-top: vw(20);
-    }
-  }
-  .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(40);
-        }
-      }
-    }
-  }
+@media screen and(max-width: 579px) {
 }
-// @media screen and (max-width: 1077px) {
-//   .cart-review {
-//     height: 18vw;
-//   }
-// }
-@media screen and (max-width: 961px) {
-  .cart-review {
-    &__header {
-      &_profile {
-        .data {
-          margin-left: vw(25);
-          h4 {
-            @include font(vw(20), bold, 25px, $greyBlue50);
-          }
-          span {
-            @include font(vw(15), bold, 20px, $greyBlue70);
-          }
-        }
-      }
-      &_data {
-        span {
-          @include font(vw(14), bold, 20px, $greyBlue70);
-        }
-      }
-    }
-    &__text {
-      p {
-        @include font(vw(15), 600, 25px, $greyBlue60);
-      }
-    }
-  }
+@media screen and(max-width: 426px) {
 }
-@media screen and (max-width: 815px) {
-  .cart-review {
-    &__header {
-      margin-top: -0.5vw;
-      &_profile {
-        .data {
-          span {
-            @include font(vw(16), bold, 20px, $greyBlue70);
-          }
-        }
-      }
-      &_data {
-        span {
-          @include font(vw(16), bold, 20px, $greyBlue70);
-          margin-left: vw(15);
-        }
-      }
-    }
-    &__text {
-      p {
-        @include font(vw(17), 600, 21px, $greyBlue60);
-      }
-    }
-  }
-}
-// @media screen and (max-width: 697px) {
-//   .cart-review {
-//     height: 29vw;
-//   }
-// }
-@media screen and (max-width: 658px) {
-  .cart-review {
-    &__text {
-      p {
-        @include font(vw(21), 600, 15px, $greyBlue60);
-      }
-    }
-  }
-}
-@media screen and (max-width: 645px) {
-  .cart-review {
-    width: 46.625vw;
-  }
-}
-@media screen and (max-width: 613px) {
-  .cart-review {
-    width: 46.7vw;
-  }
-}
-@media screen and (max-width: 610px) {
-  .cart-review {
-    &__header {
-      &_data {
-        div {
-          display: none;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 596px) {
-  .cart-review {
-    width: 49.625vw;
-  }
-}
-@media screen and (max-width: 576px) {
-  .cart-review {
-    &__header {
-      margin-top: 1.5vw;
-    }
-  }
-}
-@media screen and (max-width: 551px) {
-  .cart-review {
-    width: 100%;
-    display: block;
-    padding: 1vmin 9vmin 1vmin 9vmin;
-    background: $white;
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
-    margin-top: vmin(30);
-    &__header {
-      @include flex(space-between);
-      &_profile {
-        @include flex();
-        .data {
-          margin-left: vmin(25);
-          h4 {
-            @include font(vmin(13), bold, 25px, $greyBlue50);
-          }
-          span {
-            @include font(vmin(12), bold, 20px, $greyBlue70);
-          }
-        }
-      }
-      &_data {
-        @include flex();
-        div {
-          display: none;
-          img {
-            margin-left: vmin(5);
-          }
-        }
-        span {
-          @include font(vmin(12), bold, 20px, $greyBlue70);
-          margin-left: vmin(15);
-        }
-      }
-    }
-    &__text {
-      max-width: vmin(500);
-      p {
-        @include font(vmin(13), 600, 25px, $greyBlue60);
-      }
-    }
-  }
-}
-@media screen and (max-width: 375px) {
-  .cart-review {
-    height: 87vmin;
-  }
-}
-@media screen and (max-width: 321px) {
-  .cart-review {
-    height: 95vmin;
-  }
-}
-@media screen and (max-width: 298px) {
-  .cart-review {
-    &__header {
-      &_profile {
-        .data {
-          h4 {
-            @include font(vmin(15), bold, 25px, $greyBlue50);
-          }
-          span {
-            @include font(vmin(14), bold, 20px, $greyBlue70);
-          }
-        }
-      }
-      &_data {
-        span {
-          @include font(vmin(15), bold, 20px, $greyBlue70);
-          margin-left: vmin(15);
-        }
-      }
-    }
-    &__text {
-      p {
-        @include font(vmin(15), 600, 25px, $greyBlue60);
-      }
-    }
-  }
+@media screen and(max-width:376px) {
 }
 </style>

@@ -85,9 +85,12 @@ import { ref } from '@vue/reactivity'
 import CartRev from '../DetailsAboutTeach/BlockReviews/CartReview/CartReview.vue'
 import { onMounted } from '@vue/runtime-core'
 import { user } from '../../composables/getUser'
+import update from '@/composables/update'
 export default {
+  props: ['moreInfo'],
   components: { CartRev },
-  setup() {
+  setup(props) {
+    const { updateReviews } = update()
     const User = user.value
     const gradeUser = ref(1)
     const course = ref()
@@ -126,33 +129,34 @@ export default {
           text: textInp.value,
           date: testDate.value,
         }
-        await fetch('http://localhost:3000/course', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            reviews: [...reviews.value, reviewUser.value],
-          }),
-          headers: { 'Content-type': 'application/json' },
-        })
-        await fetch('http://localhost:3000/course', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            rating: [...grades.value, Number(gradeUser.value)],
-          }),
-          headers: { 'Content-type': 'application/json' },
-        })
+        await updateReviews('more info', props.moreInfo.id, textInp.value,gradeUser.value,user.value.email)
+        // await fetch('http://localhost:3000/course', {
+        //   method: 'PATCH',
+        //   body: JSON.stringify({
+        //     reviews: [...reviews.value, reviewUser.value],
+        //   }),
+        //   headers: { 'Content-type': 'application/json' },
+        // })
+        // await fetch('http://localhost:3000/course', {
+        //   method: 'PATCH',
+        //   body: JSON.stringify({
+        //     rating: [...grades.value, Number(gradeUser.value)],
+        //   }),
+        //   headers: { 'Content-type': 'application/json' },
+        // })
         textInp.value = ''
         currentDate.value = new Date()
         reviewUser.value = {}
         errorNullTextInp.value = ''
         await getDoc()
       } else {
-        await fetch('http://localhost:3000/course', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            rating: [...grades.value, Number(gradeUser.value)],
-          }),
-          headers: { 'Content-type': 'application/json' },
-        })
+        // await fetch('http://localhost:3000/course', {
+        //   method: 'PATCH',
+        //   body: JSON.stringify({
+        //     rating: [...grades.value, Number(gradeUser.value)],
+        //   }),
+        //   headers: { 'Content-type': 'application/json' },
+        // })
       }
     }
 
