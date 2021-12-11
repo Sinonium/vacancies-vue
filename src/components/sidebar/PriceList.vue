@@ -122,7 +122,7 @@ li {
       height: vmin(20);
     }
     span {
-      @include font(vmin(12), 500, vmin(20), $greyBlue60);
+      @include font(vmin(12), 400, vmin(20), $greyBlue60);
     }
     span:last-child {
       margin-right: vmin(20);

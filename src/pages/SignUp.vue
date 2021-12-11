@@ -81,7 +81,7 @@ export default {
             name: name.value,
             email: email.value,
             addCourses: addCourses.value,
-            UserBuy: userBuy.value,
+            userBuy: userBuy.value,
             isTeacher: false,
             description: [],
           },

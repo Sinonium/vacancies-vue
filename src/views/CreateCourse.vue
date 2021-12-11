@@ -30,8 +30,6 @@
       <div class="create-course__description">
         <h4 class="create-course__title">Course Description</h4>
 
-        
-
         <p class="create-course__instruction">Type the heading</p>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
@@ -40,7 +38,7 @@
           placeholder="Type the heading"
           v-model="heading"
         />
-        
+
         <p class="create-course__instruction">Tell us about course</p>
         <div class="create-course__questions">
           <div class="questions">
@@ -111,10 +109,8 @@
         />
 
         <span class="enter-span">
-            <div class="enter" @click="enterWhat">Enter</div>
+          <div class="enter" @click="enterWhat">Enter</div>
         </span>
-
-        
 
         <h4 class="create-course__title">Who this course is for:</h4>
         <p class="create-course__instruction">Type option one by one</p>
@@ -125,9 +121,8 @@
           v-model="whoIsfor"
         />
         <span class="enter-span">
-            <div class="enter" @click="enterWho">Enter</div>
+          <div class="enter" @click="enterWho">Enter</div>
         </span>
-      
 
         <h4 class="create-course__title">About Teacher</h4>
         <p class="create-course__instruction">Type the name of the teacher</p>
@@ -236,12 +231,10 @@
           <h4 class="create-course__title">Duration courses</h4>
           <p class="create-course__instruction">Type course time</p>
           <input
-          onkeyup="this.value=this.value.replace(/^\s/,'')"
-          type="number"
-          v-model="coursetime"
-        />
-
-
+            onkeyup="this.value=this.value.replace(/^\s/,'')"
+            type="number"
+            v-model="coursetime"
+          />
         </div>
       </div>
     </div>
@@ -281,12 +274,10 @@
         </select>
         </div>
         <span class="enter-span">
-            <div class="enter" @click="enterLesson">Enter</div>
+          <div class="enter" @click="enterLesson">Enter</div>
         </span>
       </div>
-      <div class="">
-
-      </div>
+      <div class=""></div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
     </div>
     <div class="publish">
@@ -296,21 +287,21 @@
 </template>
 
 <script>
-import addCollection from '@/composables/addCollection'
-import { ref } from '@vue/reactivity'
-import { v4 as uuid } from 'uuid'
-import SubACategories from '@/components/AdminPanel/SubACategories.vue'
-import SubBCategories from '@/components/AdminPanel/SubBCategories.vue'
-import SubCCategories from '@/components/AdminPanel/SubCCategories.vue'
-import SubDCategories from '@/components/AdminPanel/SubDCategories.vue'
-import SubECategories from '@/components/AdminPanel/SubECategories.vue'
-import SubFCategories from '@/components/AdminPanel/SubFCategories.vue'
-import SubGCategories from '@/components/AdminPanel/SubGCategories.vue'
-import SubHCategories from '@/components/AdminPanel/SubHCategories.vue'
-import SubICategories from '@/components/AdminPanel/SubICategories.vue'
-import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
-import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
-import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
+import addCollection from "@/composables/addCollection";
+import { ref } from "@vue/reactivity";
+import { v4 as uuid } from "uuid";
+import SubACategories from "@/components/AdminPanel/SubACategories.vue";
+import SubBCategories from "@/components/AdminPanel/SubBCategories.vue";
+import SubCCategories from "@/components/AdminPanel/SubCCategories.vue";
+import SubDCategories from "@/components/AdminPanel/SubDCategories.vue";
+import SubECategories from "@/components/AdminPanel/SubECategories.vue";
+import SubFCategories from "@/components/AdminPanel/SubFCategories.vue";
+import SubGCategories from "@/components/AdminPanel/SubGCategories.vue";
+import SubHCategories from "@/components/AdminPanel/SubHCategories.vue";
+import SubICategories from "@/components/AdminPanel/SubICategories.vue";
+import SubJCategories from "@/components/AdminPanel/SubJCategories.vue";
+import SubKCategories from "@/components/AdminPanel/SubKCategories.vue";
+import SubLCategories from "@/components/AdminPanel/SubLCategories.vue";
 export default {
   components: {
     SubACategories,
@@ -330,58 +321,58 @@ export default {
   setup() {
     const categories = [
       {
-        text: 'Development',
-        value: 'Development',
+        text: "Development",
+        value: "Development",
       },
       {
-        text: 'Business',
-        value: 'Business',
+        text: "Business",
+        value: "Business",
       },
       {
-        text: 'Finance & Accounting',
-        value: 'Finance & Accounting',
+        text: "Finance & Accounting",
+        value: "Finance & Accounting",
       },
       {
-        text: 'IT & Software',
-        value: 'IT & Software',
+        text: "IT & Software",
+        value: "IT & Software",
       },
       {
-        text: 'Office Productivity',
-        value: 'Office Productivity',
+        text: "Office Productivity",
+        value: "Office Productivity",
       },
       {
-        text: 'Personal Development',
-        value: 'Personal Development',
+        text: "Personal Development",
+        value: "Personal Development",
       },
       {
-        text: 'Design and Art',
-        value: 'Design and Art',
+        text: "Design and Art",
+        value: "Design and Art",
       },
       {
-        text: 'Marketing and Sales',
-        value: 'Marketing and Sales',
+        text: "Marketing and Sales",
+        value: "Marketing and Sales",
       },
       {
-        text: 'Lifestyle and Fashion',
-        value: 'Lifestyle and Fashion',
+        text: "Lifestyle and Fashion",
+        value: "Lifestyle and Fashion",
       },
       {
-        text: 'Photography',
-        value: 'Photography',
+        text: "Photography",
+        value: "Photography",
       },
       {
-        text: 'Health & Fitness',
-        value: 'Health & Fitness',
+        text: "Health & Fitness",
+        value: "Health & Fitness",
       },
       {
-        text: 'Music and Sound Design',
-        value: 'Music and Sound Design',
+        text: "Music and Sound Design",
+        value: "Music and Sound Design",
       },
       {
-        text: 'Teaching & Academics',
-        value: 'Teaching & Academics',
+        text: "Teaching & Academics",
+        value: "Teaching & Academics",
       },
-    ]
+    ];
     const popa = (a, b) => {
       jopa.value = [selected.value, a, b]
     }
@@ -412,13 +403,13 @@ export default {
     const coursetime = ref()
 
     const enterWho = () => {
-      enterIsWho.value = [...enterIsWho.value, whoIsfor.value]
-      whoIsfor.value = ''
-    }
+      enterIsWho.value = [...enterIsWho.value, whoIsfor.value];
+      whoIsfor.value = "";
+    };
     const enterWhat = () => {
-      enterIsWhat.value = [...enterIsWhat.value, study.value]
-      study.value = ''
-    }
+      enterIsWhat.value = [...enterIsWhat.value, study.value];
+      study.value = "";
+    };
     const enterLesson = () => {
       console.log("jopa");
       Lessons.value = [
@@ -428,21 +419,21 @@ export default {
           lessonName: lesson.value,
           type: type.value,
         },
-      ]
+      ];
       console.log(Lessons.value);
       time.value = ''
       lesson.value = ''
       type.value = '  '
     }
     const enterLecture = () => {
-      console.log("eshe bol,shaia jopa")
+      console.log("eshe bol,shaia jopa");
       Lectures.value = [
         ...Lectures.value,
         {
           lectureName: lectureName.value,
           lessons: Lessons.value,
         },
-      ]
+      ];
       console.log(Lectures.value);
       lectureName.value = ''
       Lessons.value= []
@@ -450,11 +441,14 @@ export default {
     const res = ref()
 
     const handleSubmit = async () => {
-      if(coursetime.value >=0 && coursetime.value <=2)duration.value = "0-2 Hours"
-      if(coursetime.value >=3 && coursetime.value <=6)duration.value = "3-6 Hours"
-      if(coursetime.value >=7 && coursetime.value <=16)duration.value = "7-16 Hours"
-      if(coursetime.value >=17 )duration.value = "17+ Hours"
-      await addCollection('courses', {
+      if (coursetime.value >= 0 && coursetime.value <= 2)
+        duration.value = "0-2 Hours";
+      if (coursetime.value >= 3 && coursetime.value <= 6)
+        duration.value = "3-6 Hours";
+      if (coursetime.value >= 7 && coursetime.value <= 16)
+        duration.value = "7-16 Hours";
+      if (coursetime.value >= 17) duration.value = "17+ Hours";
+      await addCollection("courses", {
         name: name.value,
         price: price.value,
         imageURL: imageURL.value,
@@ -464,18 +458,18 @@ export default {
         duration: duration.value,
         categories: jopa.value,
         students: 0,
-        teacherName: '',
+        teacherName: "",
         grade: 0,
         moreInfoId: myId,
       }),
         await addCollection(
-          'more info',
+          "more info",
           {
-            malika:{
+            malika: {
               whoIsfor: enterIsWho.value,
               courseContent: Lectures.value,
             },
-            beknazar:{
+            beknazar: {
               heading: heading.value,
               mainInfo: mainInfo.value,
               moreInfo: moreInfo.value,
@@ -483,13 +477,13 @@ export default {
             adilhan: {
               grades: [],
               reviews: [],
-              teacherID: ''
-            }
+              teacherID: "",
+            },
           },
           false,
           myId
-        )
-    }
+        );
+    };
 
     return {
       popa,
@@ -522,9 +516,9 @@ export default {
       enterIsWho,
       enterWhat,
       enterIsWhat,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -566,23 +560,23 @@ export default {
       border: none;
       border-radius: vw(5);
   }
-  .enter{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include font(vw(14), 600, vh(30));
-      color: white;
-      background-color: $greyBlue90;
-      width: vw(70);
-      height: vw(30);
-      border: none;
-      border-radius: vw(5);
+  .enter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(vw(14), 600, vh(30));
+    color: white;
+    background-color: $greyBlue90;
+    width: vw(70);
+    height: vw(30);
+    border: none;
+    border-radius: vw(5);
   }
   &__heading {
     @include font(vw(16), 700, vh(30));
     color: $greyBlue60;
   }
-  .enter-span{
+  .enter-span {
     display: flex;
     justify-content: end;
     padding-right: vw(10);
@@ -705,7 +699,7 @@ export default {
           margin: vw(3) vw(10);
           width: 15px;
           height: 2px;
-          content: ' ';
+          content: " ";
           background-color: $greyBlue90;
         }
       }

@@ -94,7 +94,7 @@ export default {
       height: vmin(40);
     }
     input {
-      font-size: vmin(13);
+      font-size: vmin(12);
     }
   }
 }
