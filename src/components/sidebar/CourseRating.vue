@@ -168,4 +168,32 @@ li {
     }
   }
 }
+@media screen and(max-width:426px) {
+  li {
+    margin-bottom: vmin(10);
+    input[type="checkbox"] {
+      left: vmin(8);
+      width: vmin(20);
+      height: vmin(20);
+    }
+    img {
+      margin: 0 vmin(13) 0 vmin(23);
+      width: vmin(20);
+      height: vmin(20);
+    }
+    div {
+      img {
+        margin: 0 vmin(5) 0 0;
+        width: vmin(17);
+        height: vmin(17)
+      }
+    }
+    span {
+      @include font(vmin(12), 500, vmin(20), $greyBlue60);
+    }
+    span:last-child {
+      margin-right: vmin(20);
+    }
+  }
+}
 </style>

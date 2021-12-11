@@ -119,4 +119,24 @@ ul {
     }
   }
 }
+@media screen and(max-width:426px) {
+  ul {
+    li {
+      margin-left: vmin(20);
+      input[type="checkbox"] {
+        left: vmin(-3);
+        width: vmin(20);
+        height: vmin(20);
+      }
+      img {
+        width: vmin(20);
+        height: vmin(20);
+      }
+      span {
+        @include font(vmin(12), 500, vmin(20), $greyBlue50);
+        margin: vmin(18);
+      }
+    }
+  }
+}
 </style>

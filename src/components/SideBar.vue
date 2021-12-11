@@ -284,7 +284,7 @@ aside.active {
       padding-bottom: vw(600);
       li {
         span.title {
-          @include font(vw(35), 700, vw(50), $greyBlue50);
+          @include font(vw(40), 600, vw(50), $greyBlue50);
           margin: vw(40) auto vw(40) vw(45);
         }
         img.arrow {
@@ -299,7 +299,7 @@ aside.active {
           padding: vw(25) 0;
           grid-template-columns: 1.1fr 5.5fr 0.55fr;
           span {
-            @include font(vw(38), 500, vw(50), $white);
+            @include font(vw(40), 500, vw(50), $white);
           }
           img:first-child {
             margin-left: vw(32);
@@ -312,19 +312,78 @@ aside.active {
           }
         }
         .sub {
-          margin-left: vw(125);
+          margin-left: vw(135);
           li {
             span {
               @include font(vw(38), 500, vw(50), $greyBlue80);
             }
             span::before {
-              left: vw(-71);
+              left: vw(-85);
               width: vw(13);
               height: vw(13);
             }
           }
           .under {
             margin-left: vw(85);
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and(max-width: 426px) {
+  .ps {
+    height: vmin(1000);
+  }
+  .sidebar {
+    width: vmin(300);
+  }
+  .sidebar__content {
+    .sidebar__main-group {
+      padding-bottom: vmin(500);
+      li {
+        span.title {
+          @include font(vmin(13), 600, vmin(22), $greyBlue50);
+          margin: vmin(12) auto vmin(10) vmin(15);
+        }
+        img.arrow {
+          margin: vmin(20);
+          max-width: vmin(27);
+          max-height: vmin(17);
+        }
+      }
+      .categories {
+        padding: 0 vmin(12);
+        li {
+          padding: vmin(10) 0;
+          grid-template-columns: 1.1fr 5.5fr 0.55fr;
+          span {
+            @include font(vmin(13), 500, vmin(20), $white);
+          }
+          img:first-child {
+            margin-left: vmin(10);
+            max-height: vmin(22);
+            max-width: vmin(22);
+          }
+          img:last-child {
+            max-width: vmin(27);
+            max-height: vmin(17);
+          }
+        }
+        .sub {
+          margin-left: vmin(45);
+          li {
+            span {
+              @include font(vmin(12), 500, vmin(20), $greyBlue80);
+            }
+            span::before {
+              left: vmin(-26);
+              width: vmin(5);
+              height: vmin(5);
+            }
+          }
+          .under {
+            margin-left: vmin(28);
           }
         }
       }

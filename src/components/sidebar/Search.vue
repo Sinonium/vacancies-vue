@@ -82,4 +82,20 @@ export default {
     }
   }
 }
+@media screen and (max-width: 426px) {
+  .search {
+    min-height: vmin(55);
+    &-icon {
+      width: vmin(20);
+      height: vmin(20);
+    }
+    &-image {
+      width: vmin(40);
+      height: vmin(40);
+    }
+    input {
+      font-size: vmin(13);
+    }
+  }
+}
 </style>
