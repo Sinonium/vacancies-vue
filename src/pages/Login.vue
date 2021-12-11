@@ -80,7 +80,7 @@ export default {
   width: vw(700);
   height: vw(500);
   background-color: $greyBlue25;
-  margin-left: vw(-200);
+  margin-left: vw(100);
   
 
   border-radius: 25em /18em;

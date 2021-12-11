@@ -30,6 +30,8 @@
       <div class="create-course__description">
         <h4 class="create-course__title">Course Description</h4>
 
+        
+
         <p class="create-course__instruction">Type the heading</p>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
@@ -38,7 +40,7 @@
           placeholder="Type the heading"
           v-model="heading"
         />
-
+        
         <p class="create-course__instruction">Tell us about course</p>
         <div class="create-course__questions">
           <div class="questions">
@@ -109,8 +111,10 @@
         />
 
         <span class="enter-span">
-          <div class="enter" @click="enterWhat">Enter</div>
+            <div class="enter" @click="enterWhat">Enter</div>
         </span>
+
+        
 
         <h4 class="create-course__title">Who this course is for:</h4>
         <p class="create-course__instruction">Type option one by one</p>
@@ -121,8 +125,9 @@
           v-model="whoIsfor"
         />
         <span class="enter-span">
-          <div class="enter" @click="enterWho">Enter</div>
+            <div class="enter" @click="enterWho">Enter</div>
         </span>
+      
 
         <h4 class="create-course__title">About Teacher</h4>
         <p class="create-course__instruction">Type the name of the teacher</p>
@@ -231,10 +236,12 @@
           <h4 class="create-course__title">Duration courses</h4>
           <p class="create-course__instruction">Type course time</p>
           <input
-            onkeyup="this.value=this.value.replace(/^\s/,'')"
-            type="number"
-            v-model="coursetime"
-          />
+          onkeyup="this.value=this.value.replace(/^\s/,'')"
+          type="number"
+          v-model="coursetime"
+        />
+
+
         </div>
       </div>
     </div>
@@ -264,8 +271,8 @@
         />
         <div class="lesson-details">
         <input
-         
-          type="time"
+          required
+          type=time 
           v-model="time"
         />
         <select v-model="type" class="select">
@@ -274,10 +281,12 @@
         </select>
         </div>
         <span class="enter-span">
-          <div class="enter" @click="enterLesson">Enter</div>
+            <div class="enter" @click="enterLesson">Enter</div>
         </span>
       </div>
-      <div class=""></div>
+      <div class="">
+
+      </div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
     </div>
     <div class="publish">
@@ -323,58 +332,58 @@ export default {
     const {uploadImageAndGetImageUrl, responseUrl} = useStorage()
     const categories = [
       {
-        text: "Development",
-        value: "Development",
+        text: 'Development',
+        value: 'Development',
       },
       {
-        text: "Business",
-        value: "Business",
+        text: 'Business',
+        value: 'Business',
       },
       {
-        text: "Finance & Accounting",
-        value: "Finance & Accounting",
+        text: 'Finance & Accounting',
+        value: 'Finance & Accounting',
       },
       {
-        text: "IT & Software",
-        value: "IT & Software",
+        text: 'IT & Software',
+        value: 'IT & Software',
       },
       {
-        text: "Office Productivity",
-        value: "Office Productivity",
+        text: 'Office Productivity',
+        value: 'Office Productivity',
       },
       {
-        text: "Personal Development",
-        value: "Personal Development",
+        text: 'Personal Development',
+        value: 'Personal Development',
       },
       {
-        text: "Design and Art",
-        value: "Design and Art",
+        text: 'Design and Art',
+        value: 'Design and Art',
       },
       {
-        text: "Marketing and Sales",
-        value: "Marketing and Sales",
+        text: 'Marketing and Sales',
+        value: 'Marketing and Sales',
       },
       {
-        text: "Lifestyle and Fashion",
-        value: "Lifestyle and Fashion",
+        text: 'Lifestyle and Fashion',
+        value: 'Lifestyle and Fashion',
       },
       {
-        text: "Photography",
-        value: "Photography",
+        text: 'Photography',
+        value: 'Photography',
       },
       {
-        text: "Health & Fitness",
-        value: "Health & Fitness",
+        text: 'Health & Fitness',
+        value: 'Health & Fitness',
       },
       {
-        text: "Music and Sound Design",
-        value: "Music and Sound Design",
+        text: 'Music and Sound Design',
+        value: 'Music and Sound Design',
       },
       {
-        text: "Teaching & Academics",
-        value: "Teaching & Academics",
+        text: 'Teaching & Academics',
+        value: 'Teaching & Academics',
       },
-    ];
+    ]
     const popa = (a, b) => {
       jopa.value = [selected.value, a, b]
     }
@@ -401,47 +410,83 @@ export default {
     const duration = ref('')
     const lectureName = ref('')
     const lesson = ref('')
-    const time = ref('')
+    const time = ref('00:05:05')
     const study = ref('')
     const Lessons = ref([])
     const Lectures= ref([])
     const coursetime = ref()
+    const alllecturetime= ref([0, 0, 0])
 
     const enterWho = () => {
-      enterIsWho.value = [...enterIsWho.value, whoIsfor.value];
-      whoIsfor.value = "";
-    };
+      enterIsWho.value = [...enterIsWho.value, whoIsfor.value]
+      whoIsfor.value = ''
+    }
     const enterWhat = () => {
-      enterIsWhat.value = [...enterIsWhat.value, study.value];
-      study.value = "";
-    };
+      enterIsWhat.value = [...enterIsWhat.value, study.value]
+      study.value = ''
+    }
+
+
     const enterLesson = () => {
-      console.log("jopa");
+      let lesstringtime = ''
+      let timeres = time.value.split(':')
+       alllecturetime.value[0] = alllecturetime.value[0] +Number(timeres[0])
+      alllecturetime.value[1] = alllecturetime.value[1] +Number(timeres[1])
+      alllecturetime.value[2] = alllecturetime.value[2] +Number(timeres[2])
+      
+      if( timeres[0]!=0)  lesstringtime =  timeres[0].toString() +':'
+      
+      if(timeres[1].toString().length ==2) lesstringtime= lesstringtime + timeres[1].toString() +':'
+      else lesstringtime=  lesstringtime + '0' + timeres[1].toString() +':'
+
+      if(timeres[2].toString().length ==2)  lesstringtime +=timeres[2].toString()
+      else lesstringtime=  lesstringtime + '0' +timeres[2].toString()
+      console.log(lesstringtime);
       Lessons.value = [
         ...Lessons.value,
         {
-          time: time.value,
+          time:lesstringtime,
           lessonName: lesson.value,
           type: type.value,
         },
-      ];
-      console.log(Lessons.value);
-      time.value = ''
+      ]
+      
+      
+      
+      time.value = '00:05:05'
       lesson.value = ''
-      type.value = '  '
+      type.value = ''
+
     }
     const enterLecture = () => {
-      console.log("eshe bol,shaia jopa");
+       alllecturetime.value[1] =  Math.floor(alllecturetime.value[2]/60) + alllecturetime.value[1]
+        alllecturetime.value[2]=  alllecturetime.value[2]%60
+      alllecturetime.value[0]=  Math.floor(alllecturetime.value[1]/60)  +alllecturetime.value[0]
+      alllecturetime.value[1]=  alllecturetime.value[1]%60
+      console.log(alllecturetime.value)
+
+      let stringtime = ''
+
+      if( alllecturetime.value[0]!=0) {stringtime=stringtime +  alllecturetime.value[0].toString()+':'}
+      
+      if(alllecturetime.value[1].toString().length ==2)  stringtime = stringtime + alllecturetime.value[1].toString() +':'
+      else stringtime=  stringtime + '0' + alllecturetime.value[1].toString() +':'
+     
+      if(alllecturetime.value[2].toString().length ==2)  stringtime =   stringtime + alllecturetime.value[2].toString()
+      else stringtime=  stringtime + '0' +  alllecturetime.value[2].toString()
+
+      console.log(stringtime)
       Lectures.value = [
         ...Lectures.value,
         {
           lectureName: lectureName.value,
+          allTime: stringtime,
           lessons: Lessons.value,
         },
-      ];
-      console.log(Lectures.value);
+      ]
       lectureName.value = ''
       Lessons.value= []
+      alllecturetime.value =[0,0,0]
     }
     const res = ref()
     const responseImg = ref()
@@ -468,31 +513,34 @@ export default {
         duration: duration.value,
         categories: jopa.value,
         students: 0,
-        teacherName: "",
+        teacherName: '',
         grade: 0,
         moreInfoId: myId,
       }),
         await addCollection(
-          "more info",
+          'more info',
           {
-            malika: {
-              whoIsfor: enterIsWho.value,
+            malika:{
+             
+              whatStudy: enterIsWhat.value,
               courseContent: Lectures.value,
             },
-            beknazar: {
+            beknazar:{
               heading: heading.value,
               mainInfo: mainInfo.value,
               moreInfo: moreInfo.value,
-            
+               whoIsfor: enterIsWho.value,
+            },
+            adilhan: {
               grades: [],
               reviews: [],
-              teacherID: "",
-            },
+              teacherID: ''
+            }
           },
           false,
           myId
-        );
-    };
+        )
+    }
 
     return {
       responseImg,
@@ -500,6 +548,8 @@ export default {
       popa,
       handleSubmit,
       lectureName,
+      alllecturetime,
+    
       enterLesson,
       enterLecture,
       coursetime,
@@ -527,9 +577,9 @@ export default {
       enterIsWho,
       enterWhat,
       enterIsWhat,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -571,23 +621,23 @@ export default {
       border: none;
       border-radius: vw(5);
   }
-  .enter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @include font(vw(14), 600, vh(30));
-    color: white;
-    background-color: $greyBlue90;
-    width: vw(70);
-    height: vw(30);
-    border: none;
-    border-radius: vw(5);
+  .enter{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include font(vw(14), 600, vh(30));
+      color: white;
+      background-color: $greyBlue90;
+      width: vw(70);
+      height: vw(30);
+      border: none;
+      border-radius: vw(5);
   }
   &__heading {
     @include font(vw(16), 700, vh(30));
     color: $greyBlue60;
   }
-  .enter-span {
+  .enter-span{
     display: flex;
     justify-content: end;
     padding-right: vw(10);
@@ -710,7 +760,7 @@ export default {
           margin: vw(3) vw(10);
           width: 15px;
           height: 2px;
-          content: " ";
+          content: ' ';
           background-color: $greyBlue90;
         }
       }

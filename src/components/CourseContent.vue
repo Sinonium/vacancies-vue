@@ -30,13 +30,9 @@
           <img src="@/assets/scss/icons/burger-menu.svg" />
         </div>
         <div :class="{ actives: allSections === true }" class="content-courses">
-          <div
-            v-for="item in moreInfo.courseContent"
-            :key="item.id"
-            class="content-courses__theme"
-          >
-            <svg
-              :class="{ open: item.open }"
+          <div class="content-courses__theme">
+              <svg
+              :class="{ open: isOpen.a }"
               width="12"
               height="7"
               viewBox="0 0 12 7"
@@ -50,49 +46,109 @@
                 fill="#C3CAD9"
               />
             </svg>
-
-            <h6 @click="item.open = !item.open">{{ item.lectureName }}</h6>
-            <span> {{ item.lectures }}</span>
-
-            <span> {{ item.allTime }}</span>
-            <div class="content-courses__open" v-if="item.open">
-              <!-- <div class="content-courses__item"> -->
-              <!-- <div class="content-courses__all"> -->
+            <h6 @click="isOpen.a = !isOpen.a">
+              {{ moreInfo.courseContent[0].title }}
+            </h6>
+            <span>{{ moreInfo.courseContent[0].allTime }}</span>
+          </div>
+          <div v-for="item in moreInfo.courseContent[0].content" :key="item.id">
+          
+            <div class="content-courses__open" v-if="isOpen.a">
+            
 
               <div>
                 <ul class="content-courses__all">
-                  <a
-                    href="https://www.youtube.com/watch?v=-1DRETk-mns&t=7s"
-                    target="blank"
-                  >
+                
                     <img :src="videoIcon" alt=""
-                  /></a>
+                  />
                   <li>{{ item.name }}</li>
                   <a>{{ item.isPreview }}</a>
                   <span>{{ item.time }}</span>
                 </ul>
               </div>
-              <!-- </div> -->
-              <!-- </div> -->
-              <!-- <div class="content-courses__item">
-                <div class="content-courses__all">
-                  <img :src="videoIcon" alt="" />
-
-
-                </div>
-              </div> -->
-              <!-- <div class="content-courses__item">
-                <div class="content-courses__all">
-                  <img :src="videoIcon" alt="" />
-
-                  <p>{{ item.name_2 }}</p>
-                  <a href=""></a>
-                  <span>{{ item.time_2 }}</span>
-                </div>
-              </div> -->
             </div>
           </div>
+            <div class="content-courses__theme">
+              <svg
+              :class="{ open: isOpen.b }"
+              width="12"
+              height="7"
+              viewBox="0 0 12 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.8825 0.2925L0.2925 4.8825C-0.0975 5.2725 -0.0975 5.9025 0.2925 6.2925C0.6825 6.6825 1.3125 6.6825 1.7025 6.2925L5.5925 2.4125L9.4725 6.2925C9.8625 6.6825 10.4925 6.6825 10.8825 6.2925C11.2725 5.9025 11.2725 5.2725 10.8825 4.8825L6.2925 0.2925C5.9125 -0.0975 5.2725 -0.0975 4.8825 0.2925Z"
+                fill="#C3CAD9"
+              />
+            </svg>
+            <h6 @click="isOpen.b = !isOpen.b">
+              {{ moreInfo.courseContent[1].title }}
+            </h6>
+            <span>{{ moreInfo.courseContent[1].allTime }}</span>
+          </div>
+          <div v-for="item in moreInfo.courseContent[1].content" :key="item.id">
+          
+            <div class="content-courses__open" v-if="isOpen.b">
+            
+
+              <div>
+                <ul class="content-courses__all">
+                 
+                    <img :src="videoIcon" alt=""
+                  />
+                  <li>{{ item.name }}</li>
+                  <a>{{ item.isPreview }}</a>
+                  <span>{{ item.time }}</span>
+                </ul>
+              </div>
+            </div>
+          </div>
+             <div class="content-courses__theme">
+              <svg
+              :class="{ open: isOpen.c }"
+              width="12"
+              height="7"
+              viewBox="0 0 12 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.8825 0.2925L0.2925 4.8825C-0.0975 5.2725 -0.0975 5.9025 0.2925 6.2925C0.6825 6.6825 1.3125 6.6825 1.7025 6.2925L5.5925 2.4125L9.4725 6.2925C9.8625 6.6825 10.4925 6.6825 10.8825 6.2925C11.2725 5.9025 11.2725 5.2725 10.8825 4.8825L6.2925 0.2925C5.9125 -0.0975 5.2725 -0.0975 4.8825 0.2925Z"
+                fill="#C3CAD9"
+              />
+            </svg>
+            <h6 @click="isOpen.c = !isOpen.c">
+              {{ moreInfo.courseContent[1].title }}
+            </h6>
+            <span>{{ moreInfo.courseContent[1].allTime }}</span>
+          </div>
+          <div v-for="item in moreInfo.courseContent[1].content" :key="item.id">
+          
+            <div class="content-courses__open" v-if="isOpen.c">
+            
+
+              <div>
+                <ul class="content-courses__all">
+                 
+                    <img :src="videoIcon" alt=""
+                  />
+                  <li>{{ item.name }}</li>
+                  <a>{{ item.isPreview }}</a>
+                  <span>{{ item.time }}</span>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
         </div>
+
+       
+
         <button
           class="sections-btn"
           @click="allContents()"
@@ -111,6 +167,12 @@ export default {
   props: ['moreInfo'],
   data() {
     return {
+      isOpen: {
+        a: false,
+        b: false,
+        c: false,
+        d: false,
+      },
       learn: [],
       articles: [],
 
@@ -280,6 +342,7 @@ button {
       align-items: baseline;
       margin: vw(10) vw(0) vw(10) vw(40);
       border-top: 2px solid $greyBlue98;
+        
       a {
         @include font(vw(12), bold, vw(20));
         font-family: 'San Francisco Pro';
@@ -293,9 +356,16 @@ button {
       @include font(vw(12), bold, vw(20));
       font-family: 'San Francisco Pro';
       color: $greyBlue60;
-      width: 60%;
+      width: 78%;
       margin: vw(15);
+       
     }
+     span {
+        @include font(vw(12), bold, vw(20));
+        font-family: 'San Francisco Pro';
+        color: $greyBlue50;
+        width: 10%;
+      }
     h6 {
       cursor: pointer;
     }
@@ -317,7 +387,7 @@ button {
         @include font(vw(12), bold, vw(20));
         font-family: 'San Francisco Pro';
         color: $greyBlue50;
-        width: 70%;
+        width: 80%;
       }
       span {
         @include font(vw(12), bold, vw(20));
