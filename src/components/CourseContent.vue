@@ -8,8 +8,8 @@
           <div class="themes-title__item">
             <div class="themes-title__item-1">
               <ul :class="{ actives: allShow === true }">
-                <li v-for="theme in learn" :key="theme.id" :theme="theme">
-                  <img src="@/assets/scss/icons/done.svg" />{{ theme }}
+                <li v-for="learn in moreInfo.learn" :key="learn" :theme="theme">
+                  <img src="@/assets/scss/icons/done.svg" />{{ learn }}
                 </li>
               </ul>
             </div>
@@ -31,7 +31,7 @@
         </div>
         <div :class="{ actives: allSections === true }" class="content-courses">
           <div
-            v-for="item in articles"
+            v-for="item in moreInfo.courseContent"
             :key="item.id"
             class="content-courses__theme"
           >
@@ -59,7 +59,7 @@
               <!-- <div class="content-courses__item"> -->
               <!-- <div class="content-courses__all"> -->
 
-              <div v-for="data in item.content" :key="data.id">
+              <div>
                 <ul class="content-courses__all">
                   <a
                     href="https://www.youtube.com/watch?v=-1DRETk-mns&t=7s"
@@ -67,9 +67,9 @@
                   >
                     <img :src="videoIcon" alt=""
                   /></a>
-                  <li>{{ data.name }}</li>
-                  <a>{{ data.isPreview }}</a>
-                  <span>{{ data.time }}</span>
+                  <li>{{ item.name }}</li>
+                  <a>{{ item.isPreview }}</a>
+                  <span>{{ item.time }}</span>
                 </ul>
               </div>
               <!-- </div> -->
@@ -78,7 +78,7 @@
                 <div class="content-courses__all">
                   <img :src="videoIcon" alt="" />
 
-                 
+
                 </div>
               </div> -->
               <!-- <div class="content-courses__item">
@@ -108,36 +108,37 @@
 
 <script>
 export default {
+  props: ['moreInfo'],
   data() {
     return {
       learn: [],
       articles: [],
 
-      button_themes: "Show more Features",
-      button_contents: "5 More Sections",
+      button_themes: 'Show more Features',
+      button_contents: '5 More Sections',
       allShow: false,
       open: false,
       allSections: false,
-      videoIcon: require("@/assets/scss/icons/video.svg"),
-    };
+      videoIcon: require('@/assets/scss/icons/video.svg'),
+    }
   },
   created() {
-    fetch("http://localhost:3000/learn")
+    fetch('http://localhost:3000/learn')
       .then((response) => {
-        return response.json();
+        return response.json()
       })
 
       .then((data) => {
-        this.learn = data;
-      });
-    fetch("http://localhost:3000/articles")
+        this.learn = data
+      })
+    fetch('http://localhost:3000/articles')
       .then((response) => {
-        return response.json();
+        return response.json()
       })
 
       .then((data) => {
-        this.articles = data;
-      });
+        this.articles = data
+      })
   },
 
   methods: {
@@ -281,7 +282,7 @@ button {
       border-top: 2px solid $greyBlue98;
       a {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue60;
         width: 12%;
         text-decoration: none;
@@ -290,7 +291,7 @@ button {
     li {
       list-style-type: none;
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue60;
       width: 60%;
       margin: vw(15);
@@ -439,7 +440,7 @@ button {
       li {
         list-style-type: none;
         @include font(vmin(7), bold, vmin(10));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue60;
         width: 60%;
         margin: vmin(2);
@@ -457,7 +458,7 @@ button {
 
       h6 {
         @include font(vmin(7), bold, vmin(10));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 70%;
       }

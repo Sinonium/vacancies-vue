@@ -133,7 +133,7 @@ ul {
         height: vmin(20);
       }
       span {
-        @include font(vmin(12), 500, vmin(20), $greyBlue50);
+        @include font(vmin(12), 400, vmin(20), $greyBlue50);
         margin: vmin(18);
       }
     }
