@@ -96,6 +96,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .footer {
+    width: vw(1270);
     &__info {
         border-top: 2px solid $greyBlue95;
         @include flex($justify: space-between);
