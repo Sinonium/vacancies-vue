@@ -28,8 +28,6 @@
       <div class="create-course__description">
         <h4 class="create-course__title">Course Description</h4>
 
-        
-
         <p class="create-course__instruction">Type the heading</p>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
@@ -37,7 +35,7 @@
           placeholder="Type the heading"
           v-model="heading"
         />
-        
+
         <p class="create-course__instruction">Tell us about course</p>
         <div class="create-course__questions">
           <div class="questions">
@@ -107,10 +105,8 @@
         />
 
         <span class="enter-span">
-            <div class="enter" @click="enterWhat">Enter</div>
+          <div class="enter" @click="enterWhat">Enter</div>
         </span>
-
-        
 
         <h4 class="create-course__title">Who this course is for:</h4>
         <p class="create-course__instruction">Type option one by one</p>
@@ -120,9 +116,8 @@
           v-model="whoIsfor"
         />
         <span class="enter-span">
-            <div class="enter" @click="enterWho">Enter</div>
+          <div class="enter" @click="enterWho">Enter</div>
         </span>
-      
 
         <h4 class="create-course__title">About Teacher</h4>
         <p class="create-course__instruction">Type the name of the teacher</p>
@@ -229,12 +224,10 @@
           <h4 class="create-course__title">Duration courses</h4>
           <p class="create-course__instruction">Type course time</p>
           <input
-          onkeyup="this.value=this.value.replace(/^\s/,'')"
-          type="number"
-          v-model="coursetime"
-        />
-
-
+            onkeyup="this.value=this.value.replace(/^\s/,'')"
+            type="number"
+            v-model="coursetime"
+          />
         </div>
       </div>
     </div>
@@ -261,23 +254,17 @@
           v-model="lesson"
         />
         <div class="lesson-details">
-        <input
-          required
-          type=time 
-          v-model="time"
-        />
-        <select v-model="type" class="select">
-          <option>video</option>
-          <option>text</option>
-        </select>
+          <input required type="time" v-model="time" />
+          <select v-model="type" class="select">
+            <option>video</option>
+            <option>text</option>
+          </select>
         </div>
         <span class="enter-span">
-            <div class="enter" @click="enterLesson">Enter</div>
+          <div class="enter" @click="enterLesson">Enter</div>
         </span>
       </div>
-      <div class="">
-
-      </div>
+      <div class=""></div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
     </div>
     <div class="publish">
@@ -410,7 +397,7 @@ export default {
     const Lessons = ref([])
     const Lectures = ref([])
     const coursetime = ref()
-    const alllecturetime= ref([0, 0, 0])
+    const alllecturetime = ref([0, 0, 0])
 
     const enterWho = () => {
       enterIsWho.value = [...enterIsWho.value, whoIsfor.value]
@@ -421,54 +408,59 @@ export default {
       study.value = ''
     }
 
-
     const enterLesson = () => {
       let lesstringtime = ''
       let timeres = time.value.split(':')
-       alllecturetime.value[0] = alllecturetime.value[0] +Number(timeres[0])
-      alllecturetime.value[1] = alllecturetime.value[1] +Number(timeres[1])
-      alllecturetime.value[2] = alllecturetime.value[2] +Number(timeres[2])
-      
-      if( timeres[0]!=0)  lesstringtime =  timeres[0].toString() +':'
-      
-      if(timeres[1].toString().length ==2) lesstringtime= lesstringtime + timeres[1].toString() +':'
-      else lesstringtime=  lesstringtime + '0' + timeres[1].toString() +':'
+      alllecturetime.value[0] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[1] = alllecturetime.value[1] + Number(timeres[1])
+      alllecturetime.value[2] = alllecturetime.value[2] + Number(timeres[2])
 
-      if(timeres[2].toString().length ==2)  lesstringtime +=timeres[2].toString()
-      else lesstringtime=  lesstringtime + '0' +timeres[2].toString()
-      console.log(lesstringtime);
+      if (timeres[0] != 0) lesstringtime = timeres[0].toString() + ':'
+
+      if (timeres[1].toString().length == 2)
+        lesstringtime = lesstringtime + timeres[1].toString() + ':'
+      else lesstringtime = lesstringtime + '0' + timeres[1].toString() + ':'
+
+      if (timeres[2].toString().length == 2)
+        lesstringtime += timeres[2].toString()
+      else lesstringtime = lesstringtime + '0' + timeres[2].toString()
+      console.log(lesstringtime)
       Lessons.value = [
         ...Lessons.value,
         {
-          time:lesstringtime,
+          time: lesstringtime,
           lessonName: lesson.value,
           type: type.value,
         },
       ]
-      
-      
-      
+
       time.value = '00:05:05'
       lesson.value = ''
       type.value = ''
-
     }
     const enterLecture = () => {
-       alllecturetime.value[1] =  Math.floor(alllecturetime.value[2]/60) + alllecturetime.value[1]
-        alllecturetime.value[2]=  alllecturetime.value[2]%60
-      alllecturetime.value[0]=  Math.floor(alllecturetime.value[1]/60)  +alllecturetime.value[0]
-      alllecturetime.value[1]=  alllecturetime.value[1]%60
+      alllecturetime.value[1] =
+        Math.floor(alllecturetime.value[2] / 60) + alllecturetime.value[1]
+      alllecturetime.value[2] = alllecturetime.value[2] % 60
+      alllecturetime.value[0] =
+        Math.floor(alllecturetime.value[1] / 60) + alllecturetime.value[0]
+      alllecturetime.value[1] = alllecturetime.value[1] % 60
       console.log(alllecturetime.value)
 
       let stringtime = ''
 
-      if( alllecturetime.value[0]!=0) {stringtime=stringtime +  alllecturetime.value[0].toString()+':'}
-      
-      if(alllecturetime.value[1].toString().length ==2)  stringtime = stringtime + alllecturetime.value[1].toString() +':'
-      else stringtime=  stringtime + '0' + alllecturetime.value[1].toString() +':'
-     
-      if(alllecturetime.value[2].toString().length ==2)  stringtime =   stringtime + alllecturetime.value[2].toString()
-      else stringtime=  stringtime + '0' +  alllecturetime.value[2].toString()
+      if (alllecturetime.value[0] != 0) {
+        stringtime = stringtime + alllecturetime.value[0].toString() + ':'
+      }
+
+      if (alllecturetime.value[1].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[1].toString() + ':'
+      else
+        stringtime = stringtime + '0' + alllecturetime.value[1].toString() + ':'
+
+      if (alllecturetime.value[2].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[2].toString()
+      else stringtime = stringtime + '0' + alllecturetime.value[2].toString()
 
       console.log(stringtime)
       Lectures.value = [
@@ -480,8 +472,8 @@ export default {
         },
       ]
       lectureName.value = ''
-      Lessons.value= []
-      alllecturetime.value =[0,0,0]
+      Lessons.value = []
+      alllecturetime.value = [0, 0, 0]
     }
 
     const handleSubmit = async () => {
@@ -512,22 +504,21 @@ export default {
         await addCollection(
           'more info',
           {
-            malika:{
-             
+            malika: {
               whatStudy: enterIsWhat.value,
               courseContent: Lectures.value,
             },
-            beknazar:{
+            beknazar: {
               heading: heading.value,
               mainInfo: mainInfo.value,
               moreInfo: moreInfo.value,
-               whoIsfor: enterIsWho.value,
+              whoIsfor: enterIsWho.value,
             },
             adilhan: {
               grades: [],
               reviews: [],
-              teacherID: ''
-            }
+              teacherID: '',
+            },
           },
           false,
           myId
@@ -541,7 +532,7 @@ export default {
       handleSubmit,
       lectureName,
       alllecturetime,
-    
+
       enterLesson,
       enterLecture,
       coursetime,
@@ -613,23 +604,23 @@ export default {
     border: none;
     border-radius: vw(5);
   }
-  .enter{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include font(vw(14), 600, vh(30));
-      color: white;
-      background-color: $greyBlue90;
-      width: vw(70);
-      height: vw(30);
-      border: none;
-      border-radius: vw(5);
+  .enter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(vw(14), 600, vh(30));
+    color: white;
+    background-color: $greyBlue90;
+    width: vw(70);
+    height: vw(30);
+    border: none;
+    border-radius: vw(5);
   }
   &__heading {
     @include font(vw(16), 700, vh(30));
     color: $greyBlue60;
   }
-  .enter-span{
+  .enter-span {
     display: flex;
     justify-content: end;
     padding-right: vw(10);
