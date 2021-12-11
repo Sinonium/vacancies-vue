@@ -1,5 +1,5 @@
 <template>
-    <div class="courses-info">
+  <div class="courses-info">
     <img
       class="courses-info__image"
       src="@/assets/img/courses-info-2.png"
@@ -26,9 +26,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -68,6 +66,48 @@ export default {
       @include font(vw(13), 700, vh(25));
       color: $white;
       margin: vw(23);
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .courses-info {
+    margin: vmin(10) vmin(15);
+
+    &__image {
+      width: vmin(285);
+    }
+
+    &__block {
+      padding: vmin(10) vmin(20);
+    }
+    &__block-theme {
+      margin: 0 vmin(10);
+      p {
+        @include font(vmin(9), 600, vmin(5));
+        color: $white;
+      }
+      h5 {
+        @include font(vmin(9), 600, vmin(10));
+        color: $white;
+      }
+    }
+    &__students {
+      .students {
+        @include font(vmin(7), 700, vmin(20));
+        color: $white;
+        margin: vmin(10);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 428px){
+  .courses-info {
+    margin: vmin(10) vmin(10);
+
+    &__image {
+      width: vmin(360);
     }
   }
 }

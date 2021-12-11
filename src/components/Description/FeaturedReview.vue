@@ -224,4 +224,26 @@ export default {
     }
   }
 }
+@media screen and (max-width: 428px){
+  .review {
+    .container {
+      max-width: vmin(250);
+    }
+     &__content {
+     max-width: vmin(249);
+     &-title{
+       img{
+         padding-left: vmin(180);
+       }
+     }
+
+    }
+     &__content-text {
+      p {
+        max-width: vmin(250);
+      }
+    }
+
+  }
+}
 </style>
