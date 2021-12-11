@@ -117,7 +117,7 @@ export default {
       @include font(vw(13), 600, vh(25), $greyBlue60);
     }
   }
-} 
+}
 @media screen and (max-width: 1024px) {
   .description {
     .container {
@@ -161,6 +161,16 @@ export default {
       p {
         @include font(vmin(5), 500, vmin(10), $greyBlue60);
       }
+    }
+  }
+}
+@media screen and (max-width: 428px){
+  .description {
+    .container {
+      max-width: vmin(250);
+    }
+     &__content {
+      width: vmin(200);
     }
   }
 }
