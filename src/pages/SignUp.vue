@@ -83,7 +83,7 @@ export default {
             addCourses: addCourses.value,
             UserBuy: userBuy.value,
             isTeacher: false,
-            description: [{}],
+            description: [],
           },
           false,
           user.uid
@@ -112,7 +112,7 @@ export default {
   width: vw(700);
   height: vw(580);
   background-color: $greyBlue25;
-  margin-left: vw(-200);
+  margin-left: vw(100);
   
 
   border-radius: 25em /20em;
@@ -139,7 +139,9 @@ export default {
     justify-content: space-between;
     margin-bottom: vw(5);
     padding-left: vw(25);
-   
+    // span {
+    //   color: #adb8cc;
+    // }
   }
   img{
     width: vw(30);

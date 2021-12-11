@@ -30,11 +30,13 @@
           <img src="@/assets/scss/icons/burger-menu.svg" />
         </div>
         <div :class="{ actives: allSections === true }" class="content-courses">
-          <div
-            v-for="item in moreInfo.courseContent"
-            :key="item.id"
-            class="content-courses__theme"
-          >
+          <div>
+            <h6 @click="isOpen.a = !isOpen.a">
+              {{ moreInfo.courseContent[0].title }}
+            </h6>
+            <span>{{ moreInfo.courseContent[0].allTime }}</span>
+          </div>
+          <div v-for="item in moreInfo.courseContent[0].content" :key="item.id">
             <svg
               :class="{ open: item.open }"
               width="12"
@@ -50,14 +52,8 @@
                 fill="#C3CAD9"
               />
             </svg>
-
-            <h6 @click="item.open = !item.open">{{ item.lectureName }}</h6>
-            <span> {{ item.lectures }}</span>
-
-            <span> {{ item.allTime }}</span>
-            <div class="content-courses__open" v-if="item.open">
-              <!-- <div class="content-courses__item"> -->
-              <!-- <div class="content-courses__all"> -->
+            <div class="content-courses__open" v-if="isOpen.a">
+            
 
               <div>
                 <ul class="content-courses__all">
@@ -72,27 +68,12 @@
                   <span>{{ item.time }}</span>
                 </ul>
               </div>
-              <!-- </div> -->
-              <!-- </div> -->
-              <!-- <div class="content-courses__item">
-                <div class="content-courses__all">
-                  <img :src="videoIcon" alt="" />
-
-
-                </div>
-              </div> -->
-              <!-- <div class="content-courses__item">
-                <div class="content-courses__all">
-                  <img :src="videoIcon" alt="" />
-
-                  <p>{{ item.name_2 }}</p>
-                  <a href=""></a>
-                  <span>{{ item.time_2 }}</span>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
+
+       
+
         <button
           class="sections-btn"
           @click="allContents()"
@@ -111,6 +92,12 @@ export default {
   props: ['moreInfo'],
   data() {
     return {
+      isOpen: {
+        a: false,
+        b: false,
+        c: false,
+        d: false,
+      },
       learn: [],
       articles: [],
 

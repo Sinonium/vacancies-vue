@@ -13,7 +13,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
+          
           v-model="name"
         />
 
