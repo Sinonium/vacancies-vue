@@ -117,8 +117,7 @@ export default {
       @include font(vw(13), 600, vh(25), $greyBlue60);
     }
   }
-}
-
+} 
 @media screen and (max-width: 1024px) {
   .description {
     .container {

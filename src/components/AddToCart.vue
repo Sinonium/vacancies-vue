@@ -235,68 +235,86 @@ export default {
 @media screen and (max-width: 1024px) {
   .cart {
     width: vmin(100);
-    margin-top: vmin(180);
+    margin-top: vmin(295);
     margin-right: vmin(90);
 
     p {
-      @include font(vmin(5), 700, vmin(6), $greyBlue70);
+      @include font(vmin(5), 700, vmin(5), $greyBlue70);
       margin-top: vmin(10);
     }
 
-     &__profile {
-    &-video {
+    &__profile {
+      &-video {
+        img {
+          max-width: 100%;
+        }
+      }
+      &-price {
+        margin-top: vmin(10);
+        span {
+          @include font(vmin(5), 700, vmin(10), $greyBlue50);
+          &:last-child {
+            margin-left: vmin(10);
+          }
+        }
+      }
+      &-button {
+        margin-top: vmin(13);
+        padding-bottom: vmin(10);
+        button {
+          @include font(vmin(4), 700, vmin(6), $greyBlue60);
+        }
+      }
+      &-course {
+        margin-top: 0;
+        .img__list {
+          margin-right: vmin(8);
+          ul {
+            li {
+              margin-bottom: vmin(10);
+              div {
+                img {
+                  width: vmin(8);
+                  height: vmin(8);
+                }
+              }
+            }
+          }
+        }
+        .course__list {
+          ul {
+            li {
+              height: vmin(5);
+              margin-bottom: vmin(10);
+            }
+          }
+        }
+      }
+      &__getStarted {
+        p {
+          margin-top: vmin(10);
+        }
+        button {
+          @include font(vmin(5), 700, vmin(10), $blue);
+        }
+
+        &-title {
+          h3 {
+            @include font(vmin(5), 700, vmin(10), $greyBlue50);
+          }
+        }
+        a {
+          @include font(vmin(10), 700, vmin(10), $greyBlue50);
+        }
+      }
+    }
+    .cart__getStarted-img {
       img {
-        max-width: 100%;
+        width: vmin(8);
+        height: vmin(8);
+        margin-bottom: vmin(7);
       }
     }
-    &-price {
-      margin-top: vmin(10);
-      span {
-        @include font(vmin(5), 700, vmin(10), $greyBlue50);
-        &:last-child {
-          margin-left: vmin(10);
-        }
-      }
-    }
-    &-button {
-      margin-top: vmin(13);
-      padding-bottom: vmin(10);
-      button {
-        @include font(vmin(4), 700, vmin(6), $greyBlue60);
-
-      }
-    }
-    &-course {
-      .img__list {
-        padding-top: vmin(14);
-        margin-right: vmin(8);
-        ul {
-          li {
-            margin-bottom: vmin(10);
-            div {
-              @include flex();
-              width: vw(20);
-              height: vw(22);
-            }
-          }
-        }
-      }
-      .course__list {
-        padding-top: vw(37);
-        ul {
-          flex-direction: column;
-          list-style-type: none;
-          li {
-            height: vw(22);
-            margin-bottom: vw(25);
-            p {
-              margin-top: 0;
-            }
-          }
-        }
-      }
-    }
-  }
   }
 }
 </style>
