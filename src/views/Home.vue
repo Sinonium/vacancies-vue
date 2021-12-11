@@ -125,6 +125,18 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
+  .courses-items {
+
+  padding: vmin(5);
+  width: vmin(100);
+  .row {
+    display: block;
+    .col-3 {
+      margin: 0;
+      width: vmin(150);
+    }
+  }
+}
   .courses-info {
     margin: vmin(15) vmin(15);
     &__image {
