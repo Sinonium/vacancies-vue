@@ -9,7 +9,7 @@
     <SideBar v-if="user" :active="sidebar" />
     <div class="hero">
       <Header v-if="user" />
-      <router-view />
+      <!-- <router-view /> -->
       <Footer v-if="user" />
     </div>
   </div>
@@ -65,6 +65,7 @@ span {
   display: flex;
   .hero {
     margin-left: vw(330);
+    // width: 100%;
   }
 }
 
