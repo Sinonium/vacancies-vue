@@ -1,5 +1,9 @@
 <template>
   <div class="courses-info">
+    <img
+      class="courses-info__image"
+      alt=""
+    />
     <div class="courses-info__block">
       <div class="courses-info__block-theme">
         <div class="courses-info__content">
