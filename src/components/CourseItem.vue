@@ -2,7 +2,7 @@
   <div class="col-3">
     <div @click="handleMoreInfo()" class="course-item">
       <div class="course-item__header">
-        <img class="course-item__image" :src="course.imageURL" alt="course" />
+        <img class="course-item__image" :src="course.imageUrl" alt="course" />
         <div class="course-item__time">
           <img src="./../assets/img/clock.svg" alt="time" />
           <span>{{ course.time }} hours</span>
