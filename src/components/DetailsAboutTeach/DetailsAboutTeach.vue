@@ -28,6 +28,11 @@ export default {
   margin-left: vw(60);
   margin-top: vw(30);
 }
+@media screen and (max-width: 768px)  {
+  .Details-about__teach {
+    margin-left: 13.75vw;
+  }
+}
 @media screen and (max-width: 551px) {
   .Details-about__teach {
     margin-left: vmin(1);

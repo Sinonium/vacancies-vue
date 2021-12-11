@@ -2,6 +2,7 @@
   <div class="courses-info">
     <img
       class="courses-info__image"
+      :src="courseInfo2"
       alt=""
     />
     <div class="courses-info__block">
@@ -13,7 +14,6 @@
         <div class="courses-info__students">
           <img src="./../assets/img/students.svg" alt="" />
           <span class="students">4,454,356</span>
-
           <div>
             <h5 class="about-students">
               Students are learning JavaScript on Courses
@@ -260,6 +260,7 @@ export default {
     })
 
     return {
+      courseInfo2: require('@/assets/img/courses-info-2.png'),
       moreInfo,
       course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
@@ -285,7 +286,7 @@ body {
   &__head {
     position: relative;
     display: flex;
-    background: $bg-main;
+    background: $white;
     height: vw(80);
     &::before {
       content: '';
@@ -484,6 +485,18 @@ body {
   }
   .details-page__head ul li.active span {
     @include font(vw(17), bold, 20px, $blue);
+  }
+}
+@media screen and (max-width: 768px) {
+  .details-page {
+    &__head {
+      height: vw(120);
+      ul {
+        li {
+          @include font(vw(20), bold, 20px, $greyBlue60);
+        }
+      }
+    }
   }
 }
 </style>
