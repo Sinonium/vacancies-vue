@@ -12,7 +12,6 @@
             <div class="logo__text">
               <div class="name">
                 <h3>Adam Newton</h3>
-                <p>(44 Courses, 4 Reviews)</p>
               </div>
               <div class="raiting">
                 <img src="@/assets/img/raiting.svg" alt="reiting" />
@@ -111,10 +110,6 @@ export default {
           @include font(vw(13), 700, vh(30), $greyBlue50);
           margin-left: vw(30);
         }
-        p {
-          @include font(vw(12), 700, vh(1), $greyBlue80);
-          margin-left: vw(10);
-        }
       }
     }
     .raiting {
@@ -162,77 +157,93 @@ export default {
     }
   }
 }
-
-.review {
-  @include mobile {
-    .container{
-      max-width: vmin(360);
+@media screen and (max-width: 1024px) {
+  .review {
+    .container {
+      max-width: vmin(180);
     }
-    margin-top: vmin(30);
     &__content {
-      padding: vmin(35) vmin(40);
-      max-width: vmin(330);
+      padding: vmin(10) vmin(10);
+      width: vmin(170);
       h2 {
-        @include font(vmin(15), 700, vmin(15), $greyBlue25);
+        @include font(vmin(6), 700, vmin(10), $greyBlue50);
       }
     }
     &__content-title {
       h3 {
-        @include font(vmin(13), 700, vmin(25), $greyBlue50);
+        @include font(vmin(6), 700, vmin(10), $greyBlue50);
       }
     }
     &__content-logo {
+      margin-top: vmin(5);
       img {
-        width: vmin(60);
-        height: vmin(60);
+        width: vmin(20);
+        height: vmin(20);
       }
       .logo__text {
         .name {
           h3 {
-            @include font(vmin(9), 700, vmin(15), $greyBlue50);
-            margin-left: vmin(30);
-          }
-          p {
-            @include font(vmin(9), 700, vmin(0), $greyBlue80);
+            @include font(vmin(5), 700, vmin(10), $greyBlue50);
             margin-left: vmin(10);
           }
         }
       }
       .raiting {
         img {
-          margin-left: vmin(30);
-          width: vmin(50);
-          height: vmin(25);
+          margin-left: vmin(10);
+          width: vmin(25);
+          height: vmin(10);
         }
         p {
-          @include font(vmin(7), 700, vmin(15), $greyBlue80);
-          margin-left: vmin(15);
+          @include font(vmin(4), 700, vmin(3), $greyBlue80);
+          margin-left: vmin(7);
         }
       }
     }
     &__content-text {
       p {
-        @include font(vmin(13), 600, vmin(25), $greyBlue60);
-        max-width: vmin(600);
+        @include font(vmin(5), 500, vmin(10), $greyBlue60);
+        max-width: vmin(160);
       }
     }
     &__buttons {
-      display: flex;
       p {
-        @include font(vmin(8), 700, vmin(15), $greyBlue60);
-        margin-right: vmin(30);
-      }
-      button {
-        @include font(vmin(9), 700, vmin(15), $greyBlue60);
-        width: vmin(55);
-        height: vmin(40);
-        border-radius: vmin(5);
+        @include font(vmin(4), 500, vmin(10), $greyBlue60);
         margin-right: vmin(10);
       }
+      button {
+        @include font(vmin(4), 500, vmin(10), $greyBlue60);
+        width: vmin(20);
+        height: vmin(10);
+        margin-right: vmin(5);
+        margin-top: vmin(5);
+      }
       button:last-child {
-        margin-left: vmin(20);
+        margin-left: vmin(10);
       }
     }
+  }
+}
+@media screen and (max-width: 428px){
+  .review {
+    .container {
+      max-width: vmin(250);
+    }
+     &__content {
+     max-width: vmin(249);
+     &-title{
+       img{
+         padding-left: vmin(180);
+       }
+     }
+
+    }
+     &__content-text {
+      p {
+        max-width: vmin(250);
+      }
+    }
+
   }
 }
 </style>

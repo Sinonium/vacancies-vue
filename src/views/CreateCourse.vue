@@ -13,7 +13,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
+          
           v-model="name"
         />
 
@@ -36,7 +36,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          required
+          
           placeholder="Type the heading"
           v-model="heading"
         />
@@ -68,7 +68,7 @@
         <textarea
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          required
+          
           placeholder="Tell us about course"
           v-model="mainInfo"
         ></textarea>
@@ -93,7 +93,7 @@
         /> -->
        
         <label class="downloadimg">
-          <input type="file"
+          <input type="file" @change="getImageUrl" 
           id="downloadimg" name="downloadimg"
           accept="image/png, image/jpeg">
           <p class="create-course__instruction">Download the picture</p>
@@ -106,7 +106,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
+         
           v-model="study"
         />
 
@@ -121,7 +121,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
+          
           v-model="whoIsfor"
         />
         <span class="enter-span">
@@ -134,7 +134,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
+          
           v-model="teacher"
         />
       </div>
@@ -143,7 +143,7 @@
     <div class="create-course">
       <div class="create-course__price">
         <h4 class="create-course__title">Price:</h4>
-        <input type="number" required placeholder="100$" v-model="price" />
+        <input type="number"  placeholder="100$" v-model="price" />
       </div>
     </div>
 
@@ -154,7 +154,7 @@
           <option
             v-for="option in categories"
             :key="option.text"
-            required
+           
             :value="option.value"
           >
             {{ option.text }}
@@ -254,7 +254,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
+          
           placeholder="JavaScript Foundation"
           v-model="lectureName"
         />
@@ -265,7 +265,7 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
+          
           placeholder="How To Succedd In This Course"
           v-model="lesson"
         />
@@ -275,7 +275,7 @@
           type=time 
           v-model="time"
         />
-        <select required v-model="type" class="select">
+        <select v-model="type" class="select">
           <option>video</option>
           <option>text</option>
         </select>
@@ -311,6 +311,7 @@ import SubICategories from '@/components/AdminPanel/SubICategories.vue'
 import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
 import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
 import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
+import useStorage from '@/composables/useStorage'
 export default {
   components: {
     SubACategories,
@@ -328,6 +329,7 @@ export default {
   },
 
   setup() {
+    const {uploadImageAndGetImageUrl, responseUrl} = useStorage()
     const categories = [
       {
         text: 'Development',
@@ -387,13 +389,16 @@ export default {
     }
     const selected = ref('')
     const jopa = ref([])
-
+    const img = ref()
+    const getImageUrl = (event) => {
+       img.value = (event.target.files[0])
+    }
     const myId = uuid()
     const type = ref('')
     const heading = ref('')
     const name = ref('')
     const price = ref('')
-    const imageURL = ref('')
+    // const imageURL = ref('')
     const mainInfo = ref('')
     const moreInfo = ref('')
     const teacher = ref('')
@@ -484,16 +489,24 @@ export default {
       alllecturetime.value =[0,0,0]
     }
     const res = ref()
+    const responseImg = ref()
 
     const handleSubmit = async () => {
       if(coursetime.value >=0 && coursetime.value <=2)duration.value = "0-2 Hours"
       if(coursetime.value >=3 && coursetime.value <=6)duration.value = "3-6 Hours"
       if(coursetime.value >=7 && coursetime.value <=16)duration.value = "7-16 Hours"
       if(coursetime.value >=17 )duration.value = "17+ Hours"
-      await addCollection('courses', {
+
+
+
+        responseImg = await uploadImageAndGetImageUrl(myId, img.value)
+
+        console.log(responseImg.value);
+
+        await addCollection('courses', {
         name: name.value,
         price: price.value,
-        imageURL: imageURL.value,
+        imageUrl: responseImg.value,
         teacher: teacher.value,
         level: level.value,
         pricelist: pricelist.value,
@@ -530,6 +543,8 @@ export default {
     }
 
     return {
+      responseImg,
+      uploadImageAndGetImageUrl,
       popa,
       handleSubmit,
       lectureName,
@@ -544,7 +559,7 @@ export default {
       type,
       price,
       lesson,
-      imageURL,
+      getImageUrl,
       categories,
       time,
       teacher,

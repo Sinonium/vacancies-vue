@@ -167,7 +167,73 @@ export default {
         }
     }
 }
-@include mobile {
+@media screen and (max-width: 1025px) {
+.footer {
+    &__nav {
+        width: vw(670);
+        &-item {
+            width: vw(160);
+            margin-bottom: vw(25);
+        }
+        &-link {
+            @include font(vw(17), 700, vh(20), $greyBlue60);
+        }
+    }
+    &__form {
+        input {
+            &::placeholder {
+                @include font(vw(17), 700, vh(20), $greyBlue60);
+            }
+        }
+    }
+    &__companies, &__menu {
+        p {
+            @include font(vw(17), 700, vw(25), $greyBlue60);
+        }
+        ul {
+            li {
+                a {
+                    @include font(vw(17), 700, vw(20), $greyBlue60);
+                }
+            }
+        }
+    }
+}  
+}
+@media screen and (max-width: 770px) {
+.footer {
+    &__nav {
+        width: vw(840);
+        &-item {
+            width: vw(200);
+            margin-bottom: vw(25);
+        }
+        &-link {
+            @include font(vw(22), 700, vh(20), $greyBlue60);
+        }
+    }
+    &__form {
+        input {
+            &::placeholder {
+                @include font(vw(22), 700, vh(20), $greyBlue60);
+            }
+        }
+    }
+    &__companies, &__menu {
+        p {
+            @include font(vw(24), 700, vw(25), $greyBlue60);
+        }
+        ul {
+            li {
+                a {
+                    @include font(vw(22), 700, vw(20), $greyBlue60);
+                }
+            }
+        }
+    }
+}  
+}
+@media screen and (max-width: 430px) {
     .footer {
         &__info {
             @include flex($justify: space-between);

@@ -65,7 +65,7 @@
           <h3>Find The Right Course for you</h3>
         </div>
         <p>Answer a few questions to get personalized recommendations.</p>
-        <button>Get Started</button>
+        <button><router-link to="/test">Get Started</router-link></button>
       </div>
     </div>
     <div class="cart__banner">
@@ -220,6 +220,10 @@ export default {
         @include font(vw(14), 700, vw(30), $greyBlue50);
       }
     }
+    a {
+      text-decoration: none;
+      color: $greyBlue60;
+    }
   }
   &__banner {
     img {
@@ -227,4 +231,92 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .cart {
+    width: vmin(98);
+    margin-top: vmin(180);
+    margin-right: vmin(90);
+
+    p {
+      @include font(vmin(5), 700, vmin(5), $greyBlue70);
+      margin-top: vmin(10);
+    }
+
+    &__profile {
+      &-video {
+        img {
+          max-width: 100%;
+        }
+      }
+      &-price {
+        margin-top: vmin(10);
+        span {
+          @include font(vmin(5), 700, vmin(10), $greyBlue50);
+          &:last-child {
+            margin-left: vmin(10);
+          }
+        }
+      }
+      &-button {
+        margin-top: vmin(13);
+        padding-bottom: vmin(10);
+        button {
+          @include font(vmin(4), 700, vmin(6), $greyBlue60);
+        }
+      }
+      &-course {
+        margin-top: 0;
+        .img__list {
+          margin-right: vmin(8);
+          ul {
+            li {
+              margin-bottom: vmin(10);
+              div {
+                img {
+                  width: vmin(8);
+                  height: vmin(8);
+                }
+              }
+            }
+          }
+        }
+        .course__list {
+          ul {
+            li {
+              height: vmin(5);
+              margin-bottom: vmin(10);
+            }
+          }
+        }
+      }
+      &__getStarted {
+        p {
+          margin-top: vmin(10);
+        }
+        button {
+          @include font(vmin(5), 700, vmin(10), $blue);
+        }
+
+        &-title {
+          h3 {
+            @include font(vmin(5), 700, vmin(10), $greyBlue50);
+          }
+        }
+        a {
+          @include font(vmin(10), 700, vmin(10), $greyBlue50);
+        }
+      }
+    }
+    .cart__getStarted-img {
+      img {
+        width: vmin(8);
+        height: vmin(8);
+        margin-bottom: vmin(7);
+      }
+    }
+  }
+}
+
+
 </style>
