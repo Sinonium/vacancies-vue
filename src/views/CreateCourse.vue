@@ -463,7 +463,7 @@ export default {
 
 
 
-        responseImg.value = await uploadImageAndGetImageUrl(myId, img.value)
+        responseImg = await uploadImageAndGetImageUrl(myId, img.value)
 
         console.log(responseImg.value);
 
