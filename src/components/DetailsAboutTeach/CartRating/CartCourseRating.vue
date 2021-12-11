@@ -92,7 +92,8 @@ import { onMounted } from '@vue/runtime-core'
 export default {
   props: ['course'],
   setup(props) {
-    const courseRating = props.course.rating.length
+    const course = props.course
+    const courseRating = course.rating.length
     const courseRatingFive = ref([])  
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
@@ -107,7 +108,7 @@ export default {
     const courseRatingPercentTwo = ref(0)
     const courseRatingPercentOne = ref(0)
     const calctPercentOfRating = () => {
-      props.course.rating.map((num) => {
+      course.rating.map((num) => {
         switch (num) {
           case 1:
             return courseRatingOne.value.push(num)

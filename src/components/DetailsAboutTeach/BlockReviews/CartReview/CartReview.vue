@@ -56,7 +56,15 @@
             {{ resultReviewDateMonth }} month ago
           </span>
           <span>
-            <span v-if="resultReviewDateDay === 0 && reviewDate[2] === currentDate.getFullYear() && reviewDate[1] === currentDate.getMonth()"> Today </span>
+            <span
+              v-if="
+                resultReviewDateDay === 0 &&
+                reviewDate[2] === currentDate.getFullYear() &&
+                reviewDate[1] === currentDate.getMonth()
+              "
+            >
+              Today
+            </span>
             <span>
               <span v-if="resultReviewDateDay === 0"></span>
               <span v-else> {{ resultReviewDateDay }} day ago </span>
@@ -66,18 +74,29 @@
       </div>
     </div>
     <div class="cart-review__text">
-      <p>
-        {{ review.text }}
+      <p @click="returnReviewTextAll">
+        {{ reviewText }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 export default {
   props: ['review'],
   setup(props) {
+    const reviewText = ref(props.review.text)
+    const calculateTextReview = () => {
+      if (reviewText.value.length > 30) {
+        (reviewText.value = props.review.text.substring(0,30) + '....')
+      } else {
+        reviewText.value = props.review.text
+      }
+    }
+    const returnReviewTextAll = () => {
+      reviewText.value = props.review.text
+    }
     const currentDate = new Date()
     const reviewDate = props.review.date
     const resultReviewDateMonth = ref(0)
@@ -101,11 +120,14 @@ export default {
       }
       resultReviewDateMonth.value = firstNumDateMonthRef - secondNumDateMonthRef
       resultReviewDateYear.value = firstNumDateYearRef - secondtNumDateYearRef
-      console.log(resultReviewDateDay.value)
     }
-
-    getSomeNumAgo(currentDate, reviewDate)
+    setTimeout(() => {
+      calculateTextReview()
+      getSomeNumAgo(currentDate, reviewDate)
+    }, 50)
     return {
+      returnReviewTextAll,
+      reviewText,
       resultReviewDateYear,
       resultReviewDateDay,
       resultReviewDateMonth,
@@ -162,6 +184,19 @@ export default {
     max-width: vw(570);
     p {
       @include font(vw(13), 600, 25px, $greyBlue60);
+      position: relative;
+      &:hover {
+        &::before {
+          content: 'Click because look more.';
+          position: absolute;
+          top: vw(29);
+          left: vw(180);
+          @include font(vw(12), 600, 25px, black);
+          background: rgba(107, 122, 153, 0.5);;
+          padding: vw(10);
+          border-radius: 50%;
+        }
+      }
     }
   }
 }
