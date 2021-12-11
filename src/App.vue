@@ -5,10 +5,8 @@
       <router-link to="/createCourse">Create Course</router-link>|
       <router-link to="/test">Test</router-link>|
    </div>
-   <div class="main-container">
-      <div class="sidebar">
-         <SideBar v-if="user" />
-      </div>
+   <div @keydown.ctrl="sidebar = !sidebar" class="main-container">
+      <SideBar v-if="user" :active="sidebar" />
       <div class="hero">
          <Header v-if="user" />
          <router-view />
@@ -21,14 +19,15 @@
    import Header from "@/components/Header";
    import Footer from "@/components/Footer";
    import SideBar from "./components/SideBar";
-   import {user} from './composables/getUser'
+   import { user } from "./composables/getUser";
+   import { ref } from "@vue/reactivity";
    export default {
       components: { Header, Footer, SideBar },
       setup() {
-         
+         let sidebar = ref(true);
 
-         return {user}
-      }
+         return { user, sidebar };
+      },
    };
 </script>
 
@@ -50,10 +49,7 @@
 
    .main-container {
       display: flex;
-      .sidebar {
-         width: vw(330);
-      }
-      .hero{
+      .hero {
          margin-left: vw(330);
       }
    }
@@ -67,5 +63,12 @@
    }
    .col-3 {
       width: 25%;
+   }
+   @media screen and(max-width: 769px) {
+      .main-container {
+         .hero {
+            margin: 0;
+         }
+      }
    }
 </style>
