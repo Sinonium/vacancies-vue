@@ -12,24 +12,24 @@
 </template>
 
 <script>
-import { computed } from '@vue/reactivity'
-import { useStore } from 'vuex'
+import { computed } from "@vue/reactivity";
+import { useStore } from "vuex";
 export default {
   setup() {
-    const store = useStore()
+    const store = useStore();
 
-    const userInfo = computed(() => store.state.userInfo)
+    const userInfo = computed(() => store.state.userInfo);
     return {
-      searchIcon: require('@/assets/img/sidebar/search.svg'),
-      avatarIcon: require('@/assets/img/sidebar/avatarIcon.png'),
+      searchIcon: require("@/assets/img/sidebar/search.svg"),
+      avatarIcon: require("@/assets/img/sidebar/avatarIcon.png"),
       userInfo,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
+@import "@/assets/scss/index.scss";
 .search {
   @include flex(space-evenly);
   background-color: $greyBlue20;
@@ -50,20 +50,36 @@ export default {
     font-size: vw(13);
   }
 }
- @media screen and (max-width: 769px) {
-      .search {
-         min-height: vw(120);
-         &-icon {
-            width: vw(28);
-            height: vw(28);
-         }
-         &-image {
-            width: vw(60);
-            height: vw(60);
-         }
-         input {
-            font-size: vw(21);
-         }
-      }
-   }
+@media screen and (max-width: 769px) {
+  .search {
+    min-height: vw(120);
+    &-icon {
+      width: vw(28);
+      height: vw(28);
+    }
+    &-image {
+      width: vw(60);
+      height: vw(60);
+    }
+    input {
+      font-size: vw(21);
+    }
+  }
+}
+@media screen and (max-width: 579px) {
+  .search {
+    min-height: vw(165);
+    &-icon {
+      width: vw(40);
+      height: vw(40);
+    }
+    &-image {
+      width: vw(80);
+      height: vw(80);
+    }
+    input {
+      font-size: vw(40);
+    }
+  }
+}
 </style>
