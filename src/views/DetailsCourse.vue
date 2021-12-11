@@ -21,9 +21,6 @@
           </div>
         </div>
       </div>
-
-     
-
     </div>
   </div>
   <div class="details-page">
@@ -151,7 +148,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'About'">
-        <CourseContent :moreInfo="moreInfo.malika" />
+        <CourseContent :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -273,13 +270,13 @@ export default {
       ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
       handleCurrentPage,
       currentDetailsPage,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 body {
   background: #e4e7f0;
 }
@@ -291,7 +288,7 @@ body {
     background: $bg-main;
     height: vw(80);
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: 0;
@@ -312,7 +309,7 @@ body {
         @include flex();
         @include font(vw(12), bold, 20px, $greyBlue60);
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           bottom: vw(-35);
           left: 0;
@@ -343,7 +340,7 @@ body {
 }
 .details-page__head ul li.active {
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: vw(-35);
     left: 0;

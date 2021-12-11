@@ -80,10 +80,11 @@ export default {
 
     const id = computed(() => store.state.courseId)
 
-    const { updateUserBuy } = update()
+    const { updateUserBuy, updateCourse } = update()
 
     const handleSubmit = async () => {
       await updateUserBuy(user.value.uid, id.value)
+      await updateCourse(id.value)
     }
 
     const firstName = ref('')
@@ -94,18 +95,6 @@ export default {
     const country = ref('')
     const zipCode = ref('')
 
-    const handleBuy = () => {
-      const userData = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        cardNumber: cardNumber.value,
-        mmyy: mmyy.value,
-        cvc: cvc.value,
-        country: country.value,
-        zipCode: zipCode.value,
-      }
-      console.log(userData)
-    }
     return {
       id,
       handleSubmit,
@@ -117,7 +106,6 @@ export default {
       cvc,
       country,
       zipCode,
-      handleBuy,
     }
   },
 }
