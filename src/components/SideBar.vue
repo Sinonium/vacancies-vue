@@ -273,61 +273,58 @@ aside.active {
   }
 }
 @media screen and(max-width: 579px) {
-  @media screen and (max-width: 769px) {
-    .ps {
-      height: vmin(600);
-    }
-    .sidebar {
-      width: vw(900);
-    }
-    .sidebar__content {
-      .sidebar__main-group {
-        padding-bottom: vw(700);
+  .ps {
+    height: vmin(550);
+  }
+  .sidebar {
+    width: vw(900);
+  }
+  .sidebar__content {
+    .sidebar__main-group {
+      padding-bottom: vw(600);
+      li {
+        span.title {
+          @include font(vw(35), 700, vw(50), $greyBlue50);
+          margin: vw(40) auto vw(40) vw(45);
+        }
+        img.arrow {
+          margin: vw(50);
+          max-width: vw(27);
+          max-height: vw(17);
+        }
+      }
+      .categories {
+        padding: 0 vw(20);
         li {
-          span.title {
-            @include font(vw(35), 700, vw(50), $greyBlue50);
-            margin: vw(40) auto vw(40) vw(45);
+          padding: vw(25) 0;
+          grid-template-columns: 1.1fr 5.5fr 0.55fr;
+          span {
+            @include font(vw(38), 500, vw(50), $white);
           }
-          img.arrow {
-            margin: vw(50);
+          img:first-child {
+            margin-left: vw(32);
+            max-height: vw(45);
+            max-width: vw(45);
+          }
+          img:last-child {
             max-width: vw(27);
             max-height: vw(17);
           }
         }
-        .categories {
-          padding: 0 vw(20);
+        .sub {
+          margin-left: vw(125);
           li {
-            padding: vw(25) 0;
-            grid-template-columns: 1.1fr 5.5fr 0.55fr;
             span {
-              @include font(vw(38), 500, vw(50), $white);
+              @include font(vw(38), 500, vw(50), $greyBlue80);
             }
-            img:first-child {
-              margin-left: vw(32);
-              max-height: vw(45);
-              max-width: vw(45);
-            }
-            img:last-child {
-              max-width: vw(27);
-              max-height: vw(17);
+            span::before {
+              left: vw(-71);
+              width: vw(13);
+              height: vw(13);
             }
           }
-          .sub {
-            margin-left: vw(125);
-            li {
-              span {
-                @include font(vw(38), 500, vw(50), $greyBlue80);
-              }
-              span::before {
-                left: vw(-71);
-                width: vw(13);
-                height: vw(13);
-
-              }
-            }
-            .under {
-              margin-left: vw(85);
-            }
+          .under {
+            margin-left: vw(85);
           }
         }
       }

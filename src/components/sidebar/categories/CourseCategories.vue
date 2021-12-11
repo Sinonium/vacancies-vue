@@ -217,20 +217,13 @@
                   category: category.value,
                   sub: subCategory.value,
                });
-               store.dispatch("getAnyCollection", [
-                  mainCategory.value,
-                  category.value,
-                  subCategory.value,
-               ]);
+               store.dispatch("getAnyCollection", [subCategory.value]);
             } else {
                store.commit("SET_CATEGORY", {
                   main: mainCategory.value,
                   category: category.value,
                });
-               await store.dispatch("getAnyCollection", [
-                  mainCategory.value,
-                  category.value,
-               ]);
+               await store.dispatch("getAnyCollection", [category.value]);
             }
          };
 
