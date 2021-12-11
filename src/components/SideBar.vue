@@ -340,10 +340,10 @@ aside.active {
   }
   .sidebar__content {
     .sidebar__main-group {
-      padding-bottom: vmin(500);
+      padding-bottom: vmin(370);
       li {
         span.title {
-          @include font(vmin(13), 600, vmin(22), $greyBlue50);
+          @include font(vmin(12), 500, vmin(22), $greyBlue50);
           margin: vmin(12) auto vmin(10) vmin(15);
         }
         img.arrow {
@@ -358,7 +358,7 @@ aside.active {
           padding: vmin(10) 0;
           grid-template-columns: 1.1fr 5.5fr 0.55fr;
           span {
-            @include font(vmin(13), 500, vmin(20), $white);
+            @include font(vmin(12), 400, vmin(20), $white);
           }
           img:first-child {
             margin-left: vmin(10);
@@ -374,7 +374,7 @@ aside.active {
           margin-left: vmin(45);
           li {
             span {
-              @include font(vmin(12), 500, vmin(20), $greyBlue80);
+              @include font(vmin(11), 400, vmin(20), $greyBlue80);
             }
             span::before {
               left: vmin(-26);
@@ -389,5 +389,10 @@ aside.active {
       }
     }
   }
+}
+@media screen and(max-width:376px) {
+   .sidebar{
+      width: vmin(280);
+   }
 }
 </style>
