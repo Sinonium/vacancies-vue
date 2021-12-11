@@ -8,13 +8,14 @@
     <div class="courses-info__block">
       <div class="courses-info__title">
         <img class="sticker" src="./../assets/img/stickers.svg" alt="" />
-        <h3 class="name">Java Script Courses</h3>
+        <h3 v-if="!selectedCourse[2]" class="name">{{ selectedCourse[2] }}</h3>
+        <h3 v-else class="name">{{ selectedCourse[2] }} Courses</h3>
       </div>
 
       <div class="courses-info__block-2">
         <div class="courses-info__content">
           <p class="categories">Related Categories:</p>
-          <h5>Development It & Software Web Development</h5>
+          <h5>{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
         </div>
         <div class="courses-info__students">
           <img src="./../assets/img/students.svg" alt="" />
@@ -40,8 +41,7 @@
 <script>
 import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseItem from '../components/CourseItem.vue'
-import { ref } from '@vue/reactivity'
-import { onMounted, computed } from '@vue/runtime-core'
+import { onMounted, computed} from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import Filters from '../components/Filters/Fiters.vue'
 export default {
@@ -50,12 +50,14 @@ export default {
     const store = useStore()
 
     const courses = computed(() => store.state.courses)
+    const selectedCourse = computed(()=> store.state.categories.category);
 
     onMounted(() => {
       store.dispatch('getCourses')
     })
 
     return {
+      selectedCourse,
       courses,
     }
   },
@@ -125,6 +127,18 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
+  .courses-items {
+
+  padding: vmin(5);
+  width: vmin(100);
+  .row {
+    display: block;
+    .col-3 {
+      margin: 0;
+      width: vmin(150);
+    }
+  }
+}
   .courses-info {
     margin: vmin(15) vmin(15);
     &__image {

@@ -13,15 +13,23 @@
       "Downloadable lectures for all projects",
       "Object Orinted Programming",
       "Scope and Execution Context",
-      "Latest features: ES6, ES7, ES8, ES9"
+      "Latest features: ES6, ES7, ES8, ES9",
+      "Get friendly support in the course Q&A",
+      "Inheritance + Prototpe Chain",
+      "Practice your skills with coding challenges",
+      "Inheritance + Prototpe Chain",
+      "Practice your skills with coding challenges",
+      "Scope and Execution Context"
+     
    ],
 
    "articles": [
       {
-         "title": "Course Content",
+         "lectureName": "Course Content",
          "allTime": "8:82",
          "content": [
             {
+               "isPreview":"Preview",
                "type": "video",
                "name": "How To Succedd In This Course",
                "time": "05:34"
@@ -39,11 +47,12 @@
          ]
       },
       {
-         "title": "JavaScript Foundation",
-         "lectures": "3 Lectures",
+         "lectureName": "JavaScript Foundation",
+         "lectures": "5 Lectures",
          "allTime": "7:82",
          "content": [
             {
+               
                "type": "video",
                "name": "Section Overview",
                "time": "05:34"
@@ -57,11 +66,22 @@
                "type": "video",
                "name": "Marketing and Sales",
                "time": "01:08"
+            },
+            {
+               "type": "video",
+               "name": "Section Overview",
+               "time": "05:34"
+            },
+            {
+               "type": "video",
+               "name": "Exercise: Javascript Engine",
+               "time": "05:08"
             }
+            
          ]
       },
       {
-         "title": "Putting It All Together: The Budget App Project",
+         "lectureName": "Putting It All Together: The Budget App Project",
          "lectures": "3 Lectures",
          "allTime": "13:82",
          "content": [
@@ -83,14 +103,16 @@
          ]
       },
       {
-         "title": "Next Generation JavaScript: Intro to ES6",
+         "lectureName": "Next Generation JavaScript: Intro to ES6",
          "lectures": "3 Lectures",
          "allTime": "10:82",
          "content": [
             {
+               "isPreview":"Preview",
                "type": "video",
                "name": "How to work with a server in JavaScript part 1",
                "time": "02:34"
+               
             },
             {
                "type": "video",
@@ -105,7 +127,7 @@
          ]
       },
       {
-         "title": "Customizing the code editor",
+         "lectureName": "Customizing the code editor",
          "lectures": "3 Lectures",
          "allTime": "11:82",
          "content": [
@@ -127,7 +149,7 @@
          ]
       },
       {
-         "title": "Course Content",
+         "lectureName": "Course Content",
          "lectures": "3 Lectures",
          "allTime": "11:82",
          "content": [
@@ -149,7 +171,7 @@
          ]
       },
       {
-         "title": "Putting It All Together: The Budget App Project",
+         "lectureName": "Putting It All Together: The Budget App Project",
          "lectures": "3 Lectures",
          "allTime": "13:82",
          "content": [
@@ -171,7 +193,7 @@
          ]
       },
       {
-         "title": "JavaScript Foundation",
+         "lectureName": "JavaScript Foundation",
          "lectures": "3 Lectures",
          "allTime": "7:82",
          "content": [
@@ -193,7 +215,7 @@
          ]
       },
       {
-         "title": "Customizing the code editor",
+         "lectureName": "Customizing the code editor",
          "lectures": "3 Lectures",
          "allTime": "7:82",
          "content": [
