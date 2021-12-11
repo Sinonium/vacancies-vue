@@ -3,7 +3,12 @@ import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 
 const update = () => {
   const updateTeacher = async () => {
-    const userDoc = doc(firestore, 'users', 'Aqu1DTLSoVTXz5sUoH9HbU1OKSA2', newName)
+    const userDoc = doc(
+      firestore,
+      'users',
+      'Aqu1DTLSoVTXz5sUoH9HbU1OKSA2',
+      newName
+    )
 
     const test = await getDoc(userDoc)
 
@@ -20,12 +25,19 @@ const update = () => {
     })
   }
 
-  const updateReviews = async (collectionName,id,newData,rating,studentName) => {
-    const moreInfoDoc = doc(
-      firestore,
-      collectionName,
-      id
-    )
+  const updateReviews = async (
+    collectionName,
+    id,
+    newData,
+    rating,
+    studentName
+  ) => {
+    const moreInfoDoc = doc(firestore, collectionName, id)
+
+    console.log(id)
+    console.log(newData)
+    console.log(rating)
+    console.log(studentName)
 
     const test = await getDoc(moreInfoDoc)
 
@@ -39,7 +51,7 @@ const update = () => {
           createdAt: Timestamp.fromDate(new Date()),
         },
       ],
-    })  
+    })
   }
 
   const updateUserBuy = async (userId, id) => {
