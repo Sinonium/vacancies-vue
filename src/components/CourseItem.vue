@@ -60,6 +60,10 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
+.col-3 {
+      margin-right: vw(30);
+      margin-bottom: vw(30);
+      width: vw(255);
 .course-item {
   background: #ffffff;
   max-height: vw(370);
@@ -156,50 +160,29 @@ export default {
     }
   }
 }
+}
 
 @media screen and (max-width: 1024px) {
-  .course-items {
-    width: vmin(320);
-    .row {
-      display: block;
-      margin: vmin(25) 0;
-      padding: 0 vmin(70);
-      .col-3 {
-        display: block;
-        max-width: 100%;
         .course-item {
-          margin: vmin(15) vmin(10);
-          width: vmin(150);
-          background: #ffffff;
-          box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
-          border-radius: 10px;
+          width: vmin(170);
+          height: vmin(250);
+          border-radius: vw(10);
           &__header {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
             padding: vmin(10);
             height: vmin(90);
             z-index: 1;
           }
           &__image {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: vmin(150);
-            height: vmin(90);
-            z-index: -1;
+            width: vmin(170);
+            height: vmin(100);
           }
           &__time {
-            display: flex;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.5);
             border-radius: vmin(15);
             padding: 0 vmin(10);
             max-height: vmin(30);
             span {
-              @include font(vmin(6), 700, vmin(10));
+              @include font(vmin(10), 700, vmin(10));
               margin-left: vmin(10);
-              color: $white;
             }
             img {
               width: vmin(8);
@@ -255,7 +238,5 @@ export default {
           }
         }
       }
-    }
-  }
-}
+
 </style>

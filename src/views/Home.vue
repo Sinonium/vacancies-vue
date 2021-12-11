@@ -30,7 +30,7 @@
       </div>
     </div>
   </div>
-  <Filters />
+  <!-- <Filters /> -->
   <div class="courses-items">
     <div class="row">
       <CourseItem v-for="course in courses" :key="course.id" :course="course" />
@@ -68,13 +68,13 @@ export default {
 @import '@/assets/scss/index.scss';
 .courses-items {
   padding: vw(80);
-  width: vw(1270);
+  width: vw(1200);
   .row {
     display: flex;
     flex-wrap: wrap;
     .col-3 {
       margin-right: vw(30);
-      margin-bottom: vw(15);
+      margin-bottom: vw(30);
       width: vw(255);
     }
   }
@@ -128,15 +128,9 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .courses-items {
-
-  padding: vmin(5);
-  width: vmin(100);
+  margin: 0;
   .row {
     display: block;
-    .col-3 {
-      margin: 0;
-      width: vmin(150);
-    }
   }
 }
   .courses-info {
@@ -184,17 +178,6 @@ export default {
 
       img {
         width: vmin(10);
-      }
-    }
-  }
-  .course-items {
-    width: vmin(620);
-    .row {
-      display: block;
-      margin: vmin(10) vmin(10);
-      .col-3 {
-        display: block;
-        width: vmin(400);
       }
     }
   }

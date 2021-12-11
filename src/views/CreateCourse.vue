@@ -266,10 +266,11 @@
       </div>
       <div class=""></div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
+
     </div>
     <div class="publish">
-      <button>Publish Course</button>
-    </div>
+      <button class="button">Publish Course</button>
+      </div>
   </form>
 </template>
 
@@ -412,8 +413,8 @@ export default {
       let lesstringtime = ''
       let timeres = time.value.split(':')
       alllecturetime.value[0] = alllecturetime.value[0] + Number(timeres[0])
-      alllecturetime.value[1] = alllecturetime.value[1] + Number(timeres[1])
-      alllecturetime.value[2] = alllecturetime.value[2] + Number(timeres[2])
+      alllecturetime.value[1] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[2] = alllecturetime.value[0] + Number(timeres[0])
 
       if (timeres[0] != 0) lesstringtime = timeres[0].toString() + ':'
 
@@ -434,7 +435,7 @@ export default {
         },
       ]
 
-      time.value = '00:05:05'
+      time.value = '00:00:00'
       lesson.value = ''
       type.value = ''
     }
@@ -561,9 +562,6 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-
-// @import '@riophae/vue-treeselect/dist/vue-treeselect.css';
-
 .admin-board {
   margin: vw(30) vw(160);
   width: vw(760);
@@ -571,12 +569,12 @@ export default {
     display: flex;
     width: vw(630);
     height: vw(200);
+    cursor: pointer;
     background-color: $blue;
     opacity: 0.2;
     justify-content: center;
     input[type='file'] {
       display: none;
-      cursor: pointer;
     }
     p {
       margin-top: vw(80);
@@ -622,7 +620,7 @@ export default {
   .publish {
     display: flex;
     justify-content: center;
-    button {
+    .button {
       @include font(vw(14), 600, vh(30));
       color: white;
       background-color: $blue;
@@ -742,43 +740,42 @@ export default {
         }
       }
     }
-    &__categories {
-      .category-blocks {
-        display: flex;
-        .category-block {
-          display: block;
-          margin: 0 vw(40) 0 0;
-          .title {
-            @include font(vw(13), 700, vh(25));
-            color: $greyBlue50;
-            margin-bottom: vw(20);
-          }
-          .category {
-            @include font(vw(12), 700, vh(20));
-            color: $greyBlue70;
-          }
-          .category:hover {
-            color: $green;
-          }
-          .more {
-            @include font(vw(12), 700, vh(20));
-            color: $blue;
-            margin-top: vw(20);
-          }
-        }
-      }
-    }
+    
   }
 }
 @media screen and (max-width: 1024px) {
   .admin-board {
-    margin: vmin(15) vmin(40);
+    margin: vmin(15) vmin(50);
+    width: vmin(300);
     &__heading {
-      @include font(vmin(15), 700, vmin(15));
+      @include font(vmin(14), 700, vmin(10));
+      width: vmin(200);
+    }
+    .downloadimg {
+    width: vmin(230);
+    height: vmin(70);
+    p {
+      margin-top: vmin(25);
+      @include font(vmin(9), 700, vmin(15));
+      color: white;
+    }
+    }
+    .enter2 {
+    @include font(vmin(7), 600, vmin(15));
+    width: vmin(70);
+    height: vmin(30);
+    border-radius: vw(10);
+    }
+    .enter {
+      @include font(vmin(7), 600, vmin(15));
+      width: vmin(50);
+      height: vmin(20);
+      border: none;
+      border-radius: vw(10);
     }
     .publish {
-      margin: 0 vmin(15);
-      button {
+      margin-right: vmin(40);
+      .button {
         @include font(vmin(7), 600, vmin(15));
         color: white;
         width: vmin(100);
@@ -792,18 +789,25 @@ export default {
       width: vmin(230);
       border-radius: vmin(5);
       &__title {
-        @include font(vmin(10), 700, vmin(13));
+        @include font(vmin(13), 700, vmin(13));
       }
       &__instruction {
-        @include font(vmin(7), 700, vmin(13));
+        @include font(vmin(10), 700, vmin(13));
         margin: vmin(15) 0 vmin(10) 0;
       }
+      select {
+      padding: vmin(3) vmin(15);
+      width: 50%;
+      height: vmin(30);
+      padding: vmin(5) vmin(5) vmin(5) vmin(10);
+      @include font(vmin(7), 600, vh(15));
+    }
       input {
         border-radius: vmin(5);
         padding: vw(10);
         margin: 0 0 vmin(15) 0;
         width: vmin(220);
-        @include font(vmin(7), 600, vmin(15));
+        @include font(vmin(9), 600, vmin(15));
       }
       &__examples {
         span {
@@ -819,43 +823,36 @@ export default {
       &__description {
         textarea {
           border-radius: vmin(5);
-          width: vmin(180);
+          width: vmin(220);
           height: vmin(60);
-          @include font(vmin(6), 600, vmin(15));
+          @include font(vmin(9), 600, vmin(15));
         }
       }
       &__questions {
         margin-bottom: vmin(10);
         .questions {
           p {
-            @include font(vmin(7), 700, vmin(13));
+            @include font(vmin(8), 700, vmin(13));
           }
           span {
             margin: vmin(3) vmin(5);
-            width: vmin(6);
+            width: vmin(7);
             height: vmin(2);
           }
         }
       }
-      &__categories {
-        .category-blocks {
-          .category-block {
-            margin: 0 vmin(5) 0 0;
-            .title {
-              @include font(vmin(7), 600, vh(13));
-              margin-bottom: vmin(7);
-            }
-            .category {
-              @include font(vmin(6), 600, vmin(10));
-            }
-            .more {
-              @include font(vmin(6), 700, vh(10));
-              margin-top: vmin(10);
-              color: $blue;
-            }
-          }
+      &__lectures {
+      .lesson-details {
+        select {
+          border-radius: vw(10);
+          height: vmin(25);
+          padding: vw(10) vw(10) vw(10) vw(15);
+          text-transform: capitalize;
+          @include font(vw(13), 600, vh(30));
         }
       }
+    }
+      
     }
   }
 }
