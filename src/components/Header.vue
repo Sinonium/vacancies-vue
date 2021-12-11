@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <div class="header__logo">
-            <div class="burger">
+            <div class="burger" @click="$emit('sidebarClick')">
                 <span></span>
             </div>
             <router-link to="/" class="header__logo-text">
