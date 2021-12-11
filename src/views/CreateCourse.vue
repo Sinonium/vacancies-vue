@@ -254,7 +254,7 @@
           v-model="lesson"
         />
         <div class="lesson-details">
-          <input type="time" v-model="time" />
+          <input required type="time" v-model="time" />
           <select v-model="type" class="select">
             <option>video</option>
             <option>text</option>
@@ -407,8 +407,24 @@ export default {
       enterIsWhat.value = [...enterIsWhat.value, study.value]
       study.value = ''
     }
+
     const enterLesson = () => {
-      console.log('jopa')
+      let lesstringtime = ''
+      let timeres = time.value.split(':')
+      alllecturetime.value[0] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[1] = alllecturetime.value[1] + Number(timeres[1])
+      alllecturetime.value[2] = alllecturetime.value[2] + Number(timeres[2])
+
+      if (timeres[0] != 0) lesstringtime = timeres[0].toString() + ':'
+
+      if (timeres[1].toString().length == 2)
+        lesstringtime = lesstringtime + timeres[1].toString() + ':'
+      else lesstringtime = lesstringtime + '0' + timeres[1].toString() + ':'
+
+      if (timeres[2].toString().length == 2)
+        lesstringtime += timeres[2].toString()
+      else lesstringtime = lesstringtime + '0' + timeres[2].toString()
+      console.log(lesstringtime)
       Lessons.value = [
         ...Lessons.value,
         {
@@ -417,13 +433,36 @@ export default {
           type: type.value,
         },
       ]
-      console.log(Lessons.value)
-      time.value = ''
+
+      time.value = '00:05:05'
       lesson.value = ''
       type.value = ''
     }
     const enterLecture = () => {
-      console.log('eshe bol,shaia jopa')
+      alllecturetime.value[1] =
+        Math.floor(alllecturetime.value[2] / 60) + alllecturetime.value[1]
+      alllecturetime.value[2] = alllecturetime.value[2] % 60
+      alllecturetime.value[0] =
+        Math.floor(alllecturetime.value[1] / 60) + alllecturetime.value[0]
+      alllecturetime.value[1] = alllecturetime.value[1] % 60
+      console.log(alllecturetime.value)
+
+      let stringtime = ''
+
+      if (alllecturetime.value[0] != 0) {
+        stringtime = stringtime + alllecturetime.value[0].toString() + ':'
+      }
+
+      if (alllecturetime.value[1].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[1].toString() + ':'
+      else
+        stringtime = stringtime + '0' + alllecturetime.value[1].toString() + ':'
+
+      if (alllecturetime.value[2].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[2].toString()
+      else stringtime = stringtime + '0' + alllecturetime.value[2].toString()
+
+      console.log(stringtime)
       Lectures.value = [
         ...Lectures.value,
         {
@@ -432,9 +471,9 @@ export default {
           lessons: Lessons.value,
         },
       ]
-      console.log(Lectures.value)
       lectureName.value = ''
       Lessons.value = []
+      alllecturetime.value = [0, 0, 0]
     }
 
     const handleSubmit = async () => {
@@ -473,7 +512,9 @@ export default {
               heading: heading.value,
               mainInfo: mainInfo.value,
               moreInfo: moreInfo.value,
-
+              whoIsfor: enterIsWho.value,
+            },
+            adilhan: {
               grades: [],
               reviews: [],
               teacherID: '',
