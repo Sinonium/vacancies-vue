@@ -1,9 +1,10 @@
 <template>
-  <div class="courses-info">
-    <img
+  <!-- <div class="courses-info">
+      <img
       class="courses-info__image"
+      src="./../assets/img/courses-info-2.png"
       alt=""
-    />
+    /> 
     <div class="courses-info__block">
       <div class="courses-info__block-theme">
         <div class="courses-info__content">
@@ -22,7 +23,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="details-page">
     <div class="details-page__head">
       <ul>
