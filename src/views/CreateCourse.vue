@@ -3,7 +3,6 @@
     <h3 class="admin-board__heading">New Course Creation</h3>
     <div class="create-course">
       <div class="create-course__name">
-        
         <h4 class="create-course__title">Name of the course</h4>
         <p class="create-course__instruction">
           Write the name of your course. The name should attract attention and
@@ -13,7 +12,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          
           v-model="name"
         />
 
@@ -34,7 +32,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          
           placeholder="Type the heading"
           v-model="heading"
         />
@@ -66,7 +63,6 @@
         <textarea
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          
           placeholder="Tell us about course"
           v-model="mainInfo"
         ></textarea>
@@ -82,29 +78,29 @@
         ></textarea>
 
         <p class="create-course__title">Photo of your course</p>
-        
+
         <!-- <input
           class="url-input"
           type="fail"
-          
-          
+
+
         /> -->
-       
+
         <label class="downloadimg">
-          <input type="file" @change="getImageUrl" 
-          id="downloadimg" name="downloadimg"
-          accept="image/png, image/jpeg">
+          <input
+            type="file"
+            @change="getImageUrl"
+            id="downloadimg"
+            name="downloadimg"
+            accept="image/png, image/jpeg"
+          />
           <p class="create-course__instruction">Download the picture</p>
         </label>
-        
-
-       
 
         <h4 class="create-course__title">What will the student study?</h4>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-         
           v-model="study"
         />
 
@@ -117,7 +113,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          
           v-model="whoIsfor"
         />
         <span class="enter-span">
@@ -129,7 +124,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          
           v-model="teacher"
         />
       </div>
@@ -138,7 +132,7 @@
     <div class="create-course">
       <div class="create-course__price">
         <h4 class="create-course__title">Price:</h4>
-        <input type="number"  placeholder="100$" v-model="price" />
+        <input type="number" placeholder="100$" v-model="price" />
       </div>
     </div>
 
@@ -149,7 +143,6 @@
           <option
             v-for="option in categories"
             :key="option.text"
-           
             :value="option.value"
           >
             {{ option.text }}
@@ -247,7 +240,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          
           placeholder="JavaScript Foundation"
           v-model="lectureName"
         />
@@ -258,20 +250,15 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          
           placeholder="How To Succedd In This Course"
           v-model="lesson"
         />
         <div class="lesson-details">
-        <input
-         
-          type="time"
-          v-model="time"
-        />
-        <select v-model="type" class="select">
-          <option>video</option>
-          <option>text</option>
-        </select>
+          <input type="time" v-model="time" />
+          <select v-model="type" class="select">
+            <option>video</option>
+            <option>text</option>
+          </select>
         </div>
         <span class="enter-span">
           <div class="enter" @click="enterLesson">Enter</div>
@@ -282,7 +269,7 @@
     </div>
     <div class="publish">
       <button>Publish Course</button>
-    </div>   
+    </div>
   </form>
 </template>
 
@@ -320,69 +307,73 @@ export default {
   },
 
   setup() {
-    const {uploadImageAndGetImageUrl, responseUrl} = useStorage()
+    const { uploadImageAndGetImageUrl, url } = useStorage()
     const categories = [
       {
-        text: "Development",
-        value: "Development",
+        text: 'Development',
+        value: 'Development',
       },
       {
-        text: "Business",
-        value: "Business",
+        text: 'Business',
+        value: 'Business',
       },
       {
-        text: "Finance & Accounting",
-        value: "Finance & Accounting",
+        text: 'Finance & Accounting',
+        value: 'Finance & Accounting',
       },
       {
-        text: "IT & Software",
-        value: "IT & Software",
+        text: 'IT & Software',
+        value: 'IT & Software',
       },
       {
-        text: "Office Productivity",
-        value: "Office Productivity",
+        text: 'Office Productivity',
+        value: 'Office Productivity',
       },
       {
-        text: "Personal Development",
-        value: "Personal Development",
+        text: 'Personal Development',
+        value: 'Personal Development',
       },
       {
-        text: "Design and Art",
-        value: "Design and Art",
+        text: 'Design and Art',
+        value: 'Design and Art',
       },
       {
-        text: "Marketing and Sales",
-        value: "Marketing and Sales",
+        text: 'Marketing and Sales',
+        value: 'Marketing and Sales',
       },
       {
-        text: "Lifestyle and Fashion",
-        value: "Lifestyle and Fashion",
+        text: 'Lifestyle and Fashion',
+        value: 'Lifestyle and Fashion',
       },
       {
-        text: "Photography",
-        value: "Photography",
+        text: 'Photography',
+        value: 'Photography',
       },
       {
-        text: "Health & Fitness",
-        value: "Health & Fitness",
+        text: 'Health & Fitness',
+        value: 'Health & Fitness',
       },
       {
-        text: "Music and Sound Design",
-        value: "Music and Sound Design",
+        text: 'Music and Sound Design',
+        value: 'Music and Sound Design',
       },
       {
-        text: "Teaching & Academics",
-        value: "Teaching & Academics",
+        text: 'Teaching & Academics',
+        value: 'Teaching & Academics',
       },
-    ];
+    ]
     const popa = (a, b) => {
       jopa.value = [selected.value, a, b]
     }
     const selected = ref('')
     const jopa = ref([])
     const img = ref()
-    const getImageUrl = (event) => {
-       img.value = (event.target.files[0])
+
+    const responseUrl = ref('')
+    const getImageUrl = async (event) => {
+      const imgFile = event.target.files[0]
+      const imgResponse = await uploadImageAndGetImageUrl(myId, imgFile)
+      responseUrl.value = await imgResponse
     }
     const myId = uuid()
     const type = ref('')
@@ -404,19 +395,19 @@ export default {
     const time = ref('')
     const study = ref('')
     const Lessons = ref([])
-    const Lectures= ref([])
+    const Lectures = ref([])
     const coursetime = ref()
 
     const enterWho = () => {
-      enterIsWho.value = [...enterIsWho.value, whoIsfor.value];
-      whoIsfor.value = "";
-    };
+      enterIsWho.value = [...enterIsWho.value, whoIsfor.value]
+      whoIsfor.value = ''
+    }
     const enterWhat = () => {
-      enterIsWhat.value = [...enterIsWhat.value, study.value];
-      study.value = "";
-    };
+      enterIsWhat.value = [...enterIsWhat.value, study.value]
+      study.value = ''
+    }
     const enterLesson = () => {
-      console.log("jopa");
+      console.log('jopa')
       Lessons.value = [
         ...Lessons.value,
         {
@@ -424,56 +415,53 @@ export default {
           lessonName: lesson.value,
           type: type.value,
         },
-      ];
-      console.log(Lessons.value);
+      ]
+      console.log(Lessons.value)
       time.value = ''
       lesson.value = ''
-      type.value = '  '
+      type.value = ''
     }
     const enterLecture = () => {
-      console.log("eshe bol,shaia jopa");
+      console.log('eshe bol,shaia jopa')
       Lectures.value = [
         ...Lectures.value,
         {
           lectureName: lectureName.value,
           lessons: Lessons.value,
         },
-      ];
-      console.log(Lectures.value);
+      ]
+      console.log(Lectures.value)
       lectureName.value = ''
-      Lessons.value= []
+      Lessons.value = []
     }
-    const res = ref()
-    const responseImg = ref()
 
     const handleSubmit = async () => {
-      if(coursetime.value >=0 && coursetime.value <=2)duration.value = "0-2 Hours"
-      if(coursetime.value >=3 && coursetime.value <=6)duration.value = "3-6 Hours"
-      if(coursetime.value >=7 && coursetime.value <=16)duration.value = "7-16 Hours"
-      if(coursetime.value >=17 )duration.value = "17+ Hours"
+      if (coursetime.value >= 0 && coursetime.value <= 2)
+        duration.value = '0-2 Hours'
+      if (coursetime.value >= 3 && coursetime.value <= 6)
+        duration.value = '3-6 Hours'
+      if (coursetime.value >= 7 && coursetime.value <= 16)
+        duration.value = '7-16 Hours'
+      if (coursetime.value >= 17) duration.value = '17+ Hours'
 
+      console.log(responseUrl.value)
 
-
-        responseImg = await uploadImageAndGetImageUrl(myId, img.value)
-
-        console.log(responseImg.value);
-
-        await addCollection('courses', {
+      await addCollection('courses', {
         name: name.value,
         price: price.value,
-        imageUrl: responseImg.value,
+        imageUrl: responseUrl.value,
         teacher: teacher.value,
         level: level.value,
         pricelist: pricelist.value,
         duration: duration.value,
         categories: jopa.value,
         students: 0,
-        teacherName: "",
+        teacherName: '',
         grade: 0,
         moreInfoId: myId,
       }),
         await addCollection(
-          "more info",
+          'more info',
           {
             malika: {
               whoIsfor: enterIsWho.value,
@@ -483,19 +471,19 @@ export default {
               heading: heading.value,
               mainInfo: mainInfo.value,
               moreInfo: moreInfo.value,
-            
+
               grades: [],
               reviews: [],
-              teacherID: "",
+              teacherID: '',
             },
           },
           false,
           myId
-        );
-    };
+        )
+    }
 
     return {
-      responseImg,
+      responseUrl,
       uploadImageAndGetImageUrl,
       popa,
       handleSubmit,
@@ -527,9 +515,9 @@ export default {
       enterIsWho,
       enterWhat,
       enterIsWhat,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -540,36 +528,36 @@ export default {
 .admin-board {
   margin: vw(30) vw(160);
   width: vw(760);
-  .downloadimg{
+  .downloadimg {
     display: flex;
     width: vw(630);
     height: vw(200);
     background-color: $blue;
     opacity: 0.2;
     justify-content: center;
-    input[type="file"] {
-    display: none;
-    cursor: pointer;
+    input[type='file'] {
+      display: none;
+      cursor: pointer;
     }
-    p{
+    p {
       margin-top: vw(80);
       @include font(vw(18), 700, vh(30));
       color: white;
     }
   }
-  
-  .enter2{
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include font(vw(14), 600, vh(30));
-      color: $white;
-      background-color: $greyBlue70;
-      width: vw(100);
-      height: vw(50);
-      border: none;
-      border-radius: vw(5);
+
+  .enter2 {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(vw(14), 600, vh(30));
+    color: $white;
+    background-color: $greyBlue70;
+    width: vw(100);
+    height: vw(50);
+    border: none;
+    border-radius: vw(5);
   }
   .enter {
     display: flex;
@@ -625,17 +613,17 @@ export default {
       color: $greyBlue70;
     }
     select {
-        padding: vw(10) vw(30);
-        border: 2px solid #f5f6f7;
-        width: 45%;
-        box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
-        border-radius: vw(5);
-        margin-right: vw(10);
-        margin-bottom: vw(10);
-        height: vw(65);
-        padding: vw(10) vw(10) vw(10) vw(15);
-        text-transform: capitalize;
-        @include font(vw(13), 600, vh(30));
+      padding: vw(10) vw(30);
+      border: 2px solid #f5f6f7;
+      width: 45%;
+      box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
+      border-radius: vw(5);
+      margin-right: vw(10);
+      margin-bottom: vw(10);
+      height: vw(65);
+      padding: vw(10) vw(10) vw(10) vw(15);
+      text-transform: capitalize;
+      @include font(vw(13), 600, vh(30));
     }
     .url-input {
       text-transform: initial;
@@ -675,26 +663,26 @@ export default {
         @include font(vw(13), 600, vh(30));
       }
     }
-    &__lectures{
-    .lesson-details{
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      input{
-        width: 46%;
+    &__lectures {
+      .lesson-details {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        input {
+          width: 46%;
+        }
+        select {
+          width: 46%;
+          border: 2px solid #f5f6f7;
+          box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
+          border-radius: vw(5);
+          margin-right: vw(10);
+          height: vw(65);
+          padding: vw(10) vw(10) vw(10) vw(15);
+          text-transform: capitalize;
+          @include font(vw(13), 600, vh(30));
+        }
       }
-      select{
-        width: 46%;
-        border: 2px solid #f5f6f7;
-        box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
-        border-radius: vw(5);
-        margin-right: vw(10);
-        height: vw(65);
-        padding: vw(10) vw(10) vw(10) vw(15);
-        text-transform: capitalize;
-        @include font(vw(13), 600, vh(30));
-      }
-    }
     }
     &__questions {
       display: block;
@@ -710,7 +698,7 @@ export default {
           margin: vw(3) vw(10);
           width: 15px;
           height: 2px;
-          content: " ";
+          content: ' ';
           background-color: $greyBlue90;
         }
       }
