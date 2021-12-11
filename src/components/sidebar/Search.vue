@@ -1,7 +1,6 @@
 <template>
   <div class="search">
-    <img class="search-icon" :src="searchIcon" alt="Search" />
-    <input placeholder="Search Courses ..." type="text" />
+    <span class="search-user">{{ userName }}</span>
     <img
       v-if="userInfo"
       class="search-image"
@@ -14,15 +13,18 @@
 <script>
 import { computed } from "@vue/reactivity";
 import { useStore } from "vuex";
+import { user } from "@/composables/getUser";
 export default {
   setup() {
     const store = useStore();
+    const userName = user.value.email;
 
     const userInfo = computed(() => store.state.userInfo);
     return {
       searchIcon: require("@/assets/img/sidebar/search.svg"),
       avatarIcon: require("@/assets/img/sidebar/avatarIcon.png"),
       userInfo,
+      userName,
     };
   },
 };
@@ -31,70 +33,50 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
 .search {
-  @include flex(space-evenly);
+  @include flex(space-around);
   background-color: $greyBlue20;
   min-height: vw(90);
-  &-icon {
-    width: vw(17);
-    height: vw(17);
+  &-user {
+    @include font(vw(22), 700, vw(30), $greyBlue50);
   }
   &-image {
     width: vw(35);
     height: vw(35);
   }
-  input {
-    background-color: inherit;
-    border: none;
-    outline: saddlebrown;
-    color: $greyBlue85;
-    font-size: vw(13);
-  }
 }
 @media screen and (max-width: 769px) {
   .search {
     min-height: vw(120);
-    &-icon {
-      width: vw(28);
-      height: vw(28);
+    &-user {
+      @include font(vw(28), 700, vw(35), $greyBlue50);
     }
     &-image {
       width: vw(60);
       height: vw(60);
-    }
-    input {
-      font-size: vw(21);
     }
   }
 }
 @media screen and (max-width: 579px) {
   .search {
     min-height: vw(165);
-    &-icon {
-      width: vw(40);
-      height: vw(40);
+     &-user {
+      @include font(vmin(15), 700, vmin(20), $greyBlue50);
     }
     &-image {
       width: vw(80);
       height: vw(80);
-    }
-    input {
-      font-size: vw(40);
     }
   }
 }
 @media screen and (max-width: 426px) {
   .search {
     min-height: vmin(55);
-    &-icon {
-      width: vmin(20);
-      height: vmin(20);
+     &-user {
+      @include font(vmin(16), 700, vmin(20), $greyBlue50);
     }
     &-image {
       width: vmin(40);
       height: vmin(40);
-    }
-    input {
-      font-size: vmin(12);
     }
   }
 }
