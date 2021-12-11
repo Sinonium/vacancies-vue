@@ -234,8 +234,8 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .cart {
-    width: vmin(100);
-    margin-top: vmin(295);
+    width: vmin(98);
+    margin-top: vmin(180);
     margin-right: vmin(90);
 
     p {
@@ -317,4 +317,6 @@ export default {
     }
   }
 }
+
+
 </style>
