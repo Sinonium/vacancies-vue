@@ -5,6 +5,7 @@ import getCollection from '@/composables/getCollection'
 import getFilteredCollection from '@/composables/getFilteredCollection'
 import getAnyCollection from '@/composables/getAnyCollection'
 import useDoc from '../composables/useDoc.js'
+import middleCourseGrade from './middleCourseGrade.js'
 export default createStore({
   state: {
     courses: [],
@@ -65,5 +66,6 @@ export default createStore({
   modules: {
     auth,
     categories,
+    middleCourseGrade
   },
 })

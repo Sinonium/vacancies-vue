@@ -27,12 +27,13 @@ export default {
     let screenWidth = window.screen.width;
     window.addEventListener(`resize`, () => {
        screenWidth = window.screen.width;
+       if(screenWidth > 769) {
+         sidebar.value = true;
+       }
     }, false);
     const sidebar = ref(true);
     const handleSidebar = () => {
-      if (screenWidth > 769) {
-        sidebar.value = true;
-      } else {
+      if (screenWidth < 769) {
         sidebar.value = !sidebar.value;
       }
     };
