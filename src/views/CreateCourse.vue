@@ -254,7 +254,7 @@
           v-model="lesson"
         />
         <div class="lesson-details">
-          <input required type="time" v-model="time" />
+          <input type="time" v-model="time" />
           <select v-model="type" class="select">
             <option>video</option>
             <option>text</option>
@@ -307,7 +307,7 @@ export default {
   },
 
   setup() {
-    const { uploadImageAndGetImageUrl, url } = useStorage()
+    const { uploadImageAndGetImageUrl } = useStorage()
     const categories = [
       {
         text: 'Development',
@@ -504,21 +504,15 @@ export default {
         await addCollection(
           'more info',
           {
-            malika: {
-              whatStudy: enterIsWhat.value,
-              courseContent: Lectures.value,
-            },
-            beknazar: {
-              heading: heading.value,
-              mainInfo: mainInfo.value,
-              moreInfo: moreInfo.value,
-              whoIsfor: enterIsWho.value,
-            },
-            adilhan: {
-              grades: [],
-              reviews: [],
-              teacherID: '',
-            },
+            whatStudy: enterIsWhat.value,
+            courseContent: Lectures.value,
+            heading: heading.value,
+            mainInfo: mainInfo.value,
+            moreInfo: moreInfo.value,
+            whoIsfor: enterIsWho.value,
+            grades: [],
+            reviews: [],
+            teacherID: '',
           },
           false,
           myId
