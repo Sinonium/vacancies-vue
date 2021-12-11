@@ -113,7 +113,7 @@ aside.active {
 }
 .ps {
   position: relative;
-  height: vw(800);
+  height: vw(1000);
 }
 .ps__rail-y {
   background-color: inherit !important;
@@ -121,7 +121,7 @@ aside.active {
 .sidebar__content {
   background-color: $greyBlue25;
   .sidebar__main-group {
-    padding-bottom: vw(200);
+    padding-bottom: vw(300);
     li {
       display: flex;
       align-items: center;
@@ -200,6 +200,16 @@ aside.active {
           margin-left: vw(32);
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 1600px) {
+  .ps {
+    height: vw(1300);
+  }
+  .sidebar__content {
+    .sidebar__main-group {
+      padding-bottom: vw(450);
     }
   }
 }
@@ -391,8 +401,8 @@ aside.active {
   }
 }
 @media screen and(max-width:376px) {
-   .sidebar{
-      width: vmin(280);
-   }
+  .sidebar {
+    width: vmin(280);
+  }
 }
 </style>
