@@ -203,6 +203,7 @@ export default {
 }
 @media screen and (max-width: 770px) {
 .footer {
+    width: 100%;
     &__nav {
         width: vw(840);
         &-item {
