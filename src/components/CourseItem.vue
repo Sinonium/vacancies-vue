@@ -1,6 +1,6 @@
 <template>
   <div class="col-3">
-    <div @click="handleMoreInfo()" class="course-item">
+    <router-link :to="{name: 'DetailsCourse', params: {id: course.id}}"  @click="handleMoreInfo()" class="course-item">
       <div class="course-item__header">
         <img class="course-item__image" :src="course.imageUrl" alt="course" />
         <div class="course-item__time">
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -42,13 +42,11 @@ export default {
   setup(props) {
     const store = useStore()
     const router = useRouter()
-
     const handleMoreInfo = async () => {
       await store.dispatch('getMoreInfo', {
         moreInfoId: props.course.moreInfoId,
         courseId: props.course.id,
       })
-      await router.push('/DetailsCourse')
     }
 
     return {
