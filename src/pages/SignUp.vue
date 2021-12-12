@@ -32,7 +32,10 @@
               required
               v-model="password"
             />
-            <img src="@/assets/img/password-key.svg" alt="'Type your password" />
+            <img
+              src="@/assets/img/password-key.svg"
+              alt="'Type your password"
+            />
           </div>
 
           <button>Sign Up</button>
@@ -51,10 +54,12 @@
 import { computed, ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import addCollection from '@/composables/addCollection'
+// import addCollection from '@/composables/addCollection'
+import useDoc from '@/composables/useDoc'
 
 export default {
   setup() {
+    const { addCollection } = useDoc()
     const email = ref('')
     const password = ref('')
     const name = ref('')
@@ -139,7 +144,7 @@ export default {
     padding-left: vw(25);
  
   }
-  img{
+  img {
     width: vw(30);
     height: vw(30);
   }
@@ -183,8 +188,8 @@ export default {
         border: 2px solid $greyBlue50;
       }
     }
-    ::placeholder{
-      color:$greyBlue70 ;
+    ::placeholder {
+      color: $greyBlue70;
     }
 
    
@@ -214,7 +219,7 @@ export default {
     
     margin: 0;
     width: vmin(350);
-    height: vmin(400);
+    height: vmin(420);
      
     &-title {
       padding-left: vmin(60);
@@ -224,8 +229,9 @@ export default {
       }
     }
     h2 {
-      @include font(vmin(20), 400, vmin(25));
-      padding-top: vmin(50) ;
+      @include font(vmin(20), 200, vmin(25));
+      padding-top: vmin(40);
+
     }
     label {
       width: 55%;
@@ -240,7 +246,7 @@ export default {
         border: 2px solid #f5f6f7;
         border-radius: vmin(20);
         padding: vmin(4) vmin(10);
-        margin-bottom: vmin(10);
+        margin-bottom: vmin(15);
         height: vmin(20);
         input {
           @include font(vmin(12), 400, vmin(15));
@@ -257,7 +263,7 @@ export default {
         margin: vmin(10) 0 vmin(10)
       }
       .auth {
-        &__have-account {
+       &__have-account {
           @include font(vmin(10), 150, vmin(15));
            color: #adb8cc;
            margin-left: vmin(10);
