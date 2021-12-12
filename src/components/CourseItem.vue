@@ -1,7 +1,7 @@
 <template>
   <div class="col-3">
     <div v-if="course" class="course-item">
-    <router-link :to="{name: 'DetailsCourse', params: {id: course.moreInfoId}}"  @click="handleMoreInfo()">
+    <router-link :to="{name: 'DetailsCourse', params: {id: course.moreInfoId}}"  @click="handleMoreInfo()" class="router-link">
       <div class="course-item__header">
         <img class="course-item__image" :src="course.imageUrl" alt="course" />
         <div class="course-item__time">
