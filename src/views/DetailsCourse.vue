@@ -124,77 +124,110 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage === 'About'">
-        <CourseContent :moreInfo="moreInfo" />
-        <div class="details-page__bottom">
-          <div class="details-page__bottom-arrow_prev">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-          <div
-            @click="handleCurrentPage('Description')"
-            class="details-page__bottom-btn_push_page"
-          >
-            <img :src="pencilIcon" alt="" />
-            <span> Description </span>
-          </div>
-          <div class="details-page__bottom-arrow_next">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-        </div>
-      </div>
-      <div v-if="currentDetailsPage === 'Description'">
-        <Description />
-        <div class="details-page__bottom">
-          <div class="details-page__bottom-arrow_prev">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-          <div
-            @click="handleCurrentPage('Instructor')"
-            class="details-page__bottom-btn_push_page"
-          >
-            <img :src="studIcon" alt="" />
-            <span>Instructor</span>
-          </div>
-          <div class="details-page__bottom-arrow_next">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-        </div>
-      </div>
-      <div v-if="currentDetailsPage === 'Feedback'">
-        <FeedBack :moreInfo="moreInfo" />
-        <div class="details-page__bottom">
-          <div class="details-page__bottom-arrow_prev">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-          <div
-            @click="handleCurrentPage('About')"
-            class="details-page__bottom-btn_push_page"
-          >
-            <img :src="fireIcon" alt="" />
-            <span> About </span>
-          </div>
-          <div class="details-page__bottom-arrow_next">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-        </div>
-      </div>
-      <div v-if="currentDetailsPage === 'Reviews'">
-        <Reviews :moreInfo="moreInfo"/>
-        <div class="details-page__bottom">
-          <div class="details-page__bottom-arrow_prev">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-          <div
-            @click="handleCurrentPage('Feedback')"
-            class="details-page__bottom-btn_push_page"
-          >
-            <img :src="kebabIcon" alt="" />
-            <span>Feedback</span>
-          </div>
-          <div class="details-page__bottom-arrow_next">
-            <img :src="ArrowIcon" alt="ArrowIcon" />
-          </div>
-        </div>
+      <main class="details-page__content">
+         <div v-if="currentDetailsPage === 'Instructor'">
+            <DetailsAboutTeach v-if="jopa.adilhan" :moreInfo="jopa.adilhan" />
+            <div class="details-page__bottom">
+               <div class="details-page__bottom-arrow_prev">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+               <div
+                  @click="handleCurrentPage('Reviews')"
+                  class="details-page__bottom-btn_push_page"
+               >
+                  <img :src="studsIcon" alt="" />
+                  <span> Reviews </span>
+               </div>
+               <div class="details-page__bottom-arrow_next">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+            </div>
+         </div>
+
+
+         <div v-if="currentDetailsPage === 'About'">
+            <CourseContent v-if="jopa.malika" :moreInfo="jopa.malika" />
+            <div class="details-page__bottom">
+               <div class="details-page__bottom-arrow_prev">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+               <div
+                  @click="handleCurrentPage('Description')"
+                  class="details-page__bottom-btn_push_page"
+               >
+                  <img :src="pencilIcon" alt="" />
+                  <span> Description </span>
+               </div>
+               <div class="details-page__bottom-arrow_next">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+            </div>
+         </div>
+
+
+         <div v-if="currentDetailsPage === 'Description'">
+            <Description v-if="jopa.beknazar" :moreInfo="jopa.beknazar" />
+            <div class="details-page__bottom">
+               <div class="details-page__bottom-arrow_prev">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+               <div
+                  @click="handleCurrentPage('Instructor')"
+                  class="details-page__bottom-btn_push_page"
+               >
+                  <img :src="studIcon" alt="" />
+                  <span>Instructor</span>
+               </div>
+               <div class="details-page__bottom-arrow_next">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+            </div>
+         </div>
+
+
+         <div v-if="currentDetailsPage === 'Feedback'">
+            <FeedBack :moreInfo="moreInfo" />
+            <div class="details-page__bottom">
+               <div class="details-page__bottom-arrow_prev">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+               <div
+                  @click="handleCurrentPage('About')"
+                  class="details-page__bottom-btn_push_page"
+               >
+                  <img :src="fireIcon" alt="" />
+                  <span> About </span>
+               </div>
+               <div class="details-page__bottom-arrow_next">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+            </div>
+         </div>
+
+
+         <div v-if="currentDetailsPage === 'Reviews'">
+            <Reviews />
+            <div class="details-page__bottom">
+               <div class="details-page__bottom-arrow_prev">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+               <div
+                  @click="handleCurrentPage('Feedback')"
+                  class="details-page__bottom-btn_push_page"
+               >
+                  <img :src="kebabIcon" alt="" />
+                  <span>Feedback</span>
+               </div>
+               <div class="details-page__bottom-arrow_next">
+                  <img :src="ArrowIcon" alt="ArrowIcon" />
+               </div>
+            </div>
+         </div>
+
+
+      </main>
+      <div class="details-page__modal">
+         <AddToCart />
       </div>
     </main>
     <div class="details-page__modal">
@@ -269,60 +302,205 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
-body {
-  background: #e4e7f0;
-}
-.details-page {
-  margin-top: vw(45);
-  &__head {
-    position: relative;
-    display: flex;
-    background: $white;
-    height: vw(80);
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: $greyBlue95;
-      border-radius: 1px;
-    }
-    ul {
-      margin-left: vw(50);
-      display: flex;
-      align-items: center;
-      list-style-type: none;
-      li {
-        cursor: pointer;
-        position: relative;
-        margin-left: vw(52);
-        @include flex();
-        @include font(vw(12), bold, 20px, $greyBlue60);
-        &::before {
-          content: '';
-          position: absolute;
-          bottom: vw(-35);
-          left: 0;
-          width: 0%;
-          height: 2px;
-          background: $blue;
-          border-radius: 1px;
-          opacity: 0;
-          transition: 0.4s;
-        }
-        span {
-          transition: 0.4s;
-          margin-left: vw(17);
-        }
+   @import "@/assets/scss/index.scss";
+   body {
+      background: #e4e7f0;
+   }
+   .details-page {
+      margin-top: vw(45);
+      &__head {
+         position: relative;
+         display: flex;
+         background: $white;
+         height: vw(80);
+         &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: $greyBlue95;
+            border-radius: 1px;
+         }
+         ul {
+            margin-left: vw(50);
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+            li {
+               cursor: pointer;
+               position: relative;
+               margin-left: vw(52);
+               @include flex();
+               @include font(vw(12), bold, 20px, $greyBlue60);
+               &::before {
+                  content: "";
+                  position: absolute;
+                  bottom: vw(-35);
+                  left: 0;
+                  width: 0%;
+                  height: 2px;
+                  background: $blue;
+                  border-radius: 1px;
+                  opacity: 0;
+                  transition: 0.4s;
+               }
+               span {
+                  transition: 0.4s;
+                  margin-left: vw(17);
+               }
+            }
+            svg {
+               path {
+                  transition: 0.4s;
+               }
+            }
+         }
+      }
+      &__modal {
+         position: absolute;
+         top: vw(130);
+         left: vw(1150);
+      }
+   }
+   .details-page__head ul li.active {
+      &::before {
+         content: "";
+         position: absolute;
+         bottom: vw(-35);
+         left: 0;
+         width: 100%;
+         height: 2px;
+         background: $blue;
+         border-radius: 1px;
+         opacity: 1;
+      }
+      span {
+         @include font(vw(12), bold, 20px, $blue);
       }
       svg {
-        path {
-          transition: 0.4s;
-        }
+         path {
+            fill: $blue;
+         }
       }
+   }
+   .details-page__bottom {
+      margin-left: -33.2vw;
+      margin-top: vw(35);
+      margin-bottom: vw(40);
+      @include flex();
+      &-arrow_prev,
+      &-arrow_next {
+         background: $white;
+         box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+         border-radius: vw(30);
+         padding: vw(15);
+         cursor: pointer;
+      }
+      &-arrow_prev {
+         img {
+            transform: rotate(-90deg);
+         }
+      }
+      &-arrow_next {
+         margin-left: vw(235);
+         img {
+            transform: rotate(90deg);
+         }
+      }
+      &-btn_push_page {
+         background: $white;
+         box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+         border-radius: vw(30);
+         @include flex();
+         padding: vw(17) vw(38) vw(15) vw(26);
+         margin-left: vw(235);
+         cursor: pointer !important;
+         span {
+            @include font(vw(12), bold, 20px, $greyBlue60);
+            margin-left: vw(16);
+         }
+      }
+   }
+   @media screen and (max-width: 1440px) {
+      .details-page__head {
+         ul {
+            li {
+               @include font(vw(19), bold, 20px, $greyBlue60);
+            }
+         }
+      }
+      .details-page__bottom {
+         margin-left: -26.2vw;
+      }
+      .details-page__modal {
+         top: -6.875vw;
+         left: 73.875vw;
+      }
+      .details-page__head ul li.active {
+         span {
+            @include font(vw(19), bold, 20px, $blue);
+         }
+      }
+      .details-page__head ul {
+         margin-left: 1vw;
+      }
+   }
+   @media screen and (max-width: 1024px) {
+      .details-page__modal {
+         top: -34.875vw;
+      }
+      .details-page__head ul {
+         margin-left: -1vw;
+      }
+      .cart-review__header_data span {
+         margin-left: 0.3vw;
+      }
+      .details-page__bottom {
+         margin-left: -24.2vw;
+      }
+      .details-page__bottom-btn_push_page {
+         padding: 1.6vw 2.7vw 1.6vw 2.7vw;
+      }
+      .details-page__bottom {
+         &-arrow_next,
+         &-arrow_prev {
+            padding: 2vw 1.5vw 2vw 1.5vw;
+         }
+      }
+   }
+   @media screen and (max-width: 769px) {
+      .details-page__head ul {
+         margin-left: 3vw;
+      }
+      .details-page {
+         &__head {
+            height: vw(120);
+            ul {
+               li {
+                  @include font(vw(25), bold, 20px, $greyBlue60);
+               }
+            }
+         }
+      }
+      .details-page__head ul li.active {
+         span {
+            @include font(vw(25), bold, 20px, $blue);
+         }
+      }
+      .details-page__bottom {
+         margin-left: -23.2vw;
+         &-arrow_prev,
+         &-arrow_next {
+            padding: 2.9vw;
+            img {
+               height: vw(20);
+            }
+         }
+         &-arrow_next {
+            margin-left: vw(260);
+         }
     }
   }
   &__modal {
@@ -330,7 +508,7 @@ body {
     top: vw(-53);
     right: vw(30);
   }
-}
+
 .details-page__head ul li.active {
   &::before {
     content: '';
@@ -456,20 +634,8 @@ body {
           @include font(vw(25), bold, 20px, $greyBlue60);
         }
       }
-    }
-  }
-  .details-page__head ul li.active {
-    span {
-      @include font(vw(25), bold, 20px, $blue);
-    }
-  }
-  .details-page__bottom {
-    margin-left: -23.2vw;
-    &-arrow_prev,
-    &-arrow_next {
-      padding: 2.9vw;
-      img {
-        height: vw(20);
+      .details-page__modal {
+         top: -33.875vw;
       }
     }
     &-arrow_next {
