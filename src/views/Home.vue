@@ -67,8 +67,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .courses-items {
-  
-  padding: vw(80);
+  margin: vw(80) 0 0 vw(40);
   width: vw(1200);
   .row {
     display: flex;
@@ -76,7 +75,7 @@ export default {
   }
 }
 .courses-info {
-  margin: vw(30) vw(30);
+  margin: vw(30) vw(30) vw(60) vw(30);
   position: relative;
 
   &__image {
@@ -113,6 +112,9 @@ export default {
     }
   }
   &__students {
+    img{
+      margin-right: vw(13);
+    }
     display: inline-flex;
     .students {
       @include font(vw(13), 700, vh(25));
@@ -122,71 +124,134 @@ export default {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 768px) {
   .courses-items {
-    width: vmin(200);
-    padding: vmin(0) vmin(40);
-    margin: vmin(40) 0;
+    width: 100%;
+    margin: vmin(30) 0;
     .row {
+      padding: 0 vw(70);
       margin-top: vmin(20);
-      display: block;
+      display: flex;
+      gap: 5%;
     }
-}
+  }
   .courses-info {
-    margin: vmin(25) 0 vmin(25) vmin(0) ;
-    width: vmin(320);
+    margin: vw(60) 0;
     &__image {
-      width: 117%;
-      height: vmin(200);
+      width: 100%;
     }
     &__block {
-      padding: vmin(30) 0 vmin(10) vmin(15);
-      width: 100%;
+      padding: vw(30) 0 vw(20) vw(30);
     }
     &__title {
       display: block;
-       width: vmin(150);
+       width: vw(300);
       .name {
-        @include font(vmin(15), 700, vmin(20));
-        margin-top: vmin(40);
-        color: white;
+        @include font(vw(25), 600, vw(40));
+        color: $white;
+        margin-top: vw(50);       
       }
       .sticker {
-        width: vmin(70);
+        padding: vw(30);
+        width: vw(150);
       }
     }
     &__block-2 {
-      margin: 0 0 0 vmin(15);
+      margin: 0 0 0 vw(200);
       p {
-       @include font(vmin(18), 600, vmin(20));
-       color: white;
-       margin-top: vmin(10)
+       @include font(vw(25), 600, vw(40));
+        color: $white;
+        opacity: 0.3;
+        margin: 0;
       }
       h5 {
-        @include font(vmin(10), 600, vmin(20));
-        color: white;
-        
+        @include font(vw(25), 600, vw(40));
+        color: $white;
+        margin: 0;
       }
     }
     &__students {
       display: block;
-      margin-top: vmin(-5);
+      margin: vmin(10) 0 vmin(5);
       span{
         margin: 0;
       }
       .students {
         display: flex;
         align-items: center;
-        margin-top: vmin(-10);
-        @include font(vmin(6), 700, vmin(10));
+        margin: 0;
+        @include font(vw(20), 700, vw(40));
+        color: $white;
+          img {
+          width: vw(30);
+          margin-right: vw(30);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .row{
+    display: flex;
+    justify-content: center;
+    
+  }
+  .courses-info {
+    width: 100%;
+    margin: vw(60) 0;
+    &__image {
+      width: 100%;
+      object-fit: cover;
+      height: vmin(200);
+    }
+    &__block {
+      margin-left: vmin(10);
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+    &__title {
+      margin-top: vmin(20);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .name {
+        @include font(vmin(17), 600, vmin(25));
+        color: $white;
+        margin-top: 0;       
+      }
+      .sticker {
+        padding: vmin(10);
+        width: vmin(50);
+      }
+    }
+    &__block-2 {
+      margin: 0;
+      margin-top: vmin(10);
+      margin-left: vmin(20);
+      p {
+       @include font(vmin(10), 600, vmin(20));
+       margin-top: vmin(10);
+        color: $white;
+        opacity: 0.3;
+        margin: 0;
+      }
+      h5 {
+        @include font(vmin(10), 600, vmin(20));
+        color: $white;
+        margin: 0;
+      }
+    }
+    &__students {
+      .students {
+        margin: 0;
+        @include font(vmin(10), 600, vmin(20));
         color: $white;
           img {
           width: vmin(15);
-          margin-right: vmin(15);
+          margin-right: vw(30);
         }
       }
-
-      
     }
   }
 }
