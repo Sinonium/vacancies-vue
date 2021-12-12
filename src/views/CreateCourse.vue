@@ -269,9 +269,8 @@
 </template>
 
 <script>
-// import addCollection from '@/composables/addCollection'
 import useDoc from '@/composables/useDoc'
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 import { v4 as uuid } from 'uuid'
 import SubACategories from '@/components/AdminPanel/SubACategories.vue'
 import SubBCategories from '@/components/AdminPanel/SubBCategories.vue'
@@ -286,6 +285,9 @@ import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
 import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
 import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
 import useStorage from '@/composables/useStorage'
+import { user } from '@/composables/getUser'
+import { useStore } from 'vuex'
+import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
     SubACategories,
@@ -303,8 +305,22 @@ export default {
   },
 
   setup() {
+    // const userId = user.value.uid
+
+    const userName = ref()
+    const userId = ref()
+
+    const store = useStore()
+    const responseUser = computed(() => store.state.userInfo.name)
+
+    setTimeout(() => {
+      userName.value = responseUser.value
+      userId.value = user.value.uid
+    }, 1500)
+
     const { uploadImageAndGetImageUrl } = useStorage()
     const { addCollection, updateUserAddCourse } = useDoc()
+
     const categories = [
       {
         text: 'Development',
@@ -377,7 +393,6 @@ export default {
     const heading = ref('')
     const name = ref('')
     const price = ref('')
-    // const imageURL = ref('')
     const mainInfo = ref('')
     const moreInfo = ref('')
     const teacher = ref('')
@@ -486,7 +501,8 @@ export default {
         duration: duration.value,
         categories: jopa.value,
         students: 0,
-        teacherName: '',
+        teacherName: userName.value,
+        teacherId: userId.value,
         grade: '',
         moreInfoId: myId,
       }),
@@ -502,7 +518,7 @@ export default {
           whoIsfor: enterIsWho.value,
           grades: [],
           reviews: [],
-          teacherID: '',
+          teacherId: userId.value,
         },
         false,
         myId
@@ -544,6 +560,7 @@ export default {
       enterIsWho,
       enterWhat,
       enterIsWhat,
+      userName,
     }
   },
 }
