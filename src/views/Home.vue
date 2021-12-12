@@ -141,7 +141,7 @@ export default {
       width: 100%;
     }
     &__block {
-      padding: vw(30) 0 vw(20) vw(30);
+      padding: vw(30) 0 vw(20) 0;
     }
     &__title {
       display: block;
@@ -205,7 +205,6 @@ export default {
       height: vmin(200);
     }
     &__block {
-      margin-left: vmin(10);
       display: block;
       width: 100%;
       padding: 0;
