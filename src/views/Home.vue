@@ -15,7 +15,7 @@
       <div class="courses-info__block-2">
         <div class="courses-info__content">
           <p class="categories">Related Categories:</p>
-          <h5>{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
+          <h5 v-if="selectedCourse">{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
         </div>
         <div class="courses-info__students">
           <img src="./../assets/img/students.svg" alt="" />
@@ -30,22 +30,24 @@
       </div>
     </div>
   </div>
-  <!-- <Filters /> -->
+  <Filters />
   <div class="courses-items">
-    <div class="row">
-      <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+    <div class="row" v-if="courses">
+      <CourseItem  v-for="course in courses" :key="course.id" :course="course"/>
+      <router-link :to="{name: 'Details', params: {id: props.courses}}"> 
+        sasasas
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseItem from '../components/CourseItem.vue'
 import { onMounted, computed} from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import Filters from '../components/Filters/Fiters.vue'
 export default {
-  components: { Filters, CourseItem, DetailsAboutTeach },
+  components: { Filters, CourseItem, },
   setup() {
     const store = useStore()
 
