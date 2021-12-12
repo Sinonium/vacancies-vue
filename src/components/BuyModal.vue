@@ -133,11 +133,6 @@ export default {
     border-radius: vw(10);
     margin-top: vh(100);
     padding: vw(50);
-    h1 {
-      @include font(vw(35), 700, vw(20));
-      color: $greyBlue25;
-      text-align: center;
-    }
     &-text {
       margin: auto;
       width: vw(430);
@@ -194,16 +189,13 @@ export default {
 @media screen and (max-width: 1024px) {
   .modal {
     .modal__inner {
-      max-width: vmin(400);
-      height: vmin(500);
+      max-width: vmin(310);
+      height: vmin(200);
       padding: vmin(10);
       margin-top: vmin(10);
-      h1 {
-        @include font(vmin(6), 700, vmin(10));
-      }
       &-text {
         width: vmin(300);
-        margin-top: vmin(80);
+        margin-top: vmin(30);
         h3 {
           @include font(vmin(7), 700, vmin(10));
         }
@@ -236,6 +228,52 @@ export default {
             width: vmin(150);
             margin-right: vmin(5);
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .modal {
+    .modal__inner {
+      max-width: vmin(240);
+      height: vmin(300);
+      padding: vmin(10);
+      margin-top: vmin(50);
+      &-text {
+        width: vmin(160);
+        margin-top: vmin(10);
+        h3 {
+          @include font(vmin(10), 700, vmin(10));
+        }
+        p {
+          @include font(vmin(8), 600, vmin(10));
+        }
+      }
+      .items {
+        width: vmin(160);
+        margin-top: vmin(15);
+
+        input {
+          @include font(vmin(7), 600, vmin(10), $greyBlue70);
+          height: vmin(15);
+          width: vmin(151);
+          margin-right: vmin(4);
+        }
+        div {
+          display: block;
+        }
+      }
+      .buttons {
+        display: flex;
+        width: vmin(150);
+        margin-top: vmin(5);
+        button {
+          @include font(vmin(7), 700, vmin(8), $greyBlue60);
+          width: vmin(45);
+          height: vmin(20);
+          margin-left: vmin(15);
         }
       }
     }

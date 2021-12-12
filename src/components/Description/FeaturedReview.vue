@@ -224,26 +224,66 @@ export default {
     }
   }
 }
-@media screen and (max-width: 428px){
+@media screen and (max-width: 428px) {
   .review {
     .container {
       max-width: vmin(350);
     }
-     &__content {
-     max-width: vmin(345);
-     &-title{
-       img{
-         padding-left: vmin(180);
-       }
-     }
-
+    &__content {
+      max-width: vmin(345);
+      h2 {
+        @include font(vmin(8), 600, vmin(10), $greyBlue50);
+      }
+      &-title {
+        h3 {
+          @include font(vmin(9), 600, vmin(10), $greyBlue50);
+        }
+        img {
+          padding-left: vmin(180);
+        }
+      }
     }
-     &__content-text {
+    &__content-text {
       p {
         max-width: vmin(340);
       }
     }
+    .logo__text {
+        .name {
+          h3 {
+            @include font(vmin(8), 600, vmin(10), $greyBlue50);
+          }
+        }
+      }
+      .raiting {
+        img {
+          width: vmin(35);
+          height: vmin(15);
+        }
+        p {
+          @include font(vmin(6), 600, vmin(3), $greyBlue80);
+        }
+      }
+      &__content-text {
+      p {
+        @include font(vmin(8), 600, vmin(10), $greyBlue60);
+        max-width: vmin(320);
+      }
+    }
+    &__buttons {
+      p {
+        @include font(vmin(7), 700, vmin(10), $greyBlue60);
+        margin-right: vmin(10);
+      }
+      button {
+        @include font(vmin(7), 700, vmin(10), $greyBlue60);
+        width: vmin(30);
+        height: vmin(15);
+        margin-right: vmin(10);
+        margin-top: vmin(5);
+      }
 
+    }
   }
 }
 </style>
