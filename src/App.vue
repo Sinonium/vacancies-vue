@@ -5,10 +5,10 @@
       <router-link to="/createCourse">Create Course</router-link>|
       <router-link to="/test">Test</router-link>|
    </div>
-   <div @keydown.ctrl="handleSidebar" class="main-container">
+   <div class="main-container">
       <SideBar v-if="user" :active="sidebar" />
 
-      <div class="hero" @click.self="sidebar = false">
+      <div class="hero" @click.self="closeSidebar">
          <Header @sidebarClick="handleSidebar" v-if="user" />
          <router-view />
          <Footer v-if="user" />
@@ -42,11 +42,16 @@
                sidebar.value = !sidebar.value;
             }
          };
+         const closeSidebar = () => {
+            if (screenWidth < 769) {
+               sidebar.value = false
+            }
+         }
          if (screenWidth <= 769) {
             sidebar.value = false;
          }
 
-         return { user, sidebar, handleSidebar };
+         return { user, sidebar, handleSidebar, closeSidebar };
       },
    };
 </script>
