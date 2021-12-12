@@ -121,11 +121,11 @@ export default {
 @media screen and (max-width: 1024px) {
   .description {
     .container {
-      max-width: vmin(180);
+      max-width: vmin(270);
     }
     &__content {
       padding: vmin(10) vmin(10);
-      width: vmin(160);
+      width: vmin(250);
     }
     &__content-text {
       h3 {
@@ -167,10 +167,10 @@ export default {
 @media screen and (max-width: 428px){
   .description {
     .container {
-      max-width: vmin(250);
+      max-width: vmin(350);
     }
      &__content {
-      width: vmin(200);
+      width: vmin(340);
     }
   }
 }
