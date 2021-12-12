@@ -67,6 +67,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .courses-items {
+  
   padding: vw(80);
   width: vw(1200);
   .row {
