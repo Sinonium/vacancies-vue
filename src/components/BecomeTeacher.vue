@@ -1,5 +1,5 @@
 <template>
-  <div class="header__record-teacher">
+  <div v-if="currentUserInfo" class="header__record-teacher">
     <router-link
       v-if="!currentUserInfo.isTeacher"
       :to="{ name: 'Becometeacher' }"
@@ -16,7 +16,6 @@
 export default {
   props: ['currentUserInfo'],
   setup(props) {
-    console.log(props.currentUserInfo)
     return {}
   },
 }

@@ -220,15 +220,6 @@
           </select>
           <label for=""></label>
         </div>
-        <div>
-          <h4 class="create-course__title">Duration courses</h4>
-          <p class="create-course__instruction">Type course time</p>
-          <input
-            onkeyup="this.value=this.value.replace(/^\s/,'')"
-            type="number"
-            v-model="coursetime"
-          />
-        </div>
       </div>
     </div>
 
@@ -254,11 +245,11 @@
           v-model="lesson"
         />
         <div class="lesson-details">
-          <input  class="lesson-time" type="time" v-model="time" />
           <select v-model="type" class="select">
             <option>video</option>
             <option>text</option>
           </select>
+          <input  class="lesson-time" type="time" v-model="time" />
         </div>
         <span class="enter-span">
           <div class="enter" @click="enterLesson">Enter</div>
@@ -706,6 +697,7 @@ export default {
         justify-content: space-between;
         input {
           width: 46%;
+          margin-right: vmin(4);
         }
         select {
           width: 46%;
@@ -744,7 +736,7 @@ export default {
 }
 @media screen and (max-width: 1024px) {
   .admin-board {
-    margin: vmin(15) 0 0 vmin(60);
+    margin: vmin(15) 0 vmin(15) vmin(57);
     width: vmin(300);
     &__heading {
       @include font(vmin(14), 700, vmin(10));
