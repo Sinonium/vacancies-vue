@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div
       :class="{ activeIcon: activeItem === item.id }"
       v-html="item.icon"
@@ -10,25 +10,9 @@
 
 <script>
 export default {
-  props: ['item', 'activeItem'],
+  props: ['item'],
   setup() {
     return {}
   },
 }
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
-div {
-  div {
-    margin-right: vw(20);
-  }
-}
-@media screen and (max-width: 1024px) {
-  div {
-    div {
-      margin-right: vmin(8);
-    }
-  }
-}
-</style>
