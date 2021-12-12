@@ -4,7 +4,7 @@
       <div class="description__content">
         <div class="description__content-text">
           <h3>Description</h3>
-          <p>{{ text.heading }}</p>
+          <p> dfdfdfdf </p>
           <p>{{ text.text }}</p>
         </div>
         <div class="description__content-text__bottom">
@@ -38,6 +38,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
+  props: ['moreInfo'],
   setup() {
     const text = {
       heading:
@@ -52,6 +53,7 @@ export default {
       willCover:
         'This course will cover such advanced concepts as objects and object literals, function expressions, prototypical inheritance, functional programming, scope chains, function constructors (plus new ES6 features), immediately invoked function expressions (IIFEs), call, apply, bind, and more.',
     }
+
     const items = ref([
       'Beginners who have never programmed before.',
       'Programmers switching languages to Python.',
@@ -167,44 +169,44 @@ export default {
 @media screen and (max-width: 428px){
   .description {
     .container {
-      max-width: vmin(350);
+      max-width: vmin(347);
     }
      &__content {
-      width: vmin(330);
+      width: vmin(325);
     }
        &__content-text {
       h3 {
-        @include font(vmin(10), 700, vmin(10), $greyBlue50);
+        @include font(vmin(15), 700, vmin(10), $greyBlue50);
       }
       p {
-        @include font(vmin(8), 700, vmin(10), $greyBlue50);
+        @include font(vmin(15), 600, vmin(19), $greyBlue50);
       }
     }
       &__content-text__bottom {
       p {
-        @include font(vmin(8), 700, vmin(10), $greyBlue60);
+        @include font(vmin(15), 600, vmin(19), $greyBlue60);
       }
     }
       &__course {
       h3 {
-        @include font(vmin(10), 700, vmin(10), $greyBlue50);
+        @include font(vmin(15), 700, vmin(19), $greyBlue50);
       }
       ul {
         li {
           p {
-            @include font(vmin(8), 700, vmin(10), $greyBlue60);
+            @include font(vmin(15), 600, vmin(19), $greyBlue60);
           }
           svg {
-            margin-top: vmin(10);
+            margin-top: vmin(20);
             margin-left: vmin(2);
             margin-right: vmin(10);
-            width: vmin(6);
+            width: vmin(10);
             height: vmin(8);
           }
         }
       }
       p {
-        @include font(vmin(8), 500, vmin(10), $greyBlue60);
+        @include font(vmin(15), 600, vmin(19), $greyBlue60);
       }
     }
   }
