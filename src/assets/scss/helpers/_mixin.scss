@@ -6,21 +6,20 @@
   font-style: normal;
   color: $color;
 }
-@mixin mobile() {
-  @media screen and (max-width: 1024px) {
-    @content;
-  }
-}
 @mixin flex($justify: center) {
   display: flex;
   justify-content: $justify;
   align-items: center;
 }
 @mixin mobile() {
-    @media screen and (max-width: 1024px) {
+//<<<<<< HEAD
+    @media screen and(max-width: 375px) {
         @content
     }
 }
+    // @media screen and (max-width: 1024px) {
+    //     @content
+    // }
 
 @mixin flex($justify:center) {
 	display: flex;
