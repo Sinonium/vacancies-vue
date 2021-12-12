@@ -232,9 +232,23 @@ export default {
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
     }
+    let screenWidth = window.screen.width;
+    window.addEventListener(
+      `resize`,
+      () => {
+          screenWidth = window.screen.width;
+          if (screenWidth > 769) {
+            sidebar.value = true;
+          }
+      },
+      false
+    );
 
     const toggleModal = () => {
       addToCart.value = !addToCart.value;
+    }
+    if (screenWidth <= 769) {
+      addToCart.value = false;
     }
 
     return {
