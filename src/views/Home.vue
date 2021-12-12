@@ -67,6 +67,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .courses-items {
+  
   padding: vw(80);
   width: vw(1200);
   .row {
@@ -135,7 +136,7 @@ export default {
     margin: vmin(25) 0 vmin(25) vmin(0) ;
     width: vmin(320);
     &__image {
-      width: 120%;
+      width: 117%;
       height: vmin(200);
     }
     &__block {
