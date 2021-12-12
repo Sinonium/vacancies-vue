@@ -39,7 +39,7 @@
 
           <span class="auth__have-account"
             >Already have an account?
-            <router-link to="/login">Login </router-link>
+            <router-link to="/login" style=color:white>Login </router-link>
           </span>
         </form>
       </div>
@@ -137,9 +137,7 @@ export default {
     justify-content: space-between;
     margin-bottom: vw(5);
     padding-left: vw(25);
-    // span {
-    //   color: #adb8cc;
-    // }
+ 
   }
   img{
     width: vw(30);
@@ -177,8 +175,7 @@ export default {
       cursor: pointer;
       border: 2px solid $greyBlue60;
       transition: 0.3s;
-      margin-top: vw(10);
-      margin-left: vw(5);
+      margin: vw(10);
       height: vw(50);
       &:hover {
         background-color: $greyBlue25;
@@ -190,10 +187,7 @@ export default {
       color:$greyBlue70 ;
     }
 
-    span {
-      padding-top: vw(5);
-      display: block;
-    }
+   
     .auth {
       &__have-account {
         @include font(vw(12), 700, vw(20));
@@ -213,8 +207,6 @@ export default {
 @media screen and (max-width: 500px) {
 
   .container{
-    
-   // margin-left: vw(-330);
     display: flex;
     justify-content: center;
     margin-top: vmin(100);
@@ -227,20 +219,17 @@ export default {
     &-title {
       padding-left: vmin(60);
       img {
-        width: vmin(15);
-        height: vmin(15);
+        width: vmin(20);
+        height: vmin(20);
       }
     }
     h2 {
-      @include font(vmin(20), 200, vmin(25));
+      @include font(vmin(20), 400, vmin(25));
       padding-top: vmin(50) ;
-      
-
-
     }
     label {
       width: 55%;
-      @include font(vmin(10), 400, vmin(15));
+      @include font(vmin(12), 400, vmin(15));
        color: $white;
 
     }
@@ -254,7 +243,7 @@ export default {
         margin-bottom: vmin(10);
         height: vmin(20);
         input {
-          @include font(vmin(10), 400, vmin(15));
+          @include font(vmin(12), 400, vmin(15));
         }
       }
       button {
@@ -265,11 +254,13 @@ export default {
         border: 2px solid $greyBlue60;
         transition: 0.3s;
         height: vmin(30);
+        margin: vmin(10) 0 vmin(10)
       }
       .auth {
         &__have-account {
-          @include font(vmin(7), 150, vmin(15));
+          @include font(vmin(10), 150, vmin(15));
            color: #adb8cc;
+           margin-left: vmin(10);
         }
       }
     }
