@@ -17,7 +17,7 @@
 <script>
    import { computed, ref } from "@vue/reactivity";
    import FilterItem from "./FiltersItem.vue";
-   import store, { useStore } from 'vuex'
+   import { useStore } from 'vuex'
    export default {
       components: { FilterItem },
       setup() {
@@ -106,17 +106,21 @@
 
          
          const courses = computed(() => store.state.courses)
-         const likedCourse = computed(()=> store.state.userInfo)
-
-         setTimeout(() => {
-            courses.value.map(item => {
-               console.log(item.id);
-            })
-            // console.log(likedCourse.value.name + 'sasas');
-         }, 2500);
+         const userInfo = computed(()=> store.state.userInfo)
+         
          const activeItem = ref(0);
+
          const handleactiveItem = (index) => {
             activeItem.value = index;
+            if(index === 0) {
+               store.dispatch('getCourses')
+            }
+            if(index === 1) {
+               const result = courses.value.filter(item =>{
+                  return userInfo.value.likedCourse.includes(item.id)
+               })
+               store.commit('GET_LIKED_COURSES', result)
+            }
          };
 
          return {
@@ -124,7 +128,6 @@
             handleactiveItem,
             testfilters,
             courses,
-            likedCourse
          };
       },
    };
