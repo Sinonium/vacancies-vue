@@ -214,7 +214,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 378px) {
+@media screen and (max-width: 500px) {
   .container {
     // margin-left: vw(-330);
     display: flex;

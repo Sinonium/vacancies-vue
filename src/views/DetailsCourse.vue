@@ -125,7 +125,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'About'">
-        <!-- <CourseContent :moreInfo="moreInfo" /> -->
+        <CourseContent :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -332,7 +332,7 @@ body {
   }
 }
 .details-page__bottom {
-  margin-left: -33.2vw;
+  margin-left: -28.2vw;
   margin-top: vw(35);
   margin-bottom: vw(40);
   @include flex();
