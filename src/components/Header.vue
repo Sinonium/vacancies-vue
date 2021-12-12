@@ -4,9 +4,7 @@
          <div class="burger" @click="$emit('sidebarClick')">
             <span></span>
          </div>
-         <router-link to="/" class="header__logo-text">
-            Avocadiki
-         </router-link>
+         <router-link to="/" class="header__logo-text"> Avocadiki </router-link>
       </div>
       <nav class="header__nav">
          <ul class="header__nav-list">
@@ -24,9 +22,9 @@
             <img src="@/assets/img/greyArrow.svg" alt="" />
          </div>
       </form>
-      
+
       <div class="header__record">
-        <BecomeTeacher :currentUserInfo="currentUserInfo" />
+         <BecomeTeacher :currentUserInfo="currentUserInfo" />
          <button @click.prevent="handleClick()" class="header__record-logOut">
             Log Out
          </button>
@@ -36,9 +34,9 @@
 
 <script>
    import { computed, ref } from "@vue/reactivity";
-   import { useRouter } from "vue-router";
    import { user } from "../composables/getUser";
    import useAuth from "@/composables/useAuth";
+   import { useRouter } from "vue-router";
    import BecomeTeacher from "@/components/BecomeTeacher";
    import { useStore } from "vuex";
    import { onMounted } from "@vue/runtime-core";
@@ -47,10 +45,15 @@
       setup() {
          console.log(user.value);
          const isTeacher = ref(false);
+
+         const store = useStore();
+         const userName = user.value.displayName;
+
+         const currentUserInfo = computed(() => store.state.userInfo);
+
          const router = useRouter();
          const handleClick = async () => {
             const { logout } = useAuth();
-
             try {
                await logout();
                await router.push("/login");
@@ -58,10 +61,6 @@
                console.log(err);
             }
          };
-         const store = useStore();
-         const userName = user.value.displayName;
-
-         const currentUserInfo = computed(() => store.state.userInfo);
 
          const getUser = async () => {
             console.log(user.value.uid);
@@ -72,7 +71,7 @@
          });
 
          const headerNav = ref(["Main", "Career", "About", "Blog", "Support"]);
-         return { userName,headerNav, handleClick, isTeacher, currentUserInfo };
+         return { userName, headerNav, isTeacher, currentUserInfo, handleClick };
       },
    };
 </script>
@@ -160,10 +159,10 @@
          }
          &-teacher {
             a {
-                text-decoration: none;
-                @include font(vw(12), 700, vh(20), $greyBlue70);
-                margin-right: vw(40);
-             }
+               text-decoration: none;
+               @include font(vw(12), 700, vh(20), $greyBlue70);
+               margin-right: vw(40);
+            }
          }
          &-logOut {
             @include font(vw(12), 700, vh(20), $blue);
@@ -207,9 +206,9 @@
                @include font(vw(16), 700, vh(25), $greyBlue60);
             }
             &-teacher {
-                a {
-                    @include font(vw(15), 700, vh(20), $greyBlue70);
-                }
+               a {
+                  @include font(vw(15), 700, vh(20), $greyBlue70);
+               }
             }
             &-logOut {
                @include font(vw(15), 700, vh(20), $blue);
@@ -217,15 +216,15 @@
          }
       }
    }
-@media screen and (max-width: 1300px) {
-    .header {
-        &__form {
+   @media screen and (max-width: 1300px) {
+      .header {
+         &__form {
             input {
-                width: vw(170);
+               width: vw(170);
             }
-        }
-    }
-}
+         }
+      }
+   }
    @media screen and (max-width: 770px) {
       .header {
          padding: vw(30) vw(40) vw(30) vw(30);
@@ -246,11 +245,11 @@
          &__logo {
             flex-direction: row-reverse;
             .burger {
-                span {
-                    margin-left: vw(40);
-                    margin-right: 0;
-                    width: vw(30);
-                    height: vw(5);
+               span {
+                  margin-left: vw(40);
+                  margin-right: 0;
+                  width: vw(30);
+                  height: vw(5);
                   &::before,
                   &::after {
                      transform: translateY(vw(-10));
@@ -273,9 +272,9 @@
          &__record {
             display: block;
             &-teacher {
-                a {
-                    @include font(vw(28), 700, vh(20), $greyBlue70);
-                }
+               a {
+                  @include font(vw(28), 700, vh(20), $greyBlue70);
+               }
             }
             &-logOut {
                display: none;
@@ -285,7 +284,7 @@
    }
    @media screen and (max-width: 430px) {
       .header {
-        justify-content: center;
+         justify-content: center;
          &__logo {
             .burger {
                span {
@@ -318,9 +317,9 @@
                text-align: center;
             }
             &-teacher {
-                a {
-                    @include font(vmin(15), 700, vmin(20), $greyBlue70);
-                }
+               a {
+                  @include font(vmin(15), 700, vmin(20), $greyBlue70);
+               }
             }
             &-logOut {
                @include font(vmin(15), 700, vmin(20), $blue);
