@@ -177,66 +177,88 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
-  .col-3 {
-    width: vw(320);
-    height: vw(430);
-    background-color: #ffffff;
-    border-radius: vw(10);
-    .course-item {
-      width: vw(320);
-      height: vw(430);
+.col-3 {
+      margin: 0 auto;
+      margin-bottom: vmin(15);
+      width: vmin(250);
+.course-item {
+  min-height: vmin(230);
+  border-radius: vmin(10);
+  &__header { 
+    padding: vmin(10);
+    height: vmin(50);
+  }
+  &__image {
+    width: vmin(250);
+    height: vmin(130);
+    z-index: -1;
+    border-radius: vmin(3);
+  }
+  &__time {
+    border-radius: vmin(15);
+    padding: vmin(5) vmin(10);
+    max-height: vmin(15);
+    span {
+      @include font(vmin(9), 700, vmin(20));
+      margin-left: vmin(5);
+      color: white;
+    }
+    img {
+      width: vmin(10);
+      height: vmin(10);
+    }
+  }
+  &__like {
+    width: vmin(25);
+    height: vmin(25);
+    img {
+      padding: vmin(9);
+      width: vmin(10);
+      height: vmin(10);
+    }
+  }
+  &__info {
+    margin-top: vmin(80);
+    padding: 0 vmin(20);
+    
+  }
+  &__name {
+    @include font(vmin(10), 700, vmin(25));
+    color: #6b7a99;
+    margin-bottom: vmin(5);
+    height: vmin(25);
+  }
+  &__rating {
+    margin: vmin(8) 0;
 
-      &__header {
-        padding: vw(10);
-        height: vw(90);
-        z-index: 1;
-      }
-      &__image {
-        width: vw(320);
-        height: vw(220);
-      }
-      &__time {
-        border-radius: vw(30);
-        padding: vw(10) vw(20);
-        max-height: vw(40);
-        span {
-          @include font(vw(20), 700, vw(20));
-          margin-left: vw(20);
-          color: $white;
-        }
-        img {
-          width: vw(20);
-          height: vw(20);
-        }
-      }
-      &__like {
-        width: vmin(15);
-        height: vmin(15);
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 1;
-        img {
-          padding: 0;
-          width: vmin(5);
-          height: vmin(5);
-        }
-      }
-      &__info {
-        margin-top: vw(140);
-        padding: 0 vw(15);
-      }
-      &__name {
-        @include font(vw(20), 700, vw(30));
-        color: #6b7a99;
-        margin-bottom: 0;
-      }
-      &__rating {
-        margin: 0;
-        margin-top: vw(20);
+    img {
+      width: vmin(6);
+      height: vmin(6);
+    }
+    span {
+      @include font(vmin(10), 700, vmin(10));
+      margin-left: vmin(7);
+      color: #4d5e80;
+    }
+  }
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    p {
+      @include font(vmin(10), 700, vmin(10));
+      color: #7d8fb3;
+      margin-top: vmin(-7);
+    }
+    span {
+      margin-top: vmin(-4);
+      @include font(vmin(10), 700, vmin(15));
+      color: #6b7a99;
+    }
+  }
+}
+}
+
+}
 
         img {
           width: vmin(5);

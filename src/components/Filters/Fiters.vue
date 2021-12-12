@@ -207,7 +207,7 @@ export default {
 @media screen and (max-width: 1024px) {
   .filtersItem {
     div {
-      @include font(vmin(6), 800, vmin(10), $greyBlue60);
+      @include font(vmin(10), 600, vmin(10), $greyBlue60);
       div {
         svg {
           width: vmin(8);
@@ -223,7 +223,7 @@ export default {
   }
   .active::before {
     left: vmin(-2);
-    top: vmin(20);
+    top: vmin(30);
     width: 120%;
   }
   .filters {
@@ -232,11 +232,12 @@ export default {
       margin-top: vmin(25);
       li {
         margin-right: vmin(15);
+        margin-bottom: vmin(10);
       }
     }
   }
   .filters::before {
-    top: vmin(20);
+    top: vmin(30);
   }
 }
 </style>

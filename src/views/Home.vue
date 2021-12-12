@@ -10,6 +10,7 @@
         <img class="sticker" src="./../assets/img/stickers.svg" alt="" />
         <h3 v-if="!selectedCourse[2]" class="name">{{ selectedCourse[2] }}</h3>
         <h3 v-else class="name">{{ selectedCourse[2] }} Courses</h3>
+        
       </div>
 
       <div class="courses-info__block-2">
@@ -122,70 +123,65 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .courses-items {
-    width: vw(1100);
-    padding: vw(0);
-    padding-left: vw(80);
+    width: vmin(200);
+    padding: vmin(0) vmin(60);
     margin: 0;
     .row {
-      display: flex;
-      justify-content: space-around;
+      margin-top: vmin(20);
+      display: block;
     }
 }
   .courses-info {
-    margin: 0;
-    margin: vw(25) 0 vw(25) vw(25) ;
-    width: vw(1220);
+    margin: vmin(25) 0 vmin(25) vmin(35) ;
+    width: vmin(320);
     &__image {
       width: 100%;
+      height: vmin(120);
     }
     &__block {
-      padding: vw(30) 0 vw(20) vw(30);
+      padding: vmin(15) 0 vmin(10) vmin(15);
       width: 100%;
     }
     &__title {
       display: block;
-       width: vw(350);
+       width: vmin(150);
       .name {
-        @include font(vw(20), 700, vw(40));
-        color: $white;
-        margin-top: vw(15);
-        display: flex;
-        flex-wrap: wrap;
-       
+        @include font(vmin(10), 700, vmin(20));
+        margin-top: vmin(15);
+        color: white;
       }
       .sticker {
-        width: vw(150);
+        width: vmin(70);
       }
     }
     &__block-2 {
-      margin: 0 0 0 vw(30);
+      margin: 0 0 0 vmin(15);
       p {
-       @include font(vw(20), 600, vw(40));
-        color: $white;
-        opacity: 0.3;
-        margin: 0;
+       @include font(vmin(10), 600, vmin(20));
+       color: white;
+       margin-top: vmin(-7)
       }
       h5 {
-        @include font(vw(20), 600, vw(40));
-        color: $white;
-        margin: 0;
+        @include font(vmin(7), 600, vmin(20));
+        color: white;
+        
       }
     }
     &__students {
       display: block;
-      margin-top: vmin(5);
+      margin-top: vmin(-5);
       span{
         margin: 0;
       }
       .students {
         display: flex;
         align-items: center;
-        margin: 0;
-        @include font(vw(20), 700, vw(40));
+        margin-top: vmin(-10);
+        @include font(vmin(6), 700, vmin(10));
         color: $white;
           img {
-          width: vw(30);
-          margin-right: vw(30);
+          width: vmin(15);
+          margin-right: vmin(15);
         }
       }
 
