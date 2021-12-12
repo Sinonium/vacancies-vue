@@ -107,7 +107,7 @@
       </div>
       <main class="details-page__content">
          <div v-if="currentDetailsPage === 'Instructor'">
-            <DetailsAboutTeach :moreInfo="moreInfo" />
+            <DetailsAboutTeach />
             <div class="details-page__bottom">
                <div class="details-page__bottom-arrow_prev">
                   <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -126,10 +126,7 @@
          </div>
          <main class="details-page__content">
             <div v-if="currentDetailsPage === 'Instructor'">
-               <DetailsAboutTeach
-                  v-if="jopa.adilhan"
-                  :moreInfo="jopa.adilhan"
-               />
+               <DetailsAboutTeach />
                <div class="details-page__bottom">
                   <div class="details-page__bottom-arrow_prev">
                      <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -148,7 +145,7 @@
             </div>
 
             <div v-if="currentDetailsPage === 'About'">
-               <CourseContent v-if="jopa.malika" :moreInfo="jopa.malika" />
+               <CourseContent />
                <div class="details-page__bottom">
                   <div class="details-page__bottom-arrow_prev">
                      <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -167,7 +164,7 @@
             </div>
 
             <div v-if="currentDetailsPage === 'Description'">
-               <Description v-if="jopa.beknazar" :moreInfo="jopa.beknazar" />
+               <Description />
                <div class="details-page__bottom">
                   <div class="details-page__bottom-arrow_prev">
                      <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -186,7 +183,7 @@
             </div>
 
             <div v-if="currentDetailsPage === 'Feedback'">
-               <FeedBack :moreInfo="moreInfo" />
+               <FeedBack />
                <div class="details-page__bottom">
                   <div class="details-page__bottom-arrow_prev">
                      <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -242,7 +239,9 @@
    import CourseContent from "@/components/CourseContent.vue";
    import Description from "@/components/Description/Description.vue";
    import { computed, ref } from "@vue/reactivity";
+   import { useDoc } from "@/composables/useDoc";
    import { useStore } from "vuex";
+   import { onMounted } from "@vue/runtime-core";
    export default {
       components: {
          Reviews,
@@ -253,10 +252,19 @@
          CourseContent,
          CourseInfo,
       },
-      setup() {
+      props: ["id"],
+      setup(props) {
          const addToCart = ref(true);
-         const store = useStore();
-         const moreInfo = computed(() => store.state.courseMoreInfo);
+
+         const { getSingleDoc } = useDoc()
+
+         const getMoreInfo = async (id) => {
+            const { documents } = await getSingleDoc('more info', id)
+
+            console.log(documents);
+         }
+
+         getMoreInfo(props.id)
 
          const currentDetailsPage = ref("About");
          const handleCurrentPage = (currentWord) => {
@@ -282,7 +290,8 @@
          }
 
          return {
-            moreInfo,
+            getSingleDoc,
+            getMoreInfo,
             fireIcon: require("@/assets/icons/DetailsAboutTeach/fire.svg"),
             studIcon: require("@/assets/icons/DetailsAboutTeach/person.svg"),
             studsIcon: require("@/assets/icons/DetailsAboutTeach/persons.svg"),
@@ -532,7 +541,7 @@
          }
       }
    }
-    @media screen and (max-width: 769px) {
+   @media screen and (max-width: 769px) {
       .details-page__head ul {
          margin-left: 3vw;
       }
@@ -563,8 +572,8 @@
          &-arrow_next {
             margin-left: vw(260);
          }
-    }
-    }
+      }
+   }
 
    .details-page__head ul li.active {
       &::before {
