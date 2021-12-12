@@ -263,18 +263,18 @@
 }
 @media screen and (max-width: 426px) {
 .col-3 {
-   width: vmin(150);
-   height: vmin(200);
+   width: vmin(270);
+   height: vmin(340);
 .course-item {
-  min-height: vmin(200);
+  min-height: vmin(340);
   border-radius: vmin(10);
   &__header { 
     padding: vmin(10);
     height: vmin(50);
   }
   &__image {
-    width: vmin(150);
-    height: vmin(100);
+    width: vmin(270);
+    height: vmin(200);
     z-index: -1;
     border-radius: vmin(3);
   }
