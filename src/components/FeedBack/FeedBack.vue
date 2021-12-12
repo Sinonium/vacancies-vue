@@ -355,4 +355,187 @@ export default {
     }
   }
 }
+@media screen and (max-width: 1440px) {
+  .feedback {
+    &__create-rev {
+      width: 48vw;
+      form {
+        div {
+          width: 16vw;
+          height: 8vw;
+          input {
+            @include font(0.9vw, bold, 20px, $white);
+          }
+        }
+        div:first-child {
+          margin-left: -1.68vw;
+          span {
+            margin-left: -2.93vw;
+            margin-top: 5.12vw;
+          }
+        }
+        div:nth-child(2) {
+          margin-left: 5vw;
+          display: flex;
+          justify-content: space-between;
+        }
+        button {
+          font-size: 1.2vw;
+          height: 6vw;
+          width: 10.3vw;
+          margin-left: 10vw;
+        }
+        .feedback__create-rev_error {
+          span {
+            font-size: 1vw;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .feedback {
+    margin-left: 6.4vw;
+  }
+}
+@media screen and (max-width: 768px) {
+  .feedback__create-rev form button {
+    font-size: 1.2vw;
+    height: 7vw;
+    width: 18.3vw;
+    margin-left: 21vw;
+  }
+  .feedback__create-rev form div:nth-child(2) {
+    margin-left: 24vw;
+  }
+  .feedback__create-rev {
+    width: 68vw;
+  }
+  .feedback__create-rev form div:first-child span {
+    margin-left: -4.93vw;
+    margin-top: 5.12vw;
+    font-size: 1.1vw;
+  }
+  .feedback__create-rev form div {
+    width: 18vw;
+    height: 10vw;
+  }
+}
+@media screen and (max-width: 580px) {
+  .feedback {
+    margin-left: 9.75vw;
+  }
+  .feedback__create-rev {
+    width: 76vw;
+  }
+  .feedback__create-rev form div {
+    width: 28vw;
+    height: 12vw;
+  }
+  .feedback__create-rev form button {
+    font-size: 2.2vw;
+    height: 9vw;
+    width: 25.3vw;
+    margin-left: 21vw;
+    margin-top: 4vw;
+  }
+  .feedback__create-rev {
+    margin-top: 1.875vw;
+    padding: 3.1875vw 0.5vw 5.625vw 5.3125vw;
+  }
+  .feedback__create-rev form div:nth-child(2) {
+    margin-left: 6vw;
+  }
+  .feedback__create-rev form .feedback__create-rev_error span {
+    font-size: 2vw;
+  }
+  .feedback__create-rev form div input {
+    font-size: 2.7vw;
+    width: 97px;
+  }
+  .feedback__create-rev form div:first-child span {
+    margin-left: -4.93vw;
+    margin-top: 8.12vw;
+    font-size: 1.9vw;
+  }
+}
+@media screen and(max-width: 426px) {
+  .feedback {
+    margin-left: 0vmin;
+    &__create-rev {
+      margin-top: vmin(30);
+      width: vmin(330);
+      padding: 3.1875vmin 0.5vmin 5.625vmin 5.3125vmin;
+      box-sizing: border-box;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      margin-left: 6vmin;
+      form {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        div {
+          display: flex;
+          align-items: center;
+          border-radius: 1.875vmin;
+          width: 30vmin;
+          height: 16vmin;
+          padding: 2.66667vmin;
+          margin-left: 2.66667vmin;
+          flex-wrap: wrap;
+          img {
+            border-radius: 50%;
+            margin-left: 0vmin;
+            height: 6vmin;
+          }
+          input {
+            font-size: 3.2vmin;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1.33333vmin;
+            margin-top: -4vmin;
+            background: none;
+          }
+          .numLengthTextInp {
+            margin-left: -1.93vmin;
+            margin-top: 7.12vmin;
+            font-size: 2.4vmin !important;
+          }
+        }
+        button {
+          border-radius: 1.875vmin;
+          width: 35vmin;
+          height: 18vmin;
+          padding: vmin(10);
+          border: none;
+          outline: none;
+          @include font(vmin(12), bold, 20px, $white);
+          @include flex();
+          margin-left: 19.33333vmin;
+          &:hover {
+            color: $blue;
+            background: $white;
+            border: 3px dashed $blue;
+          }
+        }
+        .feedback__create-rev_error {
+          display: flex;
+          align-items: center;
+          border: none;
+          margin-left: none;
+        }
+      }
+      span {
+        margin-top: vmin(10);
+        @include font(vmin(18), bold, 20px, red);
+      }
+    }
+    .feedback__create-rev form .feedback__create-rev_error span {
+      font-size: 3vmin;
+    }
+  }
+}
 </style>

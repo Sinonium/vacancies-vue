@@ -124,104 +124,77 @@
           </div>
         </div>
       </div>
-      <main class="details-page__content">
-        <div v-if="currentDetailsPage === 'Instructor'">
-          <DetailsAboutTeach v-if="jopa.adilhan" :moreInfo="jopa.adilhan" />
-          <div class="details-page__bottom">
-            <div class="details-page__bottom-arrow_prev">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
-            <div
-              @click="handleCurrentPage('Reviews')"
-              class="details-page__bottom-btn_push_page"
-            >
-              <img :src="studsIcon" alt="" />
-              <span> Reviews </span>
-            </div>
-            <div class="details-page__bottom-arrow_next">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
+      <div v-if="currentDetailsPage === 'About'">
+        <CourseContent :moreInfo="moreInfo" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Description')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="pencilIcon" alt="" />
+            <span> Description </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
         </div>
-
-        <div v-if="currentDetailsPage === 'About'">
-          <CourseContent />
-          <div class="details-page__bottom">
-            <div class="details-page__bottom-arrow_prev">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
-            <div
-              @click="handleCurrentPage('Description')"
-              class="details-page__bottom-btn_push_page"
-            >
-              <img :src="pencilIcon" alt="" />
-              <span> Description </span>
-            </div>
-            <div class="details-page__bottom-arrow_next">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Description'">
+        <Description />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Instructor')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="studIcon" alt="" />
+            <span>Instructor</span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
         </div>
-
-        <div v-if="currentDetailsPage === 'Description'">
-          <Description v-if="jopa.beknazar" :moreInfo="jopa.beknazar" />
-          <div class="details-page__bottom">
-            <div class="details-page__bottom-arrow_prev">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
-            <div
-              @click="handleCurrentPage('Instructor')"
-              class="details-page__bottom-btn_push_page"
-            >
-              <img :src="studIcon" alt="" />
-              <span>Instructor</span>
-            </div>
-            <div class="details-page__bottom-arrow_next">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Feedback'">
+        <FeedBack :moreInfo="moreInfo" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('About')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="fireIcon" alt="" />
+            <span> About </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
         </div>
-
-        <div v-if="currentDetailsPage === 'Feedback'">
-          <FeedBack :moreInfo="moreInfo" />
-          <div class="details-page__bottom">
-            <div class="details-page__bottom-arrow_prev">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
-            <div
-              @click="handleCurrentPage('About')"
-              class="details-page__bottom-btn_push_page"
-            >
-              <img :src="fireIcon" alt="" />
-              <span> About </span>
-            </div>
-            <div class="details-page__bottom-arrow_next">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Reviews'">
+        <Reviews :moreInfo="moreInfo" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Feedback')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="kebabIcon" alt="" />
+            <span>Feedback</span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
         </div>
-
-        <div v-if="currentDetailsPage === 'Reviews'">
-          <Reviews />
-          <div class="details-page__bottom">
-            <div class="details-page__bottom-arrow_prev">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
-            <div
-              @click="handleCurrentPage('Feedback')"
-              class="details-page__bottom-btn_push_page"
-            >
-              <img :src="kebabIcon" alt="" />
-              <span>Feedback</span>
-            </div>
-            <div class="details-page__bottom-arrow_next">
-              <img :src="ArrowIcon" alt="ArrowIcon" />
-            </div>
-          </div>
-        </div>
-      </main>
-      <div class="details-page__modal">
-        <AddToCart />
       </div>
     </main>
     <div class="details-page__modal">
