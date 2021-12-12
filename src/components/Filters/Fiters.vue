@@ -204,8 +204,9 @@ export default {
   width: 100%;
   height: 2px;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 400px) {
   .filtersItem {
+    margin: vmin(20) 0;
     div {
       @include font(vmin(10), 600, vmin(10), $greyBlue60);
       div {
@@ -237,7 +238,7 @@ export default {
     }
   }
   .filters::before {
-    top: vmin(30);
+    top: vmin(50);
   }
 }
 </style>

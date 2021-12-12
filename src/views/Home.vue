@@ -121,33 +121,33 @@ export default {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 400px) {
   .courses-items {
     width: vmin(200);
-    padding: vmin(0) vmin(60);
-    margin: 0;
+    padding: vmin(0) vmin(40);
+    margin: vmin(40) 0;
     .row {
       margin-top: vmin(20);
       display: block;
     }
 }
   .courses-info {
-    margin: vmin(25) 0 vmin(25) vmin(35) ;
+    margin: vmin(25) 0 vmin(25) vmin(0) ;
     width: vmin(320);
     &__image {
-      width: 100%;
-      height: vmin(120);
+      width: 120%;
+      height: vmin(200);
     }
     &__block {
-      padding: vmin(15) 0 vmin(10) vmin(15);
+      padding: vmin(30) 0 vmin(10) vmin(15);
       width: 100%;
     }
     &__title {
       display: block;
        width: vmin(150);
       .name {
-        @include font(vmin(10), 700, vmin(20));
-        margin-top: vmin(15);
+        @include font(vmin(15), 700, vmin(20));
+        margin-top: vmin(40);
         color: white;
       }
       .sticker {
@@ -157,12 +157,12 @@ export default {
     &__block-2 {
       margin: 0 0 0 vmin(15);
       p {
-       @include font(vmin(10), 600, vmin(20));
+       @include font(vmin(18), 600, vmin(20));
        color: white;
-       margin-top: vmin(-7)
+       margin-top: vmin(10)
       }
       h5 {
-        @include font(vmin(7), 600, vmin(20));
+        @include font(vmin(10), 600, vmin(20));
         color: white;
         
       }

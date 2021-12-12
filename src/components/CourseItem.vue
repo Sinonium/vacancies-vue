@@ -165,30 +165,30 @@ export default {
 }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 400px) {
 .col-3 {
       margin: 0 auto;
-      margin-bottom: vmin(15);
-      width: vmin(250);
+      margin-bottom: vmin(30);
+      width: vmin(300);
 .course-item {
-  min-height: vmin(230);
+  min-height: vmin(350);
   border-radius: vmin(10);
   &__header { 
     padding: vmin(10);
     height: vmin(50);
   }
   &__image {
-    width: vmin(250);
-    height: vmin(130);
+    width: vmin(300);
+    height: vmin(200);
     z-index: -1;
     border-radius: vmin(3);
   }
   &__time {
     border-radius: vmin(15);
-    padding: vmin(5) vmin(10);
-    max-height: vmin(15);
+    padding: vmin(10) vmin(30);
+    max-height: vmin(30);
     span {
-      @include font(vmin(9), 700, vmin(20));
+      @include font(vmin(13), 700, vmin(20));
       margin-left: vmin(5);
       color: white;
     }
@@ -198,21 +198,21 @@ export default {
     }
   }
   &__like {
-    width: vmin(25);
-    height: vmin(25);
+    width: vmin(50);
+    height: vmin(50);
     img {
-      padding: vmin(9);
-      width: vmin(10);
-      height: vmin(10);
+      padding: vmin(15);
+      width: vmin(20);
+      height: vmin(20);
     }
   }
   &__info {
-    margin-top: vmin(80);
+    margin-top: vmin(170);
     padding: 0 vmin(20);
     
   }
   &__name {
-    @include font(vmin(10), 700, vmin(25));
+    @include font(vmin(18), 700, vmin(25));
     color: #6b7a99;
     margin-bottom: vmin(5);
     height: vmin(25);
@@ -221,11 +221,11 @@ export default {
     margin: vmin(8) 0;
 
     img {
-      width: vmin(6);
-      height: vmin(6);
+      width: vmin(10);
+      height: vmin(10);
     }
     span {
-      @include font(vmin(10), 700, vmin(10));
+      @include font(vmin(15), 700, vmin(10));
       margin-left: vmin(7);
       color: #4d5e80;
     }
@@ -234,13 +234,13 @@ export default {
     display: flex;
     justify-content: space-between;
     p {
-      @include font(vmin(10), 700, vmin(10));
+      @include font(vmin(15), 700, vmin(10));
       color: #7d8fb3;
-      margin-top: vmin(-7);
+      margin-top: vmin(10);
     }
     span {
-      margin-top: vmin(-4);
-      @include font(vmin(10), 700, vmin(15));
+      margin-top: vmin(10);
+      @include font(vmin(15), 700, vmin(15));
       color: #6b7a99;
     }
   }
