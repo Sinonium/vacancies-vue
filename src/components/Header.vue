@@ -27,18 +27,13 @@
       
       <div class="header__record">
         <BecomeTeacher :currentUserInfo="currentUserInfo" />
-         <button @click.prevent="handleClick()" class="header__record-logOut">
-            Log Out
-         </button>
       </div>
    </header>
 </template>
 
 <script>
    import { computed, ref } from "@vue/reactivity";
-   import { useRouter } from "vue-router";
    import { user } from "../composables/getUser";
-   import useAuth from "@/composables/useAuth";
    import BecomeTeacher from "@/components/BecomeTeacher";
    import { useStore } from "vuex";
    import { onMounted } from "@vue/runtime-core";
@@ -47,17 +42,7 @@
       setup() {
          console.log(user.value);
          const isTeacher = ref(false);
-         const router = useRouter();
-         const handleClick = async () => {
-            const { logout } = useAuth();
 
-            try {
-               await logout();
-               await router.push("/login");
-            } catch (err) {
-               console.log(err);
-            }
-         };
          const store = useStore();
          const userName = user.value.displayName;
 
@@ -72,7 +57,7 @@
          });
 
          const headerNav = ref(["Main", "Career", "About", "Blog", "Support"]);
-         return { userName,headerNav, handleClick, isTeacher, currentUserInfo };
+         return { userName,headerNav, isTeacher, currentUserInfo };
       },
    };
 </script>
