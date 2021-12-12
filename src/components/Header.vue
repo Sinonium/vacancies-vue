@@ -240,10 +240,11 @@
       .header__logo-text-min{
          display: block;
          @include flex();
+         z-index: 2;
          margin: 0;
          a {
             @include flex();
-            margin-left: vmin(75);
+            margin-left: 0;
             span {
                display: block;
             }
@@ -267,6 +268,7 @@
          }
          &__logo {
             flex-direction: row-reverse;
+            z-index: 2;
             .burger {
                span {
                   margin-left: vw(40);
@@ -306,6 +308,20 @@
       }
    }
    @media screen and (max-width: 430px) {
+      .header__record-teacher-min,
+      .header__logo-text-min{
+         display: block;
+         @include flex();
+         z-index: 2;
+         margin: 0;
+         a {
+            @include flex();
+            margin-left: vmin(75);
+            span {
+               display: block;
+            }
+         }
+      }
       .header {
          padding: vmin(20);
          justify-content: space-between;

@@ -1,6 +1,6 @@
 <template>
   <div class="details-page">
-    <CourseInfo />
+    <CourseInfo @click="toggleModal" />
     <div class="details-page__head">
       <ul>
         <li
@@ -198,7 +198,7 @@
       </div>
     </main>
     <div class="details-page__modal">
-      <AddToCart />
+      <AddToCart v-if="addToCart"/>
     </div>
   </div>
 </template>
@@ -224,12 +224,17 @@ export default {
     CourseInfo,
   },
   setup() {
+    const addToCart = ref(true)
     const store = useStore()
     const moreInfo = computed(() => store.state.courseMoreInfo)
 
     const currentDetailsPage = ref('About')
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
+    }
+
+    const toggleModal = () => {
+      addToCart.value = !addToCart.value;
     }
 
     return {
@@ -242,6 +247,8 @@ export default {
       ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
       handleCurrentPage,
       currentDetailsPage,
+      addToCart,
+      toggleModal,
     }
   },
 }
@@ -306,8 +313,8 @@ body {
   }
   &__modal {
     position: absolute;
-    top: vw(130);
-    left: vw(1150);
+    top: vw(-53);
+    right: vw(30);
   }
 }
 .details-page__head ul li.active {
@@ -381,8 +388,8 @@ body {
     margin-left: -26.2vw;
   }
   .details-page__modal {
-    top: -6.875vw;
-    left: 73.875vw;
+    top: vw(-75);
+    right: vw(30);
   }
   .details-page__head ul li.active {
     span {
@@ -395,7 +402,9 @@ body {
 }
 @media screen and (max-width: 1024px) {
   .details-page__modal {
-    top: -34.875vw;
+    top: vw(-161);
+    right: 0;
+    left: vw(1130)
   }
   .details-page__head ul {
     margin-left: -1vw;
@@ -417,6 +426,11 @@ body {
   }
 }
 @media screen and (max-width: 769px) {
+  .details-page__modal {
+    top: vw(-220);
+    right: 0;
+    left: vw(1030)
+  }
   .details-page__head ul {
     margin-left: 3vw;
   }
@@ -454,13 +468,15 @@ body {
       @include font(2vw, bold, 20px, $greyBlue60);
     }
   }
-  .details-page__modal {
-    top: -33.875vw;
-  }
 }
 @media screen and(max-width: 579px) {
 }
 @media screen and(max-width: 426px) {
+  .details-page__modal {
+    top: vmin(-38);
+    right: 0;
+    left: vmin(7)
+  }
 }
 @media screen and(max-width:376px) {
 }
