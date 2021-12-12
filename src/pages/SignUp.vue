@@ -210,176 +210,71 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1024px) {
+
+
+@media screen and (max-width: 378px) {
+
+  .container{
+    margin-left: vw(-330);
+    display: flex;
+    justify-content: center;
+    margin-top: vmin(100);
   .signup {
-    width: vmin(300);
-    height: vmin(250);
-    background-color: $greyBlue25;
-    border-radius: 20em /20em;
-    margin-right: vmin(40);
-     margin-top: vmin(40);
+    
+    margin: 0;
+    width: vmin(350);
+    height: vmin(400);
+     
     &-title {
-      padding-left: vmin(80);
-    }
-    h2 {
-      @include font(vmin(15), 200, vmin(25));
-      font-family: 'San Francisco Pro';
-      color: $greyBlue70;
-      padding-top: vmin(15);
-      strong {
-        color: $greyBlue80;
-      }
-    }
-    label {
-      width: 53%;
-      @include font(vmin(6), 700, vmin(10));
-      color: $white;
-      display: flex;
-      justify-content: space-between;
-      padding-left: vmin(10);
-      span {
-        color: #adb8cc;
-      }
-    }
-     img{
-    width: vmin(10);
-    height: vmin(10);
-  }
-    form {
-      div {
-        width: 50%;
-        display: flex;
-        align-items: center;
-        background: $white;
-        margin-top: vmin(5);
-        border: 2px solid #f5f6f7;
-        border-radius: vmin(20);
-        padding: vmin(7) vmin(15);
-        margin-bottom: vmin(5);
-
-        input {
-          @include font(vmin(7), 400, vmin(10));
-          width: 100%;
-          padding-right: vmin(5);
-          border: none;
-          outline: none;
-          color: $greyBlue70;
-        }
-      }
-      button {
-        @include font(vmin(7), 400, vmin(10));
-        width: 63%;
-        padding: vmin(10) 0;
-        background: $greyBlue50;
-        border-radius: vmin(15);
-        color: $white;
-        outline: none;
-        cursor: pointer;
-        border: 2px solid $greyBlue60;
-        transition: 0.3s;
-        margin-top: vmin(10);
-        &:hover {
-          background-color: $greyBlue25;
-          color: $white;
-          border: 2px solid $greyBlue50;
-        }
-      }
-
-      .auth {
-        &__have-account {
-          @include font(vmin(7), 150, vmin(10));
-         
-          display: block;
-          text-align: right;
-          color: #adb8cc;
-          width: 57%;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 377px) {
-  .signup {
-    height: vmin(250);
-    background-color: $greyBlue25;
-     border-radius: 25em /25em;
-    &-title {
-      padding-left: vmin(80);
+      padding-left: vmin(60);
       img {
-        width: vmin(10);
-        height: vmin(10);
+        width: vmin(15);
+        height: vmin(15);
       }
     }
     h2 {
-      @include font(vmin(15), 200, vmin(25));
-      font-family: 'San Francisco Pro';
-      color: $greyBlue70;
-      padding: vmin(-10);
-      strong {
-        color: $greyBlue80;
-      }
+      @include font(vmin(20), 200, vmin(25));
+      padding-top: vmin(50) ;
+      
+
+
     }
     label {
       width: 55%;
-      @include font(vmin(6), 400, vmin(10));
-      color: $white;
-      display: flex;
-      justify-content: space-between;
-     
+      @include font(vmin(10), 400, vmin(15));
+       color: $white;
+
     }
     form {
       div {
-        width: 50%;
-        display: flex;
-        align-items: center;
-        background: $white;
+        width: 70%;
         margin-top: vmin(5);
         border: 2px solid #f5f6f7;
         border-radius: vmin(20);
         padding: vmin(4) vmin(10);
         margin-bottom: vmin(10);
-        height: vmin(10);
+        height: vmin(20);
         input {
-          @include font(vmin(7), 400, vmin(10));
-          width: 100%;
-          border: none;
-          outline: none;
-          color: $greyBlue70;
+          @include font(vmin(10), 400, vmin(15));
         }
       }
       button {
-        @include font(vmin(7), 400, vmin(10));
-        width: 60%;
-        background: $greyBlue50;
+        @include font(vmin(15), 400, vmin(6));
+        width: 78%;
         border-radius: vmin(15);
         color: $white;
-        outline: none;
-        cursor: pointer;
         border: 2px solid $greyBlue60;
         transition: 0.3s;
-        margin-top: vmin(10);
-        height: vmin(20);
-        &:hover {
-          background-color: $greyBlue25;
-          color: $white;
-          border: 2px solid $greyBlue50;
-        }
+        height: vmin(30);
       }
-
-    
       .auth {
         &__have-account {
-          @include font(vmin(7), 150, vmin(10));
-          
-          display: block;
-          text-align: center;
-          color: #adb8cc;
-          width: 57%;
-          margin-left: vmin(5);
+          @include font(vmin(7), 150, vmin(15));
+           color: #adb8cc;
         }
       }
     }
   }
+}
 }
 </style>

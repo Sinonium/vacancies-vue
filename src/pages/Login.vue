@@ -74,280 +74,179 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
+@import "@/assets/scss/index.scss";
 
-.login {
-  width: vw(700);
-  height: vw(500);
-  background-color: $greyBlue25;
-  margin-left: vw(100);
-  
-
-  border-radius: 25em /18em;
-
-  &-title {
-    padding-left: vw(190);
-  }
-  h2 {
-    @include font(vw(30), 400, vw(50));
-    font-family: 'San Francisco Pro';
-    color: $greyBlue70;
-    padding-top: vw(40);
-    margin-left: vw(-10);
-
-    strong {
-      color: $greyBlue80;
-    }
-  }
-  label {
-    width: 53%;
-    @include font(vw(12), 700, vw(20));
-    color: $white;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: vw(5);
-    padding-left: vw(25);
-    // span {
-    //   color: #adb8cc;
-    // }
-  }
-  img{
-    width: vw(30);
-    height: vw(30);
-  }
-  form {
-    div {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      background: $white;
-      margin-top: vw(5);
-      border: 2px solid #f5f6f7;
-      border-radius: vw(30);
-      padding: vw(15) vw(25);
-      margin-bottom: vw(20);
-
-      input {
-        @include font(vw(12), 700, vw(20));
-        width: 100%;
-        padding-right: vw(10);
-        border: none;
-        outline: none;
-        color: $greyBlue70;
-      }
-    }
-    button {
-      @include font(vw(12), 800, vw(20));
-      width: 60%;
-      padding: vw(1) 0;
-      background: $greyBlue50;
-      border-radius: vw(30);
-      color: $white;
-      outline: none;
-      cursor: pointer;
-      border: 2px solid $greyBlue60;
-      transition: 0.3s;
-      margin-top: vw(10);
-      margin-left: vw(5);
-      height: vw(50);
-      &:hover {
-        background-color: $greyBlue25;
-        color: $white;
-        border: 2px solid $greyBlue50;
-      }
-    }
-    ::placeholder{
-      color:$greyBlue70 ;
-    }
-
-    span {
-      padding-top: vw(5);
-      display: block;
-    }
-    .auth {
-      &__have-account {
-        @include font(vw(12), 700, vw(20));
-
-        display: block;
-        text-align: right;
-        color: #adb8cc;
-        width: 57%;
-        margin-top: vw(20);
-        margin-left: vw(-50);
-      }
-    }
-  }
-}
-@media screen and (max-width: 1024px) {
+.container {
+ margin-left: vw(-330);
+  display: flex;
+  justify-content: center;
   .login {
-    width: vmin(300);
-    height: vmin(220);
+    width: vw(700);
+    height: vw(500);
     background-color: $greyBlue25;
-    border-radius: 25em /20em;
-    margin-right: vmin(40);
-     margin-top: vmin(40);
+    border-radius: 25em /18em;
     &-title {
-      padding-left: vmin(80);
+      padding-left: vw(190);
     }
     h2 {
-      @include font(vmin(15), 200, vmin(25));
-      font-family: 'San Francisco Pro';
+      @include font(vw(30), 400, vw(50));
+      font-family: "San Francisco Pro";
       color: $greyBlue70;
-      padding-top: vmin(25);
+      padding-top: vw(40);
+      margin-left: vw(-10);
+
       strong {
         color: $greyBlue80;
       }
     }
     label {
       width: 53%;
-      @include font(vmin(6), 700, vmin(10));
+      @include font(vw(12), 700, vw(20));
       color: $white;
       display: flex;
       justify-content: space-between;
-      padding-left: vmin(10);
-      span {
-        color: #adb8cc;
-      }
+      margin-bottom: vw(5);
+      padding-left: vw(25);
     }
-     img{
-    width: vmin(10);
-    height: vmin(10);
-  }
+    img {
+      width: vw(30);
+      height: vw(30);
+    }
     form {
       div {
         width: 50%;
         display: flex;
         align-items: center;
         background: $white;
-        margin-top: vmin(5);
+        margin-top: vw(5);
         border: 2px solid #f5f6f7;
-        border-radius: vmin(20);
-        padding: vmin(7) vmin(15);
-        margin-bottom: vmin(5);
+        border-radius: vw(30);
+        padding: vw(15) vw(25);
+        margin-bottom: vw(20);
 
         input {
-          @include font(vmin(7), 400, vmin(10));
+          @include font(vw(12), 700, vw(20));
           width: 100%;
-          padding-right: vmin(5);
+          padding-right: vw(10);
           border: none;
           outline: none;
           color: $greyBlue70;
         }
       }
       button {
-        @include font(vmin(7), 400, vmin(10));
-        width: 63%;
-        padding: vmin(10) 0;
+        @include font(vw(12), 800, vw(20));
+        width: 60%;
+        padding: vw(1) 0;
         background: $greyBlue50;
-        border-radius: vmin(15);
+        border-radius: vw(30);
         color: $white;
         outline: none;
         cursor: pointer;
         border: 2px solid $greyBlue60;
         transition: 0.3s;
-        margin-top: vmin(10);
+        margin-top: vw(10);
+        margin-left: vw(5);
+        height: vw(50);
         &:hover {
           background-color: $greyBlue25;
           color: $white;
           border: 2px solid $greyBlue50;
         }
       }
-
+      ::placeholder {
+        color: $greyBlue70;
+      }
+      span {
+        padding-top: vw(5);
+        display: block;
+      }
       .auth {
         &__have-account {
-          @include font(vmin(7), 150, vmin(10));
-         
+          @include font(vw(12), 700, vw(20));
           display: block;
           text-align: right;
           color: #adb8cc;
           width: 57%;
+          margin-top: vw(20);
+          margin-left: vw(-50);
         }
       }
     }
   }
 }
+@media screen and (max-width: 1600px) {
+}
 
-@media screen and (max-width: 377px) {
+@media screen and (max-width: 1440px) {
+}
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 375px) {
+  
+}
+
+
+
+@media screen and (max-width: 378px) {
+
+  .container{
+    display: flex;
+    justify-content: center;
+    margin-top: vmin(100);
   .login {
-    height: vmin(250);
-    background-color: $greyBlue25;
-     border-radius: 25em /20em;
+    
+    margin: 0;
+    width: vmin(350);
+    height: vmin(320);
+     
     &-title {
-      padding-left: vmin(80);
+      padding-left: vmin(60);
       img {
-        width: vmin(10);
-        height: vmin(10);
+        width: vmin(15);
+        height: vmin(15);
       }
     }
     h2 {
-      @include font(vmin(15), 200, vmin(25));
-      font-family: 'San Francisco Pro';
-      color: $greyBlue70;
-      padding-top: vmin(30);
-      strong {
-        color: $greyBlue80;
-      }
+      @include font(vmin(20), 200, vmin(25));
+      padding-top: vmin(40);
+
     }
     label {
       width: 55%;
-      @include font(vmin(6), 400, vmin(10));
-      color: $white;
-      display: flex;
-      justify-content: space-between;
-     
+      @include font(vmin(10), 400, vmin(15));
+       color: $white;
+
     }
     form {
       div {
-        width: 50%;
-        display: flex;
-        align-items: center;
-        background: $white;
+        width: 70%;
         margin-top: vmin(5);
         border: 2px solid #f5f6f7;
         border-radius: vmin(20);
         padding: vmin(4) vmin(10);
-        margin-bottom: vmin(10);
-        height: vmin(10);
+        margin-bottom: vmin(15);
+        height: vmin(20);
         input {
-          @include font(vmin(7), 400, vmin(10));
-          width: 100%;
-          border: none;
-          outline: none;
-          color: $greyBlue70;
+          @include font(vmin(10), 400, vmin(15));
         }
       }
       button {
-        @include font(vmin(7), 400, vmin(10));
-        width: 60%;
-        background: $greyBlue50;
+        @include font(vmin(15), 400, vmin(6));
+        width: 78%;
         border-radius: vmin(15);
         color: $white;
-        outline: none;
-        cursor: pointer;
         border: 2px solid $greyBlue60;
         transition: 0.3s;
-        margin-top: vmin(10);
-        height: vmin(20);
-        &:hover {
-          background-color: $greyBlue25;
-          color: $white;
-          border: 2px solid $greyBlue50;
-        }
+        height: vmin(30);
       }
-
-    
       .auth {
         &__have-account {
-          @include font(vmin(7), 150, vmin(10));
-          
-          display: block;
-          text-align: center;
-          color: #adb8cc;
-          width: 57%;
-          margin-left: vmin(5);
+          @include font(vmin(7), 150, vmin(15));
+           color: #adb8cc;
         }
       }
     }
   }
+}
 }
 </style>

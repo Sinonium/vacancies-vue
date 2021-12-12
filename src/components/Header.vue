@@ -5,7 +5,7 @@
             <span></span>
          </div>
          <router-link to="/" class="header__logo-text">
-            Constructor
+            Avocadiki
          </router-link>
       </div>
       <nav class="header__nav">

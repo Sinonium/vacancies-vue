@@ -55,6 +55,9 @@
           </li>
           <Duration v-if="list.e" />
         </ul>
+        <button @click.prevent="handleClick()" class="header__record-logOut">
+            Log Out
+         </button>
       </PerfectScrollbar>
     </div>
   </aside>
