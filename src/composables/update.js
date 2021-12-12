@@ -30,7 +30,7 @@ const update = () => {
     id,
     newData,
     rating,
-    studentName,
+    studentName
   ) => {
     const moreInfoDoc = doc(firestore, collectionName, id)
 
