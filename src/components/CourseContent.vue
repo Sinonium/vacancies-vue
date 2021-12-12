@@ -90,21 +90,21 @@
                         v-if="moreInfo.courseContent[1]"
                         @click="isOpen.b = !isOpen.b"
                      >
-                        {{ moreInfo.courseContent[1].lessonName }}
+                        {{ moreInfo.courseContent[1].lectureName }}
                      </h6>
                      <span v-if="moreInfo.courseContent[1]">{{
                         moreInfo.courseContent[1].allTime
                      }}</span>
                   </div>
                   <div
-                     v-for="item in moreInfo.courseContent[1].content"
+                     v-for="item in moreInfo.courseContent[1].lessons"
                      :key="item.id"
                   >
                      <div class="content-courses__open" v-if="isOpen.b">
                         <div>
                            <ul class="content-courses__all">
                               <img :src="videoIcon" alt="" />
-                              <li>{{ item.name }}</li>
+                              <li>{{ item.lessonName }}</li>
                               <a>{{ item.isPreview }}</a>
                               <span>{{ item.time }}</span>
                            </ul>
@@ -131,19 +131,19 @@
                         />
                      </svg>
                      <h6 @click="isOpen.c = !isOpen.c">
-                        {{ moreInfo.courseContent[1].title }}
+                        {{ moreInfo.courseContent[1].lectureName }}
                      </h6>
                      <span>{{ moreInfo.courseContent[1].allTime }}</span>
                   </div>
                   <div
-                     v-for="item in moreInfo.courseContent[1].content"
+                     v-for="item in moreInfo.courseContent[1].lessons"
                      :key="item.id"
                   >
                      <div class="content-courses__open" v-if="isOpen.c">
                         <div>
                            <ul class="content-courses__all">
                               <img :src="videoIcon" alt="" />
-                              <li>{{ item.name }}</li>
+                              <li>{{ item.lessonName }}</li>
                               <a>{{ item.isPreview }}</a>
                               <span>{{ item.time }}</span>
                            </ul>
