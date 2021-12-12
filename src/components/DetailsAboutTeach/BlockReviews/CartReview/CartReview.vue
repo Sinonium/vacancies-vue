@@ -9,7 +9,7 @@
           />
         </div>
         <div class="data">
-          <h4>{{ review.studentName }}</h4>
+          <h4>{{ review.userName }}</h4>
         </div>
       </div>
       <div class="cart-review__header_data">
@@ -99,10 +99,11 @@ export default {
       reviewText.value = props.review.text
     }
     const currentDate = new Date()
-    const reviewDate = props.review.date
+    const reviewDate = props.review.createdAt
     const resultReviewDateMonth = ref(0)
     const resultReviewDateDay = ref(0)
     const resultReviewDateYear = ref(0)
+
 
     const getSomeNumAgo = (firstDate, secondDate) => {
       const firstNumDateMonthRef = firstDate.getMonth()
@@ -186,18 +187,6 @@ export default {
     p {
       @include font(vw(13), 600, 25px, $greyBlue60);
       position: relative;
-      &:hover {
-        &::before {
-          content: 'Click because look more.';
-          position: absolute;
-          top: vw(29);
-          left: vw(180);
-          @include font(vw(12), 600, 25px, black);
-          background: rgba(107, 122, 153, 0.5);
-          padding: vw(10);
-          border-radius: 50%;
-        }
-      }
     }
   }
 }

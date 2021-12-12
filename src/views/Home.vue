@@ -18,8 +18,8 @@
           <h5 v-if="selectedCourse">{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
         </div>
         <div class="courses-info__students">
-          <img src="./../assets/img/students.svg" alt="" />
-          <span class="students">4,454,356</span>
+          
+          <span class="students"><img src="./../assets/img/students.svg" alt="" />4,454,356</span>
 
           <div>
             <h5 class="about-students">
@@ -34,9 +34,6 @@
   <div class="courses-items">
     <div class="row" v-if="courses">
       <CourseItem  v-for="course in courses" :key="course.id" :course="course"/>
-      <!-- <router-link :to="{name: 'DetailsCourse', params: {id: courses[0].moreInfoId}}"> 
-        sasasas
-      </router-link> -->
     </div>
   </div>
 </template>
@@ -74,11 +71,6 @@ export default {
   .row {
     display: flex;
     flex-wrap: wrap;
-    .col-3 {
-      margin-right: vw(30);
-      margin-bottom: vw(30);
-      width: vw(255);
-    }
   }
 }
 .courses-info {
@@ -130,57 +122,74 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .courses-items {
-  margin: 0;
-  .row {
-    display: block;
-  }
+    width: vw(1100);
+    padding: vw(0);
+    padding-left: vw(80);
+    margin: 0;
+    .row {
+      display: flex;
+      justify-content: space-around;
+    }
 }
   .courses-info {
-    margin: vmin(15) vmin(15);
+    margin: 0;
+    margin: vw(25) 0 vw(25) vw(25) ;
+    width: vw(1220);
     &__image {
-      width: vmin(300);
-      height: vmin(130);
+      width: 100%;
     }
     &__block {
-      padding: vmin(20) 0 vmin(20) vmin(15);
+      padding: vw(30) 0 vw(20) vw(30);
+      width: 100%;
     }
     &__title {
       display: block;
+       width: vw(350);
       .name {
-        @include font(vmin(10), 700, vmin(25));
+        @include font(vw(20), 700, vw(40));
         color: $white;
-        margin-top: vmin(35);
+        margin-top: vw(15);
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+       
       }
       .sticker {
-        width: vmin(45);
+        width: vw(150);
       }
     }
     &__block-2 {
-      margin: 0 0 0 vmin(30);
+      margin: 0 0 0 vw(30);
       p {
-        @include font(vmin(8), 600, vmin(10));
+       @include font(vw(20), 600, vw(40));
         color: $white;
         opacity: 0.3;
+        margin: 0;
       }
       h5 {
-        @include font(vmin(7), 600, vmin(5));
+        @include font(vw(20), 600, vw(40));
         color: $white;
+        margin: 0;
       }
     }
     &__students {
       display: block;
       margin-top: vmin(5);
+      span{
+        margin: 0;
+      }
       .students {
-        @include font(vmin(5), 700, vmin(5));
+        display: flex;
+        align-items: center;
+        margin: 0;
+        @include font(vw(20), 700, vw(40));
         color: $white;
-        margin-top: vmin(11);
+          img {
+          width: vw(30);
+          margin-right: vw(30);
+        }
       }
 
-      img {
-        width: vmin(10);
-      }
+      
     }
   }
 }
