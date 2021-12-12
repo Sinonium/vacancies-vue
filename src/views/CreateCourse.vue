@@ -220,15 +220,6 @@
           </select>
           <label for=""></label>
         </div>
-        <div>
-          <h4 class="create-course__title">Duration courses</h4>
-          <p class="create-course__instruction">Type course time</p>
-          <input
-            onkeyup="this.value=this.value.replace(/^\s/,'')"
-            type="number"
-            v-model="coursetime"
-          />
-        </div>
       </div>
     </div>
 
@@ -254,17 +245,16 @@
           v-model="lesson"
         />
         <div class="lesson-details">
-          <input type="time" v-model="time" />
           <select v-model="type" class="select">
             <option>video</option>
             <option>text</option>
           </select>
+          <input  class="lesson-time" type="time" v-model="time" />
         </div>
         <span class="enter-span">
           <div class="enter" @click="enterLesson">Enter</div>
         </span>
       </div>
-      <div class=""></div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
 
     </div>
@@ -707,6 +697,7 @@ export default {
         justify-content: space-between;
         input {
           width: 46%;
+          margin-right: vmin(4);
         }
         select {
           width: 46%;
@@ -745,7 +736,7 @@ export default {
 }
 @media screen and (max-width: 1024px) {
   .admin-board {
-    margin: vmin(15) vmin(50);
+    margin: vmin(15) 0 vmin(15) vmin(57);
     width: vmin(300);
     &__heading {
       @include font(vmin(14), 700, vmin(10));
@@ -843,12 +834,16 @@ export default {
       }
       &__lectures {
       .lesson-details {
+        .lesson-time{
+        width: 50%;
+        height: vmin(23);
+      }
         select {
-          border-radius: vw(10);
-          height: vmin(25);
-          padding: vw(10) vw(10) vw(10) vw(15);
-          text-transform: capitalize;
-          @include font(vw(13), 600, vh(30));
+          padding: vmin(3) vmin(15);
+          width: 50%;
+          height: vmin(30);
+          padding: vmin(5) vmin(5) vmin(5) vmin(10);
+          @include font(vmin(7), 600, vh(15));
         }
       }
     }
