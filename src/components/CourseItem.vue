@@ -261,20 +261,20 @@
 }
 }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 426px) {
 .col-3 {
-   width: vmin(300);
-   height: vmin(350);
+   width: vmin(150);
+   height: vmin(200);
 .course-item {
-  min-height: vmin(350);
+  min-height: vmin(200);
   border-radius: vmin(10);
   &__header { 
     padding: vmin(10);
     height: vmin(50);
   }
   &__image {
-    width: vmin(300);
-    height: vmin(200);
+    width: vmin(150);
+    height: vmin(100);
     z-index: -1;
     border-radius: vmin(3);
   }
