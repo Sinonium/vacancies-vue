@@ -160,11 +160,11 @@ export default {
 @media screen and (max-width: 1024px) {
   .review {
     .container {
-      max-width: vmin(180);
+      max-width: vmin(270);
     }
     &__content {
       padding: vmin(10) vmin(10);
-      width: vmin(170);
+      max-width: vmin(250);
       h2 {
         @include font(vmin(6), 700, vmin(10), $greyBlue50);
       }
@@ -203,7 +203,7 @@ export default {
     &__content-text {
       p {
         @include font(vmin(5), 500, vmin(10), $greyBlue60);
-        max-width: vmin(160);
+        max-width: vmin(250);
       }
     }
     &__buttons {
@@ -227,10 +227,10 @@ export default {
 @media screen and (max-width: 428px){
   .review {
     .container {
-      max-width: vmin(250);
+      max-width: vmin(350);
     }
      &__content {
-     max-width: vmin(249);
+     max-width: vmin(345);
      &-title{
        img{
          padding-left: vmin(180);
@@ -240,7 +240,7 @@ export default {
     }
      &__content-text {
       p {
-        max-width: vmin(250);
+        max-width: vmin(340);
       }
     }
 
