@@ -169,17 +169,17 @@ export default {
 .col-3 {
       margin: 0 auto;
       margin-bottom: vmin(15);
-      width: vmin(170);
+      width: vmin(250);
 .course-item {
-  min-height: vmin(170);
+  min-height: vmin(230);
   border-radius: vmin(10);
   &__header { 
     padding: vmin(10);
     height: vmin(50);
   }
   &__image {
-    width: vmin(170);
-    height: vmin(80);
+    width: vmin(250);
+    height: vmin(130);
     z-index: -1;
     border-radius: vmin(3);
   }
@@ -188,13 +188,13 @@ export default {
     padding: vmin(5) vmin(10);
     max-height: vmin(15);
     span {
-      @include font(vmin(6), 700, vmin(20));
+      @include font(vmin(9), 700, vmin(20));
       margin-left: vmin(5);
       color: white;
     }
     img {
-      width: vmin(8);
-      height: vmin(8);
+      width: vmin(10);
+      height: vmin(10);
     }
   }
   &__like {
@@ -202,13 +202,13 @@ export default {
     height: vmin(25);
     img {
       padding: vmin(9);
-      width: vmin(8);
-      height: vmin(8);
+      width: vmin(10);
+      height: vmin(10);
     }
   }
   &__info {
-    margin-top: vmin(15);
-    padding: 0 vmin(8);
+    margin-top: vmin(80);
+    padding: 0 vmin(20);
     
   }
   &__name {
