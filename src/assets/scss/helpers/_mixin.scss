@@ -17,7 +17,6 @@
   align-items: center;
 }
 @mixin mobile() {
-//<<<<<< HEAD
     @media screen and(max-width: 375px) {
         @content
     }
@@ -31,5 +30,3 @@
 	justify-content: $justify;
 	align-items: center;
 }
-
-//>>>>>>> d9d8b6994a6e8036bd1927efe4632f4a3ba5d767

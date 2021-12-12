@@ -63,15 +63,15 @@
             {{ errTextInpMore }}
           </span>
         </div>
-        <button>Add review and grade</button>
+        <button>{{ textBtnAddedReview }}</button>
       </form>
     </div>
-    <div class="feedback__content">
+    <div v-if="moreInfo.reviews" class="feedback__content">
       <h2>Reviews course</h2>
       <div
-        v-for="review in reviews.sort((a, b) => {
-          return a.date - b.date
-        })"
+        v-for="review in moreInfo.reviews.sort(
+          (a, b) => a.createdAt - b.createdAt
+        )"
         :key="review"
       >
         <CartRev :review="review" />
@@ -81,32 +81,33 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 import CartRev from '../DetailsAboutTeach/BlockReviews/CartReview/CartReview.vue'
 import { onMounted } from '@vue/runtime-core'
 import { user } from '../../composables/getUser'
 import update from '@/composables/update'
+import { useStore } from 'vuex'
 export default {
   props: ['moreInfo'],
   components: { CartRev },
   setup(props) {
+    const store = useStore()
+    const currentCourseId = computed(() => store.state.courseId)
     const { updateReviews } = update()
-    const User = user.value
+    const { updateGrades } = update()
+    const { updateCoursesRaiting } = update()
+    const userName = user.value.displayName
     const gradeUser = ref(1)
-    const course = ref()
     const currentDate = ref()
     const reviews = ref([])
     const grades = ref([])
     const reviewUser = ref({})
     const textInp = ref('')
     const errTextInpMore = ref('The review cannot exceed 50 characters.')
-    const getDoc = async () => {
-      const response = await fetch('http://localhost:3000/course')
-      const json = await response.json()
-      course.value = json
-      reviews.value = course.value.reviews
-      grades.value = course.value.rating
-      console.log(course.value)
+    const textBtnAddedReview = ref('Add review and grade')
+    const getDocs = async () => {
+      reviews.value = props.moreInfo.reviews
+      grades.value = props.moreInfo.grades
     }
     const handleLengthInpText = () => {
       if (textInp.value.length > 49) {
@@ -123,53 +124,158 @@ export default {
           currentDate.value.getFullYear(),
         ]
         reviewUser.value = {
-          imageUrl: User.photoURL,
-          studentName: User.email,
+          imageUrl: null,
+          studentName: userName,
           grade: Number(gradeUser.value),
           text: textInp.value,
           date: testDate.value,
         }
-        await updateReviews('more info', props.moreInfo.id, textInp.value,gradeUser.value,user.value.email)
-        // await fetch('http://localhost:3000/course', {
-        //   method: 'PATCH',
-        //   body: JSON.stringify({
-        //     reviews: [...reviews.value, reviewUser.value],
-        //   }),
-        //   headers: { 'Content-type': 'application/json' },
-        // })
-        // await fetch('http://localhost:3000/course', {
-        //   method: 'PATCH',
-        //   body: JSON.stringify({
-        //     rating: [...grades.value, Number(gradeUser.value)],
-        //   }),
-        //   headers: { 'Content-type': 'application/json' },
-        // })
+        textBtnAddedReview.value = 'Loading add review and grade.'
+        await updateReviews(
+          'more info',
+          props.moreInfo.id,
+          textInp.value,
+          gradeUser.value,
+          userName
+        )
+        await updateGrades('more info', props.moreInfo.id, gradeUser.value)
+        const course = props.moreInfo
+        const courseRatingFive = ref([])
+        const courseRatingFour = ref([])
+        const courseRatingThree = ref([])
+        const courseRatingTwo = ref([])
+        const courseRatingOne = ref([])
+        const courseRatingArray = ref([])
+        const countRatingStar = ref(0)
+        const courseRatingMiddArithmetic = ref(0)
+        const courseRatingPercentFive = ref(0)
+        const courseRatingPercentFour = ref(0)
+        const courseRatingPercentThree = ref(0)
+        const courseRatingPercentTwo = ref(0)
+        const courseRatingPercentOne = ref(0)
+        const calctPercentOfRating = () => {
+          course.grades.map((num) => {
+            switch (num) {
+              case 1:
+                return courseRatingOne.value.push(num)
+              case 2:
+                return courseRatingTwo.value.push(num)
+              case 3:
+                return courseRatingThree.value.push(num)
+              case 4:
+                return courseRatingFour.value.push(num)
+              case 5:
+                return courseRatingFive.value.push(num)
+            }
+          })
+          countRatingStar.value =
+            courseRatingOne.value.length +
+            courseRatingTwo.value.length +
+            courseRatingThree.value.length +
+            courseRatingFour.value.length +
+            courseRatingFive.value.length
+          courseRatingArray.value = [
+            {
+              count: courseRatingOne.value.length,
+              nums: 1,
+            },
+            {
+              count: courseRatingTwo.value.length,
+              nums: 2,
+            },
+            {
+              count: courseRatingThree.value.length,
+              nums: 3,
+            },
+            {
+              count: courseRatingFour.value.length,
+              nums: 4,
+            },
+            {
+              count: courseRatingFive.value.length,
+              nums: 5,
+            },
+          ]
+          courseRatingArray.value.map((countRating) => {
+            if (countRating.nums === 5) {
+              courseRatingPercentFive.value =
+                (countRating.count / countRatingStar.value) * 100
+              courseRatingPercentFive.value =
+                courseRatingPercentFive.value.toFixed(2)
+            }
+            if (countRating.nums === 4) {
+              courseRatingPercentFour.value =
+                (countRating.count / countRatingStar.value) * 100
+              courseRatingPercentFour.value =
+                courseRatingPercentFour.value.toFixed(2)
+            }
+            if (countRating.nums === 3) {
+              courseRatingPercentThree.value =
+                (countRating.count / countRatingStar.value) * 100
+              courseRatingPercentThree.value =
+                courseRatingPercentThree.value.toFixed(2)
+            }
+            if (countRating.nums === 2) {
+              courseRatingPercentTwo.value =
+                (countRating.count / countRatingStar.value) * 100
+              courseRatingPercentTwo.value =
+                courseRatingPercentTwo.value.toFixed(2)
+            }
+            if (countRating.nums === 1) {
+              courseRatingPercentOne.value =
+                (countRating.count / countRatingStar.value) * 100
+              courseRatingPercentOne.value =
+                courseRatingPercentOne.value.toFixed(2)
+            }
+          })
+          courseRatingMiddArithmetic.value =
+            (5 * courseRatingFive.value.length +
+              4 * courseRatingFour.value.length +
+              3 * courseRatingThree.value.length +
+              2 * courseRatingTwo.value.length +
+              1 * courseRatingOne.value.length) /
+            countRatingStar.value
+          courseRatingMiddArithmetic.value =
+            courseRatingMiddArithmetic.value.toFixed(1)
+        }
+        calctPercentOfRating()
+        await updateCoursesRaiting(
+          'courses',
+          currentCourseId.value,
+          String(courseRatingMiddArithmetic.value)
+        )
+        textBtnAddedReview.value = 'Added review and grade'
+        setTimeout(() => {
+          textBtnAddedReview.value = 'Add review and grade'
+        }, 800)
         textInp.value = ''
         currentDate.value = new Date()
         reviewUser.value = {}
-        errorNullTextInp.value = ''
-        await getDoc()
+        errTextInpMore.value = ''
+        gradeUser.value = 1
       } else {
-        // await fetch('http://localhost:3000/course', {
-        //   method: 'PATCH',
-        //   body: JSON.stringify({
-        //     rating: [...grades.value, Number(gradeUser.value)],
-        //   }),
-        //   headers: { 'Content-type': 'application/json' },
-        // })
+        textBtnAddedReview.value = 'Loading add grade.'
+        await updateGrades('more info', props.moreInfo.id, gradeUser.value)
+        textBtnAddedReview.value = 'Added grade'
+        errTextInpMore.value = ''
+        gradeUser.value = 1
+        setTimeout(() => {
+          textBtnAddedReview.value = 'Add review and grade'
+        }, 800)
       }
     }
 
     onMounted(() => {
-      getDoc()
+      getDocs()
     })
     return {
+      userName,
+      textBtnAddedReview,
       errTextInpMore,
       handleLengthInpText,
       gradeUser,
       reviewUser,
       currentDate,
-      course,
       AvatarReviewIcon: require('../../assets/img/DetailsAboutTeach/imageReview1.png'),
       AvatarUserIcon: require('@/assets/img/sidebar/avatarIcon.png'),
       cross: require('@/assets/icons/FeedBack/cross.svg'),

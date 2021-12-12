@@ -21,7 +21,7 @@
    import Footer from "@/components/Footer";
    import SideBar from "./components/SideBar";
    import { user } from "./composables/getUser";
-   import { computed, ref } from "@vue/reactivity";
+   import { ref } from "@vue/reactivity";
    export default {
       components: { Header, Footer, SideBar },
       setup() {

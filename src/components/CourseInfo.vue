@@ -84,17 +84,17 @@ export default {}
     &__block-theme {
       margin: 0 vmin(10);
       p {
-        @include font(vmin(9), 600, vmin(5));
+        @include font(vmin(7), 600, vmin(5));
         color: $white;
       }
       h5 {
-        @include font(vmin(9), 600, vmin(10));
+        @include font(vmin(7), 600, vmin(10));
         color: $white;
       }
     }
     &__students {
       .students {
-        @include font(vmin(7), 700, vmin(20));
+        @include font(vmin(7), 700, vmin(13));
         color: $white;
         margin: vmin(10);
       }
@@ -107,7 +107,7 @@ export default {}
     margin: vmin(10) vmin(10);
 
     &__image {
-      width: vmin(360);
+      width: vmin(350);
     }
   }
 }

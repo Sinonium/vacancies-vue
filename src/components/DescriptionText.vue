@@ -67,17 +67,16 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-
+.container {
+  max-width: vw(730);
+  margin-left: vw(80);
+}
 .description {
-  margin-top: vw(30);
-  .container {
-    background-color: $white;
-    max-width: vw(700);
-    border-radius: 10px;
-  }
   &__content {
+    background-color: $white;
+    border-radius: 10px;
     padding: vw(35) vh(40);
-    width: vw(600);
+    max-width: vw(600);
   }
   &__content-text {
     h3 {
@@ -118,59 +117,52 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1024px) {
-  .description {
+
+.description {
+  @include mobile {
     .container {
-      max-width: vmin(270);
+      max-width: vmin(730);
+      margin-left: vmin(80);
     }
     &__content {
-      padding: vmin(10) vmin(10);
-      width: vmin(250);
+      padding: vmin(35) vmin(40);
+      max-width: vmin(600);
     }
     &__content-text {
       h3 {
-        @include font(vmin(7), 700, vmin(10), $greyBlue50);
+        @include font(vmin(13), 700, vmin(25), $greyBlue50);
       }
       p {
-        @include font(vmin(5), 500, vmin(10), $greyBlue50);
+        @include font(vmin(13), 700, vmin(25), $greyBlue50);
       }
     }
     &__content-text__bottom {
       p {
-        @include font(vmin(5), 500, vmin(10), $greyBlue60);
+        @include font(vmin(13), 600, vmin(25), $greyBlue60);
       }
     }
     &__course {
       h3 {
-        @include font(vmin(5), 700, vmin(10), $greyBlue50);
+        @include font(vmin(13), 700, vmin(25), $greyBlue50);
       }
       ul {
         li {
+          display: flex;
           p {
-            @include font(vmin(5), 500, vmin(10), $greyBlue60);
+            @include font(vmin(13), 600, vmin(17), $greyBlue60);
           }
           svg {
-            margin-top: vmin(5);
-            margin-left: vmin(2);
-            margin-right: vmin(10);
-            width: vmin(6);
-            height: vmin(8);
+            margin-top: vmin(25);
+            margin-left: vmin(11);
+            margin-right: vmin(15);
+            width: vmin(14);
+            height: vnin(8);
           }
         }
       }
       p {
-        @include font(vmin(5), 500, vmin(10), $greyBlue60);
+        @include font(vmin(13), 600, vmin(25), $greyBlue60);
       }
-    }
-  }
-}
-@media screen and (max-width: 428px){
-  .description {
-    .container {
-      max-width: vmin(350);
-    }
-     &__content {
-      width: vmin(340);
     }
   }
 }

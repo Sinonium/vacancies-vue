@@ -9,6 +9,7 @@
           type="text"
           v-model="name"
         />
+        {{ name }}
 
         <h4 class="create-teacher__title">Write your skills</h4>
         <input
@@ -56,7 +57,7 @@
           cols="40"
           rows="3"
           placeholder="This is an optional field for information about yourself"
-          v-model="about"
+          v-model="aboutMe"
         ></textarea>
       </div>
     </div>
@@ -72,21 +73,28 @@ import { ref } from '@vue/reactivity'
 import { firestore } from '@/firebase/config'
 import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 import update from '@/composables/update'
+import { user } from '@/composables/getUser'
 export default {
   components: {},
   setup() {
     const { updateTeacher } = update()
     const skills = ref('')
-    const name = ref('Aidana')
+    const name = ref(user.value.displayName)
     const imageURL = ref('')
     const education = ref('')
-    const about = ref('')
+    const aboutMe = ref('')
+    const userId = user.value.uid
 
     const handleSubmit = async () => {
-      await updateTeacher()
+      await updateTeacher('users', userId, name.value, {
+        teacherName: name.value,
+        skills: skills.value,
+        education: education.value,
+        aboutMe: aboutMe.value,
+      })
     }
 
-    return { name, skills, imageURL, education, about, handleSubmit }
+    return { name, skills, imageURL, education, aboutMe, handleSubmit }
   },
 }
 </script>
