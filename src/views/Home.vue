@@ -124,8 +124,7 @@ export default {
 @media screen and (max-width: 1024px) {
   .courses-items {
     width: vmin(200);
-    padding: vmin(0) vmin(80);
-    
+    padding: vmin(0) vmin(60);
     margin: 0;
     .row {
       margin-top: vmin(20);
