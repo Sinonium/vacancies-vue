@@ -29,11 +29,6 @@ const update = () => {
   ) => {
     const moreInfoDoc = doc(firestore, collectionName, id)
 
-    console.log(id)
-    console.log(newData)
-    console.log(rating)
-    console.log(studentName)
-
     const test = await getDoc(moreInfoDoc)
 
     return await updateDoc(moreInfoDoc, {
@@ -46,6 +41,15 @@ const update = () => {
           createdAt: Timestamp.fromDate(new Date()),
         },
       ],
+    })
+  }
+  const updateGrades = async (collectionName, id, rating) => {
+    const moreInfoDoc = doc(firestore, collectionName, id)
+
+    const test = await getDoc(moreInfoDoc)
+
+    return await updateDoc(moreInfoDoc, {
+      grades: [...test.data().grades, Number(rating)],
     })
   }
 

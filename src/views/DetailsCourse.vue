@@ -9,7 +9,7 @@
         >
           <svg
             width="15"
-            height="16" 
+            height="16"
             viewBox="0 0 15 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,26 +22,6 @@
             />
           </svg>
           <span>About</span>
-        </li>
-        <li
-          :class="{ active: currentDetailsPage === 'Content' }"
-          @click="handleCurrentPage('Content')"
-        >
-          <svg
-            width="19"
-            height="19"
-            viewBox="0 0 19 19"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M0 14.4625V17.5025C0 17.7825 0.22 18.0025 0.5 18.0025H3.54C3.67 18.0025 3.8 17.9525 3.89 17.8525L14.81 6.94249L11.06 3.19249L0.15 14.1025C0.05 14.2025 0 14.3225 0 14.4625ZM17.71 4.04249C18.1 3.65249 18.1 3.02249 17.71 2.63249L15.37 0.292486C15.1832 0.105233 14.9295 0 14.665 0C14.4005 0 14.1468 0.105233 13.96 0.292486L12.13 2.12249L15.88 5.87249L17.71 4.04249Z"
-              fill="#C3CAD9"
-            />
-          </svg>
-          <span>Content</span>
         </li>
         <li
           :class="{ active: currentDetailsPage === 'Description' }"
@@ -103,11 +83,31 @@
           </svg>
           <span>Feedback</span>
         </li>
+        <li
+          :class="{ active: currentDetailsPage === 'Reviews' }"
+          @click="handleCurrentPage('Reviews')"
+        >
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 19 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0 14.4625V17.5025C0 17.7825 0.22 18.0025 0.5 18.0025H3.54C3.67 18.0025 3.8 17.9525 3.89 17.8525L14.81 6.94249L11.06 3.19249L0.15 14.1025C0.05 14.2025 0 14.3225 0 14.4625ZM17.71 4.04249C18.1 3.65249 18.1 3.02249 17.71 2.63249L15.37 0.292486C15.1832 0.105233 14.9295 0 14.665 0C14.4005 0 14.1468 0.105233 13.96 0.292486L12.13 2.12249L15.88 5.87249L17.71 4.04249Z"
+              fill="#C3CAD9"
+            />
+          </svg>
+          <span>Reviews</span>
+        </li>
       </ul>
     </div>
     <main class="details-page__content">
       <div v-if="currentDetailsPage === 'Instructor'">
-        <DetailsAboutTeach :moreInfo="moreInfo" :course="course" />
+        <DetailsAboutTeach :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -125,17 +125,17 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'About'">
-        <CourseContent :moreInfo="moreInfo" />
+        <!-- <CourseContent :moreInfo="moreInfo" /> -->
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
           <div
-            @click="handleCurrentPage('Content')"
+            @click="handleCurrentPage('Description')"
             class="details-page__bottom-btn_push_page"
           >
             <img :src="pencilIcon" alt="" />
-            <span> Content </span>
+            <span> Description </span>
           </div>
           <div class="details-page__bottom-arrow_next">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -161,33 +161,34 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Feedback'">
-        <FeedBack :moreInfo="moreInfo"/>
+        <FeedBack :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
           <div
-            @click="handleCurrentPage('About')"
+            @click="handleCurrentPage('Reviews')"
             class="details-page__bottom-btn_push_page"
           >
             <img :src="fireIcon" alt="" />
-            <span> About </span>
+            <span> Reviews </span>
           </div>
           <div class="details-page__bottom-arrow_next">
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage === 'Content'" class="details-page__bottom">
+      <div v-if="currentDetailsPage === 'Reviews'" class="details-page__bottom">
+        <Reviews />
         <div class="details-page__bottom-arrow_prev">
           <img :src="ArrowIcon" alt="ArrowIcon" />
         </div>
         <div
-          @click="handleCurrentPage('Description')"
+          @click="handleCurrentPage('About')"
           class="details-page__bottom-btn_push_page"
         >
           <img :src="kebabIcon" alt="" />
-          <span>Description</span>
+          <span>About</span>
         </div>
         <div class="details-page__bottom-arrow_next">
           <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -201,6 +202,7 @@
 </template>
 
 <script>
+import Reviews from '../components/Reviews/Reviews.vue'
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import CourseInfo from '../components/CourseInfo.vue'
 import AddToCart from '@/components/AddToCart.vue'
@@ -208,10 +210,10 @@ import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { computed, ref } from '@vue/reactivity'
-import { onMounted } from '@vue/runtime-core'
 import { useStore } from 'vuex'
 export default {
   components: {
+    Reviews,
     FeedBack,
     AddToCart,
     Description,
@@ -221,27 +223,15 @@ export default {
   },
   setup() {
     const store = useStore()
-
     const moreInfo = computed(() => store.state.courseMoreInfo)
-
-    const course = ref()
-    const getDoc = async () => {
-      const response = await fetch('http://localhost:3000/course')
-      const json = await response.json()
-      course.value = json
-    }
 
     const currentDetailsPage = ref('About')
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
     }
-    onMounted(() => {
-      getDoc()
-    })
 
     return {
       moreInfo,
-      course,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
       studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),

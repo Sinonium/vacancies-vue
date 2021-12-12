@@ -100,15 +100,15 @@
 import { ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
 export default {
-  props: ['course'],
+  props: ['moreInfo'],
   setup(props) {
-    const course = props.course
-    const courseRating = course.rating.length
+    const course = props.moreInfo
+    const courseRating = course.grades.length
     const courseRatingFive = ref([])
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
     const courseRatingTwo = ref([])
-    const courseRatingOne = ref([])
+    const courseRatingOne = ref([]) 
     const courseRatingArray = ref([])
     const countRatingStar = ref(0)
     const courseRatingMiddArithmetic = ref(0)
@@ -118,7 +118,7 @@ export default {
     const courseRatingPercentTwo = ref(0)
     const courseRatingPercentOne = ref(0)
     const calctPercentOfRating = () => {
-      course.rating.map((num) => {
+      course.grades.map((num) => {
         switch (num) {
           case 1:
             return courseRatingOne.value.push(num)
@@ -201,7 +201,10 @@ export default {
         courseRatingMiddArithmetic.value.toFixed(1)
     }
 
-    calctPercentOfRating()
+    onMounted(() => {
+      calctPercentOfRating()
+    })
+
     return {
       courseRating,
       courseRatingFive,
