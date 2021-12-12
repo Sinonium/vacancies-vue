@@ -502,11 +502,7 @@
          }
     }
   }
-  &__modal {
-    position: absolute;
-    top: vw(130);
-    left: vw(1150);
-  }
+  
 
 .details-page__head ul li.active {
   &::before {
