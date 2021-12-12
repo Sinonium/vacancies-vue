@@ -113,8 +113,6 @@ export default {
   height: vw(580);
   background-color: $greyBlue25;
   margin-left: vw(100);
-  
-
   border-radius: 25em /20em;
 
   &-title {
@@ -215,7 +213,8 @@ export default {
 @media screen and (max-width: 378px) {
 
   .container{
-    margin-left: vw(-330);
+    
+   // margin-left: vw(-330);
     display: flex;
     justify-content: center;
     margin-top: vmin(100);
