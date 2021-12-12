@@ -3,7 +3,6 @@
     <h3 class="admin-board__heading">New Course Creation</h3>
     <div class="create-course">
       <div class="create-course__name">
-        
         <h4 class="create-course__title">Name of the course</h4>
         <p class="create-course__instruction">
           Write the name of your course. The name should attract attention and
@@ -13,7 +12,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
           v-model="name"
         />
 
@@ -34,7 +32,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          required
           placeholder="Type the heading"
           v-model="heading"
         />
@@ -66,7 +63,6 @@
         <textarea
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          required
           placeholder="Tell us about course"
           v-model="mainInfo"
         ></textarea>
@@ -82,29 +78,29 @@
         ></textarea>
 
         <p class="create-course__title">Photo of your course</p>
-        
+
         <!-- <input
           class="url-input"
           type="fail"
-          
-          
+
+
         /> -->
-       
+
         <label class="downloadimg">
-          <input type="file"
-          id="downloadimg" name="downloadimg"
-          accept="image/png, image/jpeg">
+          <input
+            type="file"
+            @change="getImageUrl"
+            id="downloadimg"
+            name="downloadimg"
+            accept="image/png, image/jpeg"
+          />
           <p class="create-course__instruction">Download the picture</p>
         </label>
-        
-
-       
 
         <h4 class="create-course__title">What will the student study?</h4>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
           v-model="study"
         />
 
@@ -117,7 +113,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
           v-model="whoIsfor"
         />
         <span class="enter-span">
@@ -129,7 +124,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
           v-model="teacher"
         />
       </div>
@@ -138,7 +132,7 @@
     <div class="create-course">
       <div class="create-course__price">
         <h4 class="create-course__title">Price:</h4>
-        <input type="number" required placeholder="100$" v-model="price" />
+        <input type="number" placeholder="100$" v-model="price" />
       </div>
     </div>
 
@@ -149,7 +143,6 @@
           <option
             v-for="option in categories"
             :key="option.text"
-            required
             :value="option.value"
           >
             {{ option.text }}
@@ -227,15 +220,6 @@
           </select>
           <label for=""></label>
         </div>
-        <div>
-          <h4 class="create-course__title">Duration courses</h4>
-          <p class="create-course__instruction">Type course time</p>
-          <input
-            onkeyup="this.value=this.value.replace(/^\s/,'')"
-            type="number"
-            v-model="coursetime"
-          />
-        </div>
       </div>
     </div>
 
@@ -247,7 +231,6 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
           placeholder="JavaScript Foundation"
           v-model="lectureName"
         />
@@ -258,50 +241,46 @@
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
-          required
           placeholder="How To Succedd In This Course"
           v-model="lesson"
         />
         <div class="lesson-details">
-        <input
-          required
-          type="time"
-          v-model="time"
-        />
-        <select required v-model="type" class="select">
-          <option>video</option>
-          <option>text</option>
-        </select>
+          <select v-model="type" class="select">
+            <option>video</option>
+            <option>text</option>
+          </select>
+          <input  class="lesson-time" type="time" v-model="time" />
         </div>
         <span class="enter-span">
           <div class="enter" @click="enterLesson">Enter</div>
         </span>
       </div>
-      <div class=""></div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
+
     </div>
     <div class="publish">
-      <button>Publish Course</button>
-    </div>   
+      <button class="button">Publish Course</button>
+      </div>
   </form>
 </template>
 
 <script>
-import addCollection from "@/composables/addCollection";
-import { ref } from "@vue/reactivity";
-import { v4 as uuid } from "uuid";
-import SubACategories from "@/components/AdminPanel/SubACategories.vue";
-import SubBCategories from "@/components/AdminPanel/SubBCategories.vue";
-import SubCCategories from "@/components/AdminPanel/SubCCategories.vue";
-import SubDCategories from "@/components/AdminPanel/SubDCategories.vue";
-import SubECategories from "@/components/AdminPanel/SubECategories.vue";
-import SubFCategories from "@/components/AdminPanel/SubFCategories.vue";
-import SubGCategories from "@/components/AdminPanel/SubGCategories.vue";
-import SubHCategories from "@/components/AdminPanel/SubHCategories.vue";
-import SubICategories from "@/components/AdminPanel/SubICategories.vue";
-import SubJCategories from "@/components/AdminPanel/SubJCategories.vue";
-import SubKCategories from "@/components/AdminPanel/SubKCategories.vue";
-import SubLCategories from "@/components/AdminPanel/SubLCategories.vue";
+import addCollection from '@/composables/addCollection'
+import { ref } from '@vue/reactivity'
+import { v4 as uuid } from 'uuid'
+import SubACategories from '@/components/AdminPanel/SubACategories.vue'
+import SubBCategories from '@/components/AdminPanel/SubBCategories.vue'
+import SubCCategories from '@/components/AdminPanel/SubCCategories.vue'
+import SubDCategories from '@/components/AdminPanel/SubDCategories.vue'
+import SubECategories from '@/components/AdminPanel/SubECategories.vue'
+import SubFCategories from '@/components/AdminPanel/SubFCategories.vue'
+import SubGCategories from '@/components/AdminPanel/SubGCategories.vue'
+import SubHCategories from '@/components/AdminPanel/SubHCategories.vue'
+import SubICategories from '@/components/AdminPanel/SubICategories.vue'
+import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
+import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
+import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
+import useStorage from '@/composables/useStorage'
 export default {
   components: {
     SubACategories,
@@ -319,72 +298,80 @@ export default {
   },
 
   setup() {
+    const { uploadImageAndGetImageUrl } = useStorage()
     const categories = [
       {
-        text: "Development",
-        value: "Development",
+        text: 'Development',
+        value: 'Development',
       },
       {
-        text: "Business",
-        value: "Business",
+        text: 'Business',
+        value: 'Business',
       },
       {
-        text: "Finance & Accounting",
-        value: "Finance & Accounting",
+        text: 'Finance & Accounting',
+        value: 'Finance & Accounting',
       },
       {
-        text: "IT & Software",
-        value: "IT & Software",
+        text: 'IT & Software',
+        value: 'IT & Software',
       },
       {
-        text: "Office Productivity",
-        value: "Office Productivity",
+        text: 'Office Productivity',
+        value: 'Office Productivity',
       },
       {
-        text: "Personal Development",
-        value: "Personal Development",
+        text: 'Personal Development',
+        value: 'Personal Development',
       },
       {
-        text: "Design and Art",
-        value: "Design and Art",
+        text: 'Design and Art',
+        value: 'Design and Art',
       },
       {
-        text: "Marketing and Sales",
-        value: "Marketing and Sales",
+        text: 'Marketing and Sales',
+        value: 'Marketing and Sales',
       },
       {
-        text: "Lifestyle and Fashion",
-        value: "Lifestyle and Fashion",
+        text: 'Lifestyle and Fashion',
+        value: 'Lifestyle and Fashion',
       },
       {
-        text: "Photography",
-        value: "Photography",
+        text: 'Photography',
+        value: 'Photography',
       },
       {
-        text: "Health & Fitness",
-        value: "Health & Fitness",
+        text: 'Health & Fitness',
+        value: 'Health & Fitness',
       },
       {
-        text: "Music and Sound Design",
-        value: "Music and Sound Design",
+        text: 'Music and Sound Design',
+        value: 'Music and Sound Design',
       },
       {
-        text: "Teaching & Academics",
-        value: "Teaching & Academics",
+        text: 'Teaching & Academics',
+        value: 'Teaching & Academics',
       },
-    ];
+    ]
     const popa = (a, b) => {
       jopa.value = [selected.value, a, b]
     }
     const selected = ref('')
     const jopa = ref([])
+    const img = ref()
 
+    const responseUrl = ref('')
+    const getImageUrl = async (event) => {
+      const imgFile = event.target.files[0]
+      const imgResponse = await uploadImageAndGetImageUrl(myId, imgFile)
+      responseUrl.value = await imgResponse
+    }
     const myId = uuid()
     const type = ref('')
     const heading = ref('')
     const name = ref('')
     const price = ref('')
-    const imageURL = ref('')
+    // const imageURL = ref('')
     const mainInfo = ref('')
     const moreInfo = ref('')
     const teacher = ref('')
@@ -396,99 +383,141 @@ export default {
     const duration = ref('')
     const lectureName = ref('')
     const lesson = ref('')
-    const time = ref('')
+    const time = ref('00:05:05')
     const study = ref('')
     const Lessons = ref([])
-    const Lectures= ref([])
+    const Lectures = ref([])
     const coursetime = ref()
+    const alllecturetime = ref([0, 0, 0])
 
     const enterWho = () => {
-      enterIsWho.value = [...enterIsWho.value, whoIsfor.value];
-      whoIsfor.value = "";
-    };
+      enterIsWho.value = [...enterIsWho.value, whoIsfor.value]
+      whoIsfor.value = ''
+    }
     const enterWhat = () => {
-      enterIsWhat.value = [...enterIsWhat.value, study.value];
-      study.value = "";
-    };
+      enterIsWhat.value = [...enterIsWhat.value, study.value]
+      study.value = ''
+    }
+
     const enterLesson = () => {
-      console.log("jopa");
+      let lesstringtime = ''
+      let timeres = time.value.split(':')
+      alllecturetime.value[0] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[1] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[2] = alllecturetime.value[0] + Number(timeres[0])
+
+      if (timeres[0] != 0) lesstringtime = timeres[0].toString() + ':'
+
+      if (timeres[1].toString().length == 2)
+        lesstringtime = lesstringtime + timeres[1].toString() + ':'
+      else lesstringtime = lesstringtime + '0' + timeres[1].toString() + ':'
+
+      if (timeres[2].toString().length == 2)
+        lesstringtime += timeres[2].toString()
+      else lesstringtime = lesstringtime + '0' + timeres[2].toString()
+      console.log(lesstringtime)
       Lessons.value = [
         ...Lessons.value,
         {
-          time: time.value,
+          time: lesstringtime,
           lessonName: lesson.value,
           type: type.value,
         },
-      ];
-      console.log(Lessons.value);
-      time.value = ''
+      ]
+
+      time.value = '00:00:00'
       lesson.value = ''
-      type.value = '  '
+      type.value = ''
     }
     const enterLecture = () => {
-      console.log("eshe bol,shaia jopa");
+      alllecturetime.value[1] =
+        Math.floor(alllecturetime.value[2] / 60) + alllecturetime.value[1]
+      alllecturetime.value[2] = alllecturetime.value[2] % 60
+      alllecturetime.value[0] =
+        Math.floor(alllecturetime.value[1] / 60) + alllecturetime.value[0]
+      alllecturetime.value[1] = alllecturetime.value[1] % 60
+      console.log(alllecturetime.value)
+
+      let stringtime = ''
+
+      if (alllecturetime.value[0] != 0) {
+        stringtime = stringtime + alllecturetime.value[0].toString() + ':'
+      }
+
+      if (alllecturetime.value[1].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[1].toString() + ':'
+      else
+        stringtime = stringtime + '0' + alllecturetime.value[1].toString() + ':'
+
+      if (alllecturetime.value[2].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[2].toString()
+      else stringtime = stringtime + '0' + alllecturetime.value[2].toString()
+
+      console.log(stringtime)
       Lectures.value = [
         ...Lectures.value,
         {
           lectureName: lectureName.value,
+          allTime: stringtime,
           lessons: Lessons.value,
         },
-      ];
-      console.log(Lectures.value);
+      ]
       lectureName.value = ''
-      Lessons.value= []
+      Lessons.value = []
+      alllecturetime.value = [0, 0, 0]
     }
-    const res = ref()
 
     const handleSubmit = async () => {
       if (coursetime.value >= 0 && coursetime.value <= 2)
-        duration.value = "0-2 Hours";
+        duration.value = '0-2 Hours'
       if (coursetime.value >= 3 && coursetime.value <= 6)
-        duration.value = "3-6 Hours";
+        duration.value = '3-6 Hours'
       if (coursetime.value >= 7 && coursetime.value <= 16)
-        duration.value = "7-16 Hours";
-      if (coursetime.value >= 17) duration.value = "17+ Hours";
-      await addCollection("courses", {
+        duration.value = '7-16 Hours'
+      if (coursetime.value >= 17) duration.value = '17+ Hours'
+
+      console.log(responseUrl.value)
+
+      await addCollection('courses', {
         name: name.value,
         price: price.value,
-        imageURL: imageURL.value,
+        imageUrl: responseUrl.value,
         teacher: teacher.value,
         level: level.value,
         pricelist: pricelist.value,
         duration: duration.value,
         categories: jopa.value,
         students: 0,
-        teacherName: "",
+        teacherName: '',
         grade: 0,
         moreInfoId: myId,
       }),
         await addCollection(
-          "more info",
+          'more info',
           {
-            malika: {
-              whoIsfor: enterIsWho.value,
-              courseContent: Lectures.value,
-            },
-            beknazar: {
-              heading: heading.value,
-              mainInfo: mainInfo.value,
-              moreInfo: moreInfo.value,
-            },
-            adilhan: {
-              grades: [],
-              reviews: [],
-              teacherID: "",
-            },
+            whatStudy: enterIsWhat.value,
+            courseContent: Lectures.value,
+            heading: heading.value,
+            mainInfo: mainInfo.value,
+            moreInfo: moreInfo.value,
+            whoIsfor: enterIsWho.value,
+            grades: [],
+            reviews: [],
+            teacherID: '',
           },
           false,
           myId
-        );
-    };
+        )
+    }
 
     return {
+      responseUrl,
+      uploadImageAndGetImageUrl,
       popa,
       handleSubmit,
       lectureName,
+      alllecturetime,
+
       enterLesson,
       enterLecture,
       coursetime,
@@ -498,7 +527,7 @@ export default {
       type,
       price,
       lesson,
-      imageURL,
+      getImageUrl,
       categories,
       time,
       teacher,
@@ -516,49 +545,46 @@ export default {
       enterIsWho,
       enterWhat,
       enterIsWhat,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-
-// @import '@riophae/vue-treeselect/dist/vue-treeselect.css';
-
 .admin-board {
   margin: vw(30) vw(160);
   width: vw(760);
-  .downloadimg{
+  .downloadimg {
     display: flex;
     width: vw(630);
     height: vw(200);
+    cursor: pointer;
     background-color: $blue;
     opacity: 0.2;
     justify-content: center;
-    input[type="file"] {
-    display: none;
-    cursor: pointer;
+    input[type='file'] {
+      display: none;
     }
-    p{
+    p {
       margin-top: vw(80);
       @include font(vw(18), 700, vh(30));
       color: white;
     }
   }
-  
-  .enter2{
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include font(vw(14), 600, vh(30));
-      color: $white;
-      background-color: $greyBlue70;
-      width: vw(100);
-      height: vw(50);
-      border: none;
-      border-radius: vw(5);
+
+  .enter2 {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(vw(14), 600, vh(30));
+    color: $white;
+    background-color: $greyBlue70;
+    width: vw(100);
+    height: vw(50);
+    border: none;
+    border-radius: vw(5);
   }
   .enter {
     display: flex;
@@ -584,7 +610,7 @@ export default {
   .publish {
     display: flex;
     justify-content: center;
-    button {
+    .button {
       @include font(vw(14), 600, vh(30));
       color: white;
       background-color: $blue;
@@ -614,17 +640,17 @@ export default {
       color: $greyBlue70;
     }
     select {
-        padding: vw(10) vw(30);
-        border: 2px solid #f5f6f7;
-        width: 45%;
-        box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
-        border-radius: vw(5);
-        margin-right: vw(10);
-        margin-bottom: vw(10);
-        height: vw(65);
-        padding: vw(10) vw(10) vw(10) vw(15);
-        text-transform: capitalize;
-        @include font(vw(13), 600, vh(30));
+      padding: vw(10) vw(30);
+      border: 2px solid #f5f6f7;
+      width: 45%;
+      box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
+      border-radius: vw(5);
+      margin-right: vw(10);
+      margin-bottom: vw(10);
+      height: vw(65);
+      padding: vw(10) vw(10) vw(10) vw(15);
+      text-transform: capitalize;
+      @include font(vw(13), 600, vh(30));
     }
     .url-input {
       text-transform: initial;
@@ -664,26 +690,27 @@ export default {
         @include font(vw(13), 600, vh(30));
       }
     }
-    &__lectures{
-    .lesson-details{
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      input{
-        width: 46%;
+    &__lectures {
+      .lesson-details {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        input {
+          width: 46%;
+          margin-right: vmin(4);
+        }
+        select {
+          width: 46%;
+          border: 2px solid #f5f6f7;
+          box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
+          border-radius: vw(5);
+          margin-right: vw(10);
+          height: vw(65);
+          padding: vw(10) vw(10) vw(10) vw(15);
+          text-transform: capitalize;
+          @include font(vw(13), 600, vh(30));
+        }
       }
-      select{
-        width: 46%;
-        border: 2px solid #f5f6f7;
-        box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
-        border-radius: vw(5);
-        margin-right: vw(10);
-        height: vw(65);
-        padding: vw(10) vw(10) vw(10) vw(15);
-        text-transform: capitalize;
-        @include font(vw(13), 600, vh(30));
-      }
-    }
     }
     &__questions {
       display: block;
@@ -699,48 +726,47 @@ export default {
           margin: vw(3) vw(10);
           width: 15px;
           height: 2px;
-          content: " ";
+          content: ' ';
           background-color: $greyBlue90;
         }
       }
     }
-    &__categories {
-      .category-blocks {
-        display: flex;
-        .category-block {
-          display: block;
-          margin: 0 vw(40) 0 0;
-          .title {
-            @include font(vw(13), 700, vh(25));
-            color: $greyBlue50;
-            margin-bottom: vw(20);
-          }
-          .category {
-            @include font(vw(12), 700, vh(20));
-            color: $greyBlue70;
-          }
-          .category:hover {
-            color: $green;
-          }
-          .more {
-            @include font(vw(12), 700, vh(20));
-            color: $blue;
-            margin-top: vw(20);
-          }
-        }
-      }
-    }
+    
   }
 }
 @media screen and (max-width: 1024px) {
   .admin-board {
-    margin: vmin(15) vmin(40);
+    margin: vmin(15) 0 vmin(15) vmin(57);
+    width: vmin(300);
     &__heading {
-      @include font(vmin(15), 700, vmin(15));
+      @include font(vmin(14), 700, vmin(10));
+      width: vmin(200);
+    }
+    .downloadimg {
+    width: vmin(230);
+    height: vmin(70);
+    p {
+      margin-top: vmin(25);
+      @include font(vmin(9), 700, vmin(15));
+      color: white;
+    }
+    }
+    .enter2 {
+    @include font(vmin(7), 600, vmin(15));
+    width: vmin(70);
+    height: vmin(30);
+    border-radius: vw(10);
+    }
+    .enter {
+      @include font(vmin(7), 600, vmin(15));
+      width: vmin(50);
+      height: vmin(20);
+      border: none;
+      border-radius: vw(10);
     }
     .publish {
-      margin: 0 vmin(15);
-      button {
+      margin-right: vmin(40);
+      .button {
         @include font(vmin(7), 600, vmin(15));
         color: white;
         width: vmin(100);
@@ -754,18 +780,25 @@ export default {
       width: vmin(230);
       border-radius: vmin(5);
       &__title {
-        @include font(vmin(10), 700, vmin(13));
+        @include font(vmin(13), 700, vmin(13));
       }
       &__instruction {
-        @include font(vmin(7), 700, vmin(13));
+        @include font(vmin(10), 700, vmin(13));
         margin: vmin(15) 0 vmin(10) 0;
       }
+      select {
+      padding: vmin(3) vmin(15);
+      width: 50%;
+      height: vmin(30);
+      padding: vmin(5) vmin(5) vmin(5) vmin(10);
+      @include font(vmin(7), 600, vh(15));
+    }
       input {
         border-radius: vmin(5);
         padding: vw(10);
         margin: 0 0 vmin(15) 0;
         width: vmin(220);
-        @include font(vmin(7), 600, vmin(15));
+        @include font(vmin(9), 600, vmin(15));
       }
       &__examples {
         span {
@@ -781,43 +814,40 @@ export default {
       &__description {
         textarea {
           border-radius: vmin(5);
-          width: vmin(180);
+          width: vmin(220);
           height: vmin(60);
-          @include font(vmin(6), 600, vmin(15));
+          @include font(vmin(9), 600, vmin(15));
         }
       }
       &__questions {
         margin-bottom: vmin(10);
         .questions {
           p {
-            @include font(vmin(7), 700, vmin(13));
+            @include font(vmin(8), 700, vmin(13));
           }
           span {
             margin: vmin(3) vmin(5);
-            width: vmin(6);
+            width: vmin(7);
             height: vmin(2);
           }
         }
       }
-      &__categories {
-        .category-blocks {
-          .category-block {
-            margin: 0 vmin(5) 0 0;
-            .title {
-              @include font(vmin(7), 600, vh(13));
-              margin-bottom: vmin(7);
-            }
-            .category {
-              @include font(vmin(6), 600, vmin(10));
-            }
-            .more {
-              @include font(vmin(6), 700, vh(10));
-              margin-top: vmin(10);
-              color: $blue;
-            }
-          }
+      &__lectures {
+      .lesson-details {
+        .lesson-time{
+        width: 50%;
+        height: vmin(23);
+      }
+        select {
+          padding: vmin(3) vmin(15);
+          width: 50%;
+          height: vmin(30);
+          padding: vmin(5) vmin(5) vmin(5) vmin(10);
+          @include font(vmin(7), 600, vh(15));
         }
       }
+    }
+      
     }
   }
 }

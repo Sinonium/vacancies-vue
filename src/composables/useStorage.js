@@ -1,14 +1,14 @@
-import { ref,uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-import {storage} from '@/firebase/config'
+import { storage } from '@/firebase/config'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
-export const useStorage = () => {
-    const uploadImageAndGetImageUrl = async (file) => {
-       const imageRef = ref(storage, 'images/' + file.name)
-       const imageUrl = await uploadBytesResumable(imageRef,file)
-       const url = await getDownloadURL(imageUrl.ref)
-       console.log(url)
+const useStorage = () => {
+  const uploadImageAndGetImageUrl = async (moreInfoId, file) => {
+    const imageRef = ref(storage, `images/${moreInfoId}/${file.name}`)
+    await uploadBytesResumable(imageRef, file)
+    return await getDownloadURL(imageRef)
+  }
 
-    };
-
-    return {uploadImageAndGetImageUrl}
+  return { uploadImageAndGetImageUrl }
 }
+
+export default useStorage

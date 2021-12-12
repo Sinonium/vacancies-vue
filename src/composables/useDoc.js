@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { firestore } from '@/firebase/config'
-import { doc, onSnapshot } from '@firebase/firestore'
+import { doc, onSnapshot } from 'firebase/firestore'
 import { onUnmounted } from '@vue/composition-api/dist/vue-composition-api.common'
 
 const useDoc = () => {

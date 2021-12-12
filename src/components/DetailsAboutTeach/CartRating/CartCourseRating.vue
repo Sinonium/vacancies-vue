@@ -22,7 +22,9 @@
             <img :src="starActiveIcon" alt="" />
             <img :src="starActiveIcon" alt="" />
           </div>
-          <span v-if="courseRatingPercentFive.length"> {{ courseRatingPercentFive + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentFive.length">
+            {{ courseRatingPercentFive + ' ' + '%' }}
+          </span>
           <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
@@ -36,7 +38,9 @@
             <img :src="starActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span v-if="courseRatingPercentFour.length"> {{ courseRatingPercentFour + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentFour.length">
+            {{ courseRatingPercentFour + ' ' + '%' }}
+          </span>
           <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
@@ -50,7 +54,9 @@
             <img :src="starNotActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span v-if="courseRatingPercentThree.length"> {{ courseRatingPercentThree + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentThree.length">
+            {{ courseRatingPercentThree + ' ' + '%' }}
+          </span>
           <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
@@ -64,7 +70,9 @@
             <img :src="starNotActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span v-if="courseRatingPercentTwo.length"> {{ courseRatingPercentTwo + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentTwo.length">
+            {{ courseRatingPercentTwo + ' ' + '%' }}
+          </span>
           <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
         <li>
@@ -78,7 +86,9 @@
             <img :src="starNotActiveIcon" alt="" />
             <img :src="starNotActiveIcon" alt="" />
           </div>
-          <span v-if="courseRatingPercentOne.length"> {{ courseRatingPercentOne + ' ' + '%' }} </span>
+          <span v-if="courseRatingPercentOne.length">
+            {{ courseRatingPercentOne + ' ' + '%' }}
+          </span>
           <span v-else> {{ 0 + ' ' + '%' }} </span>
         </li>
       </ul>
@@ -94,7 +104,7 @@ export default {
   setup(props) {
     const course = props.course
     const courseRating = course.rating.length
-    const courseRatingFive = ref([])  
+    const courseRatingFive = ref([])
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
     const courseRatingTwo = ref([])
@@ -190,7 +200,7 @@ export default {
       courseRatingMiddArithmetic.value =
         courseRatingMiddArithmetic.value.toFixed(1)
     }
-    
+
     calctPercentOfRating()
     return {
       courseRating,
@@ -224,10 +234,9 @@ export default {
 }
 .cart-rating_course {
   margin-top: vw(30);
-  height: vw(255);
   width: vw(730);
   display: flex;
-  padding: vw(35) vw(40) vw(74) vw(37);
+  padding: 2vw 2.7vw 4.3vw 2vw;
   background: $white;
   box-sizing: border-box;
   border-radius: 10px;
@@ -286,229 +295,37 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1281px) {
-  .stars {
-    margin-left: 1.1875vw !important;
-  }
-}
-@media screen and (max-width: 1199px) {
-  .stars {
-    margin-left: 0.1875vw !important;
-  }
-}
-@media screen and (max-width: 1067px) {
+@media screen and (max-width: 1440px) {
   .cart-rating_course {
     &_second {
-      margin-bottom: vw(-21);
+      margin-top: 2vw;
     }
   }
-}
-@media screen and (max-width: 925px) {
-  .cart-rating_course {
-    height: 19.9375vw;
-    padding: 2.1875vw 1.5vw 4.625vw 2.3125vw;
+  .cart-rating_course_second ul li span {
+    @include font(vw(20), bold, 25px, $greyBlue70);
+  }
+  .cart-rating_course_second ul li .stars img {
+    height: vw(20);
   }
 }
-@media screen and (max-width: 871px) {
+@media screen and (max-width: 1024px) {
+  .cart-rating_course_first span {
+    font-size: 0.9vw;
+  }
   .cart-rating_course {
-    padding: 3.1875vw 0.5vw 4.625vw 2.3125vw;
+    width: 48vw;
+    padding: 0.1vw 0.2vw 0.6vw 2.5vw;
   }
 }
-@media screen and (max-width: 835px) {
+@media screen and (max-width: 769px) {
   .cart-rating_course {
-    padding: 3.1875vw 0.5vw 3.625vw 1.3125vw;
-    &_first {
-      span {
-        @include font(vw(19), bold, 25px, $greyBlue70);
-      }
-    }
-    &_second {
-      ul {
-        li {
-          span {
-            @include font(vw(17), bold, 25px, $greyBlue70);
-            margin-left: vw(25);
-          }
-        }
-      }
-    }
+    width: 60vw;
   }
 }
-@media screen and (max-width: 801px) {
-  .cart-rating_course {
-    padding: 2.1875vw 0.5vw 3.625vw 0.3125vw;
-  }
+@media screen and(max-width: 579px) {
 }
-@media screen and (max-width: 761px) {
-  .cart-rating_course {
-    &_second {
-      ul {
-        li {
-          .lineStar {
-            width: vw(260);
-          }
-        }
-      }
-    }
-  }
+@media screen and(max-width: 426px) {
 }
-@media screen and (max-width: 717px) {
-  .cart-rating_course {
-    display: flex;
-    &_first {
-      margin-left: 2.25vw;
-    }
-    &_second {
-      margin-left: 10.375vw;
-      ul {
-        li {
-          .lineStar {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 685px) {
-  .cart-rating_course {
-    height: 24vw;
-  }
-}
-@media screen and (max-width: 658px) {
-  .cart-rating_course {
-    &_second {
-      ul {
-        li {
-          span {
-            @include font(vw(23), bold, 25px, $greyBlue70);
-          }
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 629px) {
-  .cart-rating_course {
-    &_first {
-      margin-left: 1.25vw;
-    }
-  }
-}
-@media screen and (max-width: 604px) {
-  .cart-rating_course {
-    &_first {
-      margin-left: 0.25vw;
-    }
-  }
-}
-@media screen and (max-width: 596px) {
-  .cart-rating_course {
-    width: 49.625vw;
-  }
-}
-@media screen and (max-width: 551px) {
-  .cart-rating_course {
-    height: 100vmin;
-    width: 100%;
-    display: block;
-    padding: 2vmin 2vmin 2vmin 2vmin;
-    background: $white;
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
-    margin-top: vmin(30);
-    &_first {
-      @include flex();
-      flex-direction: column;
-      margin-bottom: vmin(30);
-      h4 {
-        @include font(vmin(48), 600, 10px, $greyBlue50);
-      }
-      div {
-        span {
-          margin-left: vmin(5);
-        }
-      }
-      span {
-        @include font(vmin(13), bold, 25px, $greyBlue70);
-      }
-    }
-    &_second {
-      @include flex();
-      flex-direction: column;
-      ul {
-        margin-left: vmin(10);
-        list-style-type: none;
-        li {
-          margin-top: vmin(9);
-          display: flex;
-          align-items: center;
-          .lineStar {
-            width: vmin(200);
-            height: vmin(8);
-            background: $greyBlue97;
-            border-radius: 5px;
-            position: relative;
-            span {
-              position: absolute;
-              margin-left: vmin(-0.75);
-              height: 100%;
-              border-radius: 5px;
-              background: $greyBlue85;
-            }
-          }
-          .stars {
-            margin-left: vmin(35);
-            img {
-              margin-left: vmin(5);
-            }
-          }
-          span {
-            @include font(vmin(13), bold, 25px, $greyBlue70);
-            margin-left: vmin(25);
-          }
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 426px) {
-  .cart-rating_course {
-    &_first {
-      margin-bottom: 1vmin;
-    }
-  }
-}
-@media screen and (max-width: 362px) {
-  .cart-rating_course {
-    height: 110vmin;
-    &_first {
-      margin-bottom: 0vmin;
-    }
-  }
-}
-@media screen and (max-width: 298px) {
-  .cart-rating_course {
-    height: 117vmin;
-  }
-}
-@media screen and (max-width: 298px) {
-  .cart-rating_course {
-    &_first {
-      span {
-        @include font(vmin(18), bold, 25px, $greyBlue70);
-      }
-    }
-    &_second {
-      ul {
-        li {
-          span {
-            @include font(vmin(17), bold, 25px, $greyBlue70);
-          }
-        }
-      }
-    }
-  }
+@media screen and(max-width:376px) {
 }
 </style>

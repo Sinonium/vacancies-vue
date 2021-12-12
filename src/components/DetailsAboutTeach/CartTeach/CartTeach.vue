@@ -15,12 +15,12 @@
         </li>
       </ul>
     </div>
-    <div class="cart-teach__features_teach col-5">
-      <h2>{{ course.teacher.name }}</h2>
-      <span> {{ course.teacher.features }} </span>
-      <p>{{ course.teacher.recentNews }}</p>
-      <p>{{ course.teacher.biography }}</p>
-    </div>
+    <div v-if="moreInfo" class="cart-teach__features_teach col-5">
+      <h2>{{ moreInfo.Adilhan.teacher.name }}</h2>
+      <span> {{ moreInfo.Adilhan.teacher.features }} </span>
+      <p>{{ moreInfo.Adilhan.teacher.recentNews }}</p>
+      <p>{{ moreInfo.Adilhan.teacher.biography }}</p>
+    </div>  
     <span style="cursor: pointer" class="cart-teach__kebab">
       <svg
         width="16"
@@ -42,9 +42,8 @@
 
 <script>
 export default {
-  props: ['course'],
+  props: ['course',"moreInfo"],
   setup(props) {
-    
     return {}
   },
 }
@@ -64,12 +63,10 @@ export default {
 }
 .cart-teach {
   position: relative;
-  height: vw(445);
   width: vw(730);
   display: flex;
-  padding: vw(35) vw(40) vw(74) vw(37);
+  padding: 1.1875vw 0.5vw 2.625vw 0.125vw;
   background: $white;
-  box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
   &__about_teach {
@@ -119,188 +116,42 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1257px) {
+@media screen and (max-width: 1440px) {
+  .cart-teach__about_teach h4 {
+    font-size: 1.3vw;
+  }
+  .cart-teach__about_teach_list-item .last__span {
+    font-size: 1.1vw;
+  }
+  .cart-teach__features_teach h2 {
+    font-size: 1.5vw;
+  }
+  .cart-teach__features_teach span {
+    font-size: 1.1vw;
+  }
+  .cart-teach__about_teach {
+    margin-bottom: 4vw;
+    margin-left: 2vw;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .cart-teach__features_teach p,
+  .cart-teach__features_teach span {
+    font-size: 1.2vw;
+  }
+  .cart-teach__about_teach_list-item  {
+    margin-top: 3.5vw;
+  }
   .cart-teach {
-    padding: 2.1875vw ​1.5vw 2.625vw 3.3125vw;
+    width: 48vw;
   }
 }
-@media screen and (max-width: 1256px) {
+@media screen and (max-width: 769px) {
   .cart-teach {
-    padding: 2.1875vw ​1.5vw 2.625vw 3.3125vw;
+    width: 60vw;
   }
 }
-@media screen and (max-width: 1221px) {
-  .cart-teach__about_teach_list-item {
-    margin-top: 1.2vw;
-  }
-}
-@media screen and (max-width: 1178px) {
-  .cart-teach {
-    padding: 2.1875vw 0.5vw 3.625vw 3.3125vw;
-  }
-}
-@media screen and (max-width: 1105px) {
-  .cart-teach {
-    padding: 1.1875vw 0.5vw 1.625vw 3.3125vw;
-  }
-}
-@media screen and (max-width: 1077px) {
-  .cart-teach {
-    height: 30vw;
-  }
-}
-@media screen and (max-width: 1016px) {
-  .cart-teach {
-    padding: 1.1875vw 0.5vw 1.625vw 2.3125vw;
-  }
-}
-@media screen and (max-width: 961px) {
-  .cart-teach {
-    &__about_teach {
-      h4 {
-        @include font(vw(17.5), bold, 25px, $greyBlue50);
-      }
-      &_list {
-        &-item {
-          .first__span {
-            @include font(vw(15), bold, 25px, $greyBlue50);
-          }
-          .last__span {
-            @include font(vw(14), bold, 20px, $greyBlue60);
-          }
-        }
-      }
-    }
-    &__features_teach {
-      h2 {
-        @include font(vw(16), bold, 30px, $greyBlue50);
-      }
-      p,
-      span {
-        @include font(vw(15), bold, 25px, $greyBlue70);
-        max-width: vw(360);
-      }
-    }
-    height: 35vw;
-    padding: 1.1875vw 0.5vw 1.625vw 2.3125vw;
-  }
-  .cart-teach__about_teach_list {
-    margin-left: -0.8125vw;
-    list-style-type: none;
-  }
-}
-@media screen and (max-width: 907px) {
-  .cart-teach {
-    padding: 0.1875vw 0.5vw 4.625vw 2.3125vw;
-  }
-}
-@media screen and (max-width: 890px) {
-  .cart-teach {
-    height: 37vw;
-  }
-}
-@media screen and (max-width: 835px) {
-  .cart-teach {
-    &__features_teach {
-      p {
-        @include font(vw(17), bold, 22px, $greyBlue70);
-        max-width: vw(360);
-      }
-    }
-  }
-}
-@media screen and (max-width: 770px) {
-  .cart-teach {
-    height: 39vw;
-    &__about_teach {
-      &_list {
-        &-item {
-          .first__span {
-            @include font(vw(15), bold, 25px, $greyBlue50);
-          }
-          .last__span {
-            @include font(vw(14), bold, 20px, $greyBlue60);
-          }
-        }
-      }
-    }
-    &__features_teach {
-      p {
-        @include font(vw(18), bold, 18px, $greyBlue70);
-        max-width: vw(360);
-      }
-    }
-  }
-}
-@media screen and (max-width: 685px) {
-  .cart-teach {
-    height: 43vw;
-    &__features_teach {
-      h2 {
-        @include font(vw(25), bold, 30px, $greyBlue50);
-      }
-    }
-  }
-}
-@media screen and (max-width: 658px) {
-  .cart-teach {
-    height: 46vw;
-    &__about_teach {
-      h4 {
-        @include font(vw(20), bold, 25px, $greyBlue50);
-      }
-      img {
-        height: 11vw;
-      }
-    }
-    &__features_teach {
-      p,
-      span {
-        @include font(vw(20), bold, 16px, $greyBlue70);
-        max-width: vw(360);
-      }
-    }
-  }
-}
-@media screen and (max-width: 638px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: 5%;
-  }
-}
-@media screen and (max-width: 622px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: 5%;
-  }
-}
-@media screen and (max-width: 608px) {
-  .cart-teach {
-    height: 48vw;
-  }
-}
-@media screen and (max-width: 607px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: 5%;
-  }
-}
-@media screen and (max-width: 596px) {
-  .cart-teach {
-    width: 49.625vw;
-  }
-  .cart-teach__kebab {
-    position: absolute;
-    right: 5%;
-  }
-}
-@media screen and (max-width: 571px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: 5%;
-  }
-}
-@media screen and (max-width: 551px) {
+@media screen and(max-width: 579px) {
   .cart-teach {
     height: 177vmin;
     width: 100%;
@@ -363,96 +214,8 @@ export default {
     top: 23vmin;
   }
 }
-@media screen and (max-width: 533px) {
-  .cart-teach {
-    height: 176vmin;
-  }
+@media screen and(max-width: 426px) {
 }
-@media screen and (max-width: 507px) {
-  .cart-teach {
-    height: 190vmin;
-  }
-}
-@media screen and (max-width: 458px) {
-  .cart-teach {
-    height: 194vmin;
-    width: 100%;
-  }
-}
-@media screen and (max-width: 447px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: -4%;
-    top: 23vmin;
-  }
-}
-@media screen and (max-width: 390px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: -14%;
-    top: 23vmin;
-  }
-}
-@media screen and (max-width: 375px) {
-  .cart-teach {
-    height: 224vmin;
-  }
-}
-@media screen and (max-width: 362px) {
-  .cart-teach__kebab {
-    position: absolute;
-    top: 23vmin;
-    right: -23%;
-  }
-}
-@media screen and (max-width: 351px) {
-  .cart-teach__kebab {
-    position: absolute;
-    right: -23%;
-    top: 23vmin;
-  }
-}
-@media screen and (max-width: 326px) {
-  .cart-teach__kebab {
-    position: absolute;
-    top: 23vmin;
-    right: -33%;
-  }
-}
-@media screen and (max-width: 321px) {
-  .cart-teach {
-    height: 240vmin;
-  }
-}
-@media screen and (max-width: 319px) {
-  .cart-teach {
-    .cart-teach {
-      &__about_teach {
-        h4 {
-          @include font(vmin(19), bold, 25px, $greyBlue50);
-        }
-        &_list {
-          &-item {
-            .first__span {
-              @include font(vmin(18), bold, 25px, $greyBlue50);
-            }
-            .last__span {
-              @include font(vmin(17), bold, 20px, $greyBlue60);
-            }
-          }
-        }
-      }
-      &__features_teach {
-        h2 {
-          @include font(vmin(18), bold, 30px, $greyBlue50);
-        }
-        p,
-        span {
-          @include font(vmin(17), bold, 25px, $greyBlue70);
-          max-width: vmin(360);
-        }
-      }
-    }
-  }
+@media screen and(max-width:376px) {
 }
 </style>

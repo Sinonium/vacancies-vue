@@ -3,13 +3,19 @@ import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 
 const update = () => {
   const updateTeacher = async () => {
-    const userDoc = doc(firestore, 'users', 'Aqu1DTLSoVTXz5sUoH9HbU1OKSA2')
+    const userDoc = doc(
+      firestore,
+      'users',
+      'Aqu1DTLSoVTXz5sUoH9HbU1OKSA2',
+      newName
+    )
 
     const test = await getDoc(userDoc)
 
     return await updateDoc(userDoc, {
       isTeacher: true,
       photo: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg',
+      name: newName,
       description:
         // ...test.data().description,
         {
@@ -19,12 +25,19 @@ const update = () => {
     })
   }
 
-  const updateReviews = async (newData) => {
-    const moreInfoDoc = doc(
-      firestore,
-      'more info',
-      '1d60f4f6-5d15-4006-b74e-0e32eb1563f3'
-    )
+  const updateReviews = async (
+    collectionName,
+    id,
+    newData,
+    rating,
+    studentName
+  ) => {
+    const moreInfoDoc = doc(firestore, collectionName, id)
+
+    console.log(id)
+    console.log(newData)
+    console.log(rating)
+    console.log(studentName)
 
     const test = await getDoc(moreInfoDoc)
 
@@ -32,8 +45,9 @@ const update = () => {
       reviews: [
         ...test.data().reviews,
         {
-          userName: 'Nurs',
+          userName: studentName,
           text: newData,
+          grade: Number(rating),
           createdAt: Timestamp.fromDate(new Date()),
         },
       ],

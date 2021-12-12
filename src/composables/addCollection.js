@@ -14,3 +14,5 @@ const addCollection = async (collectionName, newDoc, createId = true, myId) => {
 }
 
 export default addCollection
+
+
