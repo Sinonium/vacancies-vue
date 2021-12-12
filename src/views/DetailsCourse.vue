@@ -179,7 +179,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Reviews'">
-        <Reviews :moreInfo="moreInfo"/>
+        <Reviews :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -213,6 +213,8 @@ import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { computed, ref } from '@vue/reactivity'
 import { useStore } from 'vuex'
+import useDoc from '@/composables/useDoc'
+import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
     Reviews,
@@ -224,6 +226,7 @@ export default {
     CourseInfo,
   },
   setup() {
+    const { getSingleDoc } = useDoc()
     const store = useStore()
     const moreInfo = computed(() => store.state.courseMoreInfo)
 
@@ -231,6 +234,17 @@ export default {
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
     }
+    // const getTeacher = async () => {
+    //   const { documents, error } = await getSingleDoc(
+    //     'users',
+    //     moreInfo.value.teacherId
+    //   )
+    //   console.log(documents.value)
+    //   console.log(error.value)
+    // }
+    // setTimeout(() => {
+    //   getTeacher()
+    // }, 3000)
 
     return {
       moreInfo,
@@ -334,7 +348,7 @@ body {
 .details-page__bottom {
   margin-left: -28.2vw;
   margin-top: vw(35);
-  margin-bottom: vw(40);
+  margin-bottom: -1.1875vw;
   @include flex();
   &-arrow_prev,
   &-arrow_next {
@@ -371,6 +385,7 @@ body {
 }
 @media screen and (max-width: 1440px) {
   .details-page__head {
+    width: 100%;
     ul {
       li {
         @include font(vw(19), bold, 20px, $greyBlue60);
@@ -394,17 +409,20 @@ body {
   }
 }
 @media screen and (max-width: 1024px) {
+  .details-page__head ul li {
+    margin-left: 7.25vw;
+  }
   .details-page__modal {
     top: -34.875vw;
   }
   .details-page__head ul {
-    margin-left: -1vw;
+    margin-left: -0.3vw;
   }
   .cart-review__header_data span {
     margin-left: 0.3vw;
   }
   .details-page__bottom {
-    margin-left: -24.2vw;
+    margin-left: -19.2vw;
   }
   .details-page__bottom-btn_push_page {
     padding: 1.6vw 2.7vw 1.6vw 2.7vw;
@@ -414,6 +432,13 @@ body {
     &-arrow_prev {
       padding: 2vw 1.5vw 2vw 1.5vw;
     }
+  }
+  .details-page__bottom-btn_push_page span {
+    font-size: 1.2vw;
+  }
+  .details-page__bottom-arrow_next,
+  .details-page__bottom-arrow_prev {
+    padding: 1.5vw 1.5vw 1.5vw 1.5vw;
   }
 }
 @media screen and (max-width: 769px) {
@@ -458,10 +483,149 @@ body {
     top: -33.875vw;
   }
 }
-@media screen and(max-width: 579px) {
+@media screen and (max-width: 580px) {
+  .details-page__bottom {
+    margin-left: -17.2vw;
+  }
+  .details-page__bottom-arrow_prev,
+  .details-page__bottom-arrow_next {
+    margin-left: 9vw;
+  }
+  .details-page__bottom-arrow_next {
+    margin-left: 13vw;
+  }
+  .details-page__head {
+    height: 9vw;
+  }
+  .details-page__head ul li {
+    font-size: 1.6vw;
+  }
+  .details-page__head ul {
+    margin-left: -2vw;
+  }
 }
 @media screen and(max-width: 426px) {
+  .details-page {
+    margin-top: vmin(45);
+    &__head {
+      position: relative;
+      display: flex;
+      background: $white;
+      height: vmin(80);
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $greyBlue95;
+        border-radius: 1px;
+      }
+      ul {
+        margin-left: -0.66vmin;
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        li {
+          cursor: pointer;
+          position: relative;
+          margin-left: 2.53vmin !important;
+          @include flex();
+          @include font(2.5vmin, bold, 20px, $greyBlue60);
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: vmin(-35);
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: $blue;
+            border-radius: 1px;
+            opacity: 0;
+            transition: 0.4s;
+          }
+          span {
+            transition: 0.4s;
+            margin-left: 2.53vmin;
+          }
+        }
+        svg {
+          path {
+            transition: 0.4s;
+          }
+        }
+      }
+    }
+    &__modal {
+      position: absolute;
+      top: vmin(130);
+      left: vmin(1150);
+    }
+  }
+  .details-page__head ul li.active {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: vmin(-35);
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 1px;
+      opacity: 1;
+    }
+    span {
+      @include font(2.5vmin, bold, 20px, $blue);
+    }
+    svg {
+      path {
+        fill: $blue;
+      }
+    }
+  }
+  .details-page__bottom {
+    margin-left: -13.2vmin;
+    margin-top: vmin(35);
+    margin-bottom: vmin(40);
+    @include flex();
+    &-arrow_prev,
+    &-arrow_next {
+      box-shadow: 0 vmin(2) vmin(5) rgba(54, 61, 77, 0.03);
+      border-radius: vmin(30);
+      padding: vmin(15);
+    }
+    &-arrow_prev {
+      img {
+        transform: rotate(-90deg);
+      }
+    }
+    &-arrow_next {
+      img {
+        transform: rotate(90deg);
+      }
+    }
+    &-btn_push_page {
+      background: $white;
+      box-shadow: 0 vmin(2) vmin(5) rgba(54, 61, 77, 0.03);
+      border-radius: vmin(30);
+      @include flex();
+      padding: vmin(17) vmin(38) vmin(15) vmin(26);
+      span {
+        @include font(vmin(12), bold, 20px, $greyBlue60);
+        margin-left: vmin(16);
+      }
+    }
+  }
 }
-@media screen and(max-width:376px) {
+@media screen and(max-width: 376px) {
+  .details-page__head ul li svg {
+    height: 4vmin;
+  }
+  .details-page__head ul li.active::before {
+    bottom: -7.33333vmin;
+  }
+  .details-page__head ul li {
+    margin-left: 1.8vmin !important;
+  }
 }
 </style>
