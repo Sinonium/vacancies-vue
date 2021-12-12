@@ -2,8 +2,8 @@
   <div class="cart-teach">
     <div class="cart-teach__about_teach col-4">
       <h4>About the Instructor</h4>
-      <img :src="course.teacher.imageUrl" alt="Image teacher" />
-      <ul class="cart-teach__about_teach_list">
+      <!-- <img :src="course.teacher.imageUrl" alt="Image teacher" /> -->
+      <!-- <ul class="cart-teach__about_teach_list">
         <li
           v-for="item in teacherDataResult"
           :key="item.title"
@@ -13,13 +13,13 @@
           <span class="first__span"> {{ item.num.length }} </span>
           <span class="last__span"> {{ item.title }} </span>
         </li>
-      </ul>
+      </ul> -->
     </div>
     <div v-if="moreInfo" class="cart-teach__features_teach col-5">
-      <h2>{{ moreInfo.teacher.name }}</h2>
-      <span> {{ moreInfo.teacher.features }} </span>
-      <p>{{ moreInfo.teacher.recentNews }}</p>
-      <p>{{ moreInfo.teacher.biography }}</p>
+      <h2>{{ moreInfo.teacherName }}</h2>
+      <span> {{ moreInfo.teacherFeatures }} </span>
+      <p>{{ moreInfo.teacherRecentNews }}</p>
+      <p>{{ moreInfo.teacherBiography }}</p>
     </div>  
     <span style="cursor: pointer" class="cart-teach__kebab">
       <svg
@@ -42,38 +42,38 @@
 
 <script>
 export default {
-  props: ['course', 'moreInfo'],
+  props: ['moreInfo'],
   setup(props) {
-    const teacherDataArrNotDataBase = [
-      {
-        title: 'Instructor Rating',
-        icon: `<svg width='18' height='17' viewBox='0 0 18 17' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M8.55696 13.6975L12.707 16.2075C13.467 16.6675 14.397 15.9875 14.197 15.1275L13.097 10.4075L16.767 7.2275C17.437 6.6475 17.077 5.5475 16.197 5.4775L11.367 5.0675L9.47696 0.6075C9.13696 -0.2025 7.97696 -0.2025 7.63696 0.6075L5.74696 5.0575L0.916957 5.4675C0.0369574 5.5375 -0.323043 6.6375 0.346957 7.2175L4.01696 10.3975L2.91696 15.1175C2.71696 15.9775 3.64696 16.6575 4.40696 16.1975L8.55696 13.6975Z' fill='#C3CAD9'/></svg>`,
-      },
-      {
-        title: 'Reviews',
-        icon: `<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M18 4H17V12C17 12.55 16.55 13 16 13H4V14C4 15.1 4.9 16 6 16H16L20 20V6C20 4.9 19.1 4 18 4ZM15 9V2C15 0.9 14.1 0 13 0H2C0.9 0 0 0.9 0 2V15L4 11H13C14.1 11 15 10.1 15 9Z' fill='#C3CAD9'/></svg>`,
-      },
-      {
-        title: 'Students',
-        icon: `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V15C0 15.55 0.45 16 1 16H15C15.55 16 16 15.55 16 15V14C16 11.34 10.67 10 8 10Z' fill='#C3CAD9'/></svg>`,
-      },
-      {
-        title: 'Courses',
-        icon: `<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 13.5V6.5C8 6.09 8.47 5.85 8.8 6.1L13.47 9.6C13.74 9.8 13.74 10.2 13.47 10.4L8.8 13.9C8.47 14.15 8 13.91 8 13.5Z' fill='#C3CAD9'/></svg>`,
-      },
-    ]
-    const teacherDataArr2 = props.moreInfo.adilhan.teacherData
+    // const teacherDataArrNotDataBase = [
+    //   {
+    //     title: 'Instructor Rating',
+    //     icon: `<svg width='18' height='17' viewBox='0 0 18 17' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M8.55696 13.6975L12.707 16.2075C13.467 16.6675 14.397 15.9875 14.197 15.1275L13.097 10.4075L16.767 7.2275C17.437 6.6475 17.077 5.5475 16.197 5.4775L11.367 5.0675L9.47696 0.6075C9.13696 -0.2025 7.97696 -0.2025 7.63696 0.6075L5.74696 5.0575L0.916957 5.4675C0.0369574 5.5375 -0.323043 6.6375 0.346957 7.2175L4.01696 10.3975L2.91696 15.1175C2.71696 15.9775 3.64696 16.6575 4.40696 16.1975L8.55696 13.6975Z' fill='#C3CAD9'/></svg>`,
+    //   },
+    //   {
+    //     title: 'Reviews',
+    //     icon: `<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M18 4H17V12C17 12.55 16.55 13 16 13H4V14C4 15.1 4.9 16 6 16H16L20 20V6C20 4.9 19.1 4 18 4ZM15 9V2C15 0.9 14.1 0 13 0H2C0.9 0 0 0.9 0 2V15L4 11H13C14.1 11 15 10.1 15 9Z' fill='#C3CAD9'/></svg>`,
+    //   },
+    //   {
+    //     title: 'Students',
+    //     icon: `<svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V15C0 15.55 0.45 16 1 16H15C15.55 16 16 15.55 16 15V14C16 11.34 10.67 10 8 10Z' fill='#C3CAD9'/></svg>`,
+    //   },
+    //   {
+    //     title: 'Courses',
+    //     icon: `<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 13.5V6.5C8 6.09 8.47 5.85 8.8 6.1L13.47 9.6C13.74 9.8 13.74 10.2 13.47 10.4L8.8 13.9C8.47 14.15 8 13.91 8 13.5Z' fill='#C3CAD9'/></svg>`,
+    //   },
+    // ]
+    // const teacherDataArr2 = props.moreInfo.adilhan.teacherData
 
-    const teacherDataResult = teacherDataArrNotDataBase.map((item, i) => {
-      return {
-          title: item.title,
-          icon: item.icon,
-          num: teacherDataArr2[i].num,
-        }
-    })
-    console.log(teacherDataResult)
+    // const teacherDataResult = teacherDataArrNotDataBase.map((item, i) => {
+    //   return {
+    //       title: item.title,
+    //       icon: item.icon,
+    //       num: teacherDataArr2[i].num,
+    //     }
+    // })
+    // console.log(teacherDataResult)
 
-    return { teacherDataResult, teacherDataArr2, teacherDataArrNotDataBase }
+    // return { teacherDataResult, teacherDataArr2, teacherDataArrNotDataBase }
   },
 }
 </script>
