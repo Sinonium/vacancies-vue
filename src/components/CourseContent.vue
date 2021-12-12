@@ -8,7 +8,7 @@
           <div class="themes-title__item">
             <div class="themes-title__item-1">
               <ul v-if="moreInfo" :class="{ actives: allShow === true }">
-                <li v-for="learn in moreInfo.learn" :key="learn" :theme="theme">
+                <li v-for="learn in moreInfo.whatStudy" :key="learn">
                   <img src="@/assets/scss/icons/done.svg" />{{ learn }}
                 </li>
               </ul>
@@ -47,11 +47,11 @@
               />
             </svg>
             <h6 @click="isOpen.a = !isOpen.a">
-              {{ moreInfo.courseContent[0].title }}
+              {{ moreInfo.courseContent[0].lectureName }}
             </h6>
             <span>{{ moreInfo.courseContent[0].allTime }}</span>
           </div>
-          <div v-for="item in moreInfo.courseContent[0].content" :key="item.id">
+          <div v-for="item in moreInfo.courseContent[0].lessons" :key="item.id">
           
             <div class="content-courses__open" v-if="isOpen.a">
             
@@ -61,7 +61,7 @@
                 
                     <img :src="videoIcon" alt=""
                   />
-                  <li>{{ item.name }}</li>
+                  <li>{{ item.lessonName }}</li>
                   <a>{{ item.isPreview }}</a>
                   <span>{{ item.time }}</span>
                 </ul>
@@ -166,6 +166,7 @@
 export default {
   props: ['moreInfo'],
   data() {
+    
     return {
       isOpen: {
         a: false,
@@ -202,6 +203,7 @@ export default {
         this.articles = data
       })
   },
+  
 
   methods: {
     allThemes() {
