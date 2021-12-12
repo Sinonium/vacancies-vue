@@ -37,12 +37,10 @@
               alt="'Type your password"
             />
           </div>
-
           <button>Sign Up</button>
-
           <span class="auth__have-account"
             >Already have an account?
-            <router-link to="/login" style=color:white>Login </router-link>
+            <router-link to="/login" style="color: white">Login </router-link>
           </span>
         </form>
       </div>
@@ -51,37 +49,34 @@
 </template>
 
 <script>
-import { computed, ref } from '@vue/reactivity'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-// import addCollection from '@/composables/addCollection'
-import useDoc from '@/composables/useDoc'
+import { computed, ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import useDoc from "@/composables/useDoc";
 
 export default {
   setup() {
-    const { addCollection } = useDoc()
-    const email = ref('')
-    const password = ref('')
-    const name = ref('')
-    const userBuy = ref([])
-    const addCourses = ref([])
-    const router = useRouter()
-    const store = useStore()
-
-    const currentUser = computed(() => store.state.auth.currentUser)
-
+    const { addCollection } = useDoc();
+    const email = ref("");
+    const password = ref("");
+    const name = ref("");
+    const userBuy = ref([]);
+    const addCourses = ref([]);
+    const router = useRouter();
+    const store = useStore();
+    const currentUser = computed(() => store.state.auth.currentUser);
     const handleSubmit = async () => {
       try {
-        await store.dispatch('createUser', {
+        await store.dispatch("createUser", {
           email: email.value,
           password: password.value,
           name: name.value,
-        })
+        });
 
-        const { user } = await currentUser.value
+        const { user } = await currentUser.value;
 
         await addCollection(
-          'users',
+          "users",
           {
             name: name.value,
             email: email.value,
@@ -92,12 +87,12 @@ export default {
           },
           false,
           user.uid
-        )
-        await router.push('/')
+        );
+        await router.push("/");
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
     return {
       addCourses,
       userBuy,
@@ -105,13 +100,13 @@ export default {
       password,
       email,
       handleSubmit,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
+@import "@/assets/scss/index.scss";
 
 .signup {
   width: vw(700);
@@ -119,17 +114,15 @@ export default {
   background-color: $greyBlue25;
   margin-left: vw(100);
   border-radius: 25em /20em;
-
   &-title {
     padding-left: vw(190);
   }
   h2 {
     @include font(vw(30), 400, vw(50));
-    font-family: 'San Francisco Pro';
+    font-family: "San Francisco Pro";
     color: $greyBlue70;
     padding-top: vw(40);
     margin-left: vw(-10);
-
     strong {
       color: $greyBlue80;
     }
@@ -142,7 +135,6 @@ export default {
     justify-content: space-between;
     margin-bottom: vw(5);
     padding-left: vw(25);
- 
   }
   img {
     width: vw(30);
@@ -159,7 +151,6 @@ export default {
       border-radius: vw(30);
       padding: vw(15) vw(25);
       margin-bottom: vw(20);
-
       input {
         @include font(vw(12), 700, vw(20));
         width: 100%;
@@ -191,8 +182,6 @@ export default {
     ::placeholder {
       color: $greyBlue70;
     }
-
-   
     .auth {
       &__have-account {
         @include font(vw(12), 700, vw(20));
@@ -208,69 +197,114 @@ export default {
   }
 }
 
-
-@media screen and (max-width: 500px) {
-
-  .container{
+@media screen and (max-width: 769px) {
+  .container {
     display: flex;
     justify-content: center;
-    margin-top: vmin(100);
-  .signup {
-    
-    margin: 0;
-    width: vmin(350);
-    height: vmin(420);
-     
-    &-title {
-      padding-left: vmin(60);
-      img {
-        width: vmin(20);
-        height: vmin(20);
-      }
-    }
-    h2 {
-      @include font(vmin(20), 200, vmin(25));
-      padding-top: vmin(40);
-
-    }
-    label {
-      width: 55%;
-      @include font(vmin(12), 400, vmin(15));
-       color: $white;
-
-    }
-    form {
-      div {
-        width: 70%;
-        margin-top: vmin(5);
-        border: 2px solid #f5f6f7;
-        border-radius: vmin(20);
-        padding: vmin(4) vmin(10);
-        margin-bottom: vmin(15);
-        height: vmin(20);
-        input {
-          @include font(vmin(12), 400, vmin(15));
+    margin-top: vmin(50);
+    .signup {
+      width: vmin(300);
+      height: vmin(350);
+      margin: 0;
+      &-title {
+        img {
+          width: vmin(20);
+          height: vmin(20);
         }
       }
-      button {
-        @include font(vmin(15), 400, vmin(6));
-        width: 78%;
-        border-radius: vmin(15);
-        color: $white;
-        border: 2px solid $greyBlue60;
-        transition: 0.3s;
-        height: vmin(30);
-        margin: vmin(10) 0 vmin(10)
+      h2 {
+        @include font(vmin(18), 400, vmin(45));
       }
-      .auth {
-       &__have-account {
-          @include font(vmin(10), 150, vmin(15));
-           color: #adb8cc;
-           margin-left: vmin(10);
+      label {
+        @include font(vmin(10), 700, vmin(10));
+        color: $white;
+      }
+      form {
+        div {
+          width: 60%;
+          margin-top: vmin(5);
+          border-radius: vmin(30);
+          padding: vmin(15) vmin(25);
+          height: vmin(5);
+          input {
+            @include font(vmin(10), 700, vmin(20));
+          }
+        }
+        button {
+          @include font(vmin(15), 800, vmin(20));
+          width: 80%;
+          color: $white;
+          border-radius: vmin(40);
+          margin: vmin(10) 0 vmin(10);
+          height: vmin(30);
+        }
+        .auth {
+          &__have-account {
+            @include font(vmin(10), 700, vmin(20));
+            color: #adb8cc;
+            margin-left: vmin(20);
+          }
         }
       }
     }
   }
 }
+@media screen and (max-width: 500px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    margin-top: vmin(100);
+    .signup {
+      margin: 0;
+      width: vmin(350);
+      height: vmin(420);
+      &-title {
+        padding-left: vmin(60);
+        img {
+          width: vmin(20);
+          height: vmin(20);
+        }
+      }
+      h2 {
+        @include font(vmin(23), 400, vmin(25));
+        padding-top: vmin(40);
+      }
+      label {
+        width: 55%;
+        @include font(vmin(12), 400, vmin(15));
+        color: $white;
+      }
+      form {
+        div {
+          width: 70%;
+          margin-top: vmin(5);
+          border-radius: vmin(20);
+          padding: vmin(4) vmin(10);
+          margin-bottom: vmin(15);
+          height: vmin(25);
+          input {
+            @include font(vmin(12), 400, vmin(15));
+          }
+        }
+        button {
+          @include font(vmin(15), 400, vmin(6));
+          width: 78%;
+          border-radius: vmin(15);
+          color: $white;
+          border: 2px solid $greyBlue60;
+          transition: 0.3s;
+          height: vmin(30);
+          margin: vmin(10) 0 vmin(10);
+        }
+        .auth {
+          &__have-account {
+            @include font(vmin(10), 150, vmin(15));
+            color: #adb8cc;
+            margin-left: vmin(10);
+          }
+        }
+      }
+    }
+  }
 }
 </style>
