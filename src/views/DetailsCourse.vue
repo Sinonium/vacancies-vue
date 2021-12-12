@@ -105,7 +105,6 @@
             </li>
          </ul>
       </div>
-
       <main class="details-page__content">
          <div v-if="currentDetailsPage === 'Instructor'">
             <DetailsAboutTeach v-if="jopa.adilhan" :moreInfo="jopa.adilhan" />
@@ -501,6 +500,78 @@
          &-arrow_next {
             margin-left: vw(260);
          }
+    }
+  }
+  &__modal {
+    position: absolute;
+    top: vw(130);
+    left: vw(1150);
+  }
+}
+.details-page__head ul li.active {
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: vw(-35);
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: $blue;
+    border-radius: 1px;
+    opacity: 1;
+  }
+  span {
+    @include font(vw(12), bold, 20px, $blue);
+  }
+  svg {
+    path {
+      fill: $blue;
+    }
+  }
+}
+.details-page__bottom {
+  margin-left: -28.2vw;
+  margin-top: vw(35);
+  margin-bottom: vw(40);
+  @include flex();
+  &-arrow_prev,
+  &-arrow_next {
+    background: $white;
+    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+    border-radius: vw(30);
+    padding: vw(15);
+    cursor: pointer;
+  }
+  &-arrow_prev {
+    img {
+      transform: rotate(-90deg);
+    }
+  }
+  &-arrow_next {
+    margin-left: vw(235);
+    img {
+      transform: rotate(90deg);
+    }
+  }
+  &-btn_push_page {
+    background: $white;
+    box-shadow: 0 vw(2) vw(5) rgba(54, 61, 77, 0.03);
+    border-radius: vw(30);
+    @include flex();
+    padding: vw(17) vw(38) vw(15) vw(26);
+    margin-left: vw(235);
+    cursor: pointer !important;
+    span {
+      @include font(vw(12), bold, 20px, $greyBlue60);
+      margin-left: vw(16);
+    }
+  }
+}
+@media screen and (max-width: 1440px) {
+  .details-page__head {
+    ul {
+      li {
+        @include font(vw(19), bold, 20px, $greyBlue60);
       }
       .details-page__bottom-btn_push_page {
          padding: 2.0625vw 4.375vw 1.9375vw 3.625vw;

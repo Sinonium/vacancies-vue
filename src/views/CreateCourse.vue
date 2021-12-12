@@ -132,7 +132,12 @@
     <div class="create-course">
       <div class="create-course__price">
         <h4 class="create-course__title">Price:</h4>
-        <input type="number"  onkeypress="this.value=this.value.substring(0,3)"  placeholder="100$" v-model="price" />
+        <input
+          type="number"
+          onkeypress="this.value=this.value.substring(0,3)"
+          placeholder="100$"
+          v-model="price"
+        />
       </div>
     </div>
 
@@ -249,24 +254,23 @@
             <option>video</option>
             <option>text</option>
           </select>
-          <input  class="lesson-time" type="time" v-model="time" />
+          <input class="lesson-time" type="time" v-model="time" />
         </div>
         <span class="enter-span">
           <div class="enter" @click="enterLesson">Enter</div>
         </span>
       </div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
-
     </div>
     <div class="publish">
       <button class="button">Publish Course</button>
-      </div>
+    </div>
   </form>
 </template>
 
 <script>
-import addCollection from '@/composables/addCollection'
-import { ref } from '@vue/reactivity'
+import useDoc from '@/composables/useDoc'
+import { computed, ref } from '@vue/reactivity'
 import { v4 as uuid } from 'uuid'
 import SubACategories from '@/components/AdminPanel/SubACategories.vue'
 import SubBCategories from '@/components/AdminPanel/SubBCategories.vue'
@@ -281,6 +285,9 @@ import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
 import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
 import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
 import useStorage from '@/composables/useStorage'
+import { user } from '@/composables/getUser'
+import { useStore } from 'vuex'
+import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
     SubACategories,
@@ -298,7 +305,22 @@ export default {
   },
 
   setup() {
+    // const userId = user.value.uid
+
+    const userName = ref()
+    const userId = ref()
+
+    const store = useStore()
+    const responseUser = computed(() => store.state.userInfo.name)
+
+    setTimeout(() => {
+      userName.value = responseUser.value
+      userId.value = user.value.uid
+    }, 1500)
+
     const { uploadImageAndGetImageUrl } = useStorage()
+    const { addCollection, updateUserAddCourse } = useDoc()
+
     const categories = [
       {
         text: 'Development',
@@ -371,7 +393,6 @@ export default {
     const heading = ref('')
     const name = ref('')
     const price = ref('')
-    // const imageURL = ref('')
     const mainInfo = ref('')
     const moreInfo = ref('')
     const teacher = ref('')
@@ -480,26 +501,28 @@ export default {
         duration: duration.value,
         categories: jopa.value,
         students: 0,
-        teacherName: '',
+        teacherName: userName.value,
+        teacherId: userId.value,
         grade: '',
         moreInfoId: myId,
       }),
-        await addCollection(
-          'more info',
-          {
-            whatStudy: enterIsWhat.value,
-            courseContent: Lectures.value,
-            heading: heading.value,
-            mainInfo: mainInfo.value,
-            moreInfo: moreInfo.value,
-            whoIsfor: enterIsWho.value,
-            grades: [],
-            reviews: [],
-            teacherID: '',
-          },
-          false,
-          myId
-        )
+        await updateUserAddCourse('users')
+      await addCollection(
+        'more info',
+        {
+          whatStudy: enterIsWhat.value,
+          courseContent: Lectures.value,
+          heading: heading.value,
+          mainInfo: mainInfo.value,
+          moreInfo: moreInfo.value,
+          whoIsfor: enterIsWho.value,
+          grades: [],
+          reviews: [],
+          teacherId: userId.value,
+        },
+        false,
+        myId
+      )
     }
 
     return {
@@ -537,6 +560,7 @@ export default {
       enterIsWho,
       enterWhat,
       enterIsWhat,
+      userName,
     }
   },
 }
@@ -723,7 +747,6 @@ export default {
         }
       }
     }
-    
   }
 }
 @media screen and (max-width: 1024px) {
@@ -735,19 +758,19 @@ export default {
       width: vmin(200);
     }
     .downloadimg {
-    width: vmin(230);
-    height: vmin(70);
-    p {
-      margin-top: vmin(25);
-      @include font(vmin(9), 700, vmin(15));
-      color: white;
-    }
+      width: vmin(230);
+      height: vmin(70);
+      p {
+        margin-top: vmin(25);
+        @include font(vmin(9), 700, vmin(15));
+        color: white;
+      }
     }
     .enter2 {
-    @include font(vmin(7), 600, vmin(15));
-    width: vmin(70);
-    height: vmin(30);
-    border-radius: vw(10);
+      @include font(vmin(7), 600, vmin(15));
+      width: vmin(70);
+      height: vmin(30);
+      border-radius: vw(10);
     }
     .enter {
       @include font(vmin(7), 600, vmin(15));
@@ -779,12 +802,12 @@ export default {
         margin: vmin(15) 0 vmin(10) 0;
       }
       select {
-      padding: vmin(3) vmin(15);
-      width: 50%;
-      height: vmin(30);
-      padding: vmin(5) vmin(5) vmin(5) vmin(10);
-      @include font(vmin(7), 600, vh(15));
-    }
+        padding: vmin(3) vmin(15);
+        width: 50%;
+        height: vmin(30);
+        padding: vmin(5) vmin(5) vmin(5) vmin(10);
+        @include font(vmin(7), 600, vh(15));
+      }
       input {
         border-radius: vmin(5);
         padding: vw(10);
@@ -825,21 +848,20 @@ export default {
         }
       }
       &__lectures {
-      .lesson-details {
-        .lesson-time{
-        width: 50%;
-        height: vmin(23);
-      }
-        select {
-          padding: vmin(3) vmin(15);
-          width: 50%;
-          height: vmin(30);
-          padding: vmin(5) vmin(5) vmin(5) vmin(10);
-          @include font(vmin(7), 600, vh(15));
+        .lesson-details {
+          .lesson-time {
+            width: 50%;
+            height: vmin(23);
+          }
+          select {
+            padding: vmin(3) vmin(15);
+            width: 50%;
+            height: vmin(30);
+            padding: vmin(5) vmin(5) vmin(5) vmin(10);
+            @include font(vmin(7), 600, vh(15));
+          }
         }
       }
-    }
-      
     }
   }
 }

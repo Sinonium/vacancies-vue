@@ -9,7 +9,6 @@
           type="text"
           v-model="name"
         />
-        {{ name }}
 
         <h4 class="create-teacher__title">Write your skills</h4>
         <input
@@ -70,8 +69,6 @@
 
 <script>
 import { ref } from '@vue/reactivity'
-import { firestore } from '@/firebase/config'
-import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 import update from '@/composables/update'
 import { user } from '@/composables/getUser'
 export default {

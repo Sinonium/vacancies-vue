@@ -552,14 +552,14 @@
       }
    }
 
-   @media screen and (max-width: 380px) {
+   @media screen and (max-width: 500px) {
       .container {
          margin: 0 auto;
       }
 
       .themes {
          border-radius: vmin(5);
-         width: vmin(350);
+         width: vmin(300);
          margin-bottom: vmin(15);
          margin-left: vmin(5);
          height: vmin(200);

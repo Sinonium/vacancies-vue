@@ -1,9 +1,9 @@
 <template>
-  <!-- <div class="block-reviews">
-    <div v-for="review in moreInfo.adilhan.teacherReviews" :key="review.id">
+  <div v-if="moreInfo.teacherReviews" class="block-reviews">
+    <div v-for="review in moreInfo.teacherReviews" :key="review.id">
       <CartReview :review="review" />
     </div>
-  </div> -->f
+  </div>
 </template>
 
 <script>

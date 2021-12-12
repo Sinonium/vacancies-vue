@@ -1,5 +1,6 @@
 import { firestore } from '@/firebase/config'
 import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
+import { user } from '@/composables/getUser'
 
 const update = () => {
   const updateTeacher = async (collectionName, id, newName, newDoc) => {
@@ -85,6 +86,15 @@ const update = () => {
     })
   }
 
+  const addLikedCourse = async (collectionName, courseId) => {
+    const courseDoc = doc(firestore, collectionName, user.value.uid)
+    const test = await getDoc(courseDoc)
+
+    return await updateDoc(courseDoc, {
+      likedCourse: [...test.data().likedCourse, courseId],
+    })
+  }
+
   return {
     updateTeacher,
     updateGrades,
@@ -92,6 +102,7 @@ const update = () => {
     updateUserBuy,
     updateCourse,
     updateCoursesRaiting,
+    addLikedCourse,
   }
 }
 
