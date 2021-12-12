@@ -179,7 +179,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Reviews'">
-        <Reviews />
+        <Reviews :moreInfo="moreInfo"/>
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
