@@ -32,7 +32,10 @@
               required
               v-model="password"
             />
-            <img src="@/assets/img/password-key.svg" alt="'Type your password" />
+            <img
+              src="@/assets/img/password-key.svg"
+              alt="'Type your password"
+            />
           </div>
 
           <button>Sign Up</button>
@@ -51,10 +54,12 @@
 import { computed, ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import addCollection from '@/composables/addCollection'
+// import addCollection from '@/composables/addCollection'
+import useDoc from '@/composables/useDoc'
 
 export default {
   setup() {
+    const { addCollection } = useDoc()
     const email = ref('')
     const password = ref('')
     const name = ref('')
@@ -141,7 +146,7 @@ export default {
     //   color: #adb8cc;
     // }
   }
-  img{
+  img {
     width: vw(30);
     height: vw(30);
   }
@@ -186,8 +191,8 @@ export default {
         border: 2px solid $greyBlue50;
       }
     }
-    ::placeholder{
-      color:$greyBlue70 ;
+    ::placeholder {
+      color: $greyBlue70;
     }
 
     span {
@@ -209,71 +214,63 @@ export default {
   }
 }
 
-
 @media screen and (max-width: 500px) {
-
-  .container{
-    
-   // margin-left: vw(-330);
+  .container {
+    // margin-left: vw(-330);
     display: flex;
     justify-content: center;
     margin-top: vmin(100);
-  .signup {
-    
-    margin: 0;
-    width: vmin(350);
-    height: vmin(400);
-     
-    &-title {
-      padding-left: vmin(60);
-      img {
-        width: vmin(15);
-        height: vmin(15);
-      }
-    }
-    h2 {
-      @include font(vmin(20), 200, vmin(25));
-      padding-top: vmin(50) ;
-      
+    .signup {
+      margin: 0;
+      width: vmin(350);
+      height: vmin(400);
 
-
-    }
-    label {
-      width: 55%;
-      @include font(vmin(10), 400, vmin(15));
-       color: $white;
-
-    }
-    form {
-      div {
-        width: 70%;
-        margin-top: vmin(5);
-        border: 2px solid #f5f6f7;
-        border-radius: vmin(20);
-        padding: vmin(4) vmin(10);
-        margin-bottom: vmin(10);
-        height: vmin(20);
-        input {
-          @include font(vmin(10), 400, vmin(15));
+      &-title {
+        padding-left: vmin(60);
+        img {
+          width: vmin(15);
+          height: vmin(15);
         }
       }
-      button {
-        @include font(vmin(15), 400, vmin(6));
-        width: 78%;
-        border-radius: vmin(15);
-        color: $white;
-        border: 2px solid $greyBlue60;
-        transition: 0.3s;
-        height: vmin(30);
+      h2 {
+        @include font(vmin(20), 200, vmin(25));
+        padding-top: vmin(50);
       }
-      .auth {
-        &__have-account {
-          @include font(vmin(7), 150, vmin(15));
-           color: #adb8cc;
+      label {
+        width: 55%;
+        @include font(vmin(10), 400, vmin(15));
+        color: $white;
+      }
+      form {
+        div {
+          width: 70%;
+          margin-top: vmin(5);
+          border: 2px solid #f5f6f7;
+          border-radius: vmin(20);
+          padding: vmin(4) vmin(10);
+          margin-bottom: vmin(10);
+          height: vmin(20);
+          input {
+            @include font(vmin(10), 400, vmin(15));
+          }
+        }
+        button {
+          @include font(vmin(15), 400, vmin(6));
+          width: 78%;
+          border-radius: vmin(15);
+          color: $white;
+          border: 2px solid $greyBlue60;
+          transition: 0.3s;
+          height: vmin(30);
+        }
+        .auth {
+          &__have-account {
+            @include font(vmin(7), 150, vmin(15));
+            color: #adb8cc;
+          }
         }
       }
     }
   }
-}
 }
 </style>
