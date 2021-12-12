@@ -63,17 +63,12 @@
             {{ errTextInpMore }}
           </span>
         </div>
-        <button>Add review and grade</button>
+        <button>{{ textBtnAddedReview }}</button>
       </form>
     </div>
     <div class="feedback__content">
       <h2>Reviews course</h2>
-      <div
-        v-for="review in reviews.sort((a, b) => {
-          return a.date - b.date
-        })"
-        :key="review"
-      >
+      <div v-for="review in moreInfo.adilhan.reviews" :key="review">
         <CartRev :review="review" />
       </div>
     </div>
@@ -91,22 +86,18 @@ export default {
   components: { CartRev },
   setup(props) {
     const { updateReviews } = update()
-    const User = user.value
+    const userName = user.value.displayName
     const gradeUser = ref(1)
-    const course = ref()
     const currentDate = ref()
     const reviews = ref([])
     const grades = ref([])
     const reviewUser = ref({})
     const textInp = ref('')
     const errTextInpMore = ref('The review cannot exceed 50 characters.')
+    const textBtnAddedReview = ref('Add review and grade')
     const getDoc = async () => {
-      const response = await fetch('http://localhost:3000/course')
-      const json = await response.json()
-      course.value = json
-      reviews.value = course.value.reviews
-      grades.value = course.value.rating
-      console.log(course.value)
+      reviews.value = props.moreInfo.adilhan.reviews
+      grades.value = props.moreInfo.adilhan.grades
     }
     const handleLengthInpText = () => {
       if (textInp.value.length > 49) {
@@ -129,26 +120,20 @@ export default {
           text: textInp.value,
           date: testDate.value,
         }
-        await updateReviews('more info', props.moreInfo.id, textInp.value,gradeUser.value,user.value.email)
-        // await fetch('http://localhost:3000/course', {
-        //   method: 'PATCH',
-        //   body: JSON.stringify({
-        //     reviews: [...reviews.value, reviewUser.value],
-        //   }),
-        //   headers: { 'Content-type': 'application/json' },
-        // })
-        // await fetch('http://localhost:3000/course', {
-        //   method: 'PATCH',
-        //   body: JSON.stringify({
-        //     rating: [...grades.value, Number(gradeUser.value)],
-        //   }),
-        //   headers: { 'Content-type': 'application/json' },
-        // })
+        textBtnAddedReview.value = 'Loading added reviews.'
+        await updateReviews(
+          'more info',
+          props.moreInfo.id,
+          textInp.value,
+          gradeUser.value,
+          userName
+        )
+        textBtnAddedReview.value = 'Add review and grade'
         textInp.value = ''
         currentDate.value = new Date()
         reviewUser.value = {}
-        errorNullTextInp.value = ''
-        await getDoc()
+        errTextInpMore.value = ''
+        gradeUser.value = 1
       } else {
         // await fetch('http://localhost:3000/course', {
         //   method: 'PATCH',
@@ -164,12 +149,13 @@ export default {
       getDoc()
     })
     return {
+      userName,
+      textBtnAddedReview,
       errTextInpMore,
       handleLengthInpText,
       gradeUser,
       reviewUser,
       currentDate,
-      course,
       AvatarReviewIcon: require('../../assets/img/DetailsAboutTeach/imageReview1.png'),
       AvatarUserIcon: require('@/assets/img/sidebar/avatarIcon.png'),
       cross: require('@/assets/icons/FeedBack/cross.svg'),

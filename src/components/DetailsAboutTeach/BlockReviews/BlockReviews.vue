@@ -1,6 +1,6 @@
 <template>
   <div class="block-reviews">
-    <div v-for="review in course.teacher.reviews" :key="review.id">
+    <div v-for="review in moreInfo.adilhan.teacherReviews" :key="review.id">
       <CartReview :review="review" />
     </div>
   </div>
@@ -10,7 +10,7 @@
 import CartReview from './CartReview/CartReview.vue'
 export default {
   components: { CartReview },
-  props: ['course'],
+  props: ['course',"moreInfo"],
   setup() {
     return {}
   },

@@ -9,7 +9,7 @@
           />
         </div>
         <div class="data">
-          <h4>{{ review.studentName }}</h4>
+          <h4>{{ review.userName }}</h4>
         </div>
       </div>
       <div class="cart-review__header_data">
@@ -99,7 +99,7 @@ export default {
       reviewText.value = props.review.text
     }
     const currentDate = new Date()
-    const reviewDate = props.review.date
+    const reviewDate = props.review.createdAt
     const resultReviewDateMonth = ref(0)
     const resultReviewDateDay = ref(0)
     const resultReviewDateYear = ref(0)

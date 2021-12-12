@@ -5,21 +5,21 @@
       <img :src="course.teacher.imageUrl" alt="Image teacher" />
       <ul class="cart-teach__about_teach_list">
         <li
-          v-for="item in teacherDataArr"
+          v-for="item in teacherDataResult"
           :key="item.title"
           class="cart-teach__about_teach_list-item"
         >
           <span v-html="item.icon"></span>
-          <!-- <span class="first__span"> {{ item.num.length }} </span> -->
+          <span class="first__span"> {{ item.num.length }} </span>
           <span class="last__span"> {{ item.title }} </span>
         </li>
       </ul>
     </div>
     <div class="cart-teach__features_teach col-5">
-      <!-- <h2>{{ moreInfo.Adilhan.teacher.name }}</h2>
-      <span> {{ moreInfo.Adilhan.teacher.features }} </span>
-      <p>{{ moreInfo.Adilhan.teacher.recentNews }}</p>
-      <p>{{ moreInfo.Adilhan.teacher.biography }}</p> -->
+      <h2>{{ moreInfo.adilhan.teacherName }}</h2>
+      <span> {{ moreInfo.adilhan.teacherFeatures }} </span>
+      <p>{{ moreInfo.adilhan.teacherRecentNews }}</p>
+      <p>{{ moreInfo.adilhan.teacherBiography }}</p>
     </div>
     <span style="cursor: pointer" class="cart-teach__kebab">
       <svg
@@ -44,7 +44,7 @@
 export default {
   props: ['course', 'moreInfo'],
   setup(props) {
-    const teacherDataArr = [
+    const teacherDataArrNotDataBase = [
       {
         title: 'Instructor Rating',
         icon: `<svg width='18' height='17' viewBox='0 0 18 17' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M8.55696 13.6975L12.707 16.2075C13.467 16.6675 14.397 15.9875 14.197 15.1275L13.097 10.4075L16.767 7.2275C17.437 6.6475 17.077 5.5475 16.197 5.4775L11.367 5.0675L9.47696 0.6075C9.13696 -0.2025 7.97696 -0.2025 7.63696 0.6075L5.74696 5.0575L0.916957 5.4675C0.0369574 5.5375 -0.323043 6.6375 0.346957 7.2175L4.01696 10.3975L2.91696 15.1175C2.71696 15.9775 3.64696 16.6575 4.40696 16.1975L8.55696 13.6975Z' fill='#C3CAD9'/></svg>`,
@@ -62,8 +62,18 @@ export default {
         icon: `<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM8 13.5V6.5C8 6.09 8.47 5.85 8.8 6.1L13.47 9.6C13.74 9.8 13.74 10.2 13.47 10.4L8.8 13.9C8.47 14.15 8 13.91 8 13.5Z' fill='#C3CAD9'/></svg>`,
       },
     ]
+    const teacherDataArr2 = props.moreInfo.adilhan.teacherData
 
-    return { teacherDataArr }
+    const teacherDataResult = teacherDataArrNotDataBase.map((item, i) => {
+      return {
+          title: item.title,
+          icon: item.icon,
+          num: teacherDataArr2[i].num,
+        }
+    })
+    console.log(teacherDataResult)
+
+    return { teacherDataResult, teacherDataArr2, teacherDataArrNotDataBase }
   },
 }
 </script>
