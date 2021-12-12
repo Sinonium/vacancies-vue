@@ -103,7 +103,7 @@ export default {
   props: ['moreInfo'],
   setup(props) {
     const course = props.moreInfo
-    const courseRating = course.grades.length
+    const courseRating = props.moreInfo.length
     const courseRatingFive = ref([])
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
@@ -201,9 +201,9 @@ export default {
         courseRatingMiddArithmetic.value.toFixed(1)
     }
 
-    onMounted(() => {
+    setTimeout(() => {
       calctPercentOfRating()
-    })
+    }, 1000);
 
     return {
       courseRating,

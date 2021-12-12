@@ -24,7 +24,7 @@
             </div>
          </div>
 
-         <div v-if="moreInfo" class="content">
+         <div v-if="moreInfo[1]" class="content">
             <div class="themes-title">
                <span>Course Content</span>
                <img src="@/assets/scss/icons/burger-menu.svg" />
@@ -33,7 +33,7 @@
                :class="{ actives: allSections === true }"
                class="content-courses"
             >
-               <div class="content-courses__theme">
+               <div v-if="moreInfo[0]" class="content-courses__theme">
                   <svg
                      :class="{ open: isOpen.a }"
                      width="12"
@@ -50,12 +50,12 @@
                      />
                   </svg>
                   <h6 @click="isOpen.a = !isOpen.a">
-                     {{ moreInfo.courseContent[0].lectureName }}
+                     {{ moreInfo[0].lectureName }}
                   </h6>
-                  <span>{{ moreInfo.courseContent[0].allTime }}</span>
+                  <span>{{ moreInfo[0].allTime }}</span>
                </div>
                <div
-                  v-for="item in moreInfo.courseContent[0].lessons"
+                  v-for="item in moreInfo[0].lessons"
                   :key="item.id"
                >
                   <div class="content-courses__open" v-if="isOpen.a">
@@ -69,7 +69,8 @@
                      </div>
                   </div>
                </div>
-               <div v-if="moreInfo.courseContent[1]">
+
+               <div v-if="moreInfo[1]">
                   <div class="content-courses__theme">
                      <svg
                         :class="{ open: isOpen.b }"
@@ -86,18 +87,18 @@
                            fill="#C3CAD9"
                         />
                      </svg>
+                     
                      <h6
-                        v-if="moreInfo.courseContent[1]"
                         @click="isOpen.b = !isOpen.b"
                      >
-                        {{ moreInfo.courseContent[1].lectureName }}
+                        {{ moreInfo[1].lectureName }}
                      </h6>
                      <span v-if="moreInfo.courseContent[1]">{{
-                        moreInfo.courseContent[1].allTime
+                        moreInfo[1].allTime
                      }}</span>
                   </div>
                   <div
-                     v-for="item in moreInfo.courseContent[1].lessons"
+                     v-for="item in moreInfo[1].lessons"
                      :key="item.id"
                   >
                      <div class="content-courses__open" v-if="isOpen.b">
@@ -111,8 +112,7 @@
                         </div>
                      </div>
                   </div>
-                  <div
-                     v-if="moreInfo.courseContent[1]"
+                  <div v-if="moreInfo[1]"
                      class="content-courses__theme"
                   >
                      <svg
@@ -131,12 +131,12 @@
                         />
                      </svg>
                      <h6 @click="isOpen.c = !isOpen.c">
-                        {{ moreInfo.courseContent[1].lectureName }}
+                        {{ moreInfo[1].lectureName }}
                      </h6>
-                     <span>{{ moreInfo.courseContent[1].allTime }}</span>
+                     <span>{{ moreInfo[1].allTime }}</span>
                   </div>
                   <div
-                     v-for="item in moreInfo.courseContent[1].lessons"
+                     v-for="item in moreInfo[1].lessons"
                      :key="item.id"
                   >
                      <div class="content-courses__open" v-if="isOpen.c">
@@ -170,7 +170,8 @@
    export default {
       props: ["moreInfo"],
       setup(props) {
-         console.log(props.moreInfo);
+         console.log(props.moreInfo[1].lectureName);
+
       },
       data() {
          return {
@@ -192,22 +193,22 @@
          };
       },
       created() {
-         fetch("http://localhost:3000/learn")
-            .then((response) => {
-               return response.json();
-            })
+         // fetch("http://localhost:3000/learn")
+         //    .then((response) => {
+         //       return response.json();
+         //    })
 
-            .then((data) => {
-               this.learn = data;
-            });
-         fetch("http://localhost:3000/articles")
-            .then((response) => {
-               return response.json();
-            })
+         //    .then((data) => {
+         //       this.learn = data;
+         //    });
+         // fetch("http://localhost:3000/articles")
+         //    .then((response) => {
+         //       return response.json();
+         //    })
 
-            .then((data) => {
-               this.articles = data;
-            });
+         //    .then((data) => {
+         //       this.articles = data;
+         //    });
       },
 
       methods: {
