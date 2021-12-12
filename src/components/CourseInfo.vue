@@ -73,9 +73,8 @@ export default {}
 @media screen and (max-width: 1024px) {
   .courses-info {
     margin: vmin(10) vmin(15);
-
     &__image {
-      width: vmin(285);
+      width: vmin(350);
     }
 
     &__block {

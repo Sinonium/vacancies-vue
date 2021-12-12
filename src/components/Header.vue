@@ -6,6 +6,7 @@
          </div>
          <router-link to="/" class="header__logo-text"> Avocadiki </router-link>
       </div>
+      <BecomeTeacher :currentUserInfo="currentUserInfo" class="header__record-teacher-min"/>
       <nav class="header__nav">
          <ul class="header__nav-list">
             <li class="header__nav-item" v-for="item in headerNav" :key="item">
@@ -24,6 +25,7 @@
       </form>
 
       <div class="header__record">
+         <router-link to="/" class="header__logo-text header__logo-text-min"> Avocadiki </router-link>
          <BecomeTeacher :currentUserInfo="currentUserInfo" />
          <button @click.prevent="handleClick()" class="header__record-logOut">
             Log Out
@@ -78,6 +80,10 @@
 
 <style lang="scss">
    @import "@/assets/scss/index.scss";
+   .header__record-teacher-min,
+   .header__logo-text-min{
+      display: none;
+   }
    .header {
       @include flex($justify: space-between);
       background-color: $white;
@@ -178,7 +184,7 @@
    }
    @media screen and (max-width: 1025px) {
       .header {
-         padding: vw(20) vw(30) vw(20) vw(20);
+         padding: vw(20) vw(20) vw(20) vw(20);
          &__form {
             input {
                width: vw(190);
@@ -226,8 +232,25 @@
       }
    }
    @media screen and (max-width: 770px) {
+      .header__record-teacher,
+      .header__logo-text{
+         display: none;
+      }
+      .header__record-teacher-min,
+      .header__logo-text-min{
+         display: block;
+         @include flex();
+         margin: 0;
+         a {
+            @include flex();
+            margin-left: vmin(75);
+            span {
+               display: block;
+            }
+         }
+      }
       .header {
-         padding: vw(30) vw(40) vw(30) vw(30);
+         padding: vw(30) vw(30) vw(30) vw(30);
          width: 100%;
          flex-direction: row-reverse;
          &__form {
@@ -284,7 +307,8 @@
    }
    @media screen and (max-width: 430px) {
       .header {
-         justify-content: center;
+         padding: vmin(20);
+         justify-content: space-between;
          &__logo {
             .burger {
                span {

@@ -43,7 +43,7 @@
 import CourseItem from '../components/CourseItem.vue'
 import { onMounted, computed} from '@vue/runtime-core'
 import { useStore } from 'vuex'
-import Filters from '../components/Filters/Fiters.vue'
+import Filters from '@/components/Filters/Fiters.vue'
 export default {
   components: { Filters, CourseItem, },
   setup() {
