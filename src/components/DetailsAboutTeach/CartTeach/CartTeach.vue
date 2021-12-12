@@ -75,7 +75,7 @@ export default {
 
     // return { teacherDataResult, teacherDataArr2, teacherDataArrNotDataBase }
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
