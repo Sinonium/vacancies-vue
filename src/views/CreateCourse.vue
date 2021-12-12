@@ -413,8 +413,8 @@ export default {
       let lesstringtime = ''
       let timeres = time.value.split(':')
       alllecturetime.value[0] = alllecturetime.value[0] + Number(timeres[0])
-      alllecturetime.value[1] = alllecturetime.value[0] + Number(timeres[0])
-      alllecturetime.value[2] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[1] = alllecturetime.value[1] + Number(timeres[1])
+      alllecturetime.value[2] = alllecturetime.value[2] + Number(timeres[2])
 
       if (timeres[0] != 0) lesstringtime = timeres[0].toString() + ':'
 
@@ -435,7 +435,7 @@ export default {
         },
       ]
 
-      time.value = '00:00:00'
+      time.value = '00:05:05'
       lesson.value = ''
       type.value = ''
     }
