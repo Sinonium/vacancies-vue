@@ -76,13 +76,14 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
 
-.container {
- margin-left: vw(-330);
-  display: flex;
-  justify-content: center;
+// .container {
+//   margin-top: vw(100);
+//   display: flex;
+//   justify-content: center;
   .login {
     width: vw(700);
     height: vw(500);
+    margin-left: vw(100);
     background-color: $greyBlue25;
     border-radius: 25em /18em;
     &-title {
@@ -173,7 +174,7 @@ export default {
       }
     }
   }
-}
+
 @media screen and (max-width: 1600px) {
 }
 
@@ -190,6 +191,7 @@ export default {
 @media screen and (max-width: 378px) {
 
   .container{
+   // margin-left: vw(-330);
     display: flex;
     justify-content: center;
     margin-top: vmin(100);
