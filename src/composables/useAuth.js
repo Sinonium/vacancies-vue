@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from 'firebase/auth'
 import { ref } from 'vue'
 
@@ -14,6 +15,9 @@ const useAuth = () => {
       user.value = await createUserWithEmailAndPassword(auth, email, password)
       user.value.user.displayName = name
 
+      updateProfile(user.value.user, {
+        displayName: name,
+      });
       return user.value
     } catch (err) {
       error.value = err.message

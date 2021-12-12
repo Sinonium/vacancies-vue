@@ -28,18 +28,14 @@
       <div class="create-course__description">
         <h4 class="create-course__title">Course Description</h4>
 
-        
-
         <p class="create-course__instruction">Type the heading</p>
         <input
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          cols="40"
-          rows="3"
           placeholder="Type the heading"
           v-model="heading"
         />
-        
+
         <p class="create-course__instruction">Tell us about course</p>
         <div class="create-course__questions">
           <div class="questions">
@@ -67,8 +63,6 @@
         <textarea
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          cols="40"
-          rows="3"
           placeholder="Tell us about course"
           v-model="mainInfo"
         ></textarea>
@@ -79,20 +73,29 @@
         <textarea
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
-          cols="40"
-          rows="3"
           placeholder="Tell us in detail about your course"
           v-model="moreInfo"
         ></textarea>
 
         <p class="create-course__title">Photo of your course</p>
-        <p class="create-course__instruction">Write the URL:</p>
-        <input
+
+        <!-- <input
           class="url-input"
-          type="text"
-          placeholder="https://drive.google.com/uc?export=view&id=1B5ZusvPN1mH91omnBkzilaJL8PkWC08e"
-          v-model="imageURL"
-        />
+          type="fail"
+
+
+        /> -->
+
+        <label class="downloadimg">
+          <input
+            type="file"
+            @change="getImageUrl"
+            id="downloadimg"
+            name="downloadimg"
+            accept="image/png, image/jpeg"
+          />
+          <p class="create-course__instruction">Download the picture</p>
+        </label>
 
         <h4 class="create-course__title">What will the student study?</h4>
         <input
@@ -102,10 +105,8 @@
         />
 
         <span class="enter-span">
-            <div class="enter" @click="enterWhat">Enter</div>
+          <div class="enter" @click="enterWhat">Enter</div>
         </span>
-
-        
 
         <h4 class="create-course__title">Who this course is for:</h4>
         <p class="create-course__instruction">Type option one by one</p>
@@ -115,9 +116,8 @@
           v-model="whoIsfor"
         />
         <span class="enter-span">
-            <div class="enter" @click="enterWho">Enter</div>
+          <div class="enter" @click="enterWho">Enter</div>
         </span>
-      
 
         <h4 class="create-course__title">About Teacher</h4>
         <p class="create-course__instruction">Type the name of the teacher</p>
@@ -224,12 +224,10 @@
           <h4 class="create-course__title">Duration courses</h4>
           <p class="create-course__instruction">Type course time</p>
           <input
-          onkeyup="this.value=this.value.replace(/^\s/,'')"
-          type="number"
-          v-model="coursetime"
-        />
-
-
+            onkeyup="this.value=this.value.replace(/^\s/,'')"
+            type="number"
+            v-model="coursetime"
+          />
         </div>
       </div>
     </div>
@@ -255,23 +253,24 @@
           placeholder="How To Succedd In This Course"
           v-model="lesson"
         />
-        <input
-          
-          type="time"
-          v-model="time"
-        />
+        <div class="lesson-details">
+          <input type="time" v-model="time" />
+          <select v-model="type" class="select">
+            <option>video</option>
+            <option>text</option>
+          </select>
+        </div>
         <span class="enter-span">
-            <div class="enter" @click="enterLesson">Enter</div>
+          <div class="enter" @click="enterLesson">Enter</div>
         </span>
       </div>
-      <div class="">
-
-      </div>
+      <div class=""></div>
       <div class="enter2" @click="enterLecture">Add lecture</div>
+
     </div>
     <div class="publish">
-      <button>Publish Course</button>
-    </div>
+      <button class="button">Publish Course</button>
+      </div>
   </form>
 </template>
 
@@ -291,6 +290,7 @@ import SubICategories from '@/components/AdminPanel/SubICategories.vue'
 import SubJCategories from '@/components/AdminPanel/SubJCategories.vue'
 import SubKCategories from '@/components/AdminPanel/SubKCategories.vue'
 import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
+import useStorage from '@/composables/useStorage'
 export default {
   components: {
     SubACategories,
@@ -308,6 +308,7 @@ export default {
   },
 
   setup() {
+    const { uploadImageAndGetImageUrl } = useStorage()
     const categories = [
       {
         text: 'Development',
@@ -367,13 +368,20 @@ export default {
     }
     const selected = ref('')
     const jopa = ref([])
+    const img = ref()
 
+    const responseUrl = ref('')
+    const getImageUrl = async (event) => {
+      const imgFile = event.target.files[0]
+      const imgResponse = await uploadImageAndGetImageUrl(myId, imgFile)
+      responseUrl.value = await imgResponse
+    }
     const myId = uuid()
-
+    const type = ref('')
     const heading = ref('')
     const name = ref('')
     const price = ref('')
-    const imageURL = ref('')
+    // const imageURL = ref('')
     const mainInfo = ref('')
     const moreInfo = ref('')
     const teacher = ref('')
@@ -385,11 +393,12 @@ export default {
     const duration = ref('')
     const lectureName = ref('')
     const lesson = ref('')
-    const time = ref('')
+    const time = ref('00:05:05')
     const study = ref('')
     const Lessons = ref([])
-    const Lectures= ref([])
+    const Lectures = ref([])
     const coursetime = ref()
+    const alllecturetime = ref([0, 0, 0])
 
     const enterWho = () => {
       enterIsWho.value = [...enterIsWho.value, whoIsfor.value]
@@ -399,43 +408,90 @@ export default {
       enterIsWhat.value = [...enterIsWhat.value, study.value]
       study.value = ''
     }
+
     const enterLesson = () => {
-      console.log("jopa");
+      let lesstringtime = ''
+      let timeres = time.value.split(':')
+      alllecturetime.value[0] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[1] = alllecturetime.value[0] + Number(timeres[0])
+      alllecturetime.value[2] = alllecturetime.value[0] + Number(timeres[0])
+
+      if (timeres[0] != 0) lesstringtime = timeres[0].toString() + ':'
+
+      if (timeres[1].toString().length == 2)
+        lesstringtime = lesstringtime + timeres[1].toString() + ':'
+      else lesstringtime = lesstringtime + '0' + timeres[1].toString() + ':'
+
+      if (timeres[2].toString().length == 2)
+        lesstringtime += timeres[2].toString()
+      else lesstringtime = lesstringtime + '0' + timeres[2].toString()
+      console.log(lesstringtime)
       Lessons.value = [
         ...Lessons.value,
         {
-          time: time.value,
+          time: lesstringtime,
           lessonName: lesson.value,
+          type: type.value,
         },
       ]
-      console.log(Lessons.value);
-      time.value = ''
+
+      time.value = '00:00:00'
       lesson.value = ''
+      type.value = ''
     }
     const enterLecture = () => {
-      console.log("eshe bol,shaia jopa")
+      alllecturetime.value[1] =
+        Math.floor(alllecturetime.value[2] / 60) + alllecturetime.value[1]
+      alllecturetime.value[2] = alllecturetime.value[2] % 60
+      alllecturetime.value[0] =
+        Math.floor(alllecturetime.value[1] / 60) + alllecturetime.value[0]
+      alllecturetime.value[1] = alllecturetime.value[1] % 60
+      console.log(alllecturetime.value)
+
+      let stringtime = ''
+
+      if (alllecturetime.value[0] != 0) {
+        stringtime = stringtime + alllecturetime.value[0].toString() + ':'
+      }
+
+      if (alllecturetime.value[1].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[1].toString() + ':'
+      else
+        stringtime = stringtime + '0' + alllecturetime.value[1].toString() + ':'
+
+      if (alllecturetime.value[2].toString().length == 2)
+        stringtime = stringtime + alllecturetime.value[2].toString()
+      else stringtime = stringtime + '0' + alllecturetime.value[2].toString()
+
+      console.log(stringtime)
       Lectures.value = [
         ...Lectures.value,
         {
           lectureName: lectureName.value,
+          allTime: stringtime,
           lessons: Lessons.value,
         },
       ]
-      console.log(Lectures.value);
       lectureName.value = ''
-      Lessons.value= []
+      Lessons.value = []
+      alllecturetime.value = [0, 0, 0]
     }
 
-
     const handleSubmit = async () => {
-      if(coursetime.value >=0 && coursetime.value <=2)duration.value = "0-2 Hours"
-      if(coursetime.value >=3 && coursetime.value <=6)duration.value = "3-6 Hours"
-      if(coursetime.value >=7 && coursetime.value <=16)duration.value = "7-16 Hours"
-      if(coursetime.value >=17 )duration.value = "17+ Hours"
+      if (coursetime.value >= 0 && coursetime.value <= 2)
+        duration.value = '0-2 Hours'
+      if (coursetime.value >= 3 && coursetime.value <= 6)
+        duration.value = '3-6 Hours'
+      if (coursetime.value >= 7 && coursetime.value <= 16)
+        duration.value = '7-16 Hours'
+      if (coursetime.value >= 17) duration.value = '17+ Hours'
+
+      console.log(responseUrl.value)
+
       await addCollection('courses', {
         name: name.value,
         price: price.value,
-        imageURL: imageURL.value,
+        imageUrl: responseUrl.value,
         teacher: teacher.value,
         level: level.value,
         pricelist: pricelist.value,
@@ -449,20 +505,15 @@ export default {
         await addCollection(
           'more info',
           {
-            malika:{
-              whoIsfor: enterIsWho.value,
-              courseContent: Lectures.value
-            },
-            beknazar:{
-              heading: heading.value,
-              mainInfo: mainInfo.value,
-              moreInfo: moreInfo.value,
-            },
-            adilhan: {
-              grades: [],
-              reviews: [],
-              teacherID: ''
-            }
+            whatStudy: enterIsWhat.value,
+            courseContent: Lectures.value,
+            heading: heading.value,
+            mainInfo: mainInfo.value,
+            moreInfo: moreInfo.value,
+            whoIsfor: enterIsWho.value,
+            grades: [],
+            reviews: [],
+            teacherID: '',
           },
           false,
           myId
@@ -470,18 +521,23 @@ export default {
     }
 
     return {
+      responseUrl,
+      uploadImageAndGetImageUrl,
       popa,
       handleSubmit,
       lectureName,
+      alllecturetime,
+
       enterLesson,
       enterLecture,
       coursetime,
       Lessons,
       Lectures,
       name,
+      type,
       price,
       lesson,
-      imageURL,
+      getImageUrl,
       categories,
       time,
       teacher,
@@ -506,48 +562,65 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/index.scss';
-// @import '@riophae/vue-treeselect/dist/vue-treeselect.css';
-
 .admin-board {
   margin: vw(30) vw(160);
   width: vw(760);
-  .enter2{
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include font(vw(14), 600, vh(30));
-      color: $white;
-      background-color: $greyBlue70;
-      width: vw(100);
-      height: vw(50);
-      border: none;
-      border-radius: vw(5);
-  }
-  .enter{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include font(vw(14), 600, vh(30));
+  .downloadimg {
+    display: flex;
+    width: vw(630);
+    height: vw(200);
+    cursor: pointer;
+    background-color: $blue;
+    opacity: 0.2;
+    justify-content: center;
+    input[type='file'] {
+      display: none;
+    }
+    p {
+      margin-top: vw(80);
+      @include font(vw(18), 700, vh(30));
       color: white;
-      background-color: $greyBlue90;
-      width: vw(70);
-      height: vw(30);
-      border: none;
-      border-radius: vw(5);
+    }
+  }
+
+  .enter2 {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(vw(14), 600, vh(30));
+    color: $white;
+    background-color: $greyBlue70;
+    width: vw(100);
+    height: vw(50);
+    border: none;
+    border-radius: vw(5);
+  }
+  .enter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(vw(14), 600, vh(30));
+    color: white;
+    background-color: $greyBlue90;
+    width: vw(70);
+    height: vw(30);
+    border: none;
+    border-radius: vw(5);
   }
   &__heading {
     @include font(vw(16), 700, vh(30));
     color: $greyBlue60;
   }
-  .enter-span{
+  .enter-span {
     display: flex;
     justify-content: end;
     padding-right: vw(10);
   }
   .publish {
-    margin: 0 vw(30);
-    button {
+    display: flex;
+    justify-content: center;
+    .button {
       @include font(vw(14), 600, vh(30));
       color: white;
       background-color: $blue;
@@ -577,8 +650,17 @@ export default {
       color: $greyBlue70;
     }
     select {
-      border-radius: vw(30);
       padding: vw(10) vw(30);
+      border: 2px solid #f5f6f7;
+      width: 45%;
+      box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
+      border-radius: vw(5);
+      margin-right: vw(10);
+      margin-bottom: vw(10);
+      height: vw(65);
+      padding: vw(10) vw(10) vw(10) vw(15);
+      text-transform: capitalize;
+      @include font(vw(13), 600, vh(30));
     }
     .url-input {
       text-transform: initial;
@@ -618,6 +700,27 @@ export default {
         @include font(vw(13), 600, vh(30));
       }
     }
+    &__lectures {
+      .lesson-details {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        input {
+          width: 46%;
+        }
+        select {
+          width: 46%;
+          border: 2px solid #f5f6f7;
+          box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
+          border-radius: vw(5);
+          margin-right: vw(10);
+          height: vw(65);
+          padding: vw(10) vw(10) vw(10) vw(15);
+          text-transform: capitalize;
+          @include font(vw(13), 600, vh(30));
+        }
+      }
+    }
     &__questions {
       display: block;
       margin-bottom: vw(20);
@@ -637,43 +740,42 @@ export default {
         }
       }
     }
-    &__categories {
-      .category-blocks {
-        display: flex;
-        .category-block {
-          display: block;
-          margin: 0 vw(40) 0 0;
-          .title {
-            @include font(vw(13), 700, vh(25));
-            color: $greyBlue50;
-            margin-bottom: vw(20);
-          }
-          .category {
-            @include font(vw(12), 700, vh(20));
-            color: $greyBlue70;
-          }
-          .category:hover {
-            color: $green;
-          }
-          .more {
-            @include font(vw(12), 700, vh(20));
-            color: $blue;
-            margin-top: vw(20);
-          }
-        }
-      }
-    }
+    
   }
 }
 @media screen and (max-width: 1024px) {
   .admin-board {
-    margin: vmin(15) vmin(40);
+    margin: vmin(15) vmin(50);
+    width: vmin(300);
     &__heading {
-      @include font(vmin(15), 700, vmin(15));
+      @include font(vmin(14), 700, vmin(10));
+      width: vmin(200);
+    }
+    .downloadimg {
+    width: vmin(230);
+    height: vmin(70);
+    p {
+      margin-top: vmin(25);
+      @include font(vmin(9), 700, vmin(15));
+      color: white;
+    }
+    }
+    .enter2 {
+    @include font(vmin(7), 600, vmin(15));
+    width: vmin(70);
+    height: vmin(30);
+    border-radius: vw(10);
+    }
+    .enter {
+      @include font(vmin(7), 600, vmin(15));
+      width: vmin(50);
+      height: vmin(20);
+      border: none;
+      border-radius: vw(10);
     }
     .publish {
-      margin: 0 vmin(15);
-      button {
+      margin-right: vmin(40);
+      .button {
         @include font(vmin(7), 600, vmin(15));
         color: white;
         width: vmin(100);
@@ -687,18 +789,25 @@ export default {
       width: vmin(230);
       border-radius: vmin(5);
       &__title {
-        @include font(vmin(10), 700, vmin(13));
+        @include font(vmin(13), 700, vmin(13));
       }
       &__instruction {
-        @include font(vmin(7), 700, vmin(13));
+        @include font(vmin(10), 700, vmin(13));
         margin: vmin(15) 0 vmin(10) 0;
       }
+      select {
+      padding: vmin(3) vmin(15);
+      width: 50%;
+      height: vmin(30);
+      padding: vmin(5) vmin(5) vmin(5) vmin(10);
+      @include font(vmin(7), 600, vh(15));
+    }
       input {
         border-radius: vmin(5);
         padding: vw(10);
         margin: 0 0 vmin(15) 0;
         width: vmin(220);
-        @include font(vmin(7), 600, vmin(15));
+        @include font(vmin(9), 600, vmin(15));
       }
       &__examples {
         span {
@@ -714,43 +823,36 @@ export default {
       &__description {
         textarea {
           border-radius: vmin(5);
-          width: vmin(180);
+          width: vmin(220);
           height: vmin(60);
-          @include font(vmin(6), 600, vmin(15));
+          @include font(vmin(9), 600, vmin(15));
         }
       }
       &__questions {
         margin-bottom: vmin(10);
         .questions {
           p {
-            @include font(vmin(7), 700, vmin(13));
+            @include font(vmin(8), 700, vmin(13));
           }
           span {
             margin: vmin(3) vmin(5);
-            width: vmin(6);
+            width: vmin(7);
             height: vmin(2);
           }
         }
       }
-      &__categories {
-        .category-blocks {
-          .category-block {
-            margin: 0 vmin(5) 0 0;
-            .title {
-              @include font(vmin(7), 600, vh(13));
-              margin-bottom: vmin(7);
-            }
-            .category {
-              @include font(vmin(6), 600, vmin(10));
-            }
-            .more {
-              @include font(vmin(6), 700, vh(10));
-              margin-top: vmin(10);
-              color: $blue;
-            }
-          }
+      &__lectures {
+      .lesson-details {
+        select {
+          border-radius: vw(10);
+          height: vmin(25);
+          padding: vw(10) vw(10) vw(10) vw(15);
+          text-transform: capitalize;
+          @include font(vw(13), 600, vh(30));
         }
       }
+    }
+      
     }
   }
 }

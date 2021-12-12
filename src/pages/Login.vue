@@ -12,7 +12,7 @@
               required
               v-model="email"
             />
-            <img src="@/assets/img/email.jpg" alt="'Type your email" />
+            <img src="@/assets/img/email_icon.svg" alt="'Type your email" />
           </div>
           <label>Password </label>
           <div>
@@ -22,7 +22,10 @@
               required
               v-model="password"
             />
-            <img src="@/assets/img/password.svg" alt="'Type your password" />
+            <img
+              src="@/assets/img/password-key.svg"
+              alt="'Type your password"
+            />
           </div>
 
           <button>Login</button>
@@ -38,47 +41,49 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import useAuth from '@/composables/useAuth'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import useAuth from "@/composables/useAuth";
 export default {
   setup() {
-    const email = ref('')
-    const password = ref('')
-    const router = useRouter()
+    const email = ref("");
+    const password = ref("");
+    const router = useRouter();
 
     const handleSubmit = async () => {
-      const { login } = useAuth()
+      const { login } = useAuth();
 
       try {
-        const user = await login(email.value, password.value)
+        const user = await login(email.value, password.value);
 
-        console.log(user.value)
+        console.log(user.value);
 
-        router.push('/')
+        router.push("/");
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
 
     return {
       email,
       password,
       handleSubmit,
-    }
+    };
   },
-}
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 
 .login {
   width: vw(700);
-  height: vw(450);
+  height: vw(500);
   background-color: $greyBlue25;
-  margin-left: vw(200);
-  border-radius: 30em /20em;
+  margin-left: vw(100);
+  
+
+  border-radius: 25em /18em;
 
   &-title {
     padding-left: vw(190);
@@ -89,6 +94,7 @@ export default {
     color: $greyBlue70;
     padding-top: vw(40);
     margin-left: vw(-10);
+
     strong {
       color: $greyBlue80;
     }
@@ -101,9 +107,13 @@ export default {
     justify-content: space-between;
     margin-bottom: vw(5);
     padding-left: vw(25);
-    span {
-      color: #adb8cc;
-    }
+    // span {
+    //   color: #adb8cc;
+    // }
+  }
+  img{
+    width: vw(30);
+    height: vw(30);
   }
   form {
     div {
@@ -113,7 +123,6 @@ export default {
       background: $white;
       margin-top: vw(5);
       border: 2px solid #f5f6f7;
-      box-shadow: 10px 10px 5px $greyBlue25;
       border-radius: vw(30);
       padding: vw(15) vw(25);
       margin-bottom: vw(20);
@@ -132,21 +141,23 @@ export default {
       width: 60%;
       padding: vw(1) 0;
       background: $greyBlue50;
-      box-shadow: 10px 10px 5px $greyBlue25;
       border-radius: vw(30);
       color: $white;
       outline: none;
       cursor: pointer;
       border: 2px solid $greyBlue60;
       transition: 0.3s;
-      margin-top: vw(20);
+      margin-top: vw(10);
       margin-left: vw(5);
+      height: vw(50);
       &:hover {
         background-color: $greyBlue25;
         color: $white;
         border: 2px solid $greyBlue50;
-        box-shadow: 0 3px 20px 0 $greyBlue80;
       }
+    }
+    ::placeholder{
+      color:$greyBlue70 ;
     }
 
     span {
@@ -161,7 +172,7 @@ export default {
         text-align: right;
         color: #adb8cc;
         width: 57%;
-        margin-top: vw(-10);
+        margin-top: vw(20);
         margin-left: vw(-50);
       }
     }
@@ -169,18 +180,20 @@ export default {
 }
 @media screen and (max-width: 1024px) {
   .login {
-    width: vmin(250);
-    height: vmin(200);
+    width: vmin(300);
+    height: vmin(220);
     background-color: $greyBlue25;
-    border-radius: 13em 0.5em/41em 0.5em;
+    border-radius: 25em /20em;
+    margin-right: vmin(40);
+     margin-top: vmin(40);
     &-title {
-      padding-left: vmin(60);
+      padding-left: vmin(80);
     }
     h2 {
       @include font(vmin(15), 200, vmin(25));
       font-family: 'San Francisco Pro';
       color: $greyBlue70;
-      margin-left: vmin(7);
+      padding-top: vmin(25);
       strong {
         color: $greyBlue80;
       }
@@ -191,12 +204,15 @@ export default {
       color: $white;
       display: flex;
       justify-content: space-between;
-      margin-bottom: vmin(5);
       padding-left: vmin(10);
       span {
         color: #adb8cc;
       }
     }
+     img{
+    width: vmin(10);
+    height: vmin(10);
+  }
     form {
       div {
         width: 50%;
@@ -205,7 +221,6 @@ export default {
         background: $white;
         margin-top: vmin(5);
         border: 2px solid #f5f6f7;
-        box-shadow: 10px 10px 5px $greyBlue25;
         border-radius: vmin(20);
         padding: vmin(7) vmin(15);
         margin-bottom: vmin(5);
@@ -221,10 +236,9 @@ export default {
       }
       button {
         @include font(vmin(7), 400, vmin(10));
-        width: 67%;
-        padding: vmin(8) 0;
+        width: 63%;
+        padding: vmin(10) 0;
         background: $greyBlue50;
-        box-shadow: 10px 10px 5px $greyBlue25;
         border-radius: vmin(15);
         color: $white;
         outline: none;
@@ -236,14 +250,13 @@ export default {
           background-color: $greyBlue25;
           color: $white;
           border: 2px solid $greyBlue50;
-          box-shadow: 0 3px 20px 0 $greyBlue80;
         }
       }
 
       .auth {
         &__have-account {
           @include font(vmin(7), 150, vmin(10));
-          margin-top: vmin(5);
+         
           display: block;
           text-align: right;
           color: #adb8cc;
@@ -256,11 +269,11 @@ export default {
 
 @media screen and (max-width: 377px) {
   .login {
-    height: vmin(220);
+    height: vmin(250);
     background-color: $greyBlue25;
-    border-radius: 13em 0.5em/41em 0.5em;
+     border-radius: 25em /20em;
     &-title {
-      padding-left: vmin(50);
+      padding-left: vmin(80);
       img {
         width: vmin(10);
         height: vmin(10);
@@ -270,21 +283,18 @@ export default {
       @include font(vmin(15), 200, vmin(25));
       font-family: 'San Francisco Pro';
       color: $greyBlue70;
+      padding-top: vmin(30);
       strong {
         color: $greyBlue80;
       }
     }
     label {
-      width: 53%;
+      width: 55%;
       @include font(vmin(6), 400, vmin(10));
       color: $white;
       display: flex;
       justify-content: space-between;
-      margin-bottom: vmin(5);
-      padding-left: vmin(25);
-      span {
-        color: #adb8cc;
-      }
+     
     }
     form {
       div {
@@ -294,7 +304,6 @@ export default {
         background: $white;
         margin-top: vmin(5);
         border: 2px solid #f5f6f7;
-        box-shadow: 10px 10px 5px $greyBlue25;
         border-radius: vmin(20);
         padding: vmin(4) vmin(10);
         margin-bottom: vmin(10);
@@ -302,7 +311,6 @@ export default {
         input {
           @include font(vmin(7), 400, vmin(10));
           width: 100%;
-          padding-right: vmin(5);
           border: none;
           outline: none;
           color: $greyBlue70;
@@ -310,10 +318,8 @@ export default {
       }
       button {
         @include font(vmin(7), 400, vmin(10));
-        width: 62%;
-        padding: vmin(8) 0;
+        width: 60%;
         background: $greyBlue50;
-        box-shadow: 10px 10px 5px $greyBlue25;
         border-radius: vmin(15);
         color: $white;
         outline: none;
@@ -321,28 +327,24 @@ export default {
         border: 2px solid $greyBlue60;
         transition: 0.3s;
         margin-top: vmin(10);
-        height: vmin(10);
+        height: vmin(20);
         &:hover {
           background-color: $greyBlue25;
           color: $white;
           border: 2px solid $greyBlue50;
-          box-shadow: 0 3px 20px 0 $greyBlue80;
         }
       }
 
-      span {
-        padding-top: vmin(5);
-        display: block;
-      }
+    
       .auth {
         &__have-account {
           @include font(vmin(7), 150, vmin(10));
-          margin-top: vmin(5);
+          
           display: block;
           text-align: center;
           color: #adb8cc;
           width: 57%;
-          margin-top: vmin(5);
+          margin-left: vmin(5);
         }
       }
     }

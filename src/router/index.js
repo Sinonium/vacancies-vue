@@ -29,9 +29,10 @@ const routes = [
     beforeEnter: requireAuth
   },
   {
-    path: '/DetailsCourse',
+    path: '/DetailsCourse/:id',
     name: 'DetailsCourse',
     component: DetailsCourse,
+    props: true,
     beforeEnter: requireAuth
   },
   {

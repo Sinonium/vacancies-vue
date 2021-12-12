@@ -6,11 +6,10 @@
       <router-link to="/test">Test</router-link>|
    </div>
    <div class="main-container">
-      <div class="sidebar">
-         <SideBar v-if="user" />
-      </div>
-      <div class="hero">
-         <Header v-if="user" />
+      <SideBar v-if="user" :active="sidebar" />
+
+      <div class="hero" @click.self="closeSidebar">
+         <Header @sidebarClick="handleSidebar" v-if="user" />
          <router-view />
          <Footer v-if="user" />
       </div>
@@ -21,14 +20,39 @@
    import Header from "@/components/Header";
    import Footer from "@/components/Footer";
    import SideBar from "./components/SideBar";
-   import {user} from './composables/getUser'
+   import { user } from "./composables/getUser";
+   import { computed, ref } from "@vue/reactivity";
    export default {
       components: { Header, Footer, SideBar },
       setup() {
-         
+         let screenWidth = window.screen.width;
+         window.addEventListener(
+            `resize`,
+            () => {
+               screenWidth = window.screen.width;
+               if (screenWidth > 769) {
+                  sidebar.value = true;
+               }
+            },
+            false
+         );
+         const sidebar = ref(true);
+         const handleSidebar = () => {
+            if (screenWidth < 769) {
+               sidebar.value = !sidebar.value;
+            }
+         };
+         const closeSidebar = () => {
+            if (screenWidth < 769) {
+               sidebar.value = false
+            }
+         }
+         if (screenWidth <= 769) {
+            sidebar.value = false;
+         }
 
-         return {user}
-      }
+         return { user, sidebar, handleSidebar, closeSidebar };
+      },
    };
 </script>
 
@@ -50,11 +74,9 @@
 
    .main-container {
       display: flex;
-      .sidebar {
-         width: vw(330);
-      }
-      .hero{
+      .hero {
          margin-left: vw(330);
+         width: 100%;
       }
    }
 
@@ -67,5 +89,12 @@
    }
    .col-3 {
       width: 25%;
+   }
+   @media screen and(max-width: 769px) {
+      .main-container {
+         .hero {
+            margin: 0;
+         }
+      }
    }
 </style>

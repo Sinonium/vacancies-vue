@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <div class="container-div">
       <div :class="{ actives: allShow === true }" class="themes">
@@ -8,9 +7,9 @@
           <img src="@/assets/scss/icons/burger-menu.svg" />
           <div class="themes-title__item">
             <div class="themes-title__item-1">
-              <ul :class="{ actives: allShow === true }">
-                <li v-for="theme in learn" :key="theme.id" :theme="theme">
-                  <img src="@/assets/scss/icons/done.svg" />{{ theme.name }}
+              <ul v-if="moreInfo" :class="{ actives: allShow === true }">
+                <li v-for="learn in moreInfo.learn" :key="learn" :theme="theme">
+                  <img src="@/assets/scss/icons/done.svg" />{{ learn }}
                 </li>
               </ul>
             </div>
@@ -25,19 +24,15 @@
         </div>
       </div>
 
-      <div class="content">
-        <div class="themes-title">
+      <div v-if="moreInfo" class="content">
+        <div  class="themes-title">
           <span>Course Content</span>
           <img src="@/assets/scss/icons/burger-menu.svg" />
         </div>
         <div :class="{ actives: allSections === true }" class="content-courses">
-          <div
-            v-for="item in items"
-            :key="item.id"
-            class="content-courses__theme"
-          >
-            <svg
-              :class="{ open: item.open }"
+          <div class="content-courses__theme">
+              <svg
+              :class="{ open: isOpen.a }"
               width="12"
               height="7"
               viewBox="0 0 12 7"
@@ -51,50 +46,109 @@
                 fill="#C3CAD9"
               />
             </svg>
+            <h6 @click="isOpen.a = !isOpen.a">
+              {{ moreInfo.courseContent[0].title }}
+            </h6>
+            <span>{{ moreInfo.courseContent[0].allTime }}</span>
+          </div>
+          <div v-for="item in moreInfo.courseContent[0].content" :key="item.id">
+          
+            <div class="content-courses__open" v-if="isOpen.a">
+            
 
-            <h6 @click="item.open = !item.open">{{ item.title }}</h6>
-
-            <span> {{ item.allTime }}</span>
-            <div class="content-courses__open" v-if="item.open">
-              <div class="content-courses__item">
-                <div class="content-courses__all">
-                  <a
-                    href="https://www.youtube.com/watch?v=-1DRETk-mns&t=7s"
-                    target="blank"
-                  >
+              <div>
+                <ul class="content-courses__all">
+                
                     <img :src="videoIcon" alt=""
-                  /></a>
-                  <p>{{ item.name }}</p>
-
-                  <a
-                    href="https://www.youtube.com/watch?v=-1DRETk-mns&t=7s"
-                    target="blank"
-                    >{{ item.isPreview }}</a
-                  >
+                  />
+                  <li>{{ item.name }}</li>
+                  <a>{{ item.isPreview }}</a>
                   <span>{{ item.time }}</span>
-                </div>
-              </div>
-              <div class="content-courses__item">
-                <div class="content-courses__all">
-                  <img :src="videoIcon" alt="" />
-
-                  <p>{{ item.name_1 }}</p>
-                  <a href=""></a>
-                  <span>{{ item.time_1 }}</span>
-                </div>
-              </div>
-              <div class="content-courses__item">
-                <div class="content-courses__all">
-                  <img :src="videoIcon" alt="" />
-
-                  <p>{{ item.name_2 }}</p>
-                  <a href=""></a>
-                  <span>{{ item.time_2 }}</span>
-                </div>
+                </ul>
               </div>
             </div>
           </div>
+            <div class="content-courses__theme">
+              <svg
+              :class="{ open: isOpen.b }"
+              width="12"
+              height="7"
+              viewBox="0 0 12 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.8825 0.2925L0.2925 4.8825C-0.0975 5.2725 -0.0975 5.9025 0.2925 6.2925C0.6825 6.6825 1.3125 6.6825 1.7025 6.2925L5.5925 2.4125L9.4725 6.2925C9.8625 6.6825 10.4925 6.6825 10.8825 6.2925C11.2725 5.9025 11.2725 5.2725 10.8825 4.8825L6.2925 0.2925C5.9125 -0.0975 5.2725 -0.0975 4.8825 0.2925Z"
+                fill="#C3CAD9"
+              />
+            </svg>
+            <h6 @click="isOpen.b = !isOpen.b">
+              {{ moreInfo.courseContent[1].title }}
+            </h6>
+            <span>{{ moreInfo.courseContent[1].allTime }}</span>
+          </div>
+          <div v-for="item in moreInfo.courseContent[1].content" :key="item.id">
+          
+            <div class="content-courses__open" v-if="isOpen.b">
+            
+
+              <div>
+                <ul class="content-courses__all">
+                 
+                    <img :src="videoIcon" alt=""
+                  />
+                  <li>{{ item.name }}</li>
+                  <a>{{ item.isPreview }}</a>
+                  <span>{{ item.time }}</span>
+                </ul>
+              </div>
+            </div>
+          </div>
+             <div class="content-courses__theme">
+              <svg
+              :class="{ open: isOpen.c }"
+              width="12"
+              height="7"
+              viewBox="0 0 12 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.8825 0.2925L0.2925 4.8825C-0.0975 5.2725 -0.0975 5.9025 0.2925 6.2925C0.6825 6.6825 1.3125 6.6825 1.7025 6.2925L5.5925 2.4125L9.4725 6.2925C9.8625 6.6825 10.4925 6.6825 10.8825 6.2925C11.2725 5.9025 11.2725 5.2725 10.8825 4.8825L6.2925 0.2925C5.9125 -0.0975 5.2725 -0.0975 4.8825 0.2925Z"
+                fill="#C3CAD9"
+              />
+            </svg>
+            <h6 @click="isOpen.c = !isOpen.c">
+              {{ moreInfo.courseContent[1].title }}
+            </h6>
+            <span>{{ moreInfo.courseContent[1].allTime }}</span>
+          </div>
+          <div v-for="item in moreInfo.courseContent[1].content" :key="item.id">
+          
+            <div class="content-courses__open" v-if="isOpen.c">
+            
+
+              <div>
+                <ul class="content-courses__all">
+                 
+                    <img :src="videoIcon" alt=""
+                  />
+                  <li>{{ item.name }}</li>
+                  <a>{{ item.isPreview }}</a>
+                  <span>{{ item.time }}</span>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
         </div>
+
+       
+
         <button
           class="sections-btn"
           @click="allContents()"
@@ -108,218 +162,72 @@
   </div>
 </template>
 
-
-
-
 <script>
 export default {
+  props: ['moreInfo'],
   data() {
     return {
-      
-      button_themes: "Show more Features",
-      button_contents: "5 More Sections",
+      isOpen: {
+        a: false,
+        b: false,
+        c: false,
+        d: false,
+      },
+      learn: [],
+      articles: [],
+
+      button_themes: 'Show more Features',
+      button_contents: '5 More Sections',
       allShow: false,
       open: false,
       allSections: false,
-
-      videoIcon: require("@/assets/scss/icons/video.svg"),
-      items: [
-        {
-          title: "Course Content",
-          allTime: "8:82",
-
-          name: "How To Succedd In This Course",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Join Our Online Classroom",
-          time_1: "01:08",
-
-          name_2: "Exercise: Meet The Comminity!",
-          time_2: "01:08",
-        },
-
-        {
-          title: "JavaScript Foundation",
-          lectures: "26 Lectures",
-          allTime: "7:82",
-
-          name: "Section Overview",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Exercise: Javascript Engine",
-          isPreview: "Preview",
-          time_1: "05:08",
-
-          name_2: "Marketing and Sales",
-          time_2: "01:08",
-        },
-
-        {
-          title: "Putting It All Together: The Budget App Project",
-          lectures: "3 Lectures",
-          allTime: "13:82",
-
-          name: "Local servers",
-          time: "05:34",
-
-          name_1: "How to work with JSHint",
-          time_1: "01:08",
-
-          name_2: "How to create fadeIn / fadeOut animations",
-          time_2: "01:08",
-        },
-        {
-          title: "Next Generation JavaScript: Intro to ES6",
-          lectures: "4 Lectures",
-          allTime: "10:82",
-
-          name: "How to work with a server in JavaScript part 1",
-          time: "02:34",
-
-          name_1: "How to work with a server in JavaScript part 2",
-          time_1: "03:08",
-
-          name_2: "How to work with a server in JavaScript part 3",
-          time_2: "01:08",
-        },
-        {
-          title: "Customizing the code editor",
-          lectures: "7 Lectures",
-          allTime: "11:82",
-
-          name: "How To Succedd In This Course",
-          time: "05:34",
-
-          name_1: "Timer operation",
-          time_1: "01:08",
-
-          name_2: "Implementing a module with displaying images",
-          time_2: "01:08",
-        },
-        {
-          title: "Course Content",
-          allTime: "8:82",
-
-          name: "How To Succedd In This Course",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Join Our Online Classroom",
-          time_1: "01:08",
-
-          name_2: "Exercise: Meet The Comminity!",
-          time_2: "01:08",
-        },
-
-        {
-          title: "JavaScript Foundation",
-          lectures: "26 Lectures",
-          allTime: "7:82",
-
-          name: "Section Overview",
-          isPreview: "Preview",
-          time: "05:34",
-
-          name_1: "Exercise: Javascript Engine",
-          isPreview: "Preview",
-          time_1: "05:08",
-
-          name_2: "Marketing and Sales",
-          time_2: "01:08",
-        },
-
-        {
-          title: "Putting It All Together: The Budget App Project",
-          lectures: "3 Lectures",
-          allTime: "13:82",
-
-          name: "Local servers",
-          time: "05:34",
-
-          name_1: "How to work with JSHint",
-          time_1: "01:08",
-
-          name_2: "How to create fadeIn / fadeOut animations",
-          time_2: "01:08",
-        },
-        {
-          title: "Next Generation JavaScript: Intro to ES6",
-          lectures: "4 Lectures",
-          allTime: "10:82",
-
-          name: "How to work with a server in JavaScript part 1",
-          time: "02:34",
-
-          name_1: "How to work with a server in JavaScript part 2",
-          time_1: "03:08",
-
-          name_2: "How to work with a server in JavaScript part 3",
-          time_2: "01:08",
-        },
-        {
-          title: "Customizing the code editor",
-          lectures: "7 Lectures",
-          allTime: "11:82",
-
-          name: "How To Succedd In This Course",
-          time: "05:34",
-
-          name_1: "Timer operation",
-          time_1: "01:08",
-
-          name_2: "Implementing a module with displaying images",
-          time_2: "01:08",
-        },
-      ],
-
-      learn: [
-        { name: "Get friendly supportinthe course Q&A" },
-        { name: "Practice your skills with coding challenges" },
-        { name: "Downloadable lectures for all projects" },
-        { name: "Object Orinted Programming" },
-        { name: "Inheritance + Prototpe Chain" },
-        { name: "Scope and Execution Context" },
-        { name: "Closures" },
-        { name: "Latest features: ES6, ES7, ES8, ES9" },
-        { name: "Practice your skills with coding challenges" },
-        { name: "Object Orinted Programming" },
-        { name: "Scope and Execution Context" },
-        { name: "Latest features: ES6, ES7, ES8, ES9" },
-        { name: "Practice your skills with coding challenges" },
-        { name: "Object Orinted Programming" },
-        { name: "Scope and Execution Context" },
-        { name: "Latest features: ES6, ES7, ES8, ES9" },
-      ],
-    };
+      videoIcon: require('@/assets/scss/icons/video.svg'),
+    }
   },
+  created() {
+    fetch('http://localhost:3000/learn')
+      .then((response) => {
+        return response.json()
+      })
+
+      .then((data) => {
+        this.learn = data
+      })
+    fetch('http://localhost:3000/articles')
+      .then((response) => {
+        return response.json()
+      })
+
+      .then((data) => {
+        this.articles = data
+      })
+  },
+
   methods: {
     allThemes() {
       if (!this.allShow) {
-        this.button_themes = "Show Fewer Features";
-        this.allShow = true;
+        this.button_themes = 'Show Fewer Features'
+        this.allShow = true
       } else {
-        this.button_themes = "Show more Features";
-        this.allShow = false;
+        this.button_themes = 'Show more Features'
+        this.allShow = false
       }
     },
     allContents() {
       if (!this.allSections) {
-        this.button_contents = "Sections";
-        this.allSections = true;
+        this.button_contents = 'Sections'
+        this.allSections = true
       } else {
-        this.button_contents = "5 More Sections";
-        this.allSections = false;
+        this.button_contents = '5 More Sections'
+        this.allSections = false
       }
     },
   },
-};
+}
 </script>
 
-
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .container {
   margin: 0 auto;
@@ -334,13 +242,13 @@ export default {
   width: vw(730);
   margin-bottom: vw(30);
   height: vw(350);
-  &.actives{
+  &.actives {
     height: 100%;
   }
 
   &-title {
     @include font(vw(13), bold, vw(25));
-    font-family: "San Francisco Pro";
+    font-family: 'San Francisco Pro';
     color: $greyBlue50;
     padding: vw(30) 0 0 vw(30);
     &__item {
@@ -353,7 +261,7 @@ export default {
 
     &__item-1 {
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue60;
     }
     span {
@@ -383,7 +291,7 @@ export default {
 }
 button {
   @include font(vw(12), bold, vw(20));
-  font-family: "San Francisco Pro";
+  font-family: 'San Francisco Pro';
   color: $greyBlue60;
   width: vw(190);
   height: vw(40);
@@ -404,6 +312,7 @@ button {
 }
 .sections-btn {
   margin: vw(-50) vw(260) vw(20) vw(270);
+
   &.actives {
     display: none;
   }
@@ -422,7 +331,7 @@ button {
     margin: vw(40) vw(30) vw(0) vw(30);
     flex-wrap: wrap;
     overflow: hidden;
-    height: vw(390);
+    min-height: vw(240);
     &.actives {
       @include font(vw(12), bold, vw(20));
       height: 100%;
@@ -431,9 +340,32 @@ button {
     &__all {
       display: flex;
       align-items: baseline;
-      margin: vw(10) 0 vw(10) vw(40);
+      margin: vw(10) vw(0) vw(10) vw(40);
+      border-top: 2px solid $greyBlue98;
+        
+      a {
+        @include font(vw(12), bold, vw(20));
+        font-family: 'San Francisco Pro';
+        color: $greyBlue60;
+        width: 12%;
+        text-decoration: none;
+      }
     }
-
+    li {
+      list-style-type: none;
+      @include font(vw(12), bold, vw(20));
+      font-family: 'San Francisco Pro';
+      color: $greyBlue60;
+      width: 78%;
+      margin: vw(15);
+       
+    }
+     span {
+        @include font(vw(12), bold, vw(20));
+        font-family: 'San Francisco Pro';
+        color: $greyBlue50;
+        width: 10%;
+      }
     h6 {
       cursor: pointer;
     }
@@ -443,21 +375,6 @@ button {
     &__item {
       width: 100%;
       border-top: 2px solid $greyBlue98;
-
-      p {
-        @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
-        color: $greyBlue60;
-        width: 70%;
-      }
-
-      a {
-        @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
-        color: $greyBlue60;
-        width: 10%;
-        text-decoration: none;
-      }
     }
 
     &__theme {
@@ -468,13 +385,13 @@ button {
 
       h6 {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 80%;
       }
       span {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 10%;
       }
@@ -505,13 +422,13 @@ button {
     margin-left: vmin(5);
     height: vmin(200);
     &.actives {
-      height: vmin(400);
+      height: 100%;
     }
     &-title {
       @include font(vmin(8), bold, vmin(13));
       padding: vmin(15) 0 0 vmin(15);
       img {
-        width: vmin(10);
+        width: vmin(7);
       }
 
       &__item-1 {
@@ -522,9 +439,9 @@ button {
       &__item-2 {
         @include font(vmin(6), bold, vmin(10));
       }
-      span {
-        padding-right: vmin(235);
-      }
+      // span {
+      //   padding-right: vmin(235);
+      // }
     }
     ul {
       height: vmin(100);
@@ -550,7 +467,7 @@ button {
       border: 2px solid #f7f8fa;
       box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
       border-radius: vmin(15);
-     
+
       &.actives {
         @include font(vmin(7), bold, vmin(10));
         color: $greyBlue60 !important;
@@ -560,8 +477,6 @@ button {
         box-shadow: 0 3px 10px 0 $greyBlue85;
       }
     }
-   
-  
   }
 
   .content {
@@ -583,42 +498,48 @@ button {
         height: 100%;
         color: $greyBlue60 !important;
       }
-      &__theme {
-        svg {
-          max-width: vmin(10);
-          max-height: vmin(10);
-          margin-right: vmin(10);
-          margin-left: vmin(10);
+      &__all {
+        display: flex;
+        align-items: baseline;
+        margin: vmin(10) vmin(0) vmin(10) vmin(40);
+        border-top: 2px solid $greyBlue98;
+        a {
+          display: none;
         }
       }
-
+      li {
+        list-style-type: none;
+        @include font(vmin(7), bold, vmin(10));
+        font-family: 'San Francisco Pro';
+        color: $greyBlue60;
+        width: 60%;
+        margin: vmin(2);
+      }
+      h6 {
+        cursor: pointer;
+      }
+      &__open {
+        width: 100%;
+      }
       &__item {
+        width: 100%;
         border-top: 2px solid $greyBlue98;
-
-        &__all {
-          margin: vmin(5) 0 vmin(5) vmin(20);
-        }
-
-        p {
-          @include font(vmin(6), bold, vmin(10));
-        }
-
-        a {
-          @include font(vmin(6), bold, vmin(10));
-        }
       }
 
       h6 {
         @include font(vmin(7), bold, vmin(10));
+        font-family: 'San Francisco Pro';
+        color: $greyBlue50;
+        width: 70%;
       }
       span {
-        @include font(vmin(6), bold, vmin(10));
+        display: none;
       }
 
       img {
-        max-width: vmin(10);
-        max-height: vmin(10);
-        padding: 0 vmin(10) 0 vmin(10);
+        width: vmin(10);
+        height: vmin(10);
+        //padding: 0 vmin(5) 0 vmin(5);
       }
     }
   }

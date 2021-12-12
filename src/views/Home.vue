@@ -8,13 +8,14 @@
     <div class="courses-info__block">
       <div class="courses-info__title">
         <img class="sticker" src="./../assets/img/stickers.svg" alt="" />
-        <h3 class="name">Java Script Courses</h3>
+        <h3 v-if="!selectedCourse[2]" class="name">{{ selectedCourse[2] }}</h3>
+        <h3 v-else class="name">{{ selectedCourse[2] }} Courses</h3>
       </div>
 
       <div class="courses-info__block-2">
         <div class="courses-info__content">
           <p class="categories">Related Categories:</p>
-          <h5>Development It & Software Web Development</h5>
+          <h5>{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
         </div>
         <div class="courses-info__students">
           <img src="./../assets/img/students.svg" alt="" />
@@ -29,7 +30,7 @@
       </div>
     </div>
   </div>
-  <Filters />
+  <!-- <Filters /> -->
   <div class="courses-items">
     <div class="row">
       <CourseItem v-for="course in courses" :key="course.id" :course="course" />
@@ -40,8 +41,7 @@
 <script>
 import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseItem from '../components/CourseItem.vue'
-import { ref } from '@vue/reactivity'
-import { onMounted, computed } from '@vue/runtime-core'
+import { onMounted, computed} from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import Filters from '../components/Filters/Fiters.vue'
 export default {
@@ -50,12 +50,14 @@ export default {
     const store = useStore()
 
     const courses = computed(() => store.state.courses)
+    const selectedCourse = computed(()=> store.state.categories.category);
 
     onMounted(() => {
       store.dispatch('getCourses')
     })
 
     return {
+      selectedCourse,
       courses,
     }
   },
@@ -66,13 +68,13 @@ export default {
 @import '@/assets/scss/index.scss';
 .courses-items {
   padding: vw(80);
-  width: vw(1270);
+  width: vw(1200);
   .row {
     display: flex;
     flex-wrap: wrap;
     .col-3 {
       margin-right: vw(30);
-      margin-bottom: vw(15);
+      margin-bottom: vw(30);
       width: vw(255);
     }
   }
@@ -125,6 +127,12 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
+  .courses-items {
+  margin: 0;
+  .row {
+    display: block;
+  }
+}
   .courses-info {
     margin: vmin(15) vmin(15);
     &__image {
@@ -170,17 +178,6 @@ export default {
 
       img {
         width: vmin(10);
-      }
-    }
-  }
-  .course-items {
-    width: vmin(620);
-    .row {
-      display: block;
-      margin: vmin(10) vmin(10);
-      .col-3 {
-        display: block;
-        width: vmin(400);
       }
     }
   }

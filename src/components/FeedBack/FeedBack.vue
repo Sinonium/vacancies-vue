@@ -1,10 +1,16 @@
 <template>
   <section class="feedback">
     <div class="feedback__create-rev">
-      <form @submit.prevent="handleTextAddText">
+      <form @submit.prevent="handleAddReviewOrGrade">
         <div>
           <img :src="AvatarUserIcon" alt="" />
-          <input type="text" placeholder="Your review" v-model="textInp" />
+          <input
+            type="text"
+            placeholder="Your review"
+            v-model="textInp"
+            @keypress="handleLengthInpText"
+          />
+          <span class="numLengthTextInp">{{ textInp.length }}/50</span>
         </div>
         <div>
           <select v-model="gradeUser">
@@ -52,13 +58,22 @@
             </span>
           </span>
         </div>
-        <button>Add review and</button>
+        <div class="feedback__create-rev_error">
+          <span v-if="textInp.length > 49">
+            {{ errTextInpMore }}
+          </span>
+        </div>
+        <button>Add review and grade</button>
       </form>
-      <span>{{ errorNullTextInp }}</span>
     </div>
     <div class="feedback__content">
       <h2>Reviews course</h2>
-      <div v-for="review in reviews" :key="review">
+      <div
+        v-for="review in reviews.sort((a, b) => {
+          return a.date - b.date
+        })"
+        :key="review"
+      >
         <CartRev :review="review" />
       </div>
     </div>
@@ -69,9 +84,14 @@
 import { ref } from '@vue/reactivity'
 import CartRev from '../DetailsAboutTeach/BlockReviews/CartReview/CartReview.vue'
 import { onMounted } from '@vue/runtime-core'
+import { user } from '../../composables/getUser'
+import update from '@/composables/update'
 export default {
+  props: ['moreInfo'],
   components: { CartRev },
-  setup() {
+  setup(props) {
+    const { updateReviews } = update()
+    const User = user.value
     const gradeUser = ref(1)
     const course = ref()
     const currentDate = ref()
@@ -79,7 +99,7 @@ export default {
     const grades = ref([])
     const reviewUser = ref({})
     const textInp = ref('')
-    const errorNullTextInp = ref('')
+    const errTextInpMore = ref('The review cannot exceed 50 characters.')
     const getDoc = async () => {
       const response = await fetch('http://localhost:3000/course')
       const json = await response.json()
@@ -88,8 +108,12 @@ export default {
       grades.value = course.value.rating
       console.log(course.value)
     }
-
-    const handleTextAddText = async () => {
+    const handleLengthInpText = () => {
+      if (textInp.value.length > 49) {
+        textInp.value = textInp.value.substring(0, textInp.value.length - 1)
+      }
+    }
+    const handleAddReviewOrGrade = async () => {
       if (textInp.value.length) {
         currentDate.value = new Date()
         const testDate = ref([])
@@ -99,40 +123,40 @@ export default {
           currentDate.value.getFullYear(),
         ]
         reviewUser.value = {
-          imageUrl: '',
-          studentName: 'Person',
+          imageUrl: User.photoURL,
+          studentName: User.email,
           grade: Number(gradeUser.value),
           text: textInp.value,
           date: testDate.value,
         }
-        await fetch('http://localhost:3000/course', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            reviews: [...reviews.value, reviewUser.value],
-          }),
-          headers: { 'Content-type': 'application/json' },
-        })
-        await fetch('http://localhost:3000/course', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            rating: [...grades.value, Number(gradeUser.value)],
-          }),
-          headers: { 'Content-type': 'application/json' },
-        })
+        await updateReviews('more info', props.moreInfo.id, textInp.value,gradeUser.value,user.value.email)
+        // await fetch('http://localhost:3000/course', {
+        //   method: 'PATCH',
+        //   body: JSON.stringify({
+        //     reviews: [...reviews.value, reviewUser.value],
+        //   }),
+        //   headers: { 'Content-type': 'application/json' },
+        // })
+        // await fetch('http://localhost:3000/course', {
+        //   method: 'PATCH',
+        //   body: JSON.stringify({
+        //     rating: [...grades.value, Number(gradeUser.value)],
+        //   }),
+        //   headers: { 'Content-type': 'application/json' },
+        // })
         textInp.value = ''
         currentDate.value = new Date()
         reviewUser.value = {}
         errorNullTextInp.value = ''
         await getDoc()
       } else {
-        errorNullTextInp.value = 'Feedback is empty'
-        await fetch('http://localhost:3000/course', {
-          method: 'PATCH',
-          body: JSON.stringify({
-            rating: [...grades.value, Number(gradeUser.value)],
-          }),
-          headers: { 'Content-type': 'application/json' },
-        })
+        // await fetch('http://localhost:3000/course', {
+        //   method: 'PATCH',
+        //   body: JSON.stringify({
+        //     rating: [...grades.value, Number(gradeUser.value)],
+        //   }),
+        //   headers: { 'Content-type': 'application/json' },
+        // })
       }
     }
 
@@ -140,8 +164,9 @@ export default {
       getDoc()
     })
     return {
+      errTextInpMore,
+      handleLengthInpText,
       gradeUser,
-      errorNullTextInp,
       reviewUser,
       currentDate,
       course,
@@ -150,7 +175,7 @@ export default {
       cross: require('@/assets/icons/FeedBack/cross.svg'),
       starActiveIcon: require('@/assets/icons/DetailsAboutTeach/starActive.svg'),
       starNotActiveIcon: require('@/assets/icons/DetailsAboutTeach/starNotActive.svg'),
-      handleTextAddText,
+      handleAddReviewOrGrade,
       textInp,
       reviews,
     }
@@ -198,6 +223,11 @@ export default {
           @include flex();
           margin-left: vw(20);
         }
+        .numLengthTextInp {
+          margin-left: vw(-31);
+          margin-top: vw(50);
+          @include font(vw(14), bold, 20px, #ffcb33);
+        }
       }
       button {
         color: $white;
@@ -212,12 +242,18 @@ export default {
         @include font(vw(12), bold, 20px, $white);
         @include flex();
         transition: 0.5s;
-        margin-left: vw(210);
+        margin-left: vw(155);
         &:hover {
           color: $blue;
           background: $white;
           border: 3px dashed $blue;
         }
+      }
+      .feedback__create-rev_error {
+        display: flex;
+        align-items: center;
+        border: none;
+        margin-left: none;
       }
     }
     span {
@@ -227,7 +263,12 @@ export default {
   }
   &__content {
     h2 {
-      @include font(vw(20), bold, 20px, $blue);
+      @include font(vw(20), bold, 20px, #ffcb33);
+      padding: vw(30);
+      background: $white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+      width: vw(650);
     }
   }
 }

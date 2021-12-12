@@ -1,17 +1,22 @@
 import { ref } from 'vue'
 import { firestore } from '@/firebase/config'
-import { doc, getDoc } from '@firebase/firestore'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { onUnmounted } from '@vue/composition-api/dist/vue-composition-api.common'
 
 const useDoc = () => {
   const getSingleDoc = async (collectionName, id) => {
     const documents = ref(null)
     const error = ref(null)
-
     try {
       const myCollection = doc(firestore, collectionName, id)
-      const response = await getDoc(myCollection)
+      const unsub = onSnapshot(myCollection, (doc) => {
+        documents.value = { ...doc.data(), id: doc.id }
+        console.log(documents.value)
+      })
 
-      documents.value = { ...response.data(), id: response.id }
+      onUnmounted(() => {
+        unsub()
+      })
     } catch (err) {
       error.value = 'Данные не получины ошибка'
     }
