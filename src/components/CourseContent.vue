@@ -7,7 +7,7 @@
           <img src="@/assets/scss/icons/burger-menu.svg" />
           <div class="themes-title__item">
             <div class="themes-title__item-1">
-              <ul :class="{ actives: allShow === true }">
+              <ul v-if="moreInfo" :class="{ actives: allShow === true }">
                 <li v-for="learn in moreInfo.learn" :key="learn" :theme="theme">
                   <img src="@/assets/scss/icons/done.svg" />{{ learn }}
                 </li>
@@ -24,8 +24,8 @@
         </div>
       </div>
 
-      <div class="content">
-        <div class="themes-title">
+      <div v-if="moreInfo" class="content">
+        <div  class="themes-title">
           <span>Course Content</span>
           <img src="@/assets/scss/icons/burger-menu.svg" />
         </div>

@@ -15,7 +15,7 @@
         </li>
       </ul>
     </div>
-    <div class="cart-teach__features_teach col-5">
+    <div v-if="moreInfo" class="cart-teach__features_teach col-5">
       <h2>{{ moreInfo.Adilhan.teacher.name }}</h2>
       <span> {{ moreInfo.Adilhan.teacher.features }} </span>
       <p>{{ moreInfo.Adilhan.teacher.recentNews }}</p>
