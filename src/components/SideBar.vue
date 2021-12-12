@@ -453,6 +453,16 @@
          }
       }
    }
+   @media screen and(max-width:415px) and(max-height:737px) {
+      .sidebar {
+         width: vmin(300);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vmin(475);
+         }
+      }
+   }
    @media screen and(max-width:376px) {
       .sidebar {
          width: vmin(280);
@@ -460,6 +470,16 @@
       .sidebar__content {
          .sidebar__main-group {
             padding-bottom: vmin(300);
+         }
+      }
+   }
+    @media screen and(max-width:376px) and(max-height: 668px) {
+      .sidebar {
+         width: vmin(280);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vmin(485);
          }
       }
    }
