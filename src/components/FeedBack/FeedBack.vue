@@ -66,30 +66,17 @@
         <button>{{ textBtnAddedReview }}</button>
       </form>
     </div>
-    <div v-if="moreInfo.reviews" class="feedback__content">
-      <h2>Reviews course</h2>
-      <div
-        v-for="review in moreInfo.reviews.sort(
-          (a, b) => a.createdAt - b.createdAt
-        )"
-        :key="review"
-      >
-        <CartRev :review="review" />
-      </div>
-    </div>
   </section>
 </template>
 
 <script>
 import { computed, ref } from '@vue/reactivity'
-import CartRev from '../DetailsAboutTeach/BlockReviews/CartReview/CartReview.vue'
 import { onMounted } from '@vue/runtime-core'
 import { user } from '../../composables/getUser'
 import update from '@/composables/update'
 import { useStore } from 'vuex'
 export default {
   props: ['moreInfo'],
-  components: { CartRev },
   setup(props) {
     const store = useStore()
     const currentCourseId = computed(() => store.state.courseId)
@@ -365,16 +352,6 @@ export default {
     span {
       margin-top: vw(10);
       @include font(vw(14), bold, 20px, red);
-    }
-  }
-  &__content {
-    h2 {
-      @include font(vw(20), bold, 20px, #ffcb33);
-      padding: vw(30);
-      background: $white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
-      width: vw(650);
     }
   }
 }
