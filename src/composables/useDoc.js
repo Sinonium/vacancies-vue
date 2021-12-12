@@ -40,10 +40,11 @@ const useDoc = () => {
     const documents = ref(null)
     const error = ref(null)
     try {
+      console.log(paramId)
       const myCollection = doc(firestore, collectionName, paramId)
       const unsub = onSnapshot(myCollection, (doc) => {
         documents.value = { ...doc.data(), id: doc.id }
-        // console.log(documents.value)
+        console.log(documents.value)
       })
 
       onUnmounted(() => {
