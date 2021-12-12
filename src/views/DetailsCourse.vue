@@ -507,7 +507,7 @@
     top: vw(130);
     left: vw(1150);
   }
-}
+
 .details-page__head ul li.active {
   &::before {
     content: '';
@@ -583,6 +583,8 @@
          top: -33.875vw;
       }
    }
+  }
+}
    @media screen and(max-width: 579px) {
    }
    @media screen and(max-width: 426px) {
