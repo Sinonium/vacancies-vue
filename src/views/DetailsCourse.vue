@@ -532,7 +532,7 @@
          }
       }
    }
-   @media screen and (max-width: 769px) {
+    @media screen and (max-width: 769px) {
       .details-page__head ul {
          margin-left: 3vw;
       }
@@ -563,13 +563,8 @@
          &-arrow_next {
             margin-left: vw(260);
          }
-      }
-   }
-   &__modal {
-      position: absolute;
-      top: vw(-53);
-      right: vw(30);
-   }
+    }
+    }
 
    .details-page__head ul li.active {
       &::before {
