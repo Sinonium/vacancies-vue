@@ -132,7 +132,7 @@
     <div class="create-course">
       <div class="create-course__price">
         <h4 class="create-course__title">Price:</h4>
-        <input type="number" placeholder="100$" v-model="price" />
+        <input type="number"  onkeypress="this.value=this.value.substring(0,3)"  placeholder="100$" v-model="price" />
       </div>
     </div>
 
@@ -468,14 +468,6 @@ export default {
     }
 
     const handleSubmit = async () => {
-      if (coursetime.value >= 0 && coursetime.value <= 2)
-        duration.value = '0-2 Hours'
-      if (coursetime.value >= 3 && coursetime.value <= 6)
-        duration.value = '3-6 Hours'
-      if (coursetime.value >= 7 && coursetime.value <= 16)
-        duration.value = '7-16 Hours'
-      if (coursetime.value >= 17) duration.value = '17+ Hours'
-
       console.log(responseUrl.value)
 
       await addCollection('courses', {
@@ -489,7 +481,7 @@ export default {
         categories: jopa.value,
         students: 0,
         teacherName: '',
-        grade: 0,
+        grade: '',
         moreInfoId: myId,
       }),
         await addCollection(

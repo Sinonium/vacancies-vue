@@ -64,8 +64,8 @@
           <span>Instructor</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage === 'Feedback' }"
-          @click="handleCurrentPage('Feedback')"
+          :class="{ active: currentDetailsPage === 'Reviews' }"
+          @click="handleCurrentPage('Reviews')"
         >
           <svg
             width="22"
@@ -81,11 +81,11 @@
               fill="#C3CAD9"
             />
           </svg>
-          <span>Feedback</span>
+          <span>Reviews</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage === 'Reviews' }"
-          @click="handleCurrentPage('Reviews')"
+          :class="{ active: currentDetailsPage === 'Feedback' }"
+          @click="handleCurrentPage('Feedback')"
         >
           <svg
             width="19"
@@ -101,7 +101,7 @@
               fill="#C3CAD9"
             />
           </svg>
-          <span>Reviews</span>
+          <span>Feedback</span>
         </li>
       </ul>
     </div>
@@ -113,11 +113,11 @@
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
           <div
-            @click="handleCurrentPage('Feedback')"
+            @click="handleCurrentPage('Reviews')"
             class="details-page__bottom-btn_push_page"
           >
             <img :src="studsIcon" alt="" />
-            <span> Feedback </span>
+            <span> Reviews </span>
           </div>
           <div class="details-page__bottom-arrow_next">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -167,31 +167,33 @@
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
           <div
-            @click="handleCurrentPage('Reviews')"
+            @click="handleCurrentPage('About')"
             class="details-page__bottom-btn_push_page"
           >
             <img :src="fireIcon" alt="" />
-            <span> Reviews </span>
+            <span> About </span>
           </div>
           <div class="details-page__bottom-arrow_next">
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage === 'Reviews'" class="details-page__bottom">
+      <div v-if="currentDetailsPage === 'Reviews'">
         <Reviews />
-        <div class="details-page__bottom-arrow_prev">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
-        </div>
-        <div
-          @click="handleCurrentPage('About')"
-          class="details-page__bottom-btn_push_page"
-        >
-          <img :src="kebabIcon" alt="" />
-          <span>About</span>
-        </div>
-        <div class="details-page__bottom-arrow_next">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Feedback')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="kebabIcon" alt="" />
+            <span>Feedback</span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
         </div>
       </div>
     </main>

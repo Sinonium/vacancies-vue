@@ -62,7 +62,7 @@
     </div>
 
     <div class="publish">
-      <button>Save</button>
+      <button class="button">Save</button>
     </div>
   </form>
 </template>
@@ -108,8 +108,9 @@ export default {
   }
 
   .publish {
-    margin: 0 vw(30);
-    button {
+    display: flex;
+    justify-content: center;
+    .button {
       @include font(vw(14), 600, vh(30));
       color: white;
       background-color: $blue;
@@ -167,13 +168,15 @@ export default {
 }
 @media screen and (max-width: 1024px) {
   .become-teacher {
-    margin: vmin(15) vmin(40);
+    margin: vmin(15) 0 vmin(15) vmin(55);
+    width: vmin(300);
     &__heading {
-      @include font(vmin(15), 700, vmin(15));
+       @include font(vmin(18), 700, vmin(15));
+       width: vmin(200);
     }
     .publish {
-      margin: 0 vmin(15);
-      button {
+       margin-right: vmin(40);
+      .button {
         @include font(vmin(7), 600, vmin(15));
         color: white;
         width: vmin(100);

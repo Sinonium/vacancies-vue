@@ -87,6 +87,7 @@ const update = () => {
 
   return {
     updateTeacher,
+    updateGrades,
     updateReviews,
     updateUserBuy,
     updateCourse,
