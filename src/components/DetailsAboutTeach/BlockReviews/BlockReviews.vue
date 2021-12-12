@@ -20,6 +20,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 .block-reviews {
-  margin-top: vw(30);
+    margin-top: vw(30);
 }
 </style>

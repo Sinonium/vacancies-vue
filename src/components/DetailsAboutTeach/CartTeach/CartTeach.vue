@@ -46,7 +46,7 @@ export default {
   setup(props) {
     return {}
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
