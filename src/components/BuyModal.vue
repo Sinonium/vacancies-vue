@@ -55,7 +55,7 @@
           </div>
           <div class="buttons">
             <button @click="close" type="button">Close</button>
-            <button>Buy course</button>
+            <button>Buy</button>
           </div>
         </form>
       </div>
@@ -238,17 +238,17 @@ export default {
   .modal {
     .modal__inner {
       max-width: vmin(240);
-      height: vmin(300);
+      height: vmin(450);
       padding: vmin(10);
       margin-top: vmin(50);
       &-text {
         width: vmin(160);
         margin-top: vmin(10);
         h3 {
-          @include font(vmin(10), 700, vmin(10));
+          @include font(vmin(15), 700, vmin(18));
         }
         p {
-          @include font(vmin(8), 600, vmin(10));
+          @include font(vmin(14), 600, vmin(18));
         }
       }
       .items {
@@ -256,8 +256,8 @@ export default {
         margin-top: vmin(15);
 
         input {
-          @include font(vmin(7), 600, vmin(10), $greyBlue70);
-          height: vmin(15);
+          @include font(vmin(13), 600, vmin(10), $greyBlue70);
+          height: vmin(25);
           width: vmin(151);
           margin-right: vmin(4);
         }
@@ -267,12 +267,12 @@ export default {
       }
       .buttons {
         display: flex;
-        width: vmin(150);
+
         margin-top: vmin(5);
         button {
-          @include font(vmin(7), 700, vmin(8), $greyBlue60);
-          width: vmin(45);
-          height: vmin(20);
+          @include font(vmin(14), 700, vmin(14), $greyBlue60);
+          width: vmin(50);
+          height: vmin(30);
           margin-left: vmin(15);
         }
       }
