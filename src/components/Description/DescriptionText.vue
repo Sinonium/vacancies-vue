@@ -170,7 +170,42 @@ export default {
       max-width: vmin(350);
     }
      &__content {
-      width: vmin(340);
+      width: vmin(330);
+    }
+       &__content-text {
+      h3 {
+        @include font(vmin(10), 700, vmin(10), $greyBlue50);
+      }
+      p {
+        @include font(vmin(8), 700, vmin(10), $greyBlue50);
+      }
+    }
+      &__content-text__bottom {
+      p {
+        @include font(vmin(8), 700, vmin(10), $greyBlue60);
+      }
+    }
+      &__course {
+      h3 {
+        @include font(vmin(10), 700, vmin(10), $greyBlue50);
+      }
+      ul {
+        li {
+          p {
+            @include font(vmin(8), 700, vmin(10), $greyBlue60);
+          }
+          svg {
+            margin-top: vmin(10);
+            margin-left: vmin(2);
+            margin-right: vmin(10);
+            width: vmin(6);
+            height: vmin(8);
+          }
+        }
+      }
+      p {
+        @include font(vmin(8), 500, vmin(10), $greyBlue60);
+      }
     }
   }
 }
