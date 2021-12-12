@@ -198,7 +198,7 @@ export default {
   }
   .courses-info {
     width: 100%;
-    margin: vw(60) 0;
+    margin: vmin(20) 0 vmin(30) 0;
     &__image {
       width: 100%;
       object-fit: cover;
