@@ -8,18 +8,20 @@
             v-for="(item, i) in testfilters"
             :key="item.title"
          >
-            <FilterItem :item="item" :activeItem="activeItem" />
+            <FilterItem :item="item"/>
          </li>
       </ul>
    </div>
 </template>
 
 <script>
-   import { ref } from "@vue/reactivity";
+   import { computed, ref } from "@vue/reactivity";
    import FilterItem from "./FiltersItem.vue";
+   import store, { useStore } from 'vuex'
    export default {
       components: { FilterItem },
       setup() {
+         const store = useStore()
          const testfilters = ref([
             {
                id: 0,
@@ -101,42 +103,17 @@
         </svg>`,
             },
          ]);
-         const filters = ref([0, 0, 0, 0]);
-         const coursesFilter = (i) => {
-            filters.value = [0, 0, 0, 0];
-            filters.value[i] = 1;
-            console.log(filters.value);
-            switch (i) {
-               case 2:
-                  courses.value.sort((a, b) =>
-                     (a.data[2] - 2000) * 372 + a.data[1] * 31 + a.data[0] <
-                     (b.data[2] - 2000) * 372 + b.data[1] * 31 + b.data[0]
-                        ? 1
-                        : -1
-                  );
-                  break;
-               case 0:
-                  courses.value.sort((a, b) =>
-                     a.students < b.students ? 1 : -1
-                  );
-                  break;
-               case 1:
-                  courses.value.sort((a, b) => (a.grade < b.grade ? 1 : -1));
-                  break;
-               case 3:
-                  courses.value.sort((a, b) =>
-                     (a.teacher_data[2] - 2000) * 372 +
-                        a.teacher_data[1] * 31 +
-                        a.teacher_data[0] <
-                     (b.teacher_data[2] - 2000) * 372 +
-                        b.teacher_data[1] * 31 +
-                        b.teacher_data[0]
-                        ? 1
-                        : -1
-                  );
-                  break;
-            }
-         };
+
+         
+         const courses = computed(() => store.state.courses)
+         const likedCourse = computed(()=> store.state.userInfo)
+
+         setTimeout(() => {
+            courses.value.map(item => {
+               console.log(item.id);
+            })
+            // console.log(likedCourse.value.name + 'sasas');
+         }, 2500);
          const activeItem = ref(0);
          const handleactiveItem = (index) => {
             activeItem.value = index;
@@ -146,8 +123,8 @@
             activeItem,
             handleactiveItem,
             testfilters,
-            filters,
-            coursesFilter,
+            courses,
+            likedCourse
          };
       },
    };
