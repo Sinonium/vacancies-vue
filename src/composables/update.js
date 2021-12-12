@@ -2,13 +2,8 @@ import { firestore } from '@/firebase/config'
 import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 
 const update = () => {
-  const updateTeacher = async () => {
-    const userDoc = doc(
-      firestore,
-      'users',
-      'Aqu1DTLSoVTXz5sUoH9HbU1OKSA2',
-      newName
-    )
+  const updateTeacher = async (collectionName, id, newName, newDoc) => {
+    const userDoc = doc(firestore, collectionName, id)
 
     const test = await getDoc(userDoc)
 
@@ -16,12 +11,12 @@ const update = () => {
       isTeacher: true,
       photo: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg',
       name: newName,
-      description:
-        // ...test.data().description,
-        {
-          teacherName: 'Janybek',
-          text: 'Realy',
-        },
+      description: newDoc,
+      // ...test.data().description,
+      // {
+      //   teacherName: 'Janybek',
+      //   text: 'Realy',
+      // },
     })
   }
 
@@ -33,11 +28,6 @@ const update = () => {
     studentName
   ) => {
     const moreInfoDoc = doc(firestore, collectionName, id)
-
-    console.log(id)
-    console.log(newData)
-    console.log(rating)
-    console.log(studentName)
 
     const test = await getDoc(moreInfoDoc)
 
@@ -51,6 +41,15 @@ const update = () => {
           createdAt: Timestamp.fromDate(new Date()),
         },
       ],
+    })
+  }
+  const updateGrades = async (collectionName, id, rating) => {
+    const moreInfoDoc = doc(firestore, collectionName, id)
+
+    const test = await getDoc(moreInfoDoc)
+
+    return await updateDoc(moreInfoDoc, {
+      grades: [...test.data().grades, Number(rating)],
     })
   }
 
@@ -78,7 +77,21 @@ const update = () => {
     })
   }
 
-  return { updateTeacher, updateReviews, updateUserBuy, updateCourse }
+  const updateCoursesRaiting = async (collectionName, courseId, newGrade) => {
+    const courseDoc = doc(firestore, collectionName, courseId)
+
+    return await updateDoc(courseDoc, {
+      grade: newGrade,
+    })
+  }
+
+  return {
+    updateTeacher,
+    updateReviews,
+    updateUserBuy,
+    updateCourse,
+    updateCoursesRaiting,
+  }
 }
 
 export default update

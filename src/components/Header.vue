@@ -158,10 +158,12 @@
             @include font(vw(13), 700, vh(25), $greyBlue60);
             margin-right: vw(54);
          }
-         &-logIn {
-            text-decoration: none;
-            @include font(vw(12), 700, vh(20), $greyBlue70);
-            margin-right: vw(40);
+         &-teacher {
+            a {
+                text-decoration: none;
+                @include font(vw(12), 700, vh(20), $greyBlue70);
+                margin-right: vw(40);
+             }
          }
          &-logOut {
             @include font(vw(12), 700, vh(20), $blue);
@@ -204,8 +206,10 @@
             &-teacher {
                @include font(vw(16), 700, vh(25), $greyBlue60);
             }
-            &-logIn {
-               @include font(vw(15), 700, vh(20), $greyBlue70);
+            &-teacher {
+                a {
+                    @include font(vw(15), 700, vh(20), $greyBlue70);
+                }
             }
             &-logOut {
                @include font(vw(15), 700, vh(20), $blue);
@@ -213,26 +217,40 @@
          }
       }
    }
+@media screen and (max-width: 1300px) {
+    .header {
+        &__form {
+            input {
+                width: vw(170);
+            }
+        }
+    }
+}
    @media screen and (max-width: 770px) {
       .header {
+         padding: vw(30) vw(40) vw(30) vw(30);
          width: 100%;
+         flex-direction: row-reverse;
          &__form {
             div {
-               width: vw(330);
+               width: vw(360);
                height: vw(70);
             }
             input {
-               width: vw(210);
+               width: vw(240);
                &::placeholder {
-                  @include font(vw(20), 700, vh(20), $greyBlue70);
+                  @include font(vw(26), 700, vh(20), $greyBlue70);
                }
             }
          }
          &__logo {
+            flex-direction: row-reverse;
             .burger {
-               span {
-                  width: vw(30);
-                  height: vw(5);
+                span {
+                    margin-left: vw(40);
+                    margin-right: 0;
+                    width: vw(30);
+                    height: vw(5);
                   &::before,
                   &::after {
                      transform: translateY(vw(-10));
@@ -243,33 +261,31 @@
                }
             }
             &-text {
-               @include font(vw(25), 700, vh(30), $greyBlue50);
+               @include font(vw(30), 700, vh(30), $greyBlue50);
             }
          }
          &__nav {
             padding-bottom: vw(5);
             &-link {
-               @include font(vw(21), 700, vw(25), $greyBlue60);
+               @include font(vw(26), 700, vw(25), $greyBlue60);
             }
          }
          &__record {
-            @include flex();
+            display: block;
             &-teacher {
-               @include font(vw(21), 700, vh(25), $greyBlue60);
-            }
-            &-logIn {
-               @include font(vw(20), 700, vh(20), $greyBlue70);
+                a {
+                    @include font(vw(28), 700, vh(20), $greyBlue70);
+                }
             }
             &-logOut {
-               @include font(vw(20), 700, vh(20), $blue);
-               width: vw(120);
-               height: vw(60);
+               display: none;
             }
          }
       }
    }
    @media screen and (max-width: 430px) {
       .header {
+        justify-content: center;
          &__logo {
             .burger {
                span {
@@ -285,7 +301,7 @@
                }
             }
             &-text {
-               margin-left: vmin(10);
+               margin-right: vmin(10);
                @include font(vmin(16), 700, vmin(30), $greyBlue50);
             }
          }
@@ -301,8 +317,10 @@
                @include font(vmin(15), 700, vmin(25), $greyBlue60);
                text-align: center;
             }
-            &-logIn {
-               @include font(vmin(15), 700, vmin(20), $greyBlue70);
+            &-teacher {
+                a {
+                    @include font(vmin(15), 700, vmin(20), $greyBlue70);
+                }
             }
             &-logOut {
                @include font(vmin(15), 700, vmin(20), $blue);
