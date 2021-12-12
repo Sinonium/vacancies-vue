@@ -565,11 +565,11 @@
          }
       }
    }
-   &__modal {
-      position: absolute;
-      top: vw(-53);
-      right: vw(30);
-   }
+   // &__modal {
+   //    position: absolute;
+   //    top: vw(-53);
+   //    right: vw(30);
+   // }
 
    .details-page__head ul li.active {
       &::before {
