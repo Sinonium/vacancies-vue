@@ -94,6 +94,9 @@
       </ul>
     </div>
   </div>
+  <div class="cart-rating_course" v-if="!grades.length">
+    <h4>No ratings, be the first and submit your review and rating.</h4>
+  </div>          
 </template>
 
 <script>
@@ -102,13 +105,14 @@ import { onMounted } from '@vue/runtime-core'
 export default {
   props: ['moreInfo'],
   setup(props) {
+    const grades = props.moreInfo.grades
     const course = props.moreInfo
     const courseRating = course.grades.length
     const courseRatingFive = ref([])
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
     const courseRatingTwo = ref([])
-    const courseRatingOne = ref([]) 
+    const courseRatingOne = ref([])
     const courseRatingArray = ref([])
     const countRatingStar = ref(0)
     const courseRatingMiddArithmetic = ref(0)
@@ -206,6 +210,7 @@ export default {
     })
 
     return {
+      grades,
       courseRating,
       courseRatingFive,
       courseRatingFour,
@@ -244,6 +249,9 @@ export default {
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+  h4 {
+    @include font(vw(48), 600, 52px, $greyBlue50);
+  }
   &_first {
     @include flex();
     flex-direction: column;
