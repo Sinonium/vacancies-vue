@@ -34,9 +34,7 @@
   <div class="courses-items">
     <div class="row" v-if="courses">
       <CourseItem  v-for="course in courses" :key="course.id" :course="course"/>
-      <router-link :to="{name: 'Details', params: {id: props.courses}}"> 
-        sasasas
-      </router-link>
+      
     </div>
   </div>
 </template>
