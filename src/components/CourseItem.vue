@@ -179,112 +179,167 @@
          }
       }
    }
-
-   @media screen and (max-width: 1024px) {
-      .col-3 {
-         margin: 0 auto;
-         margin-bottom: vmin(15);
-         width: vmin(250);
-         .course-item {
-            min-height: vmin(230);
-            border-radius: vmin(10);
-            &__header {
-               padding: vmin(10);
-               height: vmin(50);
-            }
-            &__image {
-               width: vmin(250);
-               height: vmin(130);
-               z-index: -1;
-               border-radius: vmin(3);
-            }
-            &__time {
-               border-radius: vmin(15);
-               padding: vmin(5) vmin(10);
-               max-height: vmin(15);
-               span {
-                  @include font(vmin(9), 700, vmin(20));
-                  margin-left: vmin(5);
-                  color: white;
-               }
-               img {
-                  width: vmin(10);
-                  height: vmin(10);
-               }
-            }
-            &__like {
-               width: vmin(25);
-               height: vmin(25);
-               img {
-                  padding: vmin(9);
-                  width: vmin(10);
-                  height: vmin(10);
-               }
-            }
-            &__info {
-               margin-top: vmin(80);
-               padding: 0 vmin(20);
-            }
-            &__name {
-               @include font(vmin(10), 700, vmin(25));
-               color: #6b7a99;
-               margin-bottom: vmin(5);
-               height: vmin(25);
-            }
-            &__rating {
-               margin: vmin(8) 0;
-
-               img {
-                  width: vmin(6);
-                  height: vmin(6);
-               }
-               span {
-                  @include font(vmin(10), 700, vmin(10));
-                  margin-left: vmin(7);
-                  color: #4d5e80;
-               }
-            }
-            &__details {
-               display: flex;
-               justify-content: space-between;
-               p {
-                  @include font(vmin(10), 700, vmin(10));
-                  color: #7d8fb3;
-                  margin-top: vmin(-7);
-               }
-               span {
-                  margin-top: vmin(-4);
-                  @include font(vmin(10), 700, vmin(15));
-                  color: #6b7a99;
-               }
-            }
-         }
-
-         img {
-            width: vmin(5);
-            height: vmin(5);
-         }
-         span {
-            @include font(vw(20), 700, vw(20));
-            margin-left: vmin(7);
-            color: #4d5e80;
-         }
-
-         &__details {
-            display: flex;
-            justify-content: space-between;
-            margin-top: vw(10);
-            p {
-               margin: 0;
-               @include font(vw(20), 700, vw(30));
-               color: #7d8fb3;
-            }
-            span {
-               margin-top: vmin(4);
-               @include font(vw(20), 700, vw(20));
-               color: #6b7a99;
-            }
-         }
+@media screen and (max-width: 768px) {
+   .col-3{
+      width: vw(400);
+      height: vw(550);
+      margin-bottom: vw(70);
+      .course-item {
+  min-height: vw(550);
+  border-radius: vw(10);
+  &__header { 
+    padding: vmin(10);
+    height: vmin(50);
+  }
+  &__image {
+    width: vw(400);
+    height: vw(300);
+    z-index: -1;
+    border-radius: vmin(3);
+  }
+   &__time {
+   border-radius: vw(30);
+   padding: vw(15) vw(25);
+   max-height: vw(30);
+    span {
+      @include font(vw(20), 700, vh(30));
+      margin-left: vw(10);
+      color: $white;
+   }
+   img {
+      width: vw(20);
+      height: vw(20);
+   }
+   }
+   &__like {
+   width: vw(55);
+   height: vw(55);
+   background: rgba(0, 0, 0, 0.5);
+   border-radius: 50%;
+   cursor: pointer;
+   z-index: 1;
+   img {
+   padding: vw(18);
+   width: vw(20);
+   height: vw(20);
+   }
+   }
+   &__info {
+      padding: 0 vw(20);
+      }
+   &__name {
+      margin-top: vw(30);
+      @include font(vw(25), 700, vh(30));
+      height: vw(50);
+   }
+   &__rating {
+      img {
+      width: vw(20);
+      height: vw(20);
+      }
+   span {
+      @include font(vw(20), 700, vh(20));
+      margin-left: vw(14);
+      color: #4d5e80;
       }
    }
+   &__details {
+      display: flex;
+      align-items: center;
+      p {
+        @include font(vw(20), 700, vh(20));
+        color: #7d8fb3;
+        margin: 0;
+      }
+      span {
+       margin: 0;
+       @include font(vw(20), 700, vh(30));
+       color: #6b7a99;
+      }
+   }
+  
+}
+}
+}
+@media screen and (max-width: 400px) {
+.col-3 {
+   width: vmin(300);
+   height: vmin(350);
+.course-item {
+  min-height: vmin(350);
+  border-radius: vmin(10);
+  &__header { 
+    padding: vmin(10);
+    height: vmin(50);
+  }
+  &__image {
+    width: vmin(300);
+    height: vmin(200);
+    z-index: -1;
+    border-radius: vmin(3);
+  }
+  &__time {
+    border-radius: vmin(15);
+    padding: vmin(10) vmin(30);
+    max-height: vmin(30);
+    span {
+      @include font(vmin(13), 700, vmin(20));
+      margin-left: vmin(5);
+      color: white;
+    }
+    img {
+      width: vmin(10);
+      height: vmin(10);
+    }
+  }
+  &__like {
+    width: vmin(50);
+    height: vmin(50);
+    img {
+      padding: vmin(15);
+      width: vmin(20);
+      height: vmin(20);
+    }
+  }
+  &__info {
+    margin-top: vmin(170);
+    padding: 0 vmin(20);
+    
+  }
+  &__name {
+    @include font(vmin(18), 700, vmin(25));
+    color: #6b7a99;
+    margin-bottom: vmin(5);
+    height: vmin(25);
+  }
+  &__rating {
+    margin: vmin(8) 0;
+
+    img {
+      width: vmin(10);
+      height: vmin(10);
+    }
+    span {
+      @include font(vmin(15), 700, vmin(10));
+      margin-left: vmin(7);
+      color: #4d5e80;
+    }
+  }
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    p {
+      @include font(vmin(15), 700, vmin(10));
+      color: #7d8fb3;
+      margin-top: vmin(10);
+    }
+    span {
+      margin-top: vmin(10);
+      @include font(vmin(15), 700, vmin(15));
+      color: #6b7a99;
+    }
+  }
+}
+}
+}
 </style>
