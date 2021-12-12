@@ -1,6 +1,7 @@
 <template>
   <div class="col-3">
-    <router-link :to="{name: 'DetailsCourse', params: {id: course.moreInfoId}}"  @click="handleMoreInfo()" class="course-item">
+    <div class="course-item">
+    <router-link :to="{name: 'DetailsCourse', params: {id: course.moreInfoId}}"  @click="handleMoreInfo()">
       <div class="course-item__header">
         <img class="course-item__image" :src="course.imageUrl" alt="course" />
         <div class="course-item__time">
@@ -30,6 +31,7 @@
         </div>
       </div>
     </router-link>
+    </div>
   </div>
 </template>
 
