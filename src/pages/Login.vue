@@ -77,6 +77,7 @@ export default {
 @import "@/assets/scss/index.scss";
 
 .container {
+ margin-left: vw(-330);
   display: flex;
   justify-content: center;
   .login {
