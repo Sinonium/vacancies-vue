@@ -1,6 +1,6 @@
 <template>
-   <div class="details-page" v-if="lala">
-      <CourseInfo />
+   <div class="details-page">
+      <CourseInfo @click="toggleModal" />
       <div class="details-page__head">
          <ul>
             <li
@@ -107,7 +107,7 @@
       </div>
       <main class="details-page__content">
          <div v-if="currentDetailsPage === 'Instructor'">
-            <DetailsAboutTeach v-if="jopa.adilhan" :moreInfo="jopa.adilhan" />
+            <DetailsAboutTeach :moreInfo="moreInfo" />
             <div class="details-page__bottom">
                <div class="details-page__bottom-arrow_prev">
                   <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -124,85 +124,111 @@
                </div>
             </div>
          </div>
-
-         <div v-if="currentDetailsPage === 'About'">
-            <CourseContent v-if="jopa.malika" :moreInfo="jopa.malika" />
-            <div class="details-page__bottom">
-               <div class="details-page__bottom-arrow_prev">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
-               </div>
-               <div
-                  @click="handleCurrentPage('Description')"
-                  class="details-page__bottom-btn_push_page"
-               >
-                  <img :src="pencilIcon" alt="" />
-                  <span> Description </span>
-               </div>
-               <div class="details-page__bottom-arrow_next">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
-               </div>
-            </div>
-         </div>
-
-         <div v-if="currentDetailsPage === 'Description'">
-            <Description v-if="jopa.beknazar" :moreInfo="jopa.beknazar" />
-            <div class="details-page__bottom">
-               <div class="details-page__bottom-arrow_prev">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
-               </div>
-               <div
-                  @click="handleCurrentPage('Instructor')"
-                  class="details-page__bottom-btn_push_page"
-               >
-                  <img :src="studIcon" alt="" />
-                  <span>Instructor</span>
-               </div>
-               <div class="details-page__bottom-arrow_next">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
+         <main class="details-page__content">
+            <div v-if="currentDetailsPage === 'Instructor'">
+               <DetailsAboutTeach
+                  v-if="jopa.adilhan"
+                  :moreInfo="jopa.adilhan"
+               />
+               <div class="details-page__bottom">
+                  <div class="details-page__bottom-arrow_prev">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
+                  <div
+                     @click="handleCurrentPage('Reviews')"
+                     class="details-page__bottom-btn_push_page"
+                  >
+                     <img :src="studsIcon" alt="" />
+                     <span> Reviews </span>
+                  </div>
+                  <div class="details-page__bottom-arrow_next">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
                </div>
             </div>
-         </div>
 
-         <div v-if="currentDetailsPage === 'Feedback'">
-            <FeedBack :moreInfo="moreInfo" />
-            <div class="details-page__bottom">
-               <div class="details-page__bottom-arrow_prev">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
-               </div>
-               <div
-                  @click="handleCurrentPage('About')"
-                  class="details-page__bottom-btn_push_page"
-               >
-                  <img :src="fireIcon" alt="" />
-                  <span> About </span>
-               </div>
-               <div class="details-page__bottom-arrow_next">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
+            <div v-if="currentDetailsPage === 'About'">
+               <CourseContent v-if="jopa.malika" :moreInfo="jopa.malika" />
+               <div class="details-page__bottom">
+                  <div class="details-page__bottom-arrow_prev">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
+                  <div
+                     @click="handleCurrentPage('Description')"
+                     class="details-page__bottom-btn_push_page"
+                  >
+                     <img :src="pencilIcon" alt="" />
+                     <span> Description </span>
+                  </div>
+                  <div class="details-page__bottom-arrow_next">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
                </div>
             </div>
-         </div>
 
-         <div v-if="currentDetailsPage === 'Reviews'">
-            <Reviews />
-            <div class="details-page__bottom">
-               <div class="details-page__bottom-arrow_prev">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
-               </div>
-               <div
-                  @click="handleCurrentPage('Feedback')"
-                  class="details-page__bottom-btn_push_page"
-               >
-                  <img :src="kebabIcon" alt="" />
-                  <span>Feedback</span>
-               </div>
-               <div class="details-page__bottom-arrow_next">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
+            <div v-if="currentDetailsPage === 'Description'">
+               <Description v-if="jopa.beknazar" :moreInfo="jopa.beknazar" />
+               <div class="details-page__bottom">
+                  <div class="details-page__bottom-arrow_prev">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
+                  <div
+                     @click="handleCurrentPage('Instructor')"
+                     class="details-page__bottom-btn_push_page"
+                  >
+                     <img :src="studIcon" alt="" />
+                     <span>Instructor</span>
+                  </div>
+                  <div class="details-page__bottom-arrow_next">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
                </div>
             </div>
+
+            <div v-if="currentDetailsPage === 'Feedback'">
+               <FeedBack :moreInfo="moreInfo" />
+               <div class="details-page__bottom">
+                  <div class="details-page__bottom-arrow_prev">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
+                  <div
+                     @click="handleCurrentPage('About')"
+                     class="details-page__bottom-btn_push_page"
+                  >
+                     <img :src="fireIcon" alt="" />
+                     <span> About </span>
+                  </div>
+                  <div class="details-page__bottom-arrow_next">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
+               </div>
+            </div>
+
+            <div v-if="currentDetailsPage === 'Reviews'">
+               <Reviews />
+               <div class="details-page__bottom">
+                  <div class="details-page__bottom-arrow_prev">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
+                  <div
+                     @click="handleCurrentPage('Feedback')"
+                     class="details-page__bottom-btn_push_page"
+                  >
+                     <img :src="kebabIcon" alt="" />
+                     <span>Feedback</span>
+                  </div>
+                  <div class="details-page__bottom-arrow_next">
+                     <img :src="ArrowIcon" alt="ArrowIcon" />
+                  </div>
+               </div>
+            </div>
+         </main>
+         <div class="details-page__modal">
+            <AddToCart />
          </div>
       </main>
       <div class="details-page__modal">
-         <AddToCart />
+         <AddToCart v-if="addToCart" />
       </div>
    </div>
 </template>
@@ -227,44 +253,35 @@
          CourseContent,
          CourseInfo,
       },
-      props: ['id'],
       setup() {
+         const addToCart = ref(true);
          const store = useStore();
          const moreInfo = computed(() => store.state.courseMoreInfo);
-         const test = ref();
-         const lala = ref(false);
+
          const currentDetailsPage = ref("About");
          const handleCurrentPage = (currentWord) => {
             currentDetailsPage.value = currentWord;
-            switch (currentWord) {
-               case "About":
-                  jopa.value.malika = [
-                     ...test.value.courseContent,
-                     ...test.value.whatStudy,
-                  ];
-                  break;
-               case "Description":
-                  jopa.value.beknazar = [
-                     test.value.heading,
-                     test.value.mainInfo,
-                     test.value.moreInfo,
-                     test.value.whoIsfor,
-                  ];
-                  break;
-
-               case "Instructor":
-                  jopa.value.adilhan = [
-                     test.value.reviews,
-                     test.value.teacherID,
-                     test.value.grades,
-                  ];
-                  break;
-            }
          };
+         let screenWidth = window.screen.width;
+         window.addEventListener(
+            `resize`,
+            () => {
+               screenWidth = window.screen.width;
+               if (screenWidth > 769) {
+                  sidebar.value = true;
+               }
+            },
+            false
+         );
+
+         const toggleModal = () => {
+            addToCart.value = !addToCart.value;
+         };
+         if (screenWidth <= 769) {
+            addToCart.value = false;
+         }
 
          return {
-            lala,
-            jopa,
             moreInfo,
             fireIcon: require("@/assets/icons/DetailsAboutTeach/fire.svg"),
             studIcon: require("@/assets/icons/DetailsAboutTeach/person.svg"),
@@ -274,6 +291,8 @@
             ArrowIcon: require("@/assets/icons/DetailsAboutTeach/arrow.svg"),
             handleCurrentPage,
             currentDetailsPage,
+            addToCart,
+            toggleModal,
          };
       },
    };
@@ -546,6 +565,12 @@
          }
       }
    }
+   &__modal {
+      position: absolute;
+      top: vw(-53);
+      right: vw(30);
+   }
+
    .details-page__head ul li.active {
       &::before {
          content: "";
@@ -611,21 +636,110 @@
             li {
                @include font(vw(19), bold, 20px, $greyBlue60);
             }
-            .details-page__bottom-btn_push_page {
-               padding: 2.0625vw 4.375vw 1.9375vw 3.625vw;
-               span {
-                  @include font(2vw, bold, 20px, $greyBlue60);
+         }
+      }
+      .details-page__bottom {
+         margin-left: -26.2vw;
+      }
+      .details-page__modal {
+         top: vw(-75);
+         right: vw(30);
+      }
+      .details-page__head ul li.active {
+         span {
+            @include font(vw(19), bold, 20px, $blue);
+         }
+      }
+      .details-page__head ul {
+         margin-left: 1vw;
+      }
+   }
+   @media screen and (max-width: 1024px) {
+      .details-page__modal {
+         top: vw(-161);
+         right: 0;
+         left: vw(1130);
+      }
+      .details-page__head ul {
+         margin-left: -1vw;
+      }
+      .cart-review__header_data span {
+         margin-left: 0.3vw;
+      }
+      .details-page__bottom {
+         margin-left: -24.2vw;
+      }
+      .details-page__bottom-btn_push_page {
+         padding: 1.6vw 2.7vw 1.6vw 2.7vw;
+      }
+      .details-page__bottom {
+         &-arrow_next,
+         &-arrow_prev {
+            padding: 2vw 1.5vw 2vw 1.5vw;
+         }
+      }
+   }
+   @media screen and (max-width: 769px) {
+      .details-page__modal {
+         top: vw(-220);
+         right: 0;
+         left: vw(1030);
+      }
+      .details-page__head ul {
+         margin-left: 3vw;
+      }
+      .details-page {
+         &__head {
+            height: vw(120);
+            ul {
+               li {
+                  @include font(vw(25), bold, 20px, $greyBlue60);
                }
             }
-            .details-page__modal {
-               top: -33.875vw;
+         }
+         @media screen and (max-width: 1440px) {
+            .details-page__head {
+               ul {
+                  li {
+                     @include font(vw(19), bold, 20px, $greyBlue60);
+                  }
+                  .details-page__bottom-btn_push_page {
+                     padding: 2.0625vw 4.375vw 1.9375vw 3.625vw;
+                     span {
+                        @include font(2vw, bold, 20px, $greyBlue60);
+                     }
+                  }
+                  .details-page__modal {
+                     top: -33.875vw;
+                  }
+               }
             }
          }
+         @media screen and(max-width: 579px) {
+         }
+         @media screen and(max-width: 426px) {
+         }
+         @media screen and(max-width:376px) {
+         }
+      }
+      &-arrow_next {
+         margin-left: vw(260);
+      }
+   }
+   .details-page__bottom-btn_push_page {
+      padding: 2.0625vw 4.375vw 1.9375vw 3.625vw;
+      span {
+         @include font(2vw, bold, 20px, $greyBlue60);
       }
    }
    @media screen and(max-width: 579px) {
    }
    @media screen and(max-width: 426px) {
+      .details-page__modal {
+         top: vmin(-38);
+         right: 0;
+         left: vmin(7);
+      }
    }
    @media screen and(max-width:376px) {
    }
