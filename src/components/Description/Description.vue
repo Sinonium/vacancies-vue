@@ -1,5 +1,5 @@
 <template>
-   <div v-if="info">
+   <div>
       <DescriptionText :moreInfo="moreInfo" />
       <FeaturedReview />
    </div>

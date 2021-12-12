@@ -4,18 +4,16 @@
       <div class="description__content">
         <div class="description__content-text">
           <h3>Description</h3>
-          <p> dfdfdfdf </p>
-          <p>{{ text.text }}</p>
+          <p>{{ moreInfo.heading }}</p>
         </div>
         <div class="description__content-text__bottom">
-          <p>{{ text.projects }}</p>
-          <p>{{ text.willTeach }}</p>
-          <p>{{ text.helpYou }}</p>
+          <p>{{ moreInfo.mainInfo }}</p>
+          <p>{{ moreInfo.moreInfo }}</p>
         </div>
         <div class="description__course">
           <h3>Who this course is for:</h3>
           <ul>
-            <li v-for="item in items" :key="item">
+            <li v-for="item in moreInfo.whoIsfor" :key="item">
               <svg
                 width="8"
                 height="2"
@@ -28,7 +26,6 @@
               <p>{{ item }}</p>
             </li>
           </ul>
-          <p>{{ text.willCover }}</p>
         </div>
       </div>
     </div>
@@ -42,7 +39,7 @@ export default {
   setup(props) {
 
     setTimeout(() => {
-      console.log(props.value);
+      console.log(props.moreInfo.value);
     }, 2000);
 
     return {}
