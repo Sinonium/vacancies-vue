@@ -105,174 +105,123 @@
             </li>
          </ul>
       </div>
-      <main class="details-page__content">
-         <div v-if="currentDetailsPage === 'Instructor'">
-            <DetailsAboutTeach :moreInfo="moreInfo" />
-            <div class="details-page__bottom">
-               <div class="details-page__bottom-arrow_prev">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
-               </div>
-               <div
-                  @click="handleCurrentPage('Reviews')"
-                  class="details-page__bottom-btn_push_page"
-               >
-                  <img :src="studsIcon" alt="" />
-                  <span> Reviews </span>
-               </div>
-               <div class="details-page__bottom-arrow_next">
-                  <img :src="ArrowIcon" alt="ArrowIcon" />
-               </div>
-            </div>
-         </div>
-         <main class="details-page__content">
-            <div v-if="currentDetailsPage === 'Instructor'">
-               <DetailsAboutTeach
-                  v-if="jopa.adilhan"
-                  :moreInfo="jopa.adilhan"
-               />
-               <div class="details-page__bottom">
-                  <div class="details-page__bottom-arrow_prev">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-                  <div
-                     @click="handleCurrentPage('Reviews')"
-                     class="details-page__bottom-btn_push_page"
-                  >
-                     <img :src="studsIcon" alt="" />
-                     <span> Reviews </span>
-                  </div>
-                  <div class="details-page__bottom-arrow_next">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-               </div>
-            </div>
-
-            <div v-if="currentDetailsPage === 'About'">
-               <CourseContent v-if="jopa.malika" :moreInfo="jopa.malika" />
-               <div class="details-page__bottom">
-                  <div class="details-page__bottom-arrow_prev">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-                  <div
-                     @click="handleCurrentPage('Description')"
-                     class="details-page__bottom-btn_push_page"
-                  >
-                     <img :src="pencilIcon" alt="" />
-                     <span> Description </span>
-                  </div>
-                  <div class="details-page__bottom-arrow_next">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-               </div>
-            </div>
-
-            <div v-if="currentDetailsPage === 'Description'">
-               <Description v-if="jopa.beknazar" :moreInfo="jopa.beknazar" />
-               <div class="details-page__bottom">
-                  <div class="details-page__bottom-arrow_prev">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-                  <div
-                     @click="handleCurrentPage('Instructor')"
-                     class="details-page__bottom-btn_push_page"
-                  >
-                     <img :src="studIcon" alt="" />
-                     <span>Instructor</span>
-                  </div>
-                  <div class="details-page__bottom-arrow_next">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-               </div>
-            </div>
-
-            <div v-if="currentDetailsPage === 'Feedback'">
-               <FeedBack :moreInfo="moreInfo" />
-               <div class="details-page__bottom">
-                  <div class="details-page__bottom-arrow_prev">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-                  <div
-                     @click="handleCurrentPage('About')"
-                     class="details-page__bottom-btn_push_page"
-                  >
-                     <img :src="fireIcon" alt="" />
-                     <span> About </span>
-                  </div>
-                  <div class="details-page__bottom-arrow_next">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-               </div>
-            </div>
-
-            <div v-if="currentDetailsPage === 'Reviews'">
-               <Reviews />
-               <div class="details-page__bottom">
-                  <div class="details-page__bottom-arrow_prev">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-                  <div
-                     @click="handleCurrentPage('Feedback')"
-                     class="details-page__bottom-btn_push_page"
-                  >
-                     <img :src="kebabIcon" alt="" />
-                     <span>Feedback</span>
-                  </div>
-                  <div class="details-page__bottom-arrow_next">
-                     <img :src="ArrowIcon" alt="ArrowIcon" />
-                  </div>
-               </div>
-            </div>
-         </main>
-         <div class="details-page__modal">
-            <AddToCart />
-         </div>
-      </main>
-      <div class="details-page__modal">
-         <AddToCart v-if="addToCart" />
+      <div v-if="currentDetailsPage === 'About'">
+        <CourseContent :moreInfo="moreInfo" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Description')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="pencilIcon" alt="" />
+            <span> Description </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Description'">
+        <Description />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Instructor')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="studIcon" alt="" />
+            <span>Instructor</span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Feedback'">
+        <FeedBack :moreInfo="moreInfo" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('About')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="fireIcon" alt="" />
+            <span> About </span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
+      </div>
+      <div v-if="currentDetailsPage === 'Reviews'">
+        <Reviews :moreInfo="moreInfo" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Feedback')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="kebabIcon" alt="" />
+            <span>Feedback</span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+        </div>
       </div>
    </div>
 </template>
 
 <script>
-   import Reviews from "../components/Reviews/Reviews.vue";
-   import FeedBack from "@/components/FeedBack/FeedBack.vue";
-   import CourseInfo from "../components/CourseInfo.vue";
-   import AddToCart from "@/components/AddToCart.vue";
-   import DetailsAboutTeach from "@/components/DetailsAboutTeach/DetailsAboutTeach.vue";
-   import CourseContent from "@/components/CourseContent.vue";
-   import Description from "@/components/Description/Description.vue";
-   import { computed, ref } from "@vue/reactivity";
-   import { useStore } from "vuex";
-   export default {
-      components: {
-         Reviews,
-         FeedBack,
-         AddToCart,
-         Description,
-         DetailsAboutTeach,
-         CourseContent,
-         CourseInfo,
-      },
-      setup() {
-         const addToCart = ref(true);
-         const store = useStore();
-         const moreInfo = computed(() => store.state.courseMoreInfo);
+import Reviews from '../components/Reviews/Reviews.vue'
+import FeedBack from '@/components/FeedBack/FeedBack.vue'
+import CourseInfo from '../components/CourseInfo.vue'
+import AddToCart from '@/components/AddToCart.vue'
+import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.vue'
+import CourseContent from '@/components/CourseContent.vue'
+import Description from '@/components/Description/Description.vue'
+import { computed, ref } from '@vue/reactivity'
+import { useStore } from 'vuex'
+import useDoc from '@/composables/useDoc'
+import { onMounted } from '@vue/runtime-core'
+export default {
+  components: {
+    Reviews,
+    FeedBack,
+    AddToCart,
+    Description,
+    DetailsAboutTeach,
+    CourseContent,
+    CourseInfo,
+  },
+  setup() {
+    const { getSingleDoc } = useDoc()
+    const store = useStore()
+    const moreInfo = computed(() => store.state.courseMoreInfo)
 
-         const currentDetailsPage = ref("About");
-         const handleCurrentPage = (currentWord) => {
-            currentDetailsPage.value = currentWord;
-         };
-         let screenWidth = window.screen.width;
-         window.addEventListener(
-            `resize`,
-            () => {
-               screenWidth = window.screen.width;
-               if (screenWidth > 769) {
-                  sidebar.value = true;
-               }
-            },
-            false
-         );
+    const currentDetailsPage = ref('About')
+    const handleCurrentPage = (currentWord) => {
+      currentDetailsPage.value = currentWord
+    }
+    // const getTeacher = async () => {
+    //   const { documents, error } = await getSingleDoc(
+    //     'users',
+    //     moreInfo.value.teacherId
+    //   )
+    //   console.log(documents.value)
+    //   console.log(error.value)
+    // }
+    // setTimeout(() => {
+    //   getTeacher()
+    // }, 3000)
 
          const toggleModal = () => {
             addToCart.value = !addToCart.value;
