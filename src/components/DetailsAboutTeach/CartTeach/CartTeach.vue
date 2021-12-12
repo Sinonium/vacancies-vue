@@ -15,12 +15,12 @@
         </li>
       </ul>
     </div>
-    <div class="cart-teach__features_teach col-5">
-      <h2>{{ moreInfo.adilhan.teacherName }}</h2>
-      <span> {{ moreInfo.adilhan.teacherFeatures }} </span>
-      <p>{{ moreInfo.adilhan.teacherRecentNews }}</p>
-      <p>{{ moreInfo.adilhan.teacherBiography }}</p>
-    </div>
+    <div v-if="moreInfo" class="cart-teach__features_teach col-5">
+      <h2>{{ moreInfo.teacher.name }}</h2>
+      <span> {{ moreInfo.teacher.features }} </span>
+      <p>{{ moreInfo.teacher.recentNews }}</p>
+      <p>{{ moreInfo.teacher.biography }}</p>
+    </div>  
     <span style="cursor: pointer" class="cart-teach__kebab">
       <svg
         width="16"

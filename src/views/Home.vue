@@ -15,7 +15,7 @@
       <div class="courses-info__block-2">
         <div class="courses-info__content">
           <p class="categories">Related Categories:</p>
-          <h5>{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
+          <h5 v-if="selectedCourse">{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
         </div>
         <div class="courses-info__students">
           <img src="./../assets/img/students.svg" alt="" />
@@ -32,20 +32,22 @@
   </div>
   <Filters />
   <div class="courses-items">
-    <div class="row">
-      <CourseItem v-for="course in courses" :key="course.id" :course="course" />
+    <div class="row" v-if="courses">
+      <CourseItem  v-for="course in courses" :key="course.id" :course="course"/>
+      <!-- <router-link :to="{name: 'DetailsCourse', params: {id: courses[0].moreInfoId}}"> 
+        sasasas
+      </router-link> -->
     </div>
   </div>
 </template>
 
 <script>
-import DetailsAboutTeach from '../components/DetailsAboutTeach/DetailsAboutTeach.vue'
 import CourseItem from '../components/CourseItem.vue'
 import { onMounted, computed} from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import Filters from '../components/Filters/Fiters.vue'
 export default {
-  components: { Filters, CourseItem, DetailsAboutTeach },
+  components: { Filters, CourseItem, },
   setup() {
     const store = useStore()
 
@@ -68,13 +70,13 @@ export default {
 @import '@/assets/scss/index.scss';
 .courses-items {
   padding: vw(80);
-  width: vw(1270);
+  width: vw(1200);
   .row {
     display: flex;
     flex-wrap: wrap;
     .col-3 {
       margin-right: vw(30);
-      margin-bottom: vw(15);
+      margin-bottom: vw(30);
       width: vw(255);
     }
   }
@@ -128,15 +130,9 @@ export default {
 
 @media screen and (max-width: 1024px) {
   .courses-items {
-
-  padding: vmin(5);
-  width: vmin(100);
+  margin: 0;
   .row {
     display: block;
-    .col-3 {
-      margin: 0;
-      width: vmin(150);
-    }
   }
 }
   .courses-info {
@@ -184,17 +180,6 @@ export default {
 
       img {
         width: vmin(10);
-      }
-    }
-  }
-  .course-items {
-    width: vmin(620);
-    .row {
-      display: block;
-      margin: vmin(10) vmin(10);
-      .col-3 {
-        display: block;
-        width: vmin(400);
       }
     }
   }
