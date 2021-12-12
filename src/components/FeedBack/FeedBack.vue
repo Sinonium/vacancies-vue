@@ -126,7 +126,7 @@ export default {
           props.moreInfo.id,
           textInp.value,
           gradeUser.value,
-          userName
+          userName.value
         )
         textBtnAddedReview.value = 'Add review and grade'
         textInp.value = ''
