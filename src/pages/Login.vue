@@ -1,4 +1,7 @@
 <template>
+ <div class="avocadiki">
+  <span>Avokadiki Courses</span>
+</div>
   <div class="container">
     <div class="login">
       <div class="login-title">
@@ -70,6 +73,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
+.avocadiki {
+  display: flex;
+  span {
+    @include font(vw(100), 800, vw(120));
+    color: $greyBlue50;
+  }
+}
 .login {
   width: vw(700);
   height: vw(500);
@@ -216,10 +226,21 @@ export default {
   }
 }
 @media screen and (max-width: 500px) {
+  .avocadiki {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  span {
+    @include font(vw(100), 800, vw(220));
+
+    color: $greyBlue50;
+   
+  }
+}
   .container {
     display: flex;
     justify-content: center;
-    margin-top: vmin(100);
+    margin-top: vmin(70);
     .login {
       margin: 0;
       width: vmin(350);
