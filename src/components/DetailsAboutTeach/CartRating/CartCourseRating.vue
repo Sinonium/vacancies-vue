@@ -1,5 +1,5 @@
 <template>
-  <div v-if="courseRating" class="cart-rating_course">
+  <div v-if="grades.length" class="cart-rating_course">
     <div class="cart-rating_course_first">
       <h4>{{ courseRatingMiddArithmetic }}</h4>
       <div>
@@ -101,13 +101,13 @@
 
 <script>
 import { ref } from '@vue/reactivity'
-import { onMounted } from '@vue/runtime-core'
 export default {
   props: ['moreInfo'],
   setup(props) {
+    console.log(props.moreInfo.grades)
     const grades = props.moreInfo.grades
     const course = props.moreInfo
-    const courseRating = props.moreInfo.length
+    const courseRating = props.moreInfo
     const courseRatingFive = ref([])
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
