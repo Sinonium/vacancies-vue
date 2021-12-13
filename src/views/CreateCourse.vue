@@ -9,7 +9,7 @@
           reflect the essence of the course.
         </p>
         <label></label>
-        <input
+        <input required
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
           v-model="name"
@@ -29,7 +29,7 @@
         <h4 class="create-course__title">Course Description</h4>
 
         <p class="create-course__instruction">Type the heading</p>
-        <input
+        <input required
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
           placeholder="Type the heading"
@@ -60,7 +60,7 @@
           </div>
         </div>
 
-        <textarea
+        <textarea required
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
           placeholder="Tell us about course"
@@ -70,7 +70,7 @@
         <p class="create-course__instruction">
           Tell us in detail about your course (it is not very important)
         </p>
-        <textarea
+        <textarea required
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
           placeholder="Tell us in detail about your course"
@@ -119,20 +119,14 @@
           <div class="enter" @click="enterWho">Enter</div>
         </span>
 
-        <h4 class="create-course__title">About Teacher</h4>
-        <p class="create-course__instruction">Type the name of the teacher</p>
-        <input
-          onkeyup="this.value=this.value.replace(/^\s/,'')"
-          type="text"
-          v-model="teacher"
-        />
+        
       </div>
     </div>
 
     <div class="create-course">
       <div class="create-course__price">
         <h4 class="create-course__title">Price:</h4>
-        <input
+        <input required
           type="number"
           onkeypress="this.value=this.value.substring(0,3)"
           placeholder="100$"
@@ -144,8 +138,8 @@
     <div class="create-course">
       <div class="create-course__categories">
         <h4 class="create-course__title">Project Categories</h4>
-        <select name="" id="" v-model="selected">
-          <option
+        <select required name="" id="" v-model="selected">
+          <option 
             v-for="option in categories"
             :key="option.text"
             :value="option.value"
@@ -207,7 +201,7 @@
           <p class="create-course__instruction">
             Choose the level of your course
           </p>
-          <select name="" id="" v-model="level">
+          <select required name="" id="" v-model="level">
             <option value="all">all levels</option>
             <option value="initial">initial</option>
             <option value="medium">medium</option>
@@ -219,7 +213,7 @@
         <div>
           <h4 class="create-course__title">Pricelist</h4>
           <p class="create-course__instruction">Choose one of this options</p>
-          <select name="" id="" v-model="pricelist">
+          <select required name="" id="" v-model="pricelist">
             <option value="paid">Paid courses and videos</option>
             <option value="free">Free courses and videos</option>
           </select>
@@ -287,6 +281,7 @@ import SubLCategories from '@/components/AdminPanel/SubLCategories.vue'
 import useStorage from '@/composables/useStorage'
 import { user } from '@/composables/getUser'
 import { useStore } from 'vuex'
+import {useRouter} from 'vue-router'
 import { onMounted } from '@vue/runtime-core'
 export default {
   components: {
@@ -305,6 +300,7 @@ export default {
   },
 
   setup() {
+    const router = useStore()
     // const userId = user.value.uid
 
     const userName = ref()
@@ -523,6 +519,7 @@ export default {
         false,
         myId
       )
+      await router.push('/')
     }
 
     return {
