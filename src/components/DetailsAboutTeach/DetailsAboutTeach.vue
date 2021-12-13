@@ -1,6 +1,10 @@
 <template>
   <section class="Details-about__teach">
-    <CartTeach :moreInfo="moreInfo" :course="course" />
+    <CartTeach
+      :moreInfo="moreInfo"
+      v-if="teacherInfo"
+      :teacherInfo="teacherInfo"
+    />
     <CartCourseRating :moreInfo="moreInfo" :course="course" />
     <BlockReviews :moreInfo="moreInfo" :course="course" />
   </section>
@@ -10,11 +14,28 @@
 import CartTeach from './CartTeach/CartTeach.vue'
 import CartCourseRating from '../DetailsAboutTeach/CartRating/CartCourseRating.vue'
 import BlockReviews from './BlockReviews/BlockReviews.vue'
+import getDocument from '@/composables/getDocument'
+import { computed, onMounted, ref } from '@vue/runtime-core'
 export default {
   components: { CartTeach, CartCourseRating, BlockReviews },
-  props: ['course', 'moreInfo'],
-  setup() {
-    return {}
+  props: ['moreInfo'],
+  setup(props) {
+    const teacherInfo = ref()
+
+    const getTeacher = async () => {
+      console.log(props.moreInfo.teacherId)
+      const { documents } = await getDocument('users', props.moreInfo.teacherId)
+      teacherInfo.value = documents.value
+    }
+
+    onMounted(() => {
+      getTeacher()
+    })
+
+    return {
+      teacherInfo,
+      getTeacher,
+    }
   },
 }
 </script>

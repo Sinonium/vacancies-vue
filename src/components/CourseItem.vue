@@ -14,6 +14,7 @@
       <router-link
         :to="{ name: 'DetailsCourse', params: { id: course.moreInfoId } }"
         class="router-link"
+        @click="handleClick(course.teacherId)"
       >
         <div className="curse-item__bottom">
           <div className="course-item__info">
@@ -45,6 +46,9 @@
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import update from '@/composables/update'
+import useDoc from '@/composables/useDoc'
+import getDocument from '@/composables/getDocument'
+import { ref } from '@vue/reactivity'
 
 export default {
   props: ['course'],
@@ -52,12 +56,21 @@ export default {
     const { addLikedCourse } = update()
     const store = useStore()
     const router = useRouter()
+    const teacherInfo = ref()
+
+    const { getSingleDoc } = useDoc()
+
+    const handleClick = async (teacherId) => {
+      store.dispatch('getTeacher', teacherId)
+    }
 
     const handleLike = async (id) => {
       await addLikedCourse('users', id)
     }
 
     return {
+      teacherInfo,
+      handleClick,
       handleLike,
     }
   },
@@ -167,10 +180,8 @@ export default {
         margin-top: vw(8);
         @include font(vw(14), 700, vh(30));
         color: #6b7a99;
-      
-   }
-  
-   }
+      }
+    }
   }
 }
 
@@ -256,6 +267,7 @@ export default {
     }
   }
 }
+
 @media screen and (max-width: 500px) {
   .col-3 {
     width: vmin(300);
@@ -334,5 +346,6 @@ export default {
         }
       }
     }
-  }}
+  }
+}
 </style>
