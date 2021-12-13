@@ -3,10 +3,7 @@
     <div class="cart-review__header">
       <div class="cart-review__header_profile">
         <div class="image">
-          <img
-            src="@/assets/img/DetailsAboutTeach/imageReview1.png"
-            alt="imageTeach"
-          />
+          <img :src="review.photo" alt="imageTeach" />
         </div>
         <div class="data">
           <h4>{{ review.userName }}</h4>
@@ -159,6 +156,12 @@ export default {
     @include flex(space-between);
     &_profile {
       @include flex();
+      .image {
+        img {
+          min-width: vw(60);
+          max-width: vw(60);
+        }
+      }
       .data {
         margin-left: vw(25);
         h4 {
@@ -263,7 +266,7 @@ export default {
           }
         }
       }
-      &_data {  
+      &_data {
         margin-top: 3vmin;
         margin-left: 18vmin;
         @include flex();

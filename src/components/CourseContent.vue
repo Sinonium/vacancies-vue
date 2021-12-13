@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="moreInfo" class="container">
     <div class="container-div">
       <div :class="{ actives: allShow === true }" class="themes">
         <div class="themes-title">
@@ -7,8 +7,12 @@
           <img src="@/assets/scss/icons/burger-menu.svg" />
           <div class="themes-title__item">
             <div class="themes-title__item-1">
-              <ul :class="{ actives: allShow === true }">
-                <li><img src="@/assets/scss/icons/done.svg" />JANYBEK</li>
+              <ul
+                v-for="item in moreInfo.whatStudy"
+                :key="item"
+                :class="{ actives: allShow === true }"
+              >
+                <li><img src="@/assets/scss/icons/done.svg" />{{ item }}</li>
               </ul>
             </div>
           </div>
@@ -44,8 +48,14 @@
                 fill="#C3CAD9"
               />
             </svg>
-            <h6 @click="isOpen.a = !isOpen.a">JANYBEK</h6>
-            <span>TIME</span>
+            <h6
+              v-for="data in moreInfo.courseContent"
+              :key="data"
+              @click="isOpen.a = !isOpen.a"
+            >
+              {{ data }}
+            </h6>
+            <span>{{ allTime }}</span>
           </div>
           <div>
             <div class="content-courses__open" v-if="isOpen.a">
@@ -142,9 +152,9 @@
 
 <script>
 export default {
-  // props: ["moreInfo"],
-  setup() {
-    // console.log(props.moreInfo[1].lectureName);
+  props: ['moreInfo'],
+  setup(props) {
+    console.log(props.moreInfo)
   },
   data() {
     return {

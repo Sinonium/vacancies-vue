@@ -69,6 +69,6 @@ export default createStore({
   modules: {
     auth,
     categories,
-    middleCourseGrade
+    middleCourseGrade,
   },
 })
