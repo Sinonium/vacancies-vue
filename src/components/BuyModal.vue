@@ -2,7 +2,7 @@
   <div v-show="modalActive" class="modal" @click.self="close">
     <transition name="modal-animation-inner">
       <div v-show="modalActive" class="modal__inner">
-        <div class="modal__inner-text">
+        <div class="modal__inner-text"> 
           <h3>This Course Includes</h3>
           <p>
             25 hours of video on demand, 24 Articles, Full lifetime
