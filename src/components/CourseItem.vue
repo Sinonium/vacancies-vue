@@ -7,14 +7,17 @@
           <img src="./../assets/img/clock.svg" alt="time" />
           <span>{{ course.time }} hours</span>
         </div>
-        <div class="course-item__like" @click="handleLike(course.id)">
-          <img src="./../assets/img/like.svg" alt="like" />
+        <div
+          class="course-item__like"
+          :class="{ liked: activeItem }"
+          @click="handleLike(course.id)"
+        >
+          <img :src="like" alt="like" />
         </div>
       </div>
       <router-link
         :to="{ name: 'DetailsCourse', params: { id: course.moreInfoId } }"
         class="router-link"
-        @click="handleClick(course.teacherId)"
       >
         <div className="curse-item__bottom">
           <div className="course-item__info">
@@ -44,8 +47,7 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import update from '@/composables/update'
 import useDoc from '@/composables/useDoc'
-import getDocument from '@/composables/getDocument'
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 
 export default {
   props: ['course'],
@@ -54,21 +56,20 @@ export default {
     const store = useStore()
     const router = useRouter()
     const teacherInfo = ref()
+    const activeItem = ref(false)
 
     const { getSingleDoc } = useDoc()
-
-    const handleClick = async (teacherId) => {
-      store.dispatch('getTeacher', teacherId)
-    }
 
     const handleLike = async (id) => {
       await addLikedCourse('users', id)
     }
 
     return {
+      handleClickId,
+      activeItem,
       teacherInfo,
-      handleClick,
       handleLike,
+      like: require('@/assets/img/likeCourse.svg'),
     }
   },
 }
@@ -95,6 +96,39 @@ export default {
       .page {
         padding: vw(8);
         border: solid 1px #4d5e80;
+      }
+    }
+    &__like {
+      @include flex;
+      position: relative;
+      width: vw(40);
+      height: vw(40);
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 1;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: scale(0);
+        transition: 0.3s linear;
+        width: 100%;
+        height: 100%;
+        background: $bg-pink;
+        z-index: -1;
+        border-radius: 50%;
+      }
+      &.liked {
+        &::before {
+          transform: scale(1.1);
+        }
+      }
+      img {
+        width: vw(17);
+        height: vw(15);
       }
     }
     &__header {

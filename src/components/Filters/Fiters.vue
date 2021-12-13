@@ -1,32 +1,32 @@
 <template>
-   <div class="filters">
-      <ul>
-         <li
-            class="filtersItem"
-            :class="{ active: activeItem === i }"
-            @click="handleactiveItem(i)"
-            v-for="(item, i) in testfilters"
-            :key="item.title"
-         >
-            <FilterItem :item="item"/>
-         </li>
-      </ul>
-   </div>
+  <div class="filters">
+    <ul>
+      <li
+        class="filtersItem"
+        :class="{ active: activeItem === i }"
+        @click="handleactiveItem(i)"
+        v-for="(item, i) in testfilters"
+        :key="item.title"
+      >
+        <FilterItem :item="item" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-   import { computed, ref } from "@vue/reactivity";
-   import FilterItem from "./FiltersItem.vue";
-   import { useStore } from 'vuex'
-   export default {
-      components: { FilterItem },
-      setup() {
-         const store = useStore()
-         const testfilters = ref([
-            {
-               id: 0,
-               title: "Most Popular",
-               icon: `<svg
+import { computed, ref } from '@vue/reactivity'
+import FilterItem from './FiltersItem.vue'
+import { useStore } from 'vuex'
+export default {
+  components: { FilterItem },
+  setup() {
+    const store = useStore()
+    const testfilters = ref([
+      {
+        id: 0,
+        title: 'Most Popular',
+        icon: `<svg
           width="15"
           height="16"
           viewBox="0 0 15 16"
@@ -40,11 +40,11 @@
             fill="#C3CAD9"
           />
         </svg>`,
-            },
-            {
-               id: 1,
-               title: "Liked Courses",
-               icon: `<svg
+      },
+      {
+        id: 1,
+        title: 'Liked Courses',
+        icon: `<svg
           width="23"
           height="20"
           viewBox="0 0 23 20"
@@ -58,11 +58,11 @@
             fill="#C3CAD9"
           />
         </svg>`,
-            },
-            {
-               id: 2,
-               title: "New Courses",
-               icon: `<svg
+      },
+      {
+        id: 2,
+        title: 'New Courses',
+        icon: `<svg
           width="20"
           height="20"
           viewBox="0 0 20 20"
@@ -76,11 +76,11 @@
             fill="#C3CAD9"
           />
         </svg>`,
-            },
-            {
-               id: 3,
-               title: "New Teachers",
-               icon: `<svg
+      },
+      {
+        id: 3,
+        title: 'New Teachers',
+        icon: `<svg
           width="21"
           height="18"
           viewBox="0 0 21 18"
@@ -101,165 +101,163 @@
             </clipPath>
           </defs>
         </svg>`,
-            },
-         ]);
-
-         
-         const courses = computed(() => store.state.courses)
-         const userInfo = computed(()=> store.state.userInfo)
-         
-         const activeItem = ref(0);
-
-         const handleactiveItem = (index) => {
-            activeItem.value = index;
-            if(index === 0) {
-               store.dispatch('getCourses')
-            }
-            if(index === 1) {
-               const result = courses.value.filter(item =>{
-                  return userInfo.value.likedCourse.includes(item.id)
-               })
-               store.commit('GET_LIKED_COURSES', result)
-            }
-         };
-
-         return {
-            activeItem,
-            handleactiveItem,
-            testfilters,
-            courses,
-         };
       },
-   };
+    ])
+
+    const courses = computed(() => store.state.courses)
+    const userInfo = computed(() => store.state.userInfo)
+
+    const activeItem = ref(0)
+
+    const handleactiveItem = (index) => {
+      activeItem.value = index
+      if (index === 0) {
+        store.dispatch('getCourses')
+      }
+      if (index === 1) {
+        const result = courses.value.filter((item) => {
+          return userInfo.value.likedCourse.includes(item.id)
+        })
+        store.commit('SET_LIKED_COURSES', result)
+      }
+    }
+
+    return {
+      activeItem,
+      handleactiveItem,
+      testfilters,
+      courses,
+    }
+  },
+}
 </script>
 
 <style lang="scss">
-   @import "@/assets/scss/index.scss";
-   .filters {
-      display: flex;
-      justify-content: center;
+@import '@/assets/scss/index.scss';
+.filters {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  ul {
+    display: flex;
+    list-style: none;
+    .filtersItem {
+      margin-right: vw(100);
+      .wrapper {
+        display: flex;
+        align-items: center;
+        max-width: vw(200);
+        span {
+          @include font(vw(18), 600, vw(30), $greyBlue60);
+          margin-left: vw(17);
+        }
+        svg {
+          width: vw(17);
+          height: vw(18);
+        }
+      }
+    }
+    .filtersItem.active {
       position: relative;
-      ul {
-         display: flex;
-         list-style: none;
-         .filtersItem {
-            margin-right: vw(100);
-            .wrapper {
-               display: flex;
-               align-items: center;
-               max-width: vw(200);
-               span {
-                  @include font(vw(18), 600, vw(30), $greyBlue60);
-                  margin-left: vw(17);
-               }
-               svg {
-                  width: vw(17);
-                  height: vw(18);
-               }
-            }
-         }
-         .filtersItem.active {
-            position: relative;
-            .wrapper {
-               span {
-                  @include font(vw(18), 600, vw(30), $blue);
-               }
-               svg {
-                  path {
-                     fill: $blue;
-                  }
-               }
-            }
-         }
-         .filtersItem.active::before {
-            content: "";
-            position: absolute;
-            left: -7%;
-            bottom: vw(-28);
-            width: 125%;
-            height: 2px;
-            background-color: $blue;
-         }
+      .wrapper {
+        span {
+          @include font(vw(18), 600, vw(30), $blue);
+        }
+        svg {
+          path {
+            fill: $blue;
+          }
+        }
       }
-   }
-   .filters::before {
-      content: "";
+    }
+    .filtersItem.active::before {
+      content: '';
       position: absolute;
-      left: 0;
+      left: -7%;
       bottom: vw(-28);
-      width: 100%;
+      width: 125%;
       height: 2px;
-      background-color: $greyBlue95;
-   }
-   @media screen and(max-width: 769px) {
-      .filters {
-         ul {
-            .filtersItem {
-               margin-right: vw(120);
-               .wrapper {
-                  max-width: vw(300);
-                  span {
-                     @include font(vw(26), 600, vw(34), $greyBlue60);
-                     margin-left: vw(20);
-                  }
-                  svg {
-                     width: vw(26);
-                     height: vw(27);
-                  }
-               }
-            }
-            .filtersItem.active {
-               .wrapper {
-                  span {
-                     @include font(vw(27), 600, vw(34), $blue);
-                     margin-left: vw(20);
-                  }
-                  svg {
-                     width: vw(26);
-                     height: vw(27);
-                     path {
-                        fill: $blue;
-                     }
-                  }
-               }
-            }
-         }
-
+      background-color: $blue;
+    }
+  }
+}
+.filters::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: vw(-28);
+  width: 100%;
+  height: 2px;
+  background-color: $greyBlue95;
+}
+@media screen and(max-width: 769px) {
+  .filters {
+    ul {
+      .filtersItem {
+        margin-right: vw(120);
+        .wrapper {
+          max-width: vw(300);
+          span {
+            @include font(vw(26), 600, vw(34), $greyBlue60);
+            margin-left: vw(20);
+          }
+          svg {
+            width: vw(26);
+            height: vw(27);
+          }
+        }
       }
-   }
-   @media screen and(max-width: 426px) {
-      .filters {
-         ul {
-            .filtersItem {
-               margin-right: vmin(15);
-               .wrapper {
-                  max-width: vmin(200);
-                  span {
-                     @include font(vmin(8), 600, vmin(15), $greyBlue60);
-                     margin-left: vmin(5);
-                  }
-                  svg {
-                     width: vmin(13);
-                     height: vmin(14);
-                  }
-               }
+      .filtersItem.active {
+        .wrapper {
+          span {
+            @include font(vw(27), 600, vw(34), $blue);
+            margin-left: vw(20);
+          }
+          svg {
+            width: vw(26);
+            height: vw(27);
+            path {
+              fill: $blue;
             }
-            .filtersItem.active {
-               .wrapper {
-                  span {
-                     @include font(vmin(9), 600, vmin(15), $blue);
-                     margin-left: vmin(5);
-                  }
-                  svg {
-                     width: vmin(13);
-                     height: vmin(14);
-                     path {
-                        fill: $blue;
-                     }
-                  }
-               }
-            }
-         }
+          }
+        }
       }
-   }
+    }
+  }
+}
+@media screen and(max-width: 426px) {
+  .filters {
+    ul {
+      .filtersItem {
+        margin-right: vmin(15);
+        .wrapper {
+          max-width: vmin(200);
+          span {
+            @include font(vmin(8), 600, vmin(15), $greyBlue60);
+            margin-left: vmin(5);
+          }
+          svg {
+            width: vmin(13);
+            height: vmin(14);
+          }
+        }
+      }
+      .filtersItem.active {
+        .wrapper {
+          span {
+            @include font(vmin(9), 600, vmin(15), $blue);
+            margin-left: vmin(5);
+          }
+          svg {
+            width: vmin(13);
+            height: vmin(14);
+            path {
+              fill: $blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>
