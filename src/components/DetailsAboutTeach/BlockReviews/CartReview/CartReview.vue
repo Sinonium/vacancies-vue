@@ -263,7 +263,7 @@ export default {
           }
         }
       }
-      &_data {  
+      &_data {
         margin-top: 3vmin;
         margin-left: 18vmin;
         @include flex();
@@ -288,11 +288,11 @@ export default {
     }
   }
 }
-@media screen and(max-width:376px) {
-}
 @media screen and (max-width: 408px) {
   .cart-review__header_data {
     margin-left: 14vmin;
   }
+}
+@media screen and(max-width:376px) {
 }
 </style>

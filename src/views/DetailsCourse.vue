@@ -502,7 +502,7 @@ body {
     margin-left: vw(260);
   }
 }
-@media screen and(max-width: 579px) {
+@media screen and(max-width: 580px) {
 }
 @media screen and(max-width: 426px) {
   .details-page__modal {
@@ -514,4 +514,3 @@ body {
 @media screen and(max-width: 376px) {
 }
 </style>
-  
