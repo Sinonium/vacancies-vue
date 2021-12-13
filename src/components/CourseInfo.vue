@@ -32,6 +32,7 @@ export default {}
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 .courses-info {
+  position: relative;
   margin: vw(30) vw(30);
   position: relative;
   &__like {
@@ -39,7 +40,7 @@ export default {}
   }
 
   &__image {
-    width: vw(1210);
+    width:100%;
   }
   &__block {
     padding: vw(45) vw(70);
@@ -50,7 +51,7 @@ export default {}
   }
 
   &__block-theme {
-    margin: 0 vw(10);
+    // margin: 0 vw(10);  
     p {
       @include font(vw(24), 600, vh(30));
       color: $white;
@@ -62,10 +63,11 @@ export default {}
   }
   &__students {
     display: inline-flex;
+    // margin-top: vw(10);
     .students {
       @include font(vw(13), 700, vh(25));
       color: $white;
-      margin: vw(23);
+      // margin: vw(23);
     }
   }
 }
@@ -73,9 +75,8 @@ export default {}
 @media screen and (max-width: 1024px) {
   .courses-info {
     margin: vmin(10) vmin(15);
-
     &__image {
-      width: vmin(285);
+      width: 100%;
     }
 
     &__block {
@@ -84,17 +85,17 @@ export default {}
     &__block-theme {
       margin: 0 vmin(10);
       p {
-        @include font(vmin(9), 600, vmin(5));
+        @include font(vmin(7), 600, vmin(5));
         color: $white;
       }
       h5 {
-        @include font(vmin(9), 600, vmin(10));
+        @include font(vmin(7), 600, vmin(10));
         color: $white;
       }
     }
     &__students {
       .students {
-        @include font(vmin(7), 700, vmin(20));
+        @include font(vmin(7), 700, vmin(13));
         color: $white;
         margin: vmin(10);
       }
@@ -102,12 +103,24 @@ export default {}
   }
 }
 
-@media screen and (max-width: 428px){
+@media screen and (max-width: 500px){
   .courses-info {
     margin: vmin(10) vmin(10);
 
     &__image {
-      width: vmin(360);
+      width: 100%;
+      height: vmin(80);
+    }
+  }
+}
+@media screen and (max-width: 400px){
+  .courses-info {
+    z-index: 2;
+    margin: vmin(10) vmin(10);
+
+    &__image {
+      width: vmin(350);
+      height: vmin(70);
     }
   }
 }

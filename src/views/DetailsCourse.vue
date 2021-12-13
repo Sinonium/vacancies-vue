@@ -1,6 +1,6 @@
 <template>
   <div class="details-page">
-    <CourseInfo />
+    <CourseInfo @click="toggleModal" />
     <div class="details-page__head">
       <ul>
         <li
@@ -9,7 +9,7 @@
         >
           <svg
             width="15"
-            height="16" 
+            height="16"
             viewBox="0 0 15 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,26 +22,6 @@
             />
           </svg>
           <span>About</span>
-        </li>
-        <li
-          :class="{ active: currentDetailsPage === 'Content' }"
-          @click="handleCurrentPage('Content')"
-        >
-          <svg
-            width="19"
-            height="19"
-            viewBox="0 0 19 19"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M0 14.4625V17.5025C0 17.7825 0.22 18.0025 0.5 18.0025H3.54C3.67 18.0025 3.8 17.9525 3.89 17.8525L14.81 6.94249L11.06 3.19249L0.15 14.1025C0.05 14.2025 0 14.3225 0 14.4625ZM17.71 4.04249C18.1 3.65249 18.1 3.02249 17.71 2.63249L15.37 0.292486C15.1832 0.105233 14.9295 0 14.665 0C14.4005 0 14.1468 0.105233 13.96 0.292486L12.13 2.12249L15.88 5.87249L17.71 4.04249Z"
-              fill="#C3CAD9"
-            />
-          </svg>
-          <span>Content</span>
         </li>
         <li
           :class="{ active: currentDetailsPage === 'Description' }"
@@ -84,8 +64,8 @@
           <span>Instructor</span>
         </li>
         <li
-          :class="{ active: currentDetailsPage === 'Feedback' }"
-          @click="handleCurrentPage('Feedback')"
+          :class="{ active: currentDetailsPage === 'Reviews' }"
+          @click="handleCurrentPage('Reviews')"
         >
           <svg
             width="22"
@@ -101,23 +81,43 @@
               fill="#C3CAD9"
             />
           </svg>
+          <span>Reviews</span>
+        </li>
+        <li
+          :class="{ active: currentDetailsPage === 'Feedback' }"
+          @click="handleCurrentPage('Feedback')"
+        >
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 19 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0 14.4625V17.5025C0 17.7825 0.22 18.0025 0.5 18.0025H3.54C3.67 18.0025 3.8 17.9525 3.89 17.8525L14.81 6.94249L11.06 3.19249L0.15 14.1025C0.05 14.2025 0 14.3225 0 14.4625ZM17.71 4.04249C18.1 3.65249 18.1 3.02249 17.71 2.63249L15.37 0.292486C15.1832 0.105233 14.9295 0 14.665 0C14.4005 0 14.1468 0.105233 13.96 0.292486L12.13 2.12249L15.88 5.87249L17.71 4.04249Z"
+              fill="#C3CAD9"
+            />
+          </svg>
           <span>Feedback</span>
         </li>
       </ul>
     </div>
     <main class="details-page__content">
       <div v-if="currentDetailsPage === 'Instructor'">
-        <DetailsAboutTeach :course="course" />
+        <DetailsAboutTeach :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
           <div
-            @click="handleCurrentPage('Feedback')"
+            @click="handleCurrentPage('Reviews')"
             class="details-page__bottom-btn_push_page"
           >
             <img :src="studsIcon" alt="" />
-            <span> Feedback </span>
+            <span> Reviews </span>
           </div>
           <div class="details-page__bottom-arrow_next">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -131,11 +131,11 @@
             <img :src="ArrowIcon" alt="ArrowIcon" />
           </div>
           <div
-            @click="handleCurrentPage('Content')"
+            @click="handleCurrentPage('Description')"
             class="details-page__bottom-btn_push_page"
           >
             <img :src="pencilIcon" alt="" />
-            <span> Content </span>
+            <span> Description </span>
           </div>
           <div class="details-page__bottom-arrow_next">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -143,7 +143,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Description'">
-        <Description />
+        <Description :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -161,7 +161,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Feedback'">
-        <FeedBack />
+        <FeedBack :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -178,29 +178,33 @@
           </div>
         </div>
       </div>
-      <div v-if="currentDetailsPage === 'Content'" class="details-page__bottom">
-        <div class="details-page__bottom-arrow_prev">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
-        </div>
-        <div
-          @click="handleCurrentPage('Description')"
-          class="details-page__bottom-btn_push_page"
-        >
-          <img :src="kebabIcon" alt="" />
-          <span>Description</span>
-        </div>
-        <div class="details-page__bottom-arrow_next">
-          <img :src="ArrowIcon" alt="ArrowIcon" />
+      <div v-if="currentDetailsPage === 'Reviews'">
+        <Reviews :moreInfo="moreInfo" />
+        <div class="details-page__bottom">
+          <div class="details-page__bottom-arrow_prev">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
+          <div
+            @click="handleCurrentPage('Feedback')"
+            class="details-page__bottom-btn_push_page"
+          >
+            <img :src="kebabIcon" alt="" />
+            <span>Feedback</span>
+          </div>
+          <div class="details-page__bottom-arrow_next">
+            <img :src="ArrowIcon" alt="ArrowIcon" />
+          </div>
         </div>
       </div>
     </main>
     <div class="details-page__modal">
-      <AddToCart />
+      <AddToCart v-if="addToCart" />
     </div>
   </div>
 </template>
 
 <script>
+import Reviews from '../components/Reviews/Reviews.vue'
 import FeedBack from '@/components/FeedBack/FeedBack.vue'
 import CourseInfo from '../components/CourseInfo.vue'
 import AddToCart from '@/components/AddToCart.vue'
@@ -208,10 +212,13 @@ import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { computed, ref } from '@vue/reactivity'
+import getDocument from '@/composables/getDocument'
 import { onMounted } from '@vue/runtime-core'
-import { useStore } from 'vuex'
+
 export default {
+  props: ['id'],
   components: {
+    Reviews,
     FeedBack,
     AddToCart,
     Description,
@@ -219,28 +226,48 @@ export default {
     CourseContent,
     CourseInfo,
   },
-  setup() {
-    const store = useStore()
+  setup(props) {
+    const addToCart = ref(true)
+    const moreInfo = ref()
+    const popa = ref()
 
-    const moreInfo = computed(() => store.state.courseMoreInfo)
-
-    const course = ref()
-    const getDoc = async () => {
-      const response = await fetch('http://localhost:3000/course')
-      const json = await response.json()
-      course.value = json
+    const getInfo = async () => {
+      console.log(props.id)
+      const { documents, error } = await getDocument('more info', props.id)
+      moreInfo.value = documents.value
     }
+
+    onMounted(() => {
+      getInfo()
+    })
+
     const currentDetailsPage = ref('About')
     const handleCurrentPage = (currentWord) => {
       currentDetailsPage.value = currentWord
     }
-    onMounted(() => {
-      getDoc()
-    })
+    let screenWidth = window.screen.width
+    window.addEventListener(
+      `resize`,
+      () => {
+        screenWidth = window.screen.width
+        if (screenWidth > 769) {
+          sidebar.value = true
+        }
+      },
+      false
+    )
+
+    const toggleModal = () => {
+      addToCart.value = !addToCart.value
+    }
+    if (screenWidth <= 769) {
+      addToCart.value = false
+    }
 
     return {
+      popa,
       moreInfo,
-      course,
+      getInfo,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
       studsIcon: require('@/assets/icons/DetailsAboutTeach/persons.svg'),
@@ -249,6 +276,8 @@ export default {
       ArrowIcon: require('@/assets/icons/DetailsAboutTeach/arrow.svg'),
       handleCurrentPage,
       currentDetailsPage,
+      addToCart,
+      toggleModal,
     }
   },
 }
@@ -339,7 +368,7 @@ body {
   }
 }
 .details-page__bottom {
-  margin-left: -33.2vw;
+  margin-left: -26.5vw;
   margin-top: vw(35);
   margin-bottom: vw(40);
   @include flex();
@@ -376,68 +405,225 @@ body {
     }
   }
 }
+.details-page__modal {
+  position: absolute;
+  top: vw(130);
+  left: vw(1150);
+}
 
-@media screen and (max-width: 1123px) {
-  .details-page {
-    &__head {
-      ul {
-        margin-left: 5vw;
+@media screen and (max-width: 1440px) {
+  .details-page__head {
+    ul {
+      li {
+        @include font(vw(19), bold, 20px, $greyBlue60);
       }
     }
   }
+  .details-page__bottom {
+    margin-left: -26.2vw;
+  }
+  .details-page__modal {
+    top: vw(-75);
+    right: vw(30);
+  }
+  .details-page__head ul li.active {
+    span {
+      @include font(vw(19), bold, 20px, $blue);
+    }
+  }
+  .details-page__head ul {
+    margin-left: 1vw;
+  }
 }
-@media screen and (max-width: 823px) {
-  .details-page {
-    &__head {
-      ul {
-        margin-left: 4vw;
-        li.active {
-          &::before {
-            margin-top: -0.8vw;
-          }
-        }
-      }
+@media screen and (max-width: 1024px) {
+  .details-page__modal {
+    top: vw(-161);
+    right: 0;
+    left: vw(1130);
+  }
+  .details-page__head ul {
+    margin-left: -1vw;
+  }
+  .cart-review__header_data span {
+    margin-left: 0.3vw;
+  }
+  .details-page__bottom {
+    margin-left: -24.2vw;
+  }
+  .details-page__bottom-btn_push_page {
+    padding: 1.6vw 2.7vw 1.6vw 2.7vw;
+  }
+  .details-page__bottom {
+    &-arrow_next,
+    &-arrow_prev {
+      padding: 2vw 1.5vw 2vw 1.5vw;
     }
   }
 }
-@media screen and (max-width: 759px) {
-  .details-page {
-    &__head {
-      ul {
-        margin-left: 3vw;
-      }
-    }
+@media screen and (max-width: 769px) {
+  .details-page__modal {
+    top: vw(-220);
+    right: 0;
+    left: vw(1030);
   }
-}
-@media screen and (max-width: 719px) {
-  .details-page {
-    &__head {
-      ul {
-        li {
-          span {
-            @include font(vw(17), bold, 20px, $greyBlue60);
-          }
-          svg {
-            height: 13px;
-          }
-        }
-      }
-    }
+  .details-page__head ul {
+    margin-left: 3vw;
   }
-  .details-page__head ul li.active span {
-    @include font(vw(17), bold, 20px, $blue);
-  }
-}
-@media screen and (max-width: 768px) {
   .details-page {
     &__head {
       height: vw(120);
       ul {
         li {
-          @include font(vw(20), bold, 20px, $greyBlue60);
+          @include font(vw(25), bold, 20px, $greyBlue60);
+        }
+      }
+    }
+    @media screen and (max-width: 1440px) {
+      .details-page__head {
+        ul {
+          li {
+            @include font(vw(19), bold, 20px, $greyBlue60);
+          }
+          .details-page__bottom-btn_push_page {
+            padding: 2.0625vw 4.375vw 1.9375vw 3.625vw;
+            span {
+              @include font(2vw, bold, 20px, $greyBlue60);
+            }
+          }
+          .details-page__modal {
+            top: -33.875vw;
+          }
+        }
+      }
+    }
+    @media screen and(max-width: 579px) {
+    }
+    @media screen and(max-width: 426px) {
+    }
+    @media screen and(max-width:376px) {
+    }
+  }
+  &-arrow_next {
+    margin-left: vw(260);
+  }
+}
+@media screen and(max-width: 580px) {
+  .details-page {
+    margin-top: vmin(45);
+    &__head {
+      position: relative;
+      display: flex;
+      background: $white;
+      height: vmin(80);
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $greyBlue95;
+        border-radius: 1px;
+      }
+      ul {
+        margin-left: vmin(-10);
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        li {
+          cursor: pointer;
+          position: relative;
+          margin-left: vmin(15);
+          @include flex();
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: vmin(-35);
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: $blue;
+            border-radius: 1px;
+            opacity: 0;
+            transition: 0.4s;
+          }
+          span {
+            @include font(vmin(9), bold, 20px, $greyBlue60);
+            transition: 0.4s;
+            margin-left: vmin(5.5);
+          }
+        }
+        svg {
+          path {
+            transition: 0.4s;
+          }
         }
       }
     }
   }
+  .details-page__head ul li.active {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: vmin(-35);
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: $blue;
+      border-radius: 1px;
+      opacity: 1;
+    }
+    span {
+      @include font(vmin(9), bold, 20px, $blue);
+    }
+    svg {
+      path {
+        fill: $blue;
+      }
+    }
+  }
+  .details-page__bottom {
+    margin-left: vmin(-10);
+    margin-top: vmin(35);
+    margin-bottom: vmin(40);
+    @include flex();
+    &-arrow_prev,
+    &-arrow_next {
+      box-shadow: 0 vmin(2) vmin(5) rgba(54, 61, 77, 0.03);
+      border-radius: vmin(30);
+      padding: vmin(15);
+      cursor: pointer;
+    }
+    &-arrow_prev {
+      img {
+        transform: rotate(-90deg);
+      }
+    }
+    &-arrow_next {
+      img {
+        transform: rotate(90deg);
+      }
+    }
+    &-btn_push_page {
+      background: $white;
+      box-shadow: 0 vmin(2) vmin(5) rgba(54, 61, 77, 0.03);
+      border-radius: vmin(30);
+      @include flex();
+      padding: vmin(17) vmin(38) vmin(15) vmin(26);
+      span {
+        @include font(vmin(12), bold, 20px, $greyBlue60);
+        margin-left: vmin(16);
+      }
+    }
+  }
+}
+@media screen and(max-width: 426px) {
+  .details-page__modal {
+    top: vmin(-38);
+    right: 0;
+    left: vmin(7);
+  }
+}
+@media screen and(max-width: 376px) {
 }
 </style>

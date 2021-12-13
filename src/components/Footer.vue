@@ -96,6 +96,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .footer {
+    width: vw(1270);
     &__info {
         border-top: 2px solid $greyBlue95;
         @include flex($justify: space-between);
@@ -180,6 +181,10 @@ export default {
         }
     }
     &__form {
+        div {
+            width: vw(170);
+            height: vw(60);
+        }
         input {
             &::placeholder {
                 @include font(vw(17), 700, vh(20), $greyBlue60);
@@ -202,6 +207,7 @@ export default {
 }
 @media screen and (max-width: 770px) {
 .footer {
+    width: 100%;
     &__nav {
         width: vw(840);
         &-item {
@@ -213,6 +219,10 @@ export default {
         }
     }
     &__form {
+        div {
+            width: vw(220);
+            height: vw(75);
+        }
         input {
             &::placeholder {
                 @include font(vw(22), 700, vh(20), $greyBlue60);

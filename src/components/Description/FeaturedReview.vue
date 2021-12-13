@@ -1,5 +1,5 @@
 <template>
-  <div class="review">
+  <div v-if="moreInfo" class="review">
     <div class="container">
       <div class="review__content">
         <div class="review__content-title">
@@ -11,7 +11,7 @@
             <img src="@/assets/img/logoReview.png" alt="logo" />
             <div class="logo__text">
               <div class="name">
-                <h3>Adam Newton</h3>
+                <h3>{{ moreInfo.reviews[0].userName }}</h3>
               </div>
               <div class="raiting">
                 <img src="@/assets/img/raiting.svg" alt="reiting" />
@@ -21,20 +21,13 @@
           </div>
           <div class="review__content-text">
             <p>
-              The beauty of astronomy is that anybody can do it. From the
-              tiniest baby to the most advanced astrophysicist, there is
-              something for anyone who wants to enjoy astronomy. In fact, it is
-              a science that is so accessible that virtually anybody can do it
-              virtually anywhere they are. All they have to know how to do is to
-              look up. It really is amazing when you think about it that just by
-              looking up on any given night, you could.
+              {{ moreInfo.reviews[0].text }}
             </p>
           </div>
           <div class="review__buttons">
             <p>Was this review helpful?</p>
             <button>Yes</button>
             <button @click="togleElement">No</button>
-            <button>Report</button>
           </div>
         </div>
         <h2 v-else>We are sorry :(</h2>
@@ -46,6 +39,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
+  props: ['moreInfo'],
   setup() {
     const rewievs = ref([])
     const error = ref('')
@@ -150,35 +144,31 @@ export default {
     button:active {
       background-color: #ccc;
     }
-    button:last-child {
-      margin-left: vw(20);
-      background: transparent;
-      box-shadow: none;
-    }
   }
 }
 @media screen and (max-width: 1024px) {
   .review {
     .container {
-      max-width: vmin(180);
+      max-width: vmin(270);
     }
     &__content {
       padding: vmin(10) vmin(10);
-      width: vmin(170);
+      max-width: vmin(250);
       h2 {
-        @include font(vmin(6), 700, vmin(10), $greyBlue50);
+        @include font(vmin(15), 700, vmin(10), $greyBlue50);
       }
     }
     &__content-title {
       h3 {
         @include font(vmin(6), 700, vmin(10), $greyBlue50);
+        margin-bottom: vmin(10);
       }
     }
     &__content-logo {
       margin-top: vmin(5);
       img {
-        width: vmin(20);
-        height: vmin(20);
+        width: vmin(40);
+        height: vmin(40);
       }
       .logo__text {
         .name {
@@ -203,7 +193,7 @@ export default {
     &__content-text {
       p {
         @include font(vmin(5), 500, vmin(10), $greyBlue60);
-        max-width: vmin(160);
+        max-width: vmin(250);
       }
     }
     &__buttons {
@@ -218,32 +208,68 @@ export default {
         margin-right: vmin(5);
         margin-top: vmin(5);
       }
-      button:last-child {
-        margin-left: vmin(10);
-      }
     }
   }
 }
-@media screen and (max-width: 428px){
+@media screen and (max-width: 428px) {
   .review {
     .container {
-      max-width: vmin(250);
+      max-width: vmin(347);
     }
-     &__content {
-     max-width: vmin(249);
-     &-title{
-       img{
-         padding-left: vmin(180);
-       }
-     }
-
-    }
-     &__content-text {
-      p {
-        max-width: vmin(250);
+    &__content {
+      max-width: vmin(325);
+      h2 {
+        @include font(vmin(15), 600, vmin(19), $greyBlue50);
+      }
+      &-title {
+        h3 {
+          @include font(vmin(15), 600, vmin(19), $greyBlue50);
+        }
+        img {
+          padding-left: vmin(180);
+        }
       }
     }
-
+    &__content-text {
+      p {
+        max-width: vmin(340);
+      }
+    }
+    .logo__text {
+      .name {
+        h3 {
+          @include font(vmin(15), 600, vmin(19), $greyBlue50);
+        }
+      }
+    }
+    .raiting {
+      img {
+        width: vmin(50);
+        height: vmin(25);
+      }
+      p {
+        @include font(vmin(10), 600, vmin(3), $greyBlue80);
+      }
+    }
+    &__content-text {
+      p {
+        @include font(vmin(15), 600, vmin(19), $greyBlue60);
+        max-width: vmin(320);
+      }
+    }
+    &__buttons {
+      p {
+        @include font(vmin(14), 700, vmin(18), $greyBlue60);
+        margin-right: vmin(10);
+      }
+      button {
+        @include font(vmin(14), 700, vmin(18), $greyBlue60);
+        width: vmin(50);
+        height: vmin(30);
+        margin-right: vmin(10);
+        margin-top: vmin(10);
+      }
+    }
   }
 }
 </style>

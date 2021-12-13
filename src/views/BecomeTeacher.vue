@@ -56,37 +56,42 @@
           cols="40"
           rows="3"
           placeholder="This is an optional field for information about yourself"
-          v-model="about"
+          v-model="aboutMe"
         ></textarea>
       </div>
     </div>
 
     <div class="publish">
-      <button>Save</button>
+      <button class="button">Save</button>
     </div>
   </form>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
-import { firestore } from '@/firebase/config'
-import { doc, updateDoc, getDoc, Timestamp } from 'firebase/firestore'
 import update from '@/composables/update'
+import { user } from '@/composables/getUser'
 export default {
   components: {},
   setup() {
     const { updateTeacher } = update()
     const skills = ref('')
-    const name = ref('Aidana')
+    const name = ref(user.value.displayName)
     const imageURL = ref('')
     const education = ref('')
-    const about = ref('')
+    const aboutMe = ref('')
+    const userId = user.value.uid
 
     const handleSubmit = async () => {
-      await updateTeacher()
+      await updateTeacher('users', userId, name.value, {
+        teacherName: name.value,
+        skills: skills.value,
+        education: education.value,
+        aboutMe: aboutMe.value,
+      })
     }
 
-    return { name, skills, imageURL, education, about, handleSubmit }
+    return { name, skills, imageURL, education, aboutMe, handleSubmit }
   },
 }
 </script>
@@ -103,8 +108,9 @@ export default {
   }
 
   .publish {
-    margin: 0 vw(30);
-    button {
+    display: flex;
+    justify-content: center;
+    .button {
       @include font(vw(14), 600, vh(30));
       color: white;
       background-color: $blue;
@@ -162,13 +168,15 @@ export default {
 }
 @media screen and (max-width: 1024px) {
   .become-teacher {
-    margin: vmin(15) vmin(40);
+    margin: vmin(15) 0 vmin(15) vmin(55);
+    width: vmin(300);
     &__heading {
-      @include font(vmin(15), 700, vmin(15));
+       @include font(vmin(18), 700, vmin(15));
+       width: vmin(200);
     }
     .publish {
-      margin: 0 vmin(15);
-      button {
+       margin-right: vmin(40);
+      .button {
         @include font(vmin(7), 600, vmin(15));
         color: white;
         width: vmin(100);

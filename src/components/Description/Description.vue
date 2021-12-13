@@ -1,7 +1,7 @@
 <template>
   <div>
-    <DescriptionText />
-    <FeaturedReview />
+    <DescriptionText :moreInfo="moreInfo" />
+    <FeaturedReview :moreInfo="moreInfo" />
   </div>
 </template>
 
@@ -11,11 +11,13 @@ import FeaturedReview from './FeaturedReview.vue'
 
 export default {
   components: { DescriptionText, FeaturedReview },
+  props: ['moreInfo'],
+  setup() {},
 }
 </script>
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
-  div{
-    margin-left: vw(30);
-  }
+div {
+  margin-left: vw(30);
+}
 </style>
