@@ -39,7 +39,7 @@ export default {}
   }
 
   &__image {
-    width: vw(1210);
+    width:100%;
   }
   &__block {
     padding: vw(45) vw(70);
@@ -62,6 +62,7 @@ export default {}
   }
   &__students {
     display: inline-flex;
+    margin-top: vw(10);
     .students {
       @include font(vw(13), 700, vh(25));
       color: $white;
@@ -75,7 +76,7 @@ export default {}
     margin: vmin(10) vmin(15);
 
     &__image {
-      width: vmin(285);
+      width: 100%;
     }
 
     &__block {
@@ -102,12 +103,23 @@ export default {}
   }
 }
 
-@media screen and (max-width: 428px){
+@media screen and (max-width: 500px){
+  .courses-info {
+    margin: vmin(10) vmin(10);
+
+    &__image {
+      width: 100%;
+      height: vmin(80);
+    }
+  }
+}
+@media screen and (max-width: 400px){
   .courses-info {
     margin: vmin(10) vmin(10);
 
     &__image {
       width: vmin(350);
+      height: vmin(70);
     }
   }
 }
