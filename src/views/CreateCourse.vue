@@ -300,7 +300,7 @@ export default {
   },
 
   setup() {
-    const router = useStore()
+    const router = useRouter()
     // const userId = user.value.uid
 
     const userName = ref()
@@ -529,7 +529,7 @@ export default {
       handleSubmit,
       lectureName,
       alllecturetime,
-
+      router,
       enterLesson,
       enterLecture,
       coursetime,
@@ -610,6 +610,9 @@ export default {
     height: vw(30);
     border: none;
     border-radius: vw(5);
+  }
+  .enter, .enter2:hover{
+    cursor: pointer,
   }
   &__heading {
     @include font(vw(16), 700, vh(30));
