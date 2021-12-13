@@ -360,6 +360,7 @@ export default {
         }
       }
     }
-  }
+  }}
+}
 }
 </style>
