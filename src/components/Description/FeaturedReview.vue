@@ -155,25 +155,25 @@ export default {
       padding: vmin(10) vmin(10);
       max-width: vmin(250);
       h2 {
-        @include font(vmin(15), 700, vmin(10), $greyBlue50);
+        @include font(vmin(10), 700, vmin(10), $greyBlue50);
       }
     }
     &__content-title {
       h3 {
-        @include font(vmin(6), 700, vmin(10), $greyBlue50);
+        @include font(vmin(10), 700, vmin(10), $greyBlue50);
         margin-bottom: vmin(10);
       }
     }
     &__content-logo {
       margin-top: vmin(5);
       img {
-        width: vmin(40);
-        height: vmin(40);
+        width: vmin(25);
+        height: vmin(25);
       }
       .logo__text {
         .name {
           h3 {
-            @include font(vmin(5), 700, vmin(10), $greyBlue50);
+            @include font(vmin(10), 700, vmin(10), $greyBlue50);
             margin-left: vmin(10);
           }
         }
@@ -181,30 +181,30 @@ export default {
       .raiting {
         img {
           margin-left: vmin(10);
-          width: vmin(25);
-          height: vmin(10);
+          width: vmin(35);
+          height: vmin(20);
         }
         p {
-          @include font(vmin(4), 700, vmin(3), $greyBlue80);
+          @include font(vmin(7 ), 700, vmin(6), $greyBlue80);
           margin-left: vmin(7);
         }
       }
     }
     &__content-text {
       p {
-        @include font(vmin(5), 500, vmin(10), $greyBlue60);
+        @include font(vmin(10), 500, vmin(10), $greyBlue60);
         max-width: vmin(250);
       }
     }
     &__buttons {
       p {
-        @include font(vmin(4), 500, vmin(10), $greyBlue60);
+        @include font(vmin(8), 500, vmin(10), $greyBlue60);
         margin-right: vmin(10);
       }
       button {
-        @include font(vmin(4), 500, vmin(10), $greyBlue60);
-        width: vmin(20);
-        height: vmin(10);
+        @include font(vmin(8), 500, vmin(10), $greyBlue60);
+        width: vmin(30);
+        height: vmin(15);
         margin-right: vmin(5);
         margin-top: vmin(5);
       }
