@@ -10,7 +10,6 @@
       </div>
       <p>This price is available for another 5 hours!</p>
       <div class="cart__profile-button">
-        <button>Add To Cart</button>
         <button @click="toggleModal">Buy Now</button>
         <p>30 days money back guarantee</p>
       </div>
