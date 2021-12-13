@@ -3,7 +3,7 @@
     <div class="feedback__create-rev">
       <form @submit.prevent="handleAddReviewOrGrade">
         <div>
-          <img :src="AvatarUserIcon" alt="" />
+          <img v-if="userInfo" :src="userInfo.photo" alt="" />
           <input
             type="text"
             placeholder="Your review"
@@ -79,12 +79,16 @@ export default {
   props: ['moreInfo'],
   setup(props) {
     const store = useStore()
+    const userInfo = computed(() => store.state.userInfo);
     const currentCourseId = computed(() => store.state.courseId)
     const { updateReviews } = update()
     const { updateGrades } = update()
     const { updateCoursesRaiting } = update()
     const userName = user.value.displayName
     const gradeUser = ref(1)
+    const photoUser = ref(
+      'https://cdn4.iconfinder.com/data/icons/professions-1-2/151/8-512.png'
+    )
     const currentDate = ref()
     const reviews = ref([])
     const grades = ref([])
@@ -123,7 +127,8 @@ export default {
           props.moreInfo.id,
           textInp.value,
           gradeUser.value,
-          userName
+          userName,
+          photoUser.value
         )
         await updateGrades('more info', props.moreInfo.id, gradeUser.value)
         const course = props.moreInfo
@@ -256,6 +261,8 @@ export default {
       getDocs()
     })
     return {
+      userInfo,
+      photoUser,
       userName,
       textBtnAddedReview,
       errTextInpMore,
@@ -304,17 +311,23 @@ export default {
         padding: vw(10);
         border: 2px solid $blue;
         margin-left: vw(10);
+        select {
+          border: none;
+        }
         img {
           border-radius: 50%;
           margin-left: vw(5);
+          max-width: vw(50);
+          min-width: vw(40);
         }
         input {
           color: black !important;
           outline: none;
           border: none;
-          @include font(vw(12), bold, 20px, $white);
+          @include font(vw(10), bold, 20px, $white);
           @include flex();
           margin-left: vw(20);
+          max-width: 63px;
         }
         .numLengthTextInp {
           margin-left: vw(-31);

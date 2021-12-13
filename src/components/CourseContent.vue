@@ -233,9 +233,9 @@
 
 <script>
 export default {
-  props: ["moreInfo"],
+  props: ['moreInfo'],
   setup(props) {
-    console.log(props.moreInfo);
+    console.log(props.moreInfo)
   },
   data() {
     return {
@@ -304,7 +304,7 @@ export default {
 
   &-title {
     @include font(vw(13), bold, vw(25));
-    font-family: "San Francisco Pro";
+    font-family: 'San Francisco Pro';
     color: $greyBlue50;
     padding: vw(30) 0 0 vw(30);
     &__item {
@@ -317,7 +317,7 @@ export default {
 
     &__item-1 {
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue60;
     }
     span {
@@ -405,7 +405,7 @@ export default {
 
       a {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue60;
         width: 12%;
         text-decoration: none;
@@ -421,7 +421,7 @@ export default {
     }
     span {
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue50;
       width: 14%;
     }
@@ -444,13 +444,13 @@ export default {
 
       h6 {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 80%;
       }
       span {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 10%;
       }
@@ -558,7 +558,7 @@ export default {
       li {
         list-style-type: none;
         @include font(vmin(8), bold, vmin(10));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue60;
         width: 60%;
       }
@@ -567,7 +567,7 @@ export default {
       }
       h6 {
         @include font(vmin(10), bold, vmin(10));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 70%;
         cursor: pointer;

@@ -1,5 +1,5 @@
 <template>
-  <div class="review">
+  <div v-if="moreInfo" class="review">
     <div class="container">
       <div class="review__content">
         <div class="review__content-title">
@@ -11,7 +11,7 @@
             <img src="@/assets/img/logoReview.png" alt="logo" />
             <div class="logo__text">
               <div class="name">
-                <h3>Adam Newton</h3>
+                <h3>{{ moreInfo.reviews[0].userName }}</h3>
               </div>
               <div class="raiting">
                 <img src="@/assets/img/raiting.svg" alt="reiting" />
@@ -21,13 +21,7 @@
           </div>
           <div class="review__content-text">
             <p>
-              The beauty of astronomy is that anybody can do it. From the
-              tiniest baby to the most advanced astrophysicist, there is
-              something for anyone who wants to enjoy astronomy. In fact, it is
-              a science that is so accessible that virtually anybody can do it
-              virtually anywhere they are. All they have to know how to do is to
-              look up. It really is amazing when you think about it that just by
-              looking up on any given night, you could.
+              {{ moreInfo.reviews[0].text }}
             </p>
           </div>
           <div class="review__buttons">
@@ -45,6 +39,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
+  props: ['moreInfo'],
   setup() {
     const rewievs = ref([])
     const error = ref('')
@@ -161,13 +156,12 @@ export default {
       max-width: vmin(250);
       h2 {
         @include font(vmin(15), 700, vmin(10), $greyBlue50);
-
       }
     }
     &__content-title {
       h3 {
         @include font(vmin(6), 700, vmin(10), $greyBlue50);
-         margin-bottom: vmin(10);
+        margin-bottom: vmin(10);
       }
     }
     &__content-logo {
@@ -242,22 +236,22 @@ export default {
       }
     }
     .logo__text {
-        .name {
-          h3 {
-            @include font(vmin(15), 600, vmin(19), $greyBlue50);
-          }
+      .name {
+        h3 {
+          @include font(vmin(15), 600, vmin(19), $greyBlue50);
         }
       }
-      .raiting {
-        img {
-          width: vmin(50);
-          height: vmin(25);
-        }
-        p {
-          @include font(vmin(10), 600, vmin(3), $greyBlue80);
-        }
+    }
+    .raiting {
+      img {
+        width: vmin(50);
+        height: vmin(25);
       }
-      &__content-text {
+      p {
+        @include font(vmin(10), 600, vmin(3), $greyBlue80);
+      }
+    }
+    &__content-text {
       p {
         @include font(vmin(15), 600, vmin(19), $greyBlue60);
         max-width: vmin(320);
@@ -275,7 +269,6 @@ export default {
         margin-right: vmin(10);
         margin-top: vmin(10);
       }
-
     }
   }
 }

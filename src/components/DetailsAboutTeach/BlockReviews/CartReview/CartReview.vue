@@ -3,10 +3,7 @@
     <div class="cart-review__header">
       <div class="cart-review__header_profile">
         <div class="image">
-          <img
-            src="@/assets/img/DetailsAboutTeach/imageReview1.png"
-            alt="imageTeach"
-          />
+          <img :src="review.photo" alt="imageTeach" />
         </div>
         <div class="data">
           <h4>{{ review.userName }}</h4>
@@ -99,7 +96,14 @@ export default {
       reviewText.value = props.review.text
     }
     const currentDate = new Date()
-    const reviewDate = props.review.createdAt
+    const testReviewDate = props.review.createdAt
+    const testReviewDate2 = new Date(testReviewDate)
+    const reviewDate = ref([])
+    reviewDate.value = [
+      testReviewDate2.getDay(),
+      testReviewDate2.getMonth(),
+      testReviewDate2.getFullYear()
+    ]
     const resultReviewDateMonth = ref(0)
     const resultReviewDateDay = ref(0)
     const resultReviewDateYear = ref(0)
@@ -127,6 +131,8 @@ export default {
       getSomeNumAgo(currentDate, reviewDate)
     }, 50)
     return {
+      testReviewDate2,
+      testReviewDate,
       returnReviewTextAll,
       reviewText,
       resultReviewDateYear,
@@ -159,6 +165,12 @@ export default {
     @include flex(space-between);
     &_profile {
       @include flex();
+      .image {
+        img {
+          min-width: vw(60);
+          max-width: vw(60);
+        }
+      }
       .data {
         margin-left: vw(25);
         h4 {
@@ -263,7 +275,7 @@ export default {
           }
         }
       }
-      &_data {  
+      &_data {
         margin-top: 3vmin;
         margin-left: 18vmin;
         @include flex();
@@ -288,11 +300,11 @@ export default {
     }
   }
 }
-@media screen and(max-width:376px) {
-}
 @media screen and (max-width: 408px) {
   .cart-review__header_data {
     margin-left: 14vmin;
   }
+}
+@media screen and(max-width:376px) {
 }
 </style>

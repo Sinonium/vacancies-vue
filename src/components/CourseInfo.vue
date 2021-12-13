@@ -51,7 +51,7 @@ export default {}
   }
 
   &__block-theme {
-    margin: 0 vw(10);
+    // margin: 0 vw(10);  
     p {
       @include font(vw(24), 600, vh(30));
       color: $white;
@@ -63,11 +63,11 @@ export default {}
   }
   &__students {
     display: inline-flex;
-    margin-top: vw(10);
+    // margin-top: vw(10);
     .students {
       @include font(vw(13), 700, vh(25));
       color: $white;
-      margin: vw(23);
+      // margin: vw(23);
     }
   }
 }
