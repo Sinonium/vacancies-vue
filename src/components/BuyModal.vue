@@ -1,5 +1,5 @@
 <template>
-  <div v-show="modalActive" class="modal">
+  <div v-show="modalActive" class="modal" @click.self="close">
     <transition name="modal-animation-inner">
       <div v-show="modalActive" class="modal__inner">
         <div class="modal__inner-text">
@@ -125,6 +125,7 @@ export default {
   inset: 0;
   position: fixed;
   background: rgba(0, 0, 0, 0.6);
+
   .modal__inner {
     margin: 0 auto;
     max-width: vw(550);
@@ -190,26 +191,26 @@ export default {
   .modal {
     .modal__inner {
       max-width: vmin(310);
-      height: vmin(200);
+      height: vmin(230);
       padding: vmin(10);
       margin-top: vmin(10);
       &-text {
         width: vmin(300);
         margin-top: vmin(30);
         h3 {
-          @include font(vmin(7), 700, vmin(10));
+          @include font(vmin(10), 700, vmin(10));
         }
         p {
-          @include font(vmin(5), 600, vmin(7));
+          @include font(vmin(9), 600, vmin(12));
         }
       }
       .buttons {
         width: vmin(300);
         margin-top: vmin(5);
         button {
-          @include font(vmin(4), 700, vmin(10), $greyBlue60);
-          width: vmin(30);
-          height: vmin(15);
+          @include font(vmin(9), 700, vmin(10), $greyBlue60);
+          width: vmin(50);
+          height: vmin(20);
           margin-right: vmin(10);
         }
       }
@@ -218,7 +219,7 @@ export default {
         width: vmin(300);
         margin-top: vmin(15);
         input {
-          @include font(vmin(5), 600, vmin(10), $greyBlue70);
+          @include font(vmin(8), 600, vmin(10), $greyBlue70);
           height: vmin(15);
           width: vmin(290);
           margin-bottom: vmin(7);
@@ -238,9 +239,10 @@ export default {
   .modal {
     .modal__inner {
       max-width: vmin(240);
-      height: vmin(450);
+      height: vmin(460);
       padding: vmin(10);
       margin-top: vmin(50);
+      border-radius: vmin(20);
       &-text {
         width: vmin(160);
         margin-top: vmin(10);
@@ -267,13 +269,13 @@ export default {
       }
       .buttons {
         display: flex;
-
         margin-top: vmin(5);
         button {
           @include font(vmin(14), 700, vmin(14), $greyBlue60);
           width: vmin(50);
           height: vmin(30);
           margin-left: vmin(15);
+          text-align: center;
         }
       }
     }
