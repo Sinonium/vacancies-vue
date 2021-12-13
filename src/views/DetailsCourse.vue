@@ -143,7 +143,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Description'">
-        <Description />
+        <Description :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -212,8 +212,9 @@ import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { computed, ref } from '@vue/reactivity'
-import getMoreInfo from '@/composables/getMoreInfo'
+import getDocument from '@/composables/getDocument'
 import { onMounted } from '@vue/runtime-core'
+
 export default {
   props: ['id'],
   components: {
@@ -227,11 +228,13 @@ export default {
   },
   setup(props) {
     const addToCart = ref(true)
+    const moreInfo = ref()
+    const popa = ref()
 
     const getInfo = async () => {
       console.log(props.id)
-      const { documents, error } = await getMoreInfo('more info', props.id)
-      console.log(documents.value)
+      const { documents, error } = await getDocument('more info', props.id)
+      moreInfo.value = documents.value
     }
 
     onMounted(() => {
@@ -262,6 +265,8 @@ export default {
     }
 
     return {
+      popa,
+      moreInfo,
       getInfo,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
@@ -363,7 +368,7 @@ body {
   }
 }
 .details-page__bottom {
-  margin-left: -33.2vw;
+  margin-left: -26.5vw;
   margin-top: vw(35);
   margin-bottom: vw(40);
   @include flex();
@@ -507,7 +512,115 @@ body {
     margin-left: vw(260);
   }
 }
-@media screen and(max-width: 579px) {
+@media screen and(max-width: 580px) {
+  .details-page {
+    margin-top: vmin(45);
+    &__head {
+      position: relative;
+      display: flex;
+      background: $white;
+      height: vmin(80);
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: $greyBlue95;
+        border-radius: 1px;
+      }
+      ul {
+        margin-left: vmin(-10);
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        li {
+          cursor: pointer;
+          position: relative;
+          margin-left: vmin(15);
+          @include flex();
+          &::before {
+            content: '';
+            position: absolute;
+            bottom: vmin(-35);
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: $blue;
+            border-radius: 1px;
+            opacity: 0;
+            transition: 0.4s;
+          }
+          span {
+            @include font(vmin(9), bold, 20px, $greyBlue60);
+            transition: 0.4s;
+            margin-left: vmin(5.5);
+          }
+        }
+        svg {
+          path {
+            transition: 0.4s;
+          }
+        }
+      }
+    }
+  }
+  .details-page__head ul li.active {
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: vmin(-35);
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: $blue;
+      border-radius: 1px;
+      opacity: 1;
+    }
+    span {
+      @include font(vmin(9), bold, 20px, $blue);
+    }
+    svg {
+      path {
+        fill: $blue;
+      }
+    }
+  }
+  .details-page__bottom {
+    margin-left: vmin(-10);
+    margin-top: vmin(35);
+    margin-bottom: vmin(40);
+    @include flex();
+    &-arrow_prev,
+    &-arrow_next {
+      box-shadow: 0 vmin(2) vmin(5) rgba(54, 61, 77, 0.03);
+      border-radius: vmin(30);
+      padding: vmin(15);
+      cursor: pointer;
+    }
+    &-arrow_prev {
+      img {
+        transform: rotate(-90deg);
+      }
+    }
+    &-arrow_next {
+      img {
+        transform: rotate(90deg);
+      }
+    }
+    &-btn_push_page {
+      background: $white;
+      box-shadow: 0 vmin(2) vmin(5) rgba(54, 61, 77, 0.03);
+      border-radius: vmin(30);
+      @include flex();
+      padding: vmin(17) vmin(38) vmin(15) vmin(26);
+      span {
+        @include font(vmin(12), bold, 20px, $greyBlue60);
+        margin-left: vmin(16);
+      }
+    }
+  }
 }
 @media screen and(max-width: 426px) {
   .details-page__modal {
@@ -519,4 +632,3 @@ body {
 @media screen and(max-width: 376px) {
 }
 </style>
-  

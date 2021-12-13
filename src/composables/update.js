@@ -14,11 +14,6 @@ const update = () => {
         'https://firebasestorage.googleapis.com/v0/b/vacancies-vue.appspot.com/o/images%2FteacherImages%2Fatabek.png?alt=media&token=28c9c4e1-a477-45ba-adc3-b3d6d7470ba0',
       name: newName,
       description: newDoc,
-      // ...test.data().description,
-      // {
-      //   teacherName: 'Janybek',
-      //   text: 'Realy',
-      // },
     })
   }
 
@@ -27,7 +22,8 @@ const update = () => {
     id,
     newData,
     rating,
-    studentName
+    studentName,
+    studentPhoto
   ) => {
     const moreInfoDoc = doc(firestore, collectionName, id)
 
@@ -40,6 +36,7 @@ const update = () => {
           userName: studentName,
           text: newData,
           grade: Number(rating),
+          photo: studentPhoto,
           createdAt: Timestamp.fromDate(new Date()),
         },
       ],

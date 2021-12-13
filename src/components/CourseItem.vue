@@ -14,19 +14,23 @@
       <router-link
         :to="{ name: 'DetailsCourse', params: { id: course.moreInfoId } }"
         class="router-link"
+        @click="handleClick(course.teacherId)"
       >
         <div className="curse-item__bottom">
           <div className="course-item__info">
             <h3 className="course-item__name">{{ course.name }}</h3>
-            <div className="course-item__rating">
-              <img src="./../assets/img/star.svg" alt="rating" />
-              <img src="./../assets/img/star.svg" alt="rating" />
-              <img src="./../assets/img/star.svg" alt="rating" />
-              <img src="./../assets/img/star.svg" alt="rating" />
-              <img src="./../assets/img/star.svg" alt="rating" />
-              <span class="grade">{{ course.grade }}</span>
-              <span class="studens">{{ course.students }}</span>
+             <div className="course-item__rating">
+               <img v-if="Number(course.grade) >=1" src="./../assets/img/star.svg" alt="rating" />
+               <img v-if="Number(course.grade) >=2" src="./../assets/img/star.svg" alt="rating" />
+               <img v-if="Number(course.grade) >=3" src="./../assets/img/star.svg" alt="rating" />
+               <img v-if="Number(course.grade) >=4" src="./../assets/img/star.svg" alt="rating" />
+               <img v-if="Number(course.grade) >=5" src="./../assets/img/star.svg" alt="rating" />
+               <img v-if="Number(course.grade) <1 || Number(course.grade)%1!=0 " src="./../assets/img/sidebar/starHalf.svg" alt="rating" />
+               <span class="grade">{{ course.grade }}</span>
+               <span class="studens">{{ course.students }}</span>
             </div>
+
+
             <div className="course-item__details">
               <p class="teacher's-name">{{ course.teacher }}</p>
               <span class="price">${{ course.price }}</span>
@@ -42,6 +46,9 @@
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import update from '@/composables/update'
+import useDoc from '@/composables/useDoc'
+import getDocument from '@/composables/getDocument'
+import { ref } from '@vue/reactivity'
 
 export default {
   props: ['course'],
@@ -49,12 +56,21 @@ export default {
     const { addLikedCourse } = update()
     const store = useStore()
     const router = useRouter()
+    const teacherInfo = ref()
+
+    const { getSingleDoc } = useDoc()
+
+    const handleClick = async (teacherId) => {
+      store.dispatch('getTeacher', teacherId)
+    }
 
     const handleLike = async (id) => {
       await addLikedCourse('users', id)
     }
 
     return {
+      teacherInfo,
+      handleClick,
       handleLike,
     }
   },
@@ -67,12 +83,13 @@ export default {
   margin-right: vw(30);
   margin-bottom: vw(30);
   width: vw(255);
+  height: vw(370);
   .router-link {
     text-decoration: none;
   }
   .course-item {
     background: #ffffff;
-    max-height: vw(370);
+    height: vw(370);
     box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.03);
     border-radius: vw(10);
     &__pagination {
@@ -140,7 +157,7 @@ export default {
       height: vw(50);
     }
     &__rating {
-      margin: vw(19) 0;
+      margin: 0;
 
       img {
         width: vw(12);
@@ -201,6 +218,7 @@ export default {
     }
   }
 }
+
 @media screen and (max-width: 768px) {
   .col-3 {
     width: vw(400);
@@ -251,10 +269,11 @@ export default {
       }
       &__name {
         margin-top: vw(30);
-        @include font(vw(25), 700, vh(30));
-        height: vw(50);
+        @include font(vw(25), 700, vh(15));
+        height: vw(70);
       }
       &__rating {
+         margin-top: vw(20);
         img {
           width: vw(20);
           height: vw(20);
@@ -269,28 +288,28 @@ export default {
         display: flex;
         align-items: center;
         p {
-          @include font(vw(20), 700, vh(20));
+          @include font(vw(20), 700, vh(15));
           color: #7d8fb3;
           margin: 0;
         }
         span {
           margin: 0;
-          @include font(vw(20), 700, vh(30));
+          @include font(vw(20), 700, vh(20));
           color: #6b7a99;
         }
       }
     }
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .col-3 {
     width: vmin(300);
-    height: vmin(350);
+    height: vmin(400);
     .course-item {
       min-height: vmin(350);
       border-radius: vmin(10);
       &__header {
-        padding: vmin(10);
+        padding: vmin(10) vmin(5) vmin(100) vmin(5);
         height: vmin(50);
       }
       &__image {
@@ -300,9 +319,9 @@ export default {
         border-radius: vmin(3);
       }
       &__time {
-        border-radius: vmin(15);
-        padding: vmin(10) vmin(30);
-        max-height: vmin(30);
+        border-radius: vmin(30);
+        padding: vmin(7) vmin(20);
+        max-height: vmin(40);
         span {
           @include font(vmin(13), 700, vmin(20));
           margin-left: vmin(5);
@@ -323,17 +342,17 @@ export default {
         }
       }
       &__info {
-        margin-top: vmin(170);
+        margin-top: vmin(70);
         padding: 0 vmin(20);
       }
       &__name {
-        @include font(vmin(18), 700, vmin(25));
+        @include font(vmin(15), 700, vmin(15));
         color: #6b7a99;
         margin-bottom: vmin(5);
         height: vmin(25);
       }
       &__rating {
-        margin: vmin(8) 0;
+        margin: vmin(10) 0 0 0;
 
         img {
           width: vmin(10);
@@ -349,7 +368,7 @@ export default {
         display: flex;
         justify-content: space-between;
         p {
-          @include font(vmin(15), 700, vmin(10));
+          @include font(vmin(15), 700, vmin(15));
           color: #7d8fb3;
           margin-top: vmin(10);
         }
@@ -360,6 +379,5 @@ export default {
         }
       }
     }
-  }
-}
+  }}
 </style>
