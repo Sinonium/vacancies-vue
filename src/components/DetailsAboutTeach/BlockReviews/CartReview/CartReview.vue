@@ -134,6 +134,7 @@ export default {
       getSomeNumAgo(currentDate, reviewDate)
     }, 50)
     return {
+      testReviewDate2,
       testReviewDate,
       returnReviewTextAll,
       reviewText,
