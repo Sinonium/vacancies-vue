@@ -4,7 +4,6 @@ import DetailsCourse from '../views/DetailsCourse.vue'
 import CreateCourse from '../views/CreateCourse.vue'
 import Login from '../pages/Login.vue'
 import SignUp from '../pages/SignUp.vue'
-import Test from '../views/Test.vue'
 import {user} from '../composables/getUser' 
 import Becometeacher from '../views/BecomeTeacher.vue'
 const requireAuth = (to, from, next) => {
@@ -52,12 +51,6 @@ const routes = [
     name: 'SignUp',
     component: SignUp,
     beforeEnter: requireNoAuth
-  },
-  {
-    path: '/test',
-    name: 'Test',
-    component: Test,
-    beforeEnter: requireAuth
   },
   {
     path: '/becometeacher',

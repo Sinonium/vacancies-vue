@@ -49,34 +49,34 @@
 </template>
 
 <script>
-import { computed, ref } from "@vue/reactivity";
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
-import useDoc from "@/composables/useDoc";
+import { computed, ref } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import useDoc from '@/composables/useDoc'
 
 export default {
   setup() {
-    const { addCollection } = useDoc();
-    const email = ref("");
-    const password = ref("");
-    const name = ref("");
-    const userBuy = ref([]);
-    const addCourses = ref([]);
-    const router = useRouter();
-    const store = useStore();
-    const currentUser = computed(() => store.state.auth.currentUser);
+    const { addCollection } = useDoc()
+    const email = ref('')
+    const password = ref('')
+    const name = ref('')
+    const userBuy = ref([])
+    const addCourses = ref([])
+    const router = useRouter()
+    const store = useStore()
+    const currentUser = computed(() => store.state.auth.currentUser)
     const handleSubmit = async () => {
       try {
-        await store.dispatch("createUser", {
+        await store.dispatch('createUser', {
           email: email.value,
           password: password.value,
           name: name.value,
-        });
+        })
 
-        const { user } = await currentUser.value;
+        const { user } = await currentUser.value
 
         await addCollection(
-          "users",
+          'users',
           {
             name: name.value,
             email: email.value,
@@ -84,15 +84,18 @@ export default {
             userBuy: userBuy.value,
             isTeacher: false,
             description: [],
+            likedCourse: [],
+            photo:
+              'https://firebasestorage.googleapis.com/v0/b/vacancies-vue.appspot.com/o/images%2FuserImages%2Farsenio.PNG?alt=media&token=8d2126d3-0bd0-4a0b-abb8-6a318e40b81c',
           },
           false,
           user.uid
-        );
-        await router.push("/");
+        )
+        await router.push('/')
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
-    };
+    }
     return {
       addCourses,
       userBuy,
@@ -100,13 +103,13 @@ export default {
       password,
       email,
       handleSubmit,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .signup {
   width: vw(700);
@@ -119,7 +122,7 @@ export default {
   }
   h2 {
     @include font(vw(30), 400, vw(50));
-    font-family: "San Francisco Pro";
+    font-family: 'San Francisco Pro';
     color: $greyBlue70;
     padding-top: vw(40);
     margin-left: vw(-10);

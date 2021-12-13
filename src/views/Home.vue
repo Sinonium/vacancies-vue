@@ -34,7 +34,7 @@
   <Filters />
   <div class="courses-items">
     <div class="row" v-if="courses">
-      <CourseItem  v-for="course in courses" :key="course.id" :course="course"/>
+      <CourseItem  v-for="course in courses" :key="course" :course="course"/>
     </div>
   </div>
 </template>
@@ -51,10 +51,16 @@ export default {
 
     const courses = computed(() => store.state.courses)
     const selectedCourse = computed(()=> store.state.categories.category);
-
+    
     onMounted(() => {
       store.dispatch('getCourses')
+      console.log('sasasa');
+
     })
+
+    setTimeout(() => {
+      console.log(courses.value);
+    }, 2000);
 
     return {
       selectedCourse,
@@ -141,7 +147,7 @@ export default {
       width: 100%;
     }
     &__block {
-      padding: vw(30) 0 vw(20) vw(30);
+      padding: vw(30) 0 vw(20) 0;
     }
     &__title {
       display: block;
@@ -198,14 +204,13 @@ export default {
   }
   .courses-info {
     width: 100%;
-    margin: vw(60) 0;
+    margin: vmin(20) 0 vmin(30) 0;
     &__image {
       width: 100%;
       object-fit: cover;
       height: vmin(200);
     }
     &__block {
-      margin-left: vmin(10);
       display: block;
       width: 100%;
       padding: 0;
