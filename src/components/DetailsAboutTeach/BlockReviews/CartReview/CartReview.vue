@@ -99,7 +99,14 @@ export default {
       reviewText.value = props.review.text
     }
     const currentDate = new Date()
-    const reviewDate = props.review.createdAt
+    const testReviewDate = props.review.createdAt
+    const testReviewDate2 = new Date(testReviewDate)
+    const reviewDate = ref([])
+    reviewDate.value = [
+      testReviewDate2.getDay(),
+      testReviewDate2.getMonth(),
+      testReviewDate2.getFullYear()
+    ]
     const resultReviewDateMonth = ref(0)
     const resultReviewDateDay = ref(0)
     const resultReviewDateYear = ref(0)
@@ -127,6 +134,7 @@ export default {
       getSomeNumAgo(currentDate, reviewDate)
     }, 50)
     return {
+      testReviewDate,
       returnReviewTextAll,
       reviewText,
       resultReviewDateYear,
