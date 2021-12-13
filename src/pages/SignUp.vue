@@ -86,7 +86,7 @@ export default {
             description: [],
             likedCourse: [],
             photo:
-              'https://firebasestorage.googleapis.com/v0/b/vacancies-vue.appspot.com/o/images%2FuserImages%2Farsenio.PNG?alt=media&token=8d2126d3-0bd0-4a0b-abb8-6a318e40b81c',
+              'https://cdn4.iconfinder.com/data/icons/professions-1-2/151/8-512.png',
           },
           false,
           user.uid

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="moreInfo" class="container">
     <div class="container-div">
       <div :class="{ actives: allShow === true }" class="themes">
         <div class="themes-title">
@@ -7,8 +7,12 @@
           <img src="@/assets/scss/icons/burger-menu.svg" />
           <div class="themes-title__item">
             <div class="themes-title__item-1">
-              <ul :class="{ actives: allShow === true }">
-                <li><img src="@/assets/scss/icons/done.svg" />JANYBEK</li>
+              <ul
+                v-for="item in moreInfo.whatStudy"
+                :key="item"
+                :class="{ actives: allShow === true }"
+              >
+                <li><img src="@/assets/scss/icons/done.svg" />{{ item }}</li>
               </ul>
             </div>
           </div>
@@ -44,8 +48,14 @@
                 fill="#C3CAD9"
               />
             </svg>
-            <h6 @click="isOpen.a = !isOpen.a">JANYBEK</h6>
-            <span>TIME</span>
+            <h6
+              v-for="data in moreInfo.courseContent"
+              :key="data"
+              @click="isOpen.a = !isOpen.a"
+            >
+              {{ data }}
+            </h6>
+            <span>{{ allTime }}</span>
           </div>
           <div>
             <div class="content-courses__open" v-if="isOpen.a">
@@ -142,9 +152,9 @@
 
 <script>
 export default {
-  props: ["moreInfo"],
+  props: ['moreInfo'],
   setup(props) {
-    console.log(props.moreInfo);
+    console.log(props.moreInfo)
   },
   data() {
     return {
@@ -227,7 +237,7 @@ export default {
 
   &-title {
     @include font(vw(13), bold, vw(25));
-    font-family: "San Francisco Pro";
+    font-family: 'San Francisco Pro';
     color: $greyBlue50;
     padding: vw(30) 0 0 vw(30);
     &__item {
@@ -240,7 +250,7 @@ export default {
 
     &__item-1 {
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue60;
     }
     span {
@@ -270,7 +280,7 @@ export default {
 }
 button {
   @include font(vw(12), bold, vw(20));
-  font-family: "San Francisco Pro";
+  font-family: 'San Francisco Pro';
   color: $greyBlue60;
   width: vw(190);
   height: vw(40);
@@ -324,7 +334,7 @@ button {
 
       a {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue60;
         width: 12%;
         text-decoration: none;
@@ -340,7 +350,7 @@ button {
     }
     span {
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue50;
       width: 10%;
     }
@@ -363,13 +373,13 @@ button {
 
       h6 {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 80%;
       }
       span {
         @include font(vw(12), bold, vw(20));
-        font-family: "San Francisco Pro";
+        font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 10%;
       }
@@ -387,133 +397,130 @@ button {
   }
 }
 
- @media screen and (max-width: 1024px) {
-     .container {
+@media screen and (max-width: 1024px) {
+  .container {
     &-div {
       margin: vmin(10);
     }
   }
 
-    .themes {
-       border-radius: vmin(5);
-       width: 100%;
-       height: 100%;
-       &.actives {
-          height: 100%;
-       }
-       &-title {
-          @include font(vmin(12), bold, vmin(13));
-          padding: vmin(15) 0 0 vmin(15);
-          &__img{
-            display: none;
-          }
-          img {
-            margin-left: vmin(10);
-             width: vmin(7);
-          }
-
-          &__item-1 {
-             padding-right: vmin(20);
-          }
-
-          &__item-1,
-          &__item-2 {
-             @include font(vmin(9), bold, vmin(10));
-             color: $greyBlue60;
-          }
-       }
-       ul {
-          height: vmin(100);
-          &.actives {
-             @include font(vmin(9), bold, vmin(10));
-             height:100%;
-             color: $greyBlue60;
-          }
-       }
-       li {
-          padding-top: vmin(15);
-          width: 80%;
-          img {
-             margin-right: vmin(20);
-          }
-       }
-       button {
-          @include font(vmin(10), bold, vmin(10));
-          width: vmin(100);
-          height: vmin(20);
-          margin: vmin(15) 0 vmin(10) vmin(100);
-
-          &.actives {
-             @include font(vmin(7), bold, vmin(10));
-             color: $greyBlue60 !important;
-          }
-          &:hover {
-             border: 2px solid $greyBlue95;
-             box-shadow: 0 3px 10px 0 $greyBlue85;
-          }
-       }
+  .themes {
+    border-radius: vmin(5);
+    width: 100%;
+    height: 100%;
+    &.actives {
+      height: 100%;
     }
+    &-title {
+      @include font(vmin(12), bold, vmin(13));
+      padding: vmin(15) 0 0 vmin(15);
+      &__img {
+        display: none;
+      }
+      img {
+        margin-left: vmin(10);
+        width: vmin(7);
+      }
 
-    .content {
-       width:100%;
-       box-shadow: 0 0 10px rgba(0, 0, 0, 0.123);
-       border-radius: vmin(5);
-       padding-bottom: vmin(15);
-       &-courses {
-          width: 90%;
-          // box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
-          border-radius: vmin(10);
-          margin: vmin(20) vmin(20) vmin(0) ;
-          height: 100%;
-          &.actives {
-             @include font(vmin(12), bold, vmin(20));
-             color: $greyBlue60 !important;
-          }
-          &__all {
-            padding: vmin(7);
-          }
-          li {
-             list-style-type: none;
-             @include font(vmin(8), bold, vmin(10));
-             font-family: "San Francisco Pro";
-             color: $greyBlue60;
-             width: 60%;
-          }
-          &__open {
-             width: 100%;
-          }
-          h6 {
-             @include font(vmin(10), bold, vmin(10));
-             font-family: "San Francisco Pro";
-             color: $greyBlue50;
-             width: 70%;
-             cursor: pointer;
-          }
-          span {
-             display: none;
-          }
+      &__item-1 {
+        padding-right: vmin(20);
+      }
 
-          img {
-             width: vmin(10);
-             height: vmin(10);
-             padding: 0 vmin(5) 0 vmin(5);
-          }
-       }
-           button {
-          @include font(vmin(10), bold, vmin(10));
-          width: vmin(100);
-          height: vmin(20);
-          margin-left: vmin(120);
-              &.actives {
-             @include font(vmin(10), bold, vmin(10));
-             color: $greyBlue60 !important;
-          }
-         
-       }
+      &__item-1,
+      &__item-2 {
+        @include font(vmin(9), bold, vmin(10));
+        color: $greyBlue60;
+      }
     }
-  
-    
- }
+    ul {
+      height: vmin(100);
+      &.actives {
+        @include font(vmin(9), bold, vmin(10));
+        height: 100%;
+        color: $greyBlue60;
+      }
+    }
+    li {
+      padding-top: vmin(15);
+      width: 80%;
+      img {
+        margin-right: vmin(20);
+      }
+    }
+    button {
+      @include font(vmin(10), bold, vmin(10));
+      width: vmin(100);
+      height: vmin(20);
+      margin: vmin(15) 0 vmin(10) vmin(100);
+
+      &.actives {
+        @include font(vmin(7), bold, vmin(10));
+        color: $greyBlue60 !important;
+      }
+      &:hover {
+        border: 2px solid $greyBlue95;
+        box-shadow: 0 3px 10px 0 $greyBlue85;
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.123);
+    border-radius: vmin(5);
+    padding-bottom: vmin(15);
+    &-courses {
+      width: 90%;
+      // box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
+      border-radius: vmin(10);
+      margin: vmin(20) vmin(20) vmin(0);
+      height: 100%;
+      &.actives {
+        @include font(vmin(12), bold, vmin(20));
+        color: $greyBlue60 !important;
+      }
+      &__all {
+        padding: vmin(7);
+      }
+      li {
+        list-style-type: none;
+        @include font(vmin(8), bold, vmin(10));
+        font-family: 'San Francisco Pro';
+        color: $greyBlue60;
+        width: 60%;
+      }
+      &__open {
+        width: 100%;
+      }
+      h6 {
+        @include font(vmin(10), bold, vmin(10));
+        font-family: 'San Francisco Pro';
+        color: $greyBlue50;
+        width: 70%;
+        cursor: pointer;
+      }
+      span {
+        display: none;
+      }
+
+      img {
+        width: vmin(10);
+        height: vmin(10);
+        padding: 0 vmin(5) 0 vmin(5);
+      }
+    }
+    button {
+      @include font(vmin(10), bold, vmin(10));
+      width: vmin(100);
+      height: vmin(20);
+      margin-left: vmin(120);
+      &.actives {
+        @include font(vmin(10), bold, vmin(10));
+        color: $greyBlue60 !important;
+      }
+    }
+  }
+}
 
 @media screen and (max-width: 500px) {
   .container {
@@ -531,7 +538,6 @@ button {
       height: 100%;
     }
     &-title {
-      
       &__img {
         display: none;
       }
@@ -568,10 +574,10 @@ button {
       height: vmin(30);
       margin: vmin(15) 0 vmin(20) vmin(70);
       border-radius: vmin(20);
-          &.actives {
-             @include font(vmin(13), bold, vmin(10));
-             color: $greyBlue60 !important;
-          }
+      &.actives {
+        @include font(vmin(13), bold, vmin(10));
+        color: $greyBlue60 !important;
+      }
     }
   }
 
@@ -579,7 +585,6 @@ button {
     width: 100%;
     border-radius: vmin(5);
     &-courses {
-
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
       border-radius: vmin(10);
       &.actives {
@@ -611,11 +616,11 @@ button {
         padding: 0 vmin(10) 0 vmin(10);
       }
     }
-      button {
+    button {
       @include font(vmin(13), bold, vmin(10));
       width: vmin(120);
       height: vmin(30);
-      margin:  vmin(10) 0 vmin(10) vmin(100);
+      margin: vmin(10) 0 vmin(10) vmin(100);
       border-radius: vmin(20);
     }
   }

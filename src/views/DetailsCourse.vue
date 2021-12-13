@@ -143,7 +143,7 @@
         </div>
       </div>
       <div v-if="currentDetailsPage === 'Description'">
-        <Description />
+        <Description :moreInfo="moreInfo" />
         <div class="details-page__bottom">
           <div class="details-page__bottom-arrow_prev">
             <img :src="ArrowIcon" alt="ArrowIcon" />
@@ -212,8 +212,9 @@ import DetailsAboutTeach from '@/components/DetailsAboutTeach/DetailsAboutTeach.
 import CourseContent from '@/components/CourseContent.vue'
 import Description from '@/components/Description/Description.vue'
 import { computed, ref } from '@vue/reactivity'
-import getMoreInfo from '@/composables/getMoreInfo'
+import getDocument from '@/composables/getDocument'
 import { onMounted } from '@vue/runtime-core'
+
 export default {
   props: ['id'],
   components: {
@@ -227,11 +228,13 @@ export default {
   },
   setup(props) {
     const addToCart = ref(true)
+    const moreInfo = ref()
+    const popa = ref()
 
     const getInfo = async () => {
       console.log(props.id)
-      const { documents, error } = await getMoreInfo('more info', props.id)
-      console.log(documents.value)
+      const { documents, error } = await getDocument('more info', props.id)
+      moreInfo.value = documents.value
     }
 
     onMounted(() => {
@@ -262,6 +265,8 @@ export default {
     }
 
     return {
+      popa,
+      moreInfo,
       getInfo,
       fireIcon: require('@/assets/icons/DetailsAboutTeach/fire.svg'),
       studIcon: require('@/assets/icons/DetailsAboutTeach/person.svg'),
@@ -514,4 +519,3 @@ body {
 @media screen and(max-width: 376px) {
 }
 </style>
-  
