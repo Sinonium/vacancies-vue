@@ -163,7 +163,41 @@ export default {
         margin-top: vw(8);
         @include font(vw(14), 700, vh(30));
         color: #6b7a99;
-      }
+      
+   }
+  
+}
+}
+}
+@media screen and (max-width: 426px) {
+.col-3 {
+   width: vmin(270);
+   height: vmin(340);
+.course-item {
+  min-height: vmin(340);
+  border-radius: vmin(10);
+  &__header { 
+    padding: vmin(10);
+    height: vmin(50);
+  }
+  &__image {
+    width: vmin(270);
+    height: vmin(200);
+    z-index: -1;
+    border-radius: vmin(3);
+  }
+  &__time {
+    border-radius: vmin(15);
+    padding: vmin(10) vmin(30);
+    max-height: vmin(30);
+    span {
+      @include font(vmin(13), 700, vmin(20));
+      margin-left: vmin(5);
+      color: white;
+    }
+    img {
+      width: vmin(10);
+      height: vmin(10);
     }
   }
 }

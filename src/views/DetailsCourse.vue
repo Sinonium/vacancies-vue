@@ -567,7 +567,6 @@
          }
       }
    }
-
    .details-page__head ul li.active {
       &::before {
          content: "";

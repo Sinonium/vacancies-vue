@@ -147,7 +147,7 @@ export default {
       width: 100%;
     }
     &__block {
-      padding: vw(30) 0 vw(20) vw(30);
+      padding: vw(30) 0 vw(20) 0;
     }
     &__title {
       display: block;
@@ -204,14 +204,13 @@ export default {
   }
   .courses-info {
     width: 100%;
-    margin: vw(60) 0;
+    margin: vmin(20) 0 vmin(30) 0;
     &__image {
       width: 100%;
       object-fit: cover;
       height: vmin(200);
     }
     &__block {
-      margin-left: vmin(10);
       display: block;
       width: 100%;
       padding: 0;
