@@ -34,7 +34,7 @@
   <Filters />
   <div class="courses-items">
     <div class="row" v-if="courses">
-      <CourseItem  v-for="course in courses" :key="course.id" :course="course"/>
+      <CourseItem  v-for="course in courses" :key="course" :course="course"/>
     </div>
   </div>
 </template>
@@ -51,10 +51,16 @@ export default {
 
     const courses = computed(() => store.state.courses)
     const selectedCourse = computed(()=> store.state.categories.category);
-
+    
     onMounted(() => {
       store.dispatch('getCourses')
+      console.log('sasasa');
+
     })
+
+    setTimeout(() => {
+      console.log(courses.value);
+    }, 2000);
 
     return {
       selectedCourse,

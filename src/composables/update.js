@@ -10,7 +10,8 @@ const update = () => {
 
     return await updateDoc(userDoc, {
       isTeacher: true,
-      photo: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg',
+      photo:
+        'https://firebasestorage.googleapis.com/v0/b/vacancies-vue.appspot.com/o/images%2FteacherImages%2Fatabek.png?alt=media&token=28c9c4e1-a477-45ba-adc3-b3d6d7470ba0',
       name: newName,
       description: newDoc,
       // ...test.data().description,
