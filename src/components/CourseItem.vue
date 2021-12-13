@@ -18,6 +18,7 @@
       <router-link
         :to="{ name: 'DetailsCourse', params: { id: course.moreInfoId } }"
         class="router-link"
+        @click="handleClickId(course.id)"
       >
         <div className="curse-item__bottom">
           <div className="course-item__info">
@@ -66,7 +67,11 @@ export default {
     const handleLike = async (id) => {
       await addLikedCourse('users', id)
     }
-
+    const handleClickId = (id) => {
+      setTimeout(() => {
+        store.commit('GET_COURSE_ID',id)
+      }, 2000)
+    }
     return {
       handleClickId,
       activeItem,
