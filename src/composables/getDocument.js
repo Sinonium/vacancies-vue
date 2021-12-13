@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { firestore } from '@/firebase/config'
 import { getDoc, doc } from 'firebase/firestore'
 
-const getMoreInfo = async (collectionName, paramId) => {
+const getDocument = async (collectionName, paramId) => {
   const documents = ref(null)
   const error = ref(null)
   try {
@@ -18,4 +18,4 @@ const getMoreInfo = async (collectionName, paramId) => {
   return { documents, error }
 }
 
-export default getMoreInfo
+export default getDocument

@@ -10,17 +10,19 @@
         <img class="sticker" src="./../assets/img/stickers.svg" alt="" />
         <h3 v-if="!selectedCourse[2]" class="name">{{ selectedCourse[2] }}</h3>
         <h3 v-else class="name">{{ selectedCourse[2] }} Courses</h3>
-        
       </div>
 
       <div class="courses-info__block-2">
         <div class="courses-info__content">
           <p class="categories">Related Categories:</p>
-          <h5 v-if="selectedCourse">{{selectedCourse[0]}} {{selectedCourse[1]}}</h5>
+          <h5 v-if="selectedCourse">
+            {{ selectedCourse[0] }} {{ selectedCourse[1] }}
+          </h5>
         </div>
         <div class="courses-info__students">
-          
-          <span class="students"><img src="./../assets/img/students.svg" alt="" />4,454,356</span>
+          <span class="students"
+            ><img src="./../assets/img/students.svg" alt="" />4,454,356</span
+          >
 
           <div>
             <h5 class="about-students">
@@ -34,33 +36,32 @@
   <Filters />
   <div class="courses-items">
     <div class="row" v-if="courses">
-      <CourseItem  v-for="course in courses" :key="course" :course="course"/>
+      <CourseItem v-for="course in courses" :key="course.id" :course="course" />
     </div>
   </div>
 </template>
 
 <script>
 import CourseItem from '../components/CourseItem.vue'
-import { onMounted, computed} from '@vue/runtime-core'
+import { onMounted, computed } from '@vue/runtime-core'
 import { useStore } from 'vuex'
 import Filters from '@/components/Filters/Fiters.vue'
 export default {
-  components: { Filters, CourseItem, },
+  components: { Filters, CourseItem },
   setup() {
     const store = useStore()
 
     const courses = computed(() => store.state.courses)
-    const selectedCourse = computed(()=> store.state.categories.category);
-    
+    const selectedCourse = computed(() => store.state.categories.category)
+
     onMounted(() => {
       store.dispatch('getCourses')
-      console.log('sasasa');
-
+      console.log('sasasa')
     })
 
     setTimeout(() => {
-      console.log(courses.value);
-    }, 2000);
+      console.log(courses.value)
+    }, 2000)
 
     return {
       selectedCourse,
@@ -118,7 +119,7 @@ export default {
     }
   }
   &__students {
-    img{
+    img {
       margin-right: vw(13);
     }
     display: inline-flex;
@@ -151,11 +152,11 @@ export default {
     }
     &__title {
       display: block;
-       width: vw(300);
+      width: vw(300);
       .name {
         @include font(vw(25), 600, vw(40));
         color: $white;
-        margin-top: vw(50);       
+        margin-top: vw(50);
       }
       .sticker {
         padding: vw(30);
@@ -165,7 +166,7 @@ export default {
     &__block-2 {
       margin: 0 0 0 vw(200);
       p {
-       @include font(vw(25), 600, vw(40));
+        @include font(vw(25), 600, vw(40));
         color: $white;
         opacity: 0.3;
         margin: 0;
@@ -179,7 +180,7 @@ export default {
     &__students {
       display: block;
       margin: vmin(10) 0 vmin(5);
-      span{
+      span {
         margin: 0;
       }
       .students {
@@ -188,7 +189,7 @@ export default {
         margin: 0;
         @include font(vw(20), 700, vw(40));
         color: $white;
-          img {
+        img {
           width: vw(30);
           margin-right: vw(30);
         }
@@ -196,11 +197,10 @@ export default {
     }
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .row{
     display: flex;
     justify-content: center;
-    
   }
   .courses-info {
     width: 100%;
@@ -223,7 +223,7 @@ export default {
       .name {
         @include font(vmin(17), 600, vmin(25));
         color: $white;
-        margin-top: 0;       
+        margin-top: 0;
       }
       .sticker {
         padding: vmin(10);
@@ -235,8 +235,8 @@ export default {
       margin-top: vmin(10);
       margin-left: vmin(20);
       p {
-       @include font(vmin(10), 600, vmin(20));
-       margin-top: vmin(10);
+        @include font(vmin(10), 600, vmin(20));
+        margin-top: vmin(10);
         color: $white;
         opacity: 0.3;
         margin: 0;
@@ -252,7 +252,7 @@ export default {
         margin: 0;
         @include font(vmin(10), 600, vmin(20));
         color: $white;
-          img {
+        img {
           width: vmin(15);
           margin-right: vw(30);
         }

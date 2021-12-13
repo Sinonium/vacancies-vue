@@ -86,6 +86,9 @@ export default {
     const { updateCoursesRaiting } = update()
     const userName = user.value.displayName
     const gradeUser = ref(1)
+    const photoUser = ref(
+      'https://cdn4.iconfinder.com/data/icons/professions-1-2/151/8-512.png'
+    )
     const currentDate = ref()
     const reviews = ref([])
     const grades = ref([])
@@ -124,7 +127,8 @@ export default {
           props.moreInfo.id,
           textInp.value,
           gradeUser.value,
-          userName
+          userName,
+          photoUser.value
         )
         await updateGrades('more info', props.moreInfo.id, gradeUser.value)
         const course = props.moreInfo
@@ -258,6 +262,7 @@ export default {
     })
     return {
       userInfo,
+      photoUser,
       userName,
       textBtnAddedReview,
       errTextInpMore,
