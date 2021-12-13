@@ -503,7 +503,7 @@ export default {
         students: 0,
         teacherName: userName.value,
         teacherId: userId.value,
-        grade: '',
+        grade: '0.0',
         moreInfoId: myId,
       }),
         await updateUserAddCourse('users')

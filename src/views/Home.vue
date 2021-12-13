@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 .courses-items {
   margin: vw(80) 0 0 vw(40);
@@ -196,7 +196,7 @@ export default {
     }
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 425px) {
   .row{
     display: flex;
     justify-content: center;

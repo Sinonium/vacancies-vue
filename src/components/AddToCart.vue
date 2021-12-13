@@ -116,7 +116,7 @@ export default {
     border-radius: vw(10);
     &-video {
       img {
-        max-width: 100%;
+        width: 100%;
       }
     }
     &-price {
@@ -227,7 +227,7 @@ export default {
   }
   &__banner {
     img {
-      max-width: 100%;
+      width: 100%;
     }
   }
 }
@@ -301,7 +301,7 @@ export default {
 
 @media screen and (max-width: 769px) {
     .cart {
-    width: vw(500);
+    width: vw(600);
     p {
       @include font(vw(28), 700, vw(30), $greyBlue70);
     }
@@ -337,7 +337,7 @@ export default {
 @media screen and (max-width: 426px) {
   .cart {
     width: vmin(300);
-    margin-top: vmin(270);
+    margin-top: 0;
     margin-left: vmin(30);
     p {
       @include font(vmin(12), 700, vmin(20), $greyBlue70);

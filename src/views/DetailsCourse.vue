@@ -247,7 +247,7 @@ export default {
       `resize`,
       () => {
         screenWidth = window.screen.width
-        if (screenWidth > 769) {
+        if (screenWidth > 1025) {
           sidebar.value = true
         }
       },
@@ -257,7 +257,7 @@ export default {
     const toggleModal = () => {
       addToCart.value = !addToCart.value
     }
-    if (screenWidth <= 769) {
+    if (screenWidth <= 1025) {
       addToCart.value = false
     }
 
@@ -407,6 +407,11 @@ body {
 }
 
 @media screen and (max-width: 1440px) {
+  .details-page__modal {
+    top: vw(-161);
+    right: 0;
+    left: vw(1180);
+  }
   .details-page__head {
     ul {
       li {
@@ -459,7 +464,7 @@ body {
   .details-page__modal {
     top: vw(-220);
     right: 0;
-    left: vw(1030);
+    left: vw(950);
   }
   .details-page__head ul {
     margin-left: 3vw;
@@ -506,9 +511,9 @@ body {
 }
 @media screen and(max-width: 426px) {
   .details-page__modal {
-    top: vmin(-38);
+    top: vmin(370);
     right: 0;
-    left: vmin(7);
+    left: 0;
   }
 }
 @media screen and(max-width: 376px) {
