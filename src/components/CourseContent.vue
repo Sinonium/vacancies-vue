@@ -399,23 +399,26 @@ button {
 
 @media screen and (max-width: 1024px) {
   .container {
-    background: $bg-main;
-    margin: 0 auto;
+    &-div {
+      margin: vmin(10);
+    }
   }
 
   .themes {
     border-radius: vmin(5);
-    width: vmin(350);
-    margin-bottom: vmin(15);
-    margin-left: vmin(5);
-    height: vmin(200);
+    width: 100%;
+    height: 100%;
     &.actives {
       height: 100%;
     }
     &-title {
-      @include font(vmin(8), bold, vmin(13));
+      @include font(vmin(12), bold, vmin(13));
       padding: vmin(15) 0 0 vmin(15);
+      &__img {
+        display: none;
+      }
       img {
+        margin-left: vmin(10);
         width: vmin(7);
       }
 
@@ -425,36 +428,30 @@ button {
 
       &__item-1,
       &__item-2 {
-        @include font(vmin(6), bold, vmin(10));
+        @include font(vmin(9), bold, vmin(10));
+        color: $greyBlue60;
       }
-      // span {
-      //   padding-right: vmin(235);
-      // }
     }
     ul {
       height: vmin(100);
       &.actives {
-        @include font(vmin(8), bold, vmin(10));
-        height: vmin(300);
-        color: $greyBlue60 !important;
+        @include font(vmin(9), bold, vmin(10));
+        height: 100%;
+        color: $greyBlue60;
       }
     }
     li {
-      list-style-type: none;
       padding-top: vmin(15);
-      width: 60%;
+      width: 80%;
       img {
         margin-right: vmin(20);
       }
     }
     button {
-      @include font(vmin(6), bold, vmin(10));
-      width: vmin(95);
+      @include font(vmin(10), bold, vmin(10));
+      width: vmin(100);
       height: vmin(20);
-      margin: vmin(15) 0 vmin(20) vmin(125);
-      border: 2px solid #f7f8fa;
-      box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
-      border-radius: vmin(15);
+      margin: vmin(15) 0 vmin(10) vmin(100);
 
       &.actives {
         @include font(vmin(7), bold, vmin(10));
@@ -468,57 +465,39 @@ button {
   }
 
   .content {
-    margin-left: vmin(5);
-    width: vmin(350);
+    width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.123);
     border-radius: vmin(5);
     padding-bottom: vmin(15);
     &-courses {
-      width: vmin(300);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
+      width: 90%;
+      // box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
       border-radius: vmin(10);
-      margin: vmin(40) vmin(30) vmin(0) vmin(30);
-      flex-wrap: wrap;
-      overflow: hidden;
-      height: vmin(220);
+      margin: vmin(20) vmin(20) vmin(0);
+      height: 100%;
       &.actives {
         @include font(vmin(12), bold, vmin(20));
-        height: 100%;
         color: $greyBlue60 !important;
       }
       &__all {
-        display: flex;
-        align-items: baseline;
-        margin: vmin(10) vmin(0) vmin(10) vmin(40);
-        border-top: 2px solid $greyBlue98;
-        a {
-          display: none;
-        }
+        padding: vmin(7);
       }
       li {
         list-style-type: none;
-        @include font(vmin(7), bold, vmin(10));
+        @include font(vmin(8), bold, vmin(10));
         font-family: 'San Francisco Pro';
         color: $greyBlue60;
         width: 60%;
-        margin: vmin(2);
-      }
-      h6 {
-        cursor: pointer;
       }
       &__open {
         width: 100%;
       }
-      &__item {
-        width: 100%;
-        border-top: 2px solid $greyBlue98;
-      }
-
       h6 {
-        @include font(vmin(7), bold, vmin(10));
+        @include font(vmin(10), bold, vmin(10));
         font-family: 'San Francisco Pro';
         color: $greyBlue50;
         width: 70%;
+        cursor: pointer;
       }
       span {
         display: none;
@@ -527,7 +506,17 @@ button {
       img {
         width: vmin(10);
         height: vmin(10);
-        //padding: 0 vmin(5) 0 vmin(5);
+        padding: 0 vmin(5) 0 vmin(5);
+      }
+    }
+    button {
+      @include font(vmin(10), bold, vmin(10));
+      width: vmin(100);
+      height: vmin(20);
+      margin-left: vmin(120);
+      &.actives {
+        @include font(vmin(10), bold, vmin(10));
+        color: $greyBlue60 !important;
       }
     }
   }
@@ -535,123 +524,104 @@ button {
 
 @media screen and (max-width: 500px) {
   .container {
+    &-div {
+      margin: vmin(10);
+    }
     margin: 0 auto;
+    padding: 0;
   }
-
   .themes {
     border-radius: vmin(5);
-    width: vmin(300);
-    margin-bottom: vmin(15);
-    margin-left: vmin(5);
-    height: vmin(200);
+    width: 100%;
+    height: 40%;
     &.actives {
-      height: vmin(400);
+      height: 100%;
     }
     &-title {
-      @include font(vmin(14), bold, vmin(15));
-      &__item {
-        flex-direction: column;
+      &__img {
+        display: none;
       }
+      @include font(vmin(16), bold, vmin(15));
+      padding-left: vmin(25);
       &__item-1,
       &__item-2 {
-        @include font(vmin(9), bold, vmin(10));
+        @include font(vmin(12), bold, vmin(10));
+        color: $greyBlue60;
         ul {
+          width: 90%;
           margin: 0;
         }
-      }
-      span {
-        padding-right: vmin(190);
       }
     }
     ul {
       height: vmin(100);
       &.actives {
-        @include font(vmin(8), bold, vmin(10));
+        @include font(vmin(12), bold, vmin(10));
         height: vmin(300);
-        color: $greyBlue60 !important;
+        color: $greyBlue60;
       }
     }
     li {
-      list-style-type: none;
       padding-top: vmin(15);
       width: 100%;
       img {
-        margin-right: vmin(20);
+        margin-right: vmin(10);
       }
     }
     button {
-      @include font(vmin(9), bold, vmin(10));
+      @include font(vmin(13), bold, vmin(10));
       width: vmin(120);
-      height: vmin(20);
-      margin: vmin(15) 0 vmin(20) vmin(100);
-      border: 2px solid #f7f8fa;
-      box-shadow: 0px 2px 5px rgba(54, 61, 77, 0.05);
-      border-radius: vmin(15);
-      .sections-btn {
-        margin: vmin(-50) vmin(120) vmin(20) vmin(130);
-        &.actives {
-          display: none;
-        }
+      height: vmin(30);
+      margin: vmin(15) 0 vmin(20) vmin(70);
+      border-radius: vmin(20);
+      &.actives {
+        @include font(vmin(13), bold, vmin(10));
+        color: $greyBlue60 !important;
       }
     }
   }
 
   .content {
-    margin-left: vmin(5);
-    width: vmin(350);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.123);
+    width: 100%;
     border-radius: vmin(5);
-    padding-bottom: vmin(15);
     &-courses {
-      width: vmin(300);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.151);
       border-radius: vmin(10);
-      margin: vmin(40) vmin(30) vmin(0) vmin(30);
-      flex-wrap: wrap;
-      overflow: hidden;
-      height: vmin(190);
       &.actives {
         @include font(vmin(6), bold, vmin(10));
         height: 100%;
-        color: $greyBlue60 !important;
+        color: $greyBlue60;
       }
       &__theme {
         svg {
-          max-width: vmin(7);
-          max-height: vmin(7);
+          margin-left: vmin(15);
+          max-width: vmin(8);
+          max-height: vmin(8);
         }
       }
-
-      &__item {
-        border-top: 2px solid $greyBlue98;
-
-        &__all {
-          margin: vmin(5) 0 vmin(5) vmin(20);
-        }
-
-        p {
-          @include font(vmin(8), bold, vmin(10));
-        }
-
-        a {
-          @include font(vmin(8), bold, vmin(10));
-        }
+      li {
+        @include font(vmin(11), bold, vmin(10));
+        color: $greyBlue60;
       }
-
       h6 {
-        @include font(vmin(10), bold, vmin(10));
+        @include font(vmin(12), bold, vmin(10));
         margin: vw(50);
       }
       span {
-        @include font(vmin(6), bold, vmin(10));
         display: none;
       }
-
       img {
-        max-width: vmin(10);
-        max-height: vmin(10);
+        max-width: vmin(15);
+        max-height: vmin(15);
         padding: 0 vmin(10) 0 vmin(10);
       }
+    }
+    button {
+      @include font(vmin(13), bold, vmin(10));
+      width: vmin(120);
+      height: vmin(30);
+      margin: vmin(10) 0 vmin(10) vmin(100);
+      border-radius: vmin(20);
     }
   }
 }
