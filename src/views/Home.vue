@@ -196,7 +196,7 @@ export default {
     }
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .row{
     display: flex;
     justify-content: center;
