@@ -252,7 +252,7 @@
         <div class="lesson-details">
           <select v-model="type" class="select">
             <option>video</option>
-            <option>text</option>
+            <!-- <option>text</option> -->
           </select>
           <input class="lesson-time" type="time" v-model="time" />
         </div>

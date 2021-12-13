@@ -297,7 +297,7 @@ export default {
   border-radius: vw(10);
   width: vw(730);
   margin-bottom: vw(30);
-  height: vw(340);
+  height:vw(340);
   &.actives {
     height: 100%;
   }
