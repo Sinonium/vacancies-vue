@@ -79,7 +79,10 @@ const update = () => {
   const updateCoursesRaiting = async (collectionName, courseId, newGrade) => {
     const courseDoc = doc(firestore, collectionName, courseId)
 
+    // const test = await getDoc(courseDoc)
+
     return await updateDoc(courseDoc, {
+      // ...test.data().grade,
       grade: newGrade,
     })
   }

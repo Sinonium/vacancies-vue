@@ -56,6 +56,7 @@ export default {
 
     onMounted(() => {
       store.dispatch('getCourses')
+      store.commit('SET_LIKED_COURSES')
       console.log('sasasa')
     })
 

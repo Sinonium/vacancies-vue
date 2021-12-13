@@ -12,6 +12,7 @@ export default createStore({
     courseMoreInfo: null,
     courseId: '',
     userInfo: null,
+    likedCourses: [],
   },
   mutations: {
     GET_COURSES(state, payload) {
@@ -21,6 +22,9 @@ export default createStore({
       state.courses = doc
     },
     GET_LIKED_COURSES(state, payload) {
+      state.likedCourses = payload
+    },
+    SET_LIKED_COURSES(state, payload) {
       state.courses = payload
     },
     GET_MORE_INFO(state, info) {
