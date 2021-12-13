@@ -20,6 +20,9 @@ export default createStore({
     GET_FILTERED_COURSES(state, doc) {
       state.courses = doc
     },
+    GET_LIKED_COURSES(state, payload) {
+      state.courses = payload
+    },
     GET_MORE_INFO(state, info) {
       state.courseMoreInfo = info
     },

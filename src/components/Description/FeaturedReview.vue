@@ -34,7 +34,6 @@
             <p>Was this review helpful?</p>
             <button>Yes</button>
             <button @click="togleElement">No</button>
-            <button>Report</button>
           </div>
         </div>
         <h2 v-else>We are sorry :(</h2>
@@ -150,11 +149,6 @@ export default {
     button:active {
       background-color: #ccc;
     }
-    button:last-child {
-      margin-left: vw(20);
-      background: transparent;
-      box-shadow: none;
-    }
   }
 }
 @media screen and (max-width: 1024px) {
@@ -166,19 +160,21 @@ export default {
       padding: vmin(10) vmin(10);
       max-width: vmin(250);
       h2 {
-        @include font(vmin(6), 700, vmin(10), $greyBlue50);
+        @include font(vmin(15), 700, vmin(10), $greyBlue50);
+
       }
     }
     &__content-title {
       h3 {
         @include font(vmin(6), 700, vmin(10), $greyBlue50);
+         margin-bottom: vmin(10);
       }
     }
     &__content-logo {
       margin-top: vmin(5);
       img {
-        width: vmin(20);
-        height: vmin(20);
+        width: vmin(40);
+        height: vmin(40);
       }
       .logo__text {
         .name {
@@ -218,25 +214,22 @@ export default {
         margin-right: vmin(5);
         margin-top: vmin(5);
       }
-      button:last-child {
-        margin-left: vmin(10);
-      }
     }
   }
 }
 @media screen and (max-width: 428px) {
   .review {
     .container {
-      max-width: vmin(350);
+      max-width: vmin(347);
     }
     &__content {
-      max-width: vmin(345);
+      max-width: vmin(325);
       h2 {
-        @include font(vmin(8), 600, vmin(10), $greyBlue50);
+        @include font(vmin(15), 600, vmin(19), $greyBlue50);
       }
       &-title {
         h3 {
-          @include font(vmin(9), 600, vmin(10), $greyBlue50);
+          @include font(vmin(15), 600, vmin(19), $greyBlue50);
         }
         img {
           padding-left: vmin(180);
@@ -251,36 +244,36 @@ export default {
     .logo__text {
         .name {
           h3 {
-            @include font(vmin(8), 600, vmin(10), $greyBlue50);
+            @include font(vmin(15), 600, vmin(19), $greyBlue50);
           }
         }
       }
       .raiting {
         img {
-          width: vmin(35);
-          height: vmin(15);
+          width: vmin(50);
+          height: vmin(25);
         }
         p {
-          @include font(vmin(6), 600, vmin(3), $greyBlue80);
+          @include font(vmin(10), 600, vmin(3), $greyBlue80);
         }
       }
       &__content-text {
       p {
-        @include font(vmin(8), 600, vmin(10), $greyBlue60);
+        @include font(vmin(15), 600, vmin(19), $greyBlue60);
         max-width: vmin(320);
       }
     }
     &__buttons {
       p {
-        @include font(vmin(7), 700, vmin(10), $greyBlue60);
+        @include font(vmin(14), 700, vmin(18), $greyBlue60);
         margin-right: vmin(10);
       }
       button {
-        @include font(vmin(7), 700, vmin(10), $greyBlue60);
-        width: vmin(30);
-        height: vmin(15);
+        @include font(vmin(14), 700, vmin(18), $greyBlue60);
+        width: vmin(50);
+        height: vmin(30);
         margin-right: vmin(10);
-        margin-top: vmin(5);
+        margin-top: vmin(10);
       }
 
     }

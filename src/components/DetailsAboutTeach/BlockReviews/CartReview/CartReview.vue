@@ -104,7 +104,6 @@ export default {
     const resultReviewDateDay = ref(0)
     const resultReviewDateYear = ref(0)
 
-
     const getSomeNumAgo = (firstDate, secondDate) => {
       const firstNumDateMonthRef = firstDate.getMonth()
       const secondNumDateMonthRef = secondDate[1]
@@ -155,6 +154,7 @@ export default {
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
   margin-top: vw(30);
+  margin-left: 5vw;
   &__header {
     @include flex(space-between);
     &_profile {
@@ -204,17 +204,95 @@ export default {
 @media screen and (max-width: 1024px) {
   .cart-review {
     width: 48vw;
+    margin-left: 5vw;
   }
 }
 @media screen and (max-width: 769px) {
   .cart-review {
-    width: 60vw;
+    width: 69vw;
+  }
+  .cart-review__header_data span {
+    font-size: 1.4vw;
+  }
+  .cart-review__header_profile .data h4 {
+    font-size: 1.4vw;
+  }
+  .cart-review__text p {
+    font-size: 1.4vw;
   }
 }
-@media screen and(max-width: 579px) {
+@media screen and(max-width: 580px) {
+  .cart-review__text p {
+    font-size: 2.2vw;
+  }
+  .cart-review__header_profile .data h4 {
+    font-size: 1.9vw;
+  }
+  .cart-review__header_data span {
+    font-size: 1.8vw;
+  }
+  .cart-review {
+    width: 78vw;
+  }
 }
 @media screen and(max-width: 426px) {
+  .cart-review {
+    width: vmin(330);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: vmin(25) vmin(40) vmin(74) vmin(37);
+    background: $white;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+    margin-top: vmin(30);
+    margin-left: 6vmin;
+    &__header {
+      @include flex(space-between);
+      flex-direction: column;
+      &_profile {
+        @include flex();
+        .data {
+          margin-left: 40.66667vmin;
+          h4 {
+            @include font(vmin(13), bold, 25px, $greyBlue50);
+          }
+          span {
+            @include font(vmin(12), bold, 20px, $greyBlue70);
+          }
+        }
+      }
+      &_data {  
+        margin-top: 3vmin;
+        margin-left: 18vmin;
+        @include flex();
+        div {
+          margin-left: -24vmin;
+          img {
+            margin-left: vmin(5);
+          }
+        }
+        span {
+          @include font(vmin(12), bold, 20px, $greyBlue70);
+          margin-left: 6vmin;
+        }
+      }
+    }
+    &__text {
+      max-width: vmin(570);
+      p {
+        @include font(vmin(13), 600, 25px, $greyBlue60);
+        position: relative;
+      }
+    }
+  }
 }
 @media screen and(max-width:376px) {
+}
+@media screen and (max-width: 408px) {
+  .cart-review__header_data {
+    margin-left: 14vmin;
+  }
 }
 </style>

@@ -32,6 +32,7 @@ export default {}
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 .courses-info {
+  position: relative;
   margin: vw(30) vw(30);
   position: relative;
   &__like {
@@ -74,7 +75,6 @@ export default {}
 @media screen and (max-width: 1024px) {
   .courses-info {
     margin: vmin(10) vmin(15);
-
     &__image {
       width: 100%;
     }
@@ -115,6 +115,7 @@ export default {}
 }
 @media screen and (max-width: 400px){
   .courses-info {
+    z-index: 2;
     margin: vmin(10) vmin(10);
 
     &__image {

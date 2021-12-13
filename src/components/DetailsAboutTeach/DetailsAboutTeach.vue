@@ -23,13 +23,7 @@ export default {
 @import '@/assets/scss/index.scss';
 
 .Details-about__teach {
-  margin-left: vw(60);
   margin-top: vw(30);
-}
-@media screen and (max-width: 769px) {
-  .Details-about__teach {
-    margin-left: 7.75vw;
-  }
 }
 @media screen and (max-width: 551px) {
   .Details-about__teach {

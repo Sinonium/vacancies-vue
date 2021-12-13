@@ -96,7 +96,7 @@
   </div>
   <div class="cart-rating_course" v-if="!grades.length">
     <h4>No ratings, be the first and submit your review and rating.</h4>
-  </div>          
+  </div>
 </template>
 
 <script>
@@ -107,7 +107,7 @@ export default {
   setup(props) {
     const grades = props.moreInfo.grades
     const course = props.moreInfo
-    const courseRating = course.grades.length
+    const courseRating = props.moreInfo.length
     const courseRatingFive = ref([])
     const courseRatingFour = ref([])
     const courseRatingThree = ref([])
@@ -205,9 +205,9 @@ export default {
         courseRatingMiddArithmetic.value.toFixed(1)
     }
 
-    onMounted(() => {
+    setTimeout(() => {
       calctPercentOfRating()
-    })
+    }, 1000);
 
     return {
       grades,
@@ -249,8 +249,9 @@ export default {
   box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+  margin-left: 5vw;
   h4 {
-    @include font(vw(48), 600, 52px, $greyBlue50);
+    @include font(vw(30), 600, 52px, $greyBlue50);
   }
   &_first {
     @include flex();
@@ -308,6 +309,7 @@ export default {
 }
 @media screen and (max-width: 1440px) {
   .cart-rating_course {
+     margin-left: 5vw;
     &_second {
       margin-top: 2vw;
     }
@@ -330,13 +332,107 @@ export default {
 }
 @media screen and (max-width: 769px) {
   .cart-rating_course {
-    width: 60vw;
+    width: 69vw;
+  }
+  .cart-rating_course_second ul {
+    margin-left: 14.625vw;
+    list-style-type: none;
+  }
+  .cart-rating_course_first span {
+    font-size: 1.8vw;
+  }
+  .cart-rating_course_second- {
+    margin-top: 1vw;
+  }
+  .cart-rating_course_second ul li .stars img {
+    height: 1.8vw;
+  }
+  .cart-rating_course_second ul li .lineStar {
+    width: 19vw;
+    height: 1vw;
   }
 }
-@media screen and(max-width: 579px) {
+@media screen and(max-width: 580px) {
+  .cart-rating_course_first h4 {
+    font-size: 6vw;
+  }
+  .cart-rating_course_second ul li span {
+    font-size: 1.7vw;
+  }
+  .cart-rating_course_second ul {
+    margin-left: 18.6vw;
+  }
+  .cart-rating_course {
+    width: 78vw;
+  }
 }
 @media screen and(max-width: 426px) {
+  .col-3 {
+    width: 30%;
+  }
+  .col-5 {
+    width: 70%;
+  }
+  .cart-rating_course {
+    margin-top: vmin(30);
+    width: vmin(330);
+    display: flex;
+    padding: 2vmin 2.7vmin 4.3vmin 2vmin;
+    background: $white;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
+    flex-direction: column;
+    margin-left: 6vmin;
+    h4 {
+      @include font(vmin(30), 600, 52px, $greyBlue50);
+    }
+    &_first {
+      @include flex();
+      flex-direction: column;
+      margin-bottom: vmin(30);
+      h4 {
+        @include font(vmin(48), 600, 10px, $greyBlue50);
+      }
+      div {
+        span {
+          margin-left: vmin(5);
+        }
+      }
+      span {
+        @include font(vmin(13), bold, 25px, $greyBlue70);
+      }
+    }
+    &_second {
+      @include flex();
+      flex-direction: column;
+      ul {
+        margin-left: -13.33333vmin;
+        list-style-type: none;  
+        li {
+          margin-top: vmin(9);
+          display: flex;
+          align-items: center;
+          .lineStar {
+            display: none;
+          }
+          .stars {
+            margin-left: vmin(35);
+            img {
+              margin-left: vmin(5);
+              height: 8vmin;
+            }
+          }
+          span {
+            @include font(vmin(13), bold, 25px, $greyBlue70);
+            margin-left: vmin(25);
+          }
+        }
+      }
+    }
+  }
 }
-@media screen and(max-width:376px) {
+@media screen and(max-width: 376px) {
+
 }
 </style>

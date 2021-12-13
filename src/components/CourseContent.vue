@@ -4,16 +4,11 @@
       <div :class="{ actives: allShow === true }" class="themes">
         <div class="themes-title">
           <span>What do you learn?</span>
-          <img
-            class="themes-title__img"
-            src="@/assets/scss/icons/burger-menu.svg"
-          />
+          <img src="@/assets/scss/icons/burger-menu.svg" />
           <div class="themes-title__item">
             <div class="themes-title__item-1">
-              <ul v-if="moreInfo" :class="{ actives: allShow === true }">
-                <li v-for="learn in moreInfo.whatStudy" :key="learn">
-                  <img src="@/assets/scss/icons/done.svg" />{{ learn }}
-                </li>
+              <ul :class="{ actives: allShow === true }">
+                <li><img src="@/assets/scss/icons/done.svg" />JANYBEK</li>
               </ul>
             </div>
           </div>
@@ -25,16 +20,15 @@
             {{ this.button_themes }}
           </button>
         </div>
-
       </div>
-      <div v-if="moreInfo" class="content">
+
+      <div class="content">
         <div class="themes-title">
           <span>Course Content</span>
-          <img class="themes-title__img" src="@/assets/scss/icons/burger-menu.svg" />
+          <img src="@/assets/scss/icons/burger-menu.svg" />
         </div>
         <div :class="{ actives: allSections === true }" class="content-courses">
-          <div>
-            <div class="content-courses__theme">
+          <div class="content-courses__theme">
             <svg
               :class="{ open: isOpen.a }"
               width="12"
@@ -50,26 +44,23 @@
                 fill="#C3CAD9"
               />
             </svg>
-            <h6 @click="isOpen.a = !isOpen.a">
-              {{ moreInfo.courseContent[0].lectureName }}
-            </h6>
-            <span>{{ moreInfo.courseContent[0].allTime }}</span>
+            <h6 @click="isOpen.a = !isOpen.a">JANYBEK</h6>
+            <span>TIME</span>
           </div>
-          <div v-for="item in moreInfo.courseContent[0].lessons" :key="item.id">
+          <div>
             <div class="content-courses__open" v-if="isOpen.a">
               <div>
                 <ul class="content-courses__all">
                   <img :src="videoIcon" alt="" />
-                  <li>{{ item.lessonName }}</li>
-                  <a>{{ item.isPreview }}</a>
-                  <span>{{ item.time }}</span>
+                  <li>lessonName</li>
+                  <a>isPreview</a>
+                  <span>time</span>
                 </ul>
               </div>
             </div>
           </div>
-          </div>
 
-          <div v-if="moreInfo.courseContent[1]">
+          <div>
             <div class="content-courses__theme">
               <svg
                 :class="{ open: isOpen.b }"
@@ -86,36 +77,23 @@
                   fill="#C3CAD9"
                 />
               </svg>
-              <h6
-                v-if="moreInfo.courseContent[1]"
-                @click="isOpen.b = !isOpen.b"
-              >
-                {{ moreInfo.courseContent[1].lectureName }}
-              </h6>
-              <span v-if="moreInfo.courseContent[1]">{{
-                moreInfo.courseContent[1].allTime
-              }}</span>
+
+              <h6 @click="isOpen.b = !isOpen.b">LECTURENAME</h6>
+              <span> alltime }}</span>
             </div>
-            <div
-              v-for="item in moreInfo.courseContent[1].lessons"
-              :key="item.id"
-            >
+            <div>
               <div class="content-courses__open" v-if="isOpen.b">
                 <div>
                   <ul class="content-courses__all">
                     <img :src="videoIcon" alt="" />
-                    <li>{{ item.lessonName }}</li>
-                    <a>{{ item.isPreview }}</a>
-                    <span>{{ item.time }}</span>
+                    <li>lessonName</li>
+                    <a>{isPreview</a>
+                    <span>TIME</span>
                   </ul>
                 </div>
               </div>
             </div>
-             </div>
-            <div
-              v-if="moreInfo.courseContent[2]"
-              class="content-courses__theme"
-            >
+            <div class="content-courses__theme">
               <svg
                 :class="{ open: isOpen.c }"
                 width="12"
@@ -131,28 +109,24 @@
                   fill="#C3CAD9"
                 />
               </svg>
-              <h6 @click="isOpen.c = !isOpen.c">
-                {{ moreInfo.courseContent[2].lectureName }}
-              </h6>
-              <span>{{ moreInfo.courseContent[2].allTime }}</span>
-            
-            <div
-              v-for="item in moreInfo.courseContent[2].lessons"
-              :key="item.id"
-            >
+              <h6 @click="isOpen.c = !isOpen.c">LECTURENAME</h6>
+              <span>ALLTIME</span>
+            </div>
+            <div>
               <div class="content-courses__open" v-if="isOpen.c">
                 <div>
                   <ul class="content-courses__all">
                     <img :src="videoIcon" alt="" />
-                    <li>{{ item.lessonName }}</li>
-                    <a>{{ item.isPreview }}</a>
-                    <span>{{ item.time }}</span>
+                    <li>LESSONNAME</li>
+                    <a>ISPREVIEW</a>
+                    <span>TIME</span>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
- </div>
+        </div>
+
         <button
           class="sections-btn"
           @click="allContents()"
@@ -183,58 +157,56 @@ export default {
       learn: [],
       articles: [],
 
-      button_themes: "Show more ",
-      button_contents: "More Sections",
+      button_themes: 'Show more Features',
+      button_contents: '5 More Sections',
       allShow: false,
       open: false,
       allSections: false,
-      videoIcon: require("@/assets/scss/icons/video.svg"),
-    };
+      videoIcon: require('@/assets/scss/icons/video.svg'),
+    }
   },
   created() {
-    fetch("http://localhost:3000/learn")
-      .then((response) => {
-        return response.json();
-      })
-
-      .then((data) => {
-        this.learn = data;
-      });
-    fetch("http://localhost:3000/articles")
-      .then((response) => {
-        return response.json();
-      })
-
-      .then((data) => {
-        this.articles = data;
-      });
+    // fetch("http://localhost:3000/learn")
+    //    .then((response) => {
+    //       return response.json();
+    //    })
+    //    .then((data) => {
+    //       this.learn = data;
+    //    });
+    // fetch("http://localhost:3000/articles")
+    //    .then((response) => {
+    //       return response.json();
+    //    })
+    //    .then((data) => {
+    //       this.articles = data;
+    //    });
   },
 
   methods: {
     allThemes() {
       if (!this.allShow) {
-        this.button_themes = "Show Fewer ";
-        this.allShow = true;
+        this.button_themes = 'Show Fewer Features'
+        this.allShow = true
       } else {
-        this.button_themes = "Show more";
-        this.allShow = false;
+        this.button_themes = 'Show more Features'
+        this.allShow = false
       }
     },
     allContents() {
       if (!this.allSections) {
-        this.button_contents = "Sections";
-        this.allSections = true;
+        this.button_contents = 'Sections'
+        this.allSections = true
       } else {
-        this.button_contents = "More Sections";
-        this.allSections = false;
+        this.button_contents = '5 More Sections'
+        this.allSections = false
       }
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .container {
   margin: 0 auto;
@@ -361,7 +333,7 @@ button {
     li {
       list-style-type: none;
       @include font(vw(12), bold, vw(20));
-      font-family: "San Francisco Pro";
+      font-family: 'San Francisco Pro';
       color: $greyBlue60;
       width: 78%;
       margin: vw(15);
