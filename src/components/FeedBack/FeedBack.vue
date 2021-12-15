@@ -89,6 +89,12 @@ export default {
     const photoUser = ref(
       'https://cdn4.iconfinder.com/data/icons/professions-1-2/151/8-512.png'
     )
+    const jopa = ref()
+    onMounted(() => {
+      setTimeout(() => {
+        jopa.value = currentCourseId.value
+      },500)
+    })
     const currentDate = ref()
     const reviews = ref([])
     const grades = ref([])
@@ -230,7 +236,7 @@ export default {
         calctPercentOfRating()
         await updateCoursesRaiting(
           'courses',
-          currentCourseId.value,
+          jopa.value,
           String(courseRatingMiddArithmetic.value)
         )
         textBtnAddedReview.value = 'Added review and grade'
@@ -371,6 +377,7 @@ export default {
     }
   }
 }
+
 @media screen and (max-width: 1440px) {
   .feedback {
     &__create-rev {
