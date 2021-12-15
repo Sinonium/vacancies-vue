@@ -11,7 +11,7 @@
         />
 
         <h4 class="create-teacher__title">Write your skills</h4>
-        <input
+        <input required
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           type="text"
           placeholder="Software Developer, Architect, and UX Designer"
@@ -26,7 +26,7 @@
           Enter your education information (university, courses, internships
           ...)
         </h4>
-        <textarea
+        <textarea required
           onkeyup="this.value=this.value.replace(/^\s/,'')"
           name="comment"
           cols="40"
@@ -71,9 +71,11 @@
 import { ref } from '@vue/reactivity'
 import update from '@/composables/update'
 import { user } from '@/composables/getUser'
+import {useRouter} from 'vue-router'
 export default {
   components: {},
   setup() {
+    const router = useRouter()
     const { updateTeacher } = update()
     const skills = ref('')
     const name = ref(user.value.displayName)
@@ -89,9 +91,10 @@ export default {
         education: education.value,
         aboutMe: aboutMe.value,
       })
+      await router.push('/')
     }
 
-    return { name, skills, imageURL, education, aboutMe, handleSubmit }
+    return { name, skills, imageURL, education, aboutMe, handleSubmit,router }
   },
 }
 </script>

@@ -111,37 +111,37 @@ export default {
     }
     &__content-text {
       h3 {
-        @include font(vmin(7), 700, vmin(10), $greyBlue50);
+        @include font(vmin(10), 700, vmin(10), $greyBlue50);
       }
       p {
-        @include font(vmin(5), 500, vmin(10), $greyBlue50);
+        @include font(vmin(10), 600, vmin(10), $greyBlue50);
       }
     }
     &__content-text__bottom {
       p {
-        @include font(vmin(5), 500, vmin(10), $greyBlue60);
+        @include font(vmin(10), 600, vmin(10), $greyBlue60);
       }
     }
     &__course {
       h3 {
-        @include font(vmin(5), 700, vmin(10), $greyBlue50);
+        @include font(vmin(10), 700, vmin(10), $greyBlue50);
       }
       ul {
         li {
           p {
-            @include font(vmin(5), 500, vmin(10), $greyBlue60);
+            @include font(vmin(10), 600, vmin(10), $greyBlue60);
           }
           svg {
-            margin-top: vmin(5);
+            margin-top: vmin(12);
             margin-left: vmin(2);
             margin-right: vmin(10);
-            width: vmin(6);
-            height: vmin(8);
+            width: vmin(8);
+            height: vmin(6);
           }
         }
       }
       p {
-        @include font(vmin(5), 500, vmin(10), $greyBlue60);
+        @include font(vmin(10), 700, vmin(10), $greyBlue60);
       }
     }
   }

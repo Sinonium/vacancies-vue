@@ -1,4 +1,7 @@
 <template>
+  <div class="avocadiki">
+    <span>Avokadiki Courses</span>
+  </div>
   <div class="container">
     <div class="signup">
       <div class="signup-title">
@@ -49,34 +52,34 @@
 </template>
 
 <script>
-import { computed, ref } from '@vue/reactivity'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import useDoc from '@/composables/useDoc'
+import { computed, ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import useDoc from "@/composables/useDoc";
 
 export default {
   setup() {
-    const { addCollection } = useDoc()
-    const email = ref('')
-    const password = ref('')
-    const name = ref('')
-    const userBuy = ref([])
-    const addCourses = ref([])
-    const router = useRouter()
-    const store = useStore()
-    const currentUser = computed(() => store.state.auth.currentUser)
+    const { addCollection } = useDoc();
+    const email = ref("");
+    const password = ref("");
+    const name = ref("");
+    const userBuy = ref([]);
+    const addCourses = ref([]);
+    const router = useRouter();
+    const store = useStore();
+    const currentUser = computed(() => store.state.auth.currentUser);
     const handleSubmit = async () => {
       try {
-        await store.dispatch('createUser', {
+        await store.dispatch("createUser", {
           email: email.value,
           password: password.value,
           name: name.value,
-        })
+        });
 
-        const { user } = await currentUser.value
+        const { user } = await currentUser.value;
 
         await addCollection(
-          'users',
+          "users",
           {
             name: name.value,
             email: email.value,
@@ -86,16 +89,16 @@ export default {
             description: [],
             likedCourse: [],
             photo:
-              'https://cdn4.iconfinder.com/data/icons/professions-1-2/151/8-512.png',
+              "https://cdn4.iconfinder.com/data/icons/professions-1-2/151/8-512.png",
           },
           false,
           user.uid
-        )
-        await router.push('/')
+        );
+        await router.push("/");
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
     return {
       addCourses,
       userBuy,
@@ -103,14 +106,23 @@ export default {
       password,
       email,
       handleSubmit,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
+@import "@/assets/scss/index.scss";
+.avocadiki {
+  display: flex;
+  margin: 0;
+  span {
+    @include font(vw(100), 800, vw(120));
 
+    color: $greyBlue50;
+   
+  }
+}
 .signup {
   width: vw(700);
   height: vw(580);
@@ -122,7 +134,7 @@ export default {
   }
   h2 {
     @include font(vw(30), 400, vw(50));
-    font-family: 'San Francisco Pro';
+    font-family: "San Francisco Pro";
     color: $greyBlue70;
     padding-top: vw(40);
     margin-left: vw(-10);
@@ -253,10 +265,21 @@ export default {
   }
 }
 @media screen and (max-width: 500px) {
+    .avocadiki {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  span {
+    @include font(vw(100), 800, vw(220));
+
+    color: $greyBlue50;
+   
+  }
+}
   .container {
     display: flex;
     justify-content: center;
-    margin-top: vmin(100);
+    margin-top: vmin(70);
     .signup {
       margin: 0;
       width: vmin(350);

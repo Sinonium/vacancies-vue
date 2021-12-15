@@ -3,7 +3,7 @@
     <div class="feedback__create-rev">
       <form @submit.prevent="handleAddReviewOrGrade">
         <div>
-          <img :src="AvatarUserIcon" alt="" />
+          <img v-if="userInfo" :src="userInfo.photo" alt="" />
           <input
             type="text"
             placeholder="Your review"
@@ -79,6 +79,7 @@ export default {
   props: ['moreInfo'],
   setup(props) {
     const store = useStore()
+    const userInfo = computed(() => store.state.userInfo)
     const currentCourseId = computed(() => store.state.courseId)
     const { updateReviews } = update()
     const { updateGrades } = update()
@@ -103,6 +104,102 @@ export default {
       if (textInp.value.length > 49) {
         textInp.value = textInp.value.substring(0, textInp.value.length - 1)
       }
+    }
+    const courseRatingFive = ref([])
+    const courseRatingFour = ref([])
+    const courseRatingThree = ref([])
+    const courseRatingTwo = ref([])
+    const courseRatingOne = ref([])
+    const courseRatingArray = ref([])
+    const countRatingStar = ref(0)
+    const courseRatingMiddArithmetic = ref(0)
+    const courseRatingPercentFive = ref(0)
+    const courseRatingPercentFour = ref(0)
+    const courseRatingPercentThree = ref(0)
+    const courseRatingPercentTwo = ref(0)
+    const courseRatingPercentOne = ref(0)
+    const calctPercentOfRating = () => {
+      grades.value.map((num) => {
+        switch (num) {
+          case 1:
+            return courseRatingOne.value.push(num)
+          case 2:
+            return courseRatingTwo.value.push(num)
+          case 3:
+            return courseRatingThree.value.push(num)
+          case 4:
+            return courseRatingFour.value.push(num)
+          case 5:
+            return courseRatingFive.value.push(num)
+        }
+      })
+      countRatingStar.value =
+        courseRatingOne.value.length +
+        courseRatingTwo.value.length +
+        courseRatingThree.value.length +
+        courseRatingFour.value.length +
+        courseRatingFive.value.length
+      courseRatingArray.value = [
+        {
+          count: courseRatingOne.value.length,
+          nums: 1,
+        },
+        {
+          count: courseRatingTwo.value.length,
+          nums: 2,
+        },
+        {
+          count: courseRatingThree.value.length,
+          nums: 3,
+        },
+        {
+          count: courseRatingFour.value.length,
+          nums: 4,
+        },
+        {
+          count: courseRatingFive.value.length,
+          nums: 5,
+        },
+      ]
+      courseRatingArray.value.map((countRating) => {
+        if (countRating.nums === 5) {
+          courseRatingPercentFive.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentFive.value =
+            courseRatingPercentFive.value.toFixed(2)
+        }
+        if (countRating.nums === 4) {
+          courseRatingPercentFour.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentFour.value =
+            courseRatingPercentFour.value.toFixed(2)
+        }
+        if (countRating.nums === 3) {
+          courseRatingPercentThree.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentThree.value =
+            courseRatingPercentThree.value.toFixed(2)
+        }
+        if (countRating.nums === 2) {
+          courseRatingPercentTwo.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentTwo.value = courseRatingPercentTwo.value.toFixed(2)
+        }
+        if (countRating.nums === 1) {
+          courseRatingPercentOne.value =
+            (countRating.count / countRatingStar.value) * 100
+          courseRatingPercentOne.value = courseRatingPercentOne.value.toFixed(2)
+        }
+      })
+      courseRatingMiddArithmetic.value =
+        (5 * courseRatingFive.value.length +
+          4 * courseRatingFour.value.length +
+          3 * courseRatingThree.value.length +
+          2 * courseRatingTwo.value.length +
+          1 * courseRatingOne.value.length) /
+        countRatingStar.value
+      courseRatingMiddArithmetic.value =
+        courseRatingMiddArithmetic.value.toFixed(1)
     }
     const handleAddReviewOrGrade = async () => {
       if (textInp.value.length) {
@@ -130,105 +227,6 @@ export default {
           photoUser.value
         )
         await updateGrades('more info', props.moreInfo.id, gradeUser.value)
-        const course = props.moreInfo
-        const courseRatingFive = ref([])
-        const courseRatingFour = ref([])
-        const courseRatingThree = ref([])
-        const courseRatingTwo = ref([])
-        const courseRatingOne = ref([])
-        const courseRatingArray = ref([])
-        const countRatingStar = ref(0)
-        const courseRatingMiddArithmetic = ref(0)
-        const courseRatingPercentFive = ref(0)
-        const courseRatingPercentFour = ref(0)
-        const courseRatingPercentThree = ref(0)
-        const courseRatingPercentTwo = ref(0)
-        const courseRatingPercentOne = ref(0)
-        const calctPercentOfRating = () => {
-          course.grades.map((num) => {
-            switch (num) {
-              case 1:
-                return courseRatingOne.value.push(num)
-              case 2:
-                return courseRatingTwo.value.push(num)
-              case 3:
-                return courseRatingThree.value.push(num)
-              case 4:
-                return courseRatingFour.value.push(num)
-              case 5:
-                return courseRatingFive.value.push(num)
-            }
-          })
-          countRatingStar.value =
-            courseRatingOne.value.length +
-            courseRatingTwo.value.length +
-            courseRatingThree.value.length +
-            courseRatingFour.value.length +
-            courseRatingFive.value.length
-          courseRatingArray.value = [
-            {
-              count: courseRatingOne.value.length,
-              nums: 1,
-            },
-            {
-              count: courseRatingTwo.value.length,
-              nums: 2,
-            },
-            {
-              count: courseRatingThree.value.length,
-              nums: 3,
-            },
-            {
-              count: courseRatingFour.value.length,
-              nums: 4,
-            },
-            {
-              count: courseRatingFive.value.length,
-              nums: 5,
-            },
-          ]
-          courseRatingArray.value.map((countRating) => {
-            if (countRating.nums === 5) {
-              courseRatingPercentFive.value =
-                (countRating.count / countRatingStar.value) * 100
-              courseRatingPercentFive.value =
-                courseRatingPercentFive.value.toFixed(2)
-            }
-            if (countRating.nums === 4) {
-              courseRatingPercentFour.value =
-                (countRating.count / countRatingStar.value) * 100
-              courseRatingPercentFour.value =
-                courseRatingPercentFour.value.toFixed(2)
-            }
-            if (countRating.nums === 3) {
-              courseRatingPercentThree.value =
-                (countRating.count / countRatingStar.value) * 100
-              courseRatingPercentThree.value =
-                courseRatingPercentThree.value.toFixed(2)
-            }
-            if (countRating.nums === 2) {
-              courseRatingPercentTwo.value =
-                (countRating.count / countRatingStar.value) * 100
-              courseRatingPercentTwo.value =
-                courseRatingPercentTwo.value.toFixed(2)
-            }
-            if (countRating.nums === 1) {
-              courseRatingPercentOne.value =
-                (countRating.count / countRatingStar.value) * 100
-              courseRatingPercentOne.value =
-                courseRatingPercentOne.value.toFixed(2)
-            }
-          })
-          courseRatingMiddArithmetic.value =
-            (5 * courseRatingFive.value.length +
-              4 * courseRatingFour.value.length +
-              3 * courseRatingThree.value.length +
-              2 * courseRatingTwo.value.length +
-              1 * courseRatingOne.value.length) /
-            countRatingStar.value
-          courseRatingMiddArithmetic.value =
-            courseRatingMiddArithmetic.value.toFixed(1)
-        }
         calctPercentOfRating()
         await updateCoursesRaiting(
           'courses',
@@ -247,6 +245,12 @@ export default {
       } else {
         textBtnAddedReview.value = 'Loading add grade.'
         await updateGrades('more info', props.moreInfo.id, gradeUser.value)
+        calctPercentOfRating()
+        await updateCoursesRaiting(
+          'courses',
+          currentCourseId.value,
+          String(courseRatingMiddArithmetic.value)
+        )
         textBtnAddedReview.value = 'Added grade'
         errTextInpMore.value = ''
         gradeUser.value = 1
@@ -260,6 +264,7 @@ export default {
       getDocs()
     })
     return {
+      userInfo,
       photoUser,
       userName,
       textBtnAddedReview,
@@ -309,17 +314,23 @@ export default {
         padding: vw(10);
         border: 2px solid $blue;
         margin-left: vw(10);
+        select {
+          border: none;
+        }
         img {
           border-radius: 50%;
           margin-left: vw(5);
+          max-width: vw(50);
+          min-width: vw(40);
         }
         input {
           color: black !important;
           outline: none;
           border: none;
-          @include font(vw(12), bold, 20px, $white);
+          @include font(vw(10), bold, 20px, $white);
           @include flex();
           margin-left: vw(20);
+          max-width: 63px;
         }
         .numLengthTextInp {
           margin-left: vw(-31);
