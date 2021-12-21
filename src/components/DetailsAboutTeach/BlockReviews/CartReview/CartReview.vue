@@ -3,16 +3,10 @@
     <div class="cart-review__header">
       <div class="cart-review__header_profile">
         <div class="image">
-          <img
-            src="@/assets/img/DetailsAboutTeach/imageReview1.png"
-            alt="imageTeach"
-          />
+          <img :src="review.photo" alt="imageTeach" />
         </div>
         <div class="data">
-          <h4>{{ review.studentName }}</h4>
-          <span
-            >({{ review.courses }} Courses,{{ review.reviews }} Reviews)</span
-          >
+          <h4>{{ review.userName }}</h4>
         </div>
       </div>
       <div class="cart-review__header_data">
@@ -53,40 +47,63 @@
         </div>
         <span>
           <span v-if="reviewDate[2] < currentDate.getFullYear()">
-            {{ resultReviewDateYear }} years ago
+            {{ resultReviewDateYear }} years
           </span>
           <span v-if="reviewDate[1] < 12 && resultReviewDateMonth !== 0">
-            {{ resultReviewDateMonth }} month ago
+            {{ resultReviewDateMonth }} month
           </span>
-          <span
-            v-if="
-              reviewDate[0] > currentDate.getDay() &&
-              reviewDate[0] < currentDate.getDay() &&
-              reviewDate[2] !== currentDate.getFullYear() &&
-              reviewDate[0] > currentDate.getDay() &&
-              reviewDate[2] === currentDate.getFullYear()
-            "
-          >
-            {{ resultReviewDateDay }} day ago
+          <span>
+            <span
+              v-if="
+                resultReviewDateDay === 0 &&
+                reviewDate[2] === currentDate.getFullYear() &&
+                reviewDate[1] === currentDate.getMonth()
+              "
+            >
+              Today
+            </span>
+            <span>
+              <span v-if="resultReviewDateDay === 0"></span>
+              <span v-else> {{ resultReviewDateDay }} day </span>
+            </span>
           </span>
+          <span>ago</span>
         </span>
       </div>
     </div>
     <div class="cart-review__text">
-      <p>
-        {{ review.text }}
+      <p @click="returnReviewTextAll">
+        {{ reviewText }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 export default {
   props: ['review'],
   setup(props) {
+    const reviewText = ref(props.review.text)
+    const calculateTextReview = () => {
+      if (reviewText.value.length > 30) {
+        reviewText.value = props.review.text.substring(0, 30) + '....'
+      } else {
+        reviewText.value = props.review.text
+      }
+    }
+    const returnReviewTextAll = () => {
+      reviewText.value = props.review.text
+    }
     const currentDate = new Date()
-    const reviewDate = props.review.date
+    const testReviewDate = props.review.createdAt
+    const testReviewDate2 = new Date(testReviewDate)
+    const reviewDate = ref([])
+    reviewDate.value = [
+      testReviewDate2.getDay(),
+      testReviewDate2.getMonth(),
+      testReviewDate2.getFullYear()
+    ]
     const resultReviewDateMonth = ref(0)
     const resultReviewDateDay = ref(0)
     const resultReviewDateYear = ref(0)
@@ -100,12 +117,24 @@ export default {
       const secondtNumDateYearRef = secondDate[2]
 
       resultReviewDateDay.value = firstNumDateDayRef - secondtNumDateDayRef
+      if (firstNumDateDayRef <= secondtNumDateDayRef) {
+        resultReviewDateDay.value = secondtNumDateDayRef - firstNumDateDayRef
+      }
+      if (firstNumDateDayRef >= secondtNumDateDayRef) {
+        resultReviewDateDay.value = firstNumDateDayRef - secondtNumDateDayRef
+      }
       resultReviewDateMonth.value = firstNumDateMonthRef - secondNumDateMonthRef
       resultReviewDateYear.value = firstNumDateYearRef - secondtNumDateYearRef
     }
-
-    getSomeNumAgo(currentDate, reviewDate)
+    setTimeout(() => {
+      calculateTextReview()
+      getSomeNumAgo(currentDate, reviewDate)
+    }, 50)
     return {
+      testReviewDate2,
+      testReviewDate,
+      returnReviewTextAll,
+      reviewText,
       resultReviewDateYear,
       resultReviewDateDay,
       resultReviewDateMonth,
@@ -131,10 +160,17 @@ export default {
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
   margin-top: vw(30);
+  margin-left: 5vw;
   &__header {
     @include flex(space-between);
     &_profile {
       @include flex();
+      .image {
+        img {
+          min-width: vw(60);
+          max-width: vw(60);
+        }
+      }
       .data {
         margin-left: vw(25);
         h4 {
@@ -162,178 +198,75 @@ export default {
     max-width: vw(570);
     p {
       @include font(vw(13), 600, 25px, $greyBlue60);
+      position: relative;
     }
   }
 }
-@media screen and (max-width: 1296px) {
-  .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(10);
-        }
-      }
-    }
+@media screen and (max-width: 1440px) {
+  .cart-review__text p {
+    @include font(vw(20), 600, 25px, $greyBlue60);
+  }
+  .cart-review__header_profile .data h4 {
+    @include font(vw(18), bold, 25px, $greyBlue50);
+  }
+  .cart-review__header_data span {
+    font-size: 0.9vw;
   }
 }
-@media screen and (max-width: 1256px) {
+@media screen and (max-width: 1024px) {
   .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(25);
-        }
-      }
-    }
+    width: 48vw;
+    margin-left: 5vw;
   }
 }
-@media screen and (max-width: 1263px) {
+@media screen and (max-width: 769px) {
   .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(35);
-        }
-      }
-    }
+    width: 69vw;
+  }
+  .cart-review__header_data span {
+    font-size: 1.4vw;
+  }
+  .cart-review__header_profile .data h4 {
+    font-size: 1.4vw;
+  }
+  .cart-review__text p {
+    font-size: 1.4vw;
   }
 }
-@media screen and (max-width: 1125px) {
-  .cart-review {
-    &__header {
-      margin-top: vw(20);
-    }
+@media screen and(max-width: 580px) {
+  .cart-review__text p {
+    font-size: 2.2vw;
+  }
+  .cart-review__header_profile .data h4 {
+    font-size: 1.9vw;
+  }
+  .cart-review__header_data span {
+    font-size: 1.8vw;
   }
   .cart-review {
-    &__header {
-      &_profile {
-        .image {
-          margin-top: vw(40);
-        }
-      }
-    }
+    width: 78vw;
   }
 }
-// @media screen and (max-width: 1077px) {
-//   .cart-review {
-//     height: 18vw;
-//   }
-// }
-@media screen and (max-width: 961px) {
+@media screen and(max-width: 426px) {
   .cart-review {
-    &__header {
-      &_profile {
-        .data {
-          margin-left: vw(25);
-          h4 {
-            @include font(vw(20), bold, 25px, $greyBlue50);
-          }
-          span {
-            @include font(vw(15), bold, 20px, $greyBlue70);
-          }
-        }
-      }
-      &_data {
-        span {
-          @include font(vw(14), bold, 20px, $greyBlue70);
-        }
-      }
-    }
-    &__text {
-      p {
-        @include font(vw(15), 600, 25px, $greyBlue60);
-      }
-    }
-  }
-}
-@media screen and (max-width: 815px) {
-  .cart-review {
-    &__header {
-      margin-top: -0.5vw;
-      &_profile {
-        .data {
-          span {
-            @include font(vw(16), bold, 20px, $greyBlue70);
-          }
-        }
-      }
-      &_data {
-        span {
-          @include font(vw(16), bold, 20px, $greyBlue70);
-          margin-left: vw(15);
-        }
-      }
-    }
-    &__text {
-      p {
-        @include font(vw(17), 600, 21px, $greyBlue60);
-      }
-    }
-  }
-}
-// @media screen and (max-width: 697px) {
-//   .cart-review {
-//     height: 29vw;
-//   }
-// }
-@media screen and (max-width: 658px) {
-  .cart-review {
-    &__text {
-      p {
-        @include font(vw(21), 600, 15px, $greyBlue60);
-      }
-    }
-  }
-}
-@media screen and (max-width: 645px) {
-  .cart-review {
-    width: 46.625vw;
-  }
-}
-@media screen and (max-width: 613px) {
-  .cart-review {
-    width: 46.7vw;
-  }
-}
-@media screen and (max-width: 610px) {
-  .cart-review {
-    &__header {
-      &_data {
-        div {
-          display: none;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 596px) {
-  .cart-review {
-    width: 49.625vw;
-  }
-}
-@media screen and (max-width: 576px) {
-  .cart-review {
-    &__header {
-      margin-top: 1.5vw;
-    }
-  }
-}
-@media screen and (max-width: 551px) {
-  .cart-review {
-    width: 100%;
-    display: block;
-    padding: 1vmin 9vmin 1vmin 9vmin;
+    width: vmin(330);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: vmin(25) vmin(40) vmin(74) vmin(37);
     background: $white;
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(54, 61, 77, 0.05);
     margin-top: vmin(30);
+    margin-left: 6vmin;
     &__header {
       @include flex(space-between);
+      flex-direction: column;
       &_profile {
         @include flex();
         .data {
-          margin-left: vmin(25);
+          margin-left: 40.66667vmin;
           h4 {
             @include font(vmin(13), bold, 25px, $greyBlue50);
           }
@@ -343,62 +276,35 @@ export default {
         }
       }
       &_data {
+        margin-top: 3vmin;
+        margin-left: 18vmin;
         @include flex();
         div {
-          display: none;
+          margin-left: -24vmin;
           img {
             margin-left: vmin(5);
           }
         }
         span {
           @include font(vmin(12), bold, 20px, $greyBlue70);
-          margin-left: vmin(15);
+          margin-left: 6vmin;
         }
       }
     }
     &__text {
-      max-width: vmin(500);
+      max-width: vmin(570);
       p {
         @include font(vmin(13), 600, 25px, $greyBlue60);
+        position: relative;
       }
     }
   }
 }
-@media screen and (max-width: 375px) {
-  .cart-review {
-    height: 87vmin;
+@media screen and (max-width: 408px) {
+  .cart-review__header_data {
+    margin-left: 14vmin;
   }
 }
-@media screen and (max-width: 321px) {
-  .cart-review {
-    height: 95vmin;
-  }
-}
-@media screen and (max-width: 298px) {
-  .cart-review {
-    &__header {
-      &_profile {
-        .data {
-          h4 {
-            @include font(vmin(15), bold, 25px, $greyBlue50);
-          }
-          span {
-            @include font(vmin(14), bold, 20px, $greyBlue70);
-          }
-        }
-      }
-      &_data {
-        span {
-          @include font(vmin(15), bold, 20px, $greyBlue70);
-          margin-left: vmin(15);
-        }
-      }
-    }
-    &__text {
-      p {
-        @include font(vmin(15), 600, 25px, $greyBlue60);
-      }
-    }
-  }
+@media screen and(max-width:376px) {
 }
 </style>

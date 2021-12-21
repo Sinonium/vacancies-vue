@@ -96,6 +96,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/index.scss';
 .footer {
+    width: vw(1270);
     &__info {
         border-top: 2px solid $greyBlue95;
         @include flex($justify: space-between);
@@ -167,7 +168,82 @@ export default {
         }
     }
 }
-@include mobile {
+@media screen and (max-width: 1025px) {
+.footer {
+    &__nav {
+        width: vw(670);
+        &-item {
+            width: vw(160);
+            margin-bottom: vw(25);
+        }
+        &-link {
+            @include font(vw(17), 700, vh(20), $greyBlue60);
+        }
+    }
+    &__form {
+        div {
+            width: vw(170);
+            height: vw(60);
+        }
+        input {
+            &::placeholder {
+                @include font(vw(17), 700, vh(20), $greyBlue60);
+            }
+        }
+    }
+    &__companies, &__menu {
+        p {
+            @include font(vw(17), 700, vw(25), $greyBlue60);
+        }
+        ul {
+            li {
+                a {
+                    @include font(vw(17), 700, vw(20), $greyBlue60);
+                }
+            }
+        }
+    }
+}  
+}
+@media screen and (max-width: 770px) {
+.footer {
+    width: 100%;
+    &__nav {
+        width: vw(840);
+        &-item {
+            width: vw(200);
+            margin-bottom: vw(25);
+        }
+        &-link {
+            @include font(vw(22), 700, vh(20), $greyBlue60);
+        }
+    }
+    &__form {
+        div {
+            width: vw(220);
+            height: vw(75);
+        }
+        input {
+            &::placeholder {
+                @include font(vw(22), 700, vh(20), $greyBlue60);
+            }
+        }
+    }
+    &__companies, &__menu {
+        p {
+            @include font(vw(24), 700, vw(25), $greyBlue60);
+        }
+        ul {
+            li {
+                a {
+                    @include font(vw(22), 700, vw(20), $greyBlue60);
+                }
+            }
+        }
+    }
+}  
+}
+@media screen and (max-width: 430px) {
     .footer {
         &__info {
             @include flex($justify: space-between);

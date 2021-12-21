@@ -1,35 +1,63 @@
 <template>
-   <aside class="sidebar">
+   <aside :class="{ active: active }" class="sidebar">
       <SidebarSearch />
       <div class="sidebar__content">
-         <PerfectScrollbar >
-         <ul class="sidebar__main-group">
-            <li @click="list.a = !list.a">
-               <span class="title">COURSE CATEGORIES</span>
-               <img class="arrow" :class="{ clicked: list.a }" :src="arrowExpand" alt="" />
-            </li>
-            <CourseCategories  v-if="list.a" />
-            <li @click="list.b = !list.b">
-               <span class="title">PRICELIST</span>
-               <img class="arrow" :class="{ clicked: list.b }" :src="arrowExpand" alt="" />
-            </li>
-            <PriceList v-if="list.b" />
-            <li @click="list.c = !list.c">
-               <span class="title">STUDENT LEVEL OF TRAINING</span>
-               <img class="arrow" :class="{ clicked: list.c }" :src="arrowExpand" alt="" />
-            </li>
-            <LevelOfTraining v-if="list.c" />
-            <li @click="list.d = !list.d">
-               <span class="title">COURSE RATING</span>
-               <img class="arrow" :class="{ clicked: list.d }" :src="arrowExpand" alt="" />
-            </li>
-            <CourseRating v-if="list.d" />
-            <li @click="list.e = !list.e">
-               <span class="title">DURATION COURSES</span>
-               <img class="arrow" :class="{ clicked: list.e }" :src="arrowExpand" alt="" />
-            </li>
-            <Duration v-if="list.e" />
-         </ul>
+         <PerfectScrollbar>
+            <ul class="sidebar__main-group">
+               <li @click="list.a = !list.a">
+                  <span class="title">COURSE CATEGORIES</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.a }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <CourseCategories v-if="list.a" />
+               <li @click="list.b = !list.b">
+                  <span class="title">PRICELIST</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.b }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <PriceList v-if="list.b" />
+               <li @click="list.c = !list.c">
+                  <span class="title">STUDENT LEVEL OF TRAINING</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.c }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <LevelOfTraining v-if="list.c" />
+               <li @click="list.d = !list.d">
+                  <span class="title">COURSE RATING</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.d }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <CourseRating v-if="list.d" />
+               <li @click="list.e = !list.e">
+                  <span class="title">DURATION COURSES</span>
+                  <img
+                     class="arrow"
+                     :class="{ clicked: list.e }"
+                     :src="arrowExpand"
+                     alt=""
+                  />
+               </li>
+               <Duration v-if="list.e" />
+               <div class="logout-btn">
+                  <button @click.prevent="handleClick()">Log Out</button>
+               </div>
+            </ul>
          </PerfectScrollbar>
       </div>
    </aside>
@@ -37,13 +65,15 @@
 
 <script>
    import { ref } from "@vue/reactivity";
-   import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+   import { PerfectScrollbar } from "vue3-perfect-scrollbar";
    import CourseCategories from "./sidebar/categories/CourseCategories.vue";
    import CourseRating from "./sidebar/CourseRating.vue";
    import Duration from "./sidebar/Duration.vue";
    import LevelOfTraining from "./sidebar/LevelOfTraining.vue";
    import PriceList from "./sidebar/PriceList.vue";
    import SidebarSearch from "./sidebar/Search.vue";
+   import useAuth from "@/composables/useAuth";
+   import { useRouter } from "vue-router";
    export default {
       components: {
          PerfectScrollbar,
@@ -54,7 +84,21 @@
          CourseRating,
          Duration,
       },
+      props: ["active"],
       setup() {
+         const router = useRouter();
+         const handleClick = async () => {
+            const { logout } = useAuth();
+
+            try {
+               await logout();
+               await router.push("/login");
+            } catch (err) {
+               console.log(err);
+            }
+         };
+
+         const hide = ref(true);
          const list = ref({
             a: true,
             b: true,
@@ -63,6 +107,8 @@
             e: true,
          });
          return {
+            handleClick,
+            hide,
             list,
             arrowExpand: require("@/assets/img/sidebar/arrow.svg"),
          };
@@ -73,14 +119,35 @@
 <style lang="scss">
    @import "@/assets/scss/index.scss";
    @import "~perfect-scrollbar/css/perfect-scrollbar.css";
+   .logout-btn {
+      display: none;
+      margin-top: vw(100);
+      justify-content: center;
+      button {
+         @include font(vw(22), 700, vh(22), $blue);
+         background-color: rgba(51, 97, 255, 0.1);
+         border-radius: vw(50);
+         border: none;
+         width: vw(280);
+         height: vw(100);
+         margin: 0;
+      }
+   }
    aside {
       position: fixed;
+      transition: 0.9s;
+      transform: translate(-110%);
+      width: vw(330);
    }
-   .ps{
+   aside.active {
+      transition: 0.9s;
+      transform: translate(0);
+   }
+   .ps {
       position: relative;
-      height: vw(800);
+      height: vw(1000);
    }
-   .ps__rail-y{
+   .ps__rail-y {
       background-color: inherit !important;
    }
    .sidebar__content {
@@ -168,15 +235,252 @@
          }
       }
    }
-
-   @media screen and (max-width: 1440px) {
-      .ps{
-         height: vw(1000);
+   @media screen and (max-width: 1600px) {
+      .ps {
+         height: vw(1300);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vw(320);
+         }
       }
    }
-   @media screen and (max-width: 1024px) {
-      .ps{
+   @media screen and (max-width: 1369px) {
+      .ps {
          height: vw(1400);
+      }
+   }
+
+   @media screen and (max-width: 1025px) {
+      .ps {
+         height: vw(1400);
+      }
+   }
+   @media screen and (max-width: 769px) {
+      .logout-btn {
+         display: flex;
+      }
+      .ps {
+         height: vw(2200);
+      }
+      .sidebar {
+         z-index: 50;
+         width: vw(600);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vw(600);
+            li {
+               span.title {
+                  @include font(vw(23), 700, vw(30), $greyBlue50);
+                  margin: vw(35) auto vw(35) vw(40);
+               }
+               img.arrow {
+                  margin: vw(40);
+                  max-width: vw(18);
+                  max-height: vw(11);
+               }
+            }
+            .categories {
+               padding: 0 vw(15);
+               li {
+                  padding: vw(18) 0;
+                  grid-template-columns: 1.1fr 5.5fr 0.6fr;
+                  span {
+                     @include font(vw(22), 700, vw(30), $white);
+                  }
+                  img:first-child {
+                     margin-left: vw(30);
+                     max-height: vw(32);
+                     max-width: vw(32);
+                  }
+                  img:last-child {
+                     max-width: vw(18);
+                     max-height: vw(11);
+                  }
+               }
+               .sub {
+                  margin-left: vw(90);
+                  li {
+                     span {
+                        @include font(vw(21), 700, vw(30), $greyBlue80);
+                     }
+                     span::before {
+                        left: vw(-43);
+                     }
+                  }
+                  .under {
+                     margin-left: vw(44);
+                  }
+               }
+            }
+         }
+      }
+   }
+   @media screen and(max-width: 579px) {
+      .logout-btn {
+         margin-top: vw(200);
+         button {
+            @include font(vw(32), 700, vh(30), $blue);
+            border-radius: vw(85);
+            width: vw(300);
+            height: vw(100);
+         }
+      }
+      .ps {
+         height: vmin(550);
+      }
+      .sidebar {
+         width: vw(900);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vw(500);
+            li {
+               span.title {
+                  @include font(vw(40), 600, vw(50), $greyBlue50);
+                  margin: vw(40) auto vw(40) vw(45);
+               }
+               img.arrow {
+                  margin: vw(50);
+                  max-width: vw(27);
+                  max-height: vw(17);
+               }
+            }
+            .categories {
+               padding: 0 vw(20);
+               li {
+                  padding: vw(25) 0;
+                  grid-template-columns: 1.1fr 5.5fr 0.55fr;
+                  span {
+                     @include font(vw(40), 500, vw(50), $white);
+                  }
+                  img:first-child {
+                     margin-left: vw(32);
+                     max-height: vw(45);
+                     max-width: vw(45);
+                  }
+                  img:last-child {
+                     max-width: vw(27);
+                     max-height: vw(17);
+                  }
+               }
+               .sub {
+                  margin-left: vw(135);
+                  li {
+                     span {
+                        @include font(vw(38), 500, vw(50), $greyBlue80);
+                     }
+                     span::before {
+                        left: vw(-85);
+                        width: vw(13);
+                        height: vw(13);
+                     }
+                  }
+                  .under {
+                     margin-left: vw(85);
+                  }
+               }
+            }
+         }
+      }
+   }
+   @media screen and(max-width: 426px) {
+      .logout-btn {
+         margin-top: vmin(65);
+         button {
+            @include font(vmin(16), 700, vmin(20), $blue);
+            border-radius: vmin(25);
+            width: vmin(150);
+            height: vmin(60);
+         }
+      }
+      .ps {
+         height: vmin(1000);
+      }
+      .sidebar {
+         width: vmin(300);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vmin(400);
+            li {
+               span.title {
+                  @include font(vmin(12), 500, vmin(22), $greyBlue50);
+                  margin: vmin(12) auto vmin(10) vmin(15);
+               }
+               img.arrow {
+                  margin: vmin(20);
+                  max-width: vmin(27);
+                  max-height: vmin(17);
+               }
+            }
+            .categories {
+               padding: 0 vmin(12);
+               li {
+                  padding: vmin(10) 0;
+                  grid-template-columns: 1.1fr 5.5fr 0.55fr;
+                  span {
+                     @include font(vmin(12), 400, vmin(20), $white);
+                  }
+                  img:first-child {
+                     margin-left: vmin(10);
+                     max-height: vmin(22);
+                     max-width: vmin(22);
+                  }
+                  img:last-child {
+                     max-width: vmin(27);
+                     max-height: vmin(17);
+                  }
+               }
+               .sub {
+                  margin-left: vmin(45);
+                  li {
+                     span {
+                        @include font(vmin(11), 400, vmin(20), $greyBlue80);
+                     }
+                     span::before {
+                        left: vmin(-26);
+                        width: vmin(5);
+                        height: vmin(5);
+                     }
+                  }
+                  .under {
+                     margin-left: vmin(28);
+                  }
+               }
+            }
+         }
+      }
+   }
+   @media screen and(max-width:415px) and(max-height:737px) {
+      .sidebar {
+         width: vmin(300);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vmin(475);
+         }
+      }
+   }
+   @media screen and(max-width:376px) {
+      .sidebar {
+         width: vmin(280);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vmin(300);
+         }
+      }
+   }
+    @media screen and(max-width:376px) and(max-height: 668px) {
+      .sidebar {
+         width: vmin(280);
+      }
+      .sidebar__content {
+         .sidebar__main-group {
+            padding-bottom: vmin(485);
+         }
       }
    }
 </style>

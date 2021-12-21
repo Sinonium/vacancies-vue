@@ -1,8 +1,8 @@
 <template>
-  <div v-show="modalActive" class="modal">
+  <div v-show="modalActive" class="modal" @click.self="close">
     <transition name="modal-animation-inner">
       <div v-show="modalActive" class="modal__inner">
-        <div class="modal__inner-text">
+        <div class="modal__inner-text"> 
           <h3>This Course Includes</h3>
           <p>
             25 hours of video on demand, 24 Articles, Full lifetime
@@ -55,7 +55,7 @@
           </div>
           <div class="buttons">
             <button @click="close" type="button">Close</button>
-            <button>Buy course</button>
+            <button>Buy</button>
           </div>
         </form>
       </div>
@@ -80,10 +80,11 @@ export default {
 
     const id = computed(() => store.state.courseId)
 
-    const { updateUserBuy } = update()
+    const { updateUserBuy, updateCourse } = update()
 
     const handleSubmit = async () => {
       await updateUserBuy(user.value.uid, id.value)
+      await updateCourse(id.value)
     }
 
     const firstName = ref('')
@@ -94,18 +95,6 @@ export default {
     const country = ref('')
     const zipCode = ref('')
 
-    const handleBuy = () => {
-      const userData = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        cardNumber: cardNumber.value,
-        mmyy: mmyy.value,
-        cvc: cvc.value,
-        country: country.value,
-        zipCode: zipCode.value,
-      }
-      console.log(userData)
-    }
     return {
       id,
       handleSubmit,
@@ -117,7 +106,6 @@ export default {
       cvc,
       country,
       zipCode,
-      handleBuy,
     }
   },
 }
@@ -137,6 +125,7 @@ export default {
   inset: 0;
   position: fixed;
   background: rgba(0, 0, 0, 0.6);
+
   .modal__inner {
     margin: 0 auto;
     max-width: vw(550);
@@ -145,11 +134,6 @@ export default {
     border-radius: vw(10);
     margin-top: vh(100);
     padding: vw(50);
-    h1 {
-      @include font(vw(35), 700, vw(20));
-      color: $greyBlue25;
-      text-align: center;
-    }
     &-text {
       margin: auto;
       width: vw(430);
@@ -202,6 +186,102 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .modal {
+    .modal__inner {
+      max-width: vmin(310);
+      height: vmin(230);
+      padding: vmin(10);
+      margin-top: vmin(10);
+      &-text {
+        width: vmin(300);
+        margin-top: vmin(30);
+        h3 {
+          @include font(vmin(10), 700, vmin(10));
+        }
+        p {
+          @include font(vmin(9), 600, vmin(12));
+        }
+      }
+      .buttons {
+        width: vmin(300);
+        margin-top: vmin(5);
+        button {
+          @include font(vmin(9), 700, vmin(10), $greyBlue60);
+          width: vmin(50);
+          height: vmin(20);
+          margin-right: vmin(10);
+        }
+      }
+
+      .items {
+        width: vmin(300);
+        margin-top: vmin(15);
+        input {
+          @include font(vmin(8), 600, vmin(10), $greyBlue70);
+          height: vmin(15);
+          width: vmin(290);
+          margin-bottom: vmin(7);
+        }
+        div {
+          input {
+            width: vmin(150);
+            margin-right: vmin(5);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .modal {
+    .modal__inner {
+      max-width: vmin(240);
+      height: vmin(460);
+      padding: vmin(10);
+      margin-top: vmin(50);
+      border-radius: vmin(20);
+      &-text {
+        width: vmin(160);
+        margin-top: vmin(10);
+        h3 {
+          @include font(vmin(15), 700, vmin(18));
+        }
+        p {
+          @include font(vmin(14), 600, vmin(18));
+        }
+      }
+      .items {
+        width: vmin(160);
+        margin-top: vmin(15);
+
+        input {
+          @include font(vmin(13), 600, vmin(10), $greyBlue70);
+          height: vmin(25);
+          width: vmin(151);
+          margin-right: vmin(4);
+        }
+        div {
+          display: block;
+        }
+      }
+      .buttons {
+        display: flex;
+        margin-top: vmin(5);
+        button {
+          @include font(vmin(14), 700, vmin(14), $greyBlue60);
+          width: vmin(50);
+          height: vmin(30);
+          margin-left: vmin(15);
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
 input[type='number'] {
   -moz-appearance: textfield;
 }
