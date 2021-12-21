@@ -5,13 +5,13 @@ import { getAuth } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDQXp85MeJRQym1NdCeeDLYSVnVFj1Ekms',
-  authDomain: 'vacancies-vue.firebaseapp.com',
-  projectId: 'vacancies-vue',
-  storageBucket: 'vacancies-vue.appspot.com',
-  messagingSenderId: '1073216221701',
-  appId: '1:1073216221701:web:6afb62ef17edd579f3226c',
-  measurementId: 'G-T0J645DPCM',
+  apiKey: process.env.VUE_APP_API_KEY,
+  authDomain: process.env.VUE_APP_AUTH_DOMAIN,
+  projectId: process.env.VUE_APP_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_STORAGE,
+  messagingSenderId: process.env.VUE_APP_MESSAGING_SENDER,
+  appId: process.env.VUE_APP_APP_ID,
+  measurementId: process.env.VUE_APP_MEASUREMENT_ID,
 }
 
 // Initialize Firebase
