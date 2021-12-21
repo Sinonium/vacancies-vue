@@ -241,7 +241,7 @@
       }
       .sidebar__content {
          .sidebar__main-group {
-            padding-bottom: vw(320);
+            padding-bottom: vw(700);
          }
       }
    }
